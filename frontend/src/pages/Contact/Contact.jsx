@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-const Kontakt = () => {
+const Contact = () => {
     return (
         <>
-            <h1>Kontaktieren Sie uns</h1>
+            <h1>Contact us</h1>
             <form>
                 <div>
                     <label htmlFor="name">Vollständiger Name</label>
@@ -24,4 +24,4 @@ const Kontakt = () => {
     );
 };
 
-export default Kontakt;
+export default Contact;

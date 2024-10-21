@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import Hero from "../../components/Hero/Hero";
+import Categories from "../../components/Categories/Categories";
+import Bestsellers from "../../components/Bestsellers/Bestsellers";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
     return (
         <>
-            <h1>Ich bin die Startseite</h1>
-
-            <Link to={"/kontakt"}>Kontaktieren Sie uns!</Link>
+            <main>
+                <section>
+                    <Hero />
+                </section>
+                <section>
+                    <Categories />
+                </section>
+                <section>
+                    <Bestsellers />
+                </section>
+            </main>
         </>
     );
 };
