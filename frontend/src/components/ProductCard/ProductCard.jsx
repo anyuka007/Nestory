@@ -5,7 +5,13 @@ import StarRating from "../StarRating/StarRating";
 const ProductCard = ({ product }) => {
     return (
         <div className="flex flex-col gap-2 w-[380px] h-[500px] justify-center items-center bg-gray-100 rounded-3xl">
-            <img src={`${product.image}`} alt="logo" width={325} height={325} />
+            <img
+                className="hover:scale-110 duration-300 easy-in-out"
+                src={`${product.image}`}
+                alt="logo"
+                width={325}
+                height={325}
+            />
             <div className="flex flex-col gap-2 justify-center items-center">
                 <h3 className="text-[16px] mb-3 text-colorPrimary">
                     {product.name}
