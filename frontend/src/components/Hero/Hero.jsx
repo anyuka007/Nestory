@@ -11,17 +11,12 @@ const product = {
 };
 const Hero = () => {
     return (
-        <div className="flex flex-col gap-5 mx-auto">
-            <Button text="Hero" width="160px" />
-            <Button
-                text="ADD TO CART"
-                width="250px"
-                height="50px"
-                fontSize="16px"
+        <div className="mx-auto w-full h-[650px] bg-colorPrimary rounded-3xl relative">
+            <img
+                src="/images/hero/hero-pic1.webp"
+                alt="hero-pic1"
+                className="left-1/2 transform -translate-x-1/2 rounded-3xl absolute top-20"
             />
-            <StarRating rate={2.4} />
-            <ProductCard product={product} />
-            <div className=" bg-gray-100 mx-auto"></div>
         </div>
     );
 };
