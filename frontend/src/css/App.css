@@ -11,10 +11,11 @@
 :root {
     font-size: 62.5%;
     --colorSecondary: #ffb128;
-    --colorPrimary: #0B3954;
+    --colorPrimary: #0b3954;
 }
 
 body {
     font-size: 1.6rem;
     font-family: "Sora", sans-serif;
+    color: #0b3954;
 }

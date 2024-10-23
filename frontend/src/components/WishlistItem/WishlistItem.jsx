@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 
 const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
     return (
-        <div className="w-full h-[55rem] flex justify-around ">
+        <div className="h-[28rem] py-[3rem] flex justify-around border-b">
             <div className="basis-[23%] flex justify-center items-center">
                 <img
                     src={wishItem.imgUrl}
@@ -16,19 +16,19 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
             </div>
             <div className="basis-[47%] flex flex-col justify-center">
                 <p className="pt-[1rem]">{wishItem.name}</p>
-                {/* <p>{wishItem._id}</p> */}
-                {/* <p>{"⭐".repeat(wishItem.rating)}</p> */}
                 <StarRating rate={wishItem.rating} />
-                {<p>{wishItem.description}</p>}
+                <p className="pt-8">{wishItem.description}</p>
                 <p className="my-[2rem]">
-                    <Link to={`/product/${wishItem._id}`}>Details</Link>
+                    <Link to={`/product/${wishItem._id}`} className="underline">
+                        Details
+                    </Link>
                 </p>
             </div>
             <div className="basis-[23%] flex flex-col justify-center ">
                 <div className="flex justify-between">
                     {wishItem.discount ? (
                         <div>
-                            <p className="text-white bg-red-600 w-[5rem]">
+                            <p className="text-white text-center bg-red-600 w-[5rem]">
                                 -{wishItem.discount}%
                             </p>
                             <p className="line-through text-[2rem]">
@@ -47,7 +47,10 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                             {wishItem.price.toFixed(2)}€
                         </p>
                     )}
-                    <button onClick={deleteWishItem}>
+                    <button
+                        onClick={deleteWishItem}
+                        className="text-colorPrimary"
+                    >
                         <Trash2 />
                     </button>
                 </div>
