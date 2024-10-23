@@ -6,7 +6,7 @@ export const testWishItems = [
     /* {
         _id: 1234,
         name: "Circle corners table",
-        rating: 4,
+        rating: 4.2,
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
         price: 223,
@@ -16,17 +16,17 @@ export const testWishItems = [
     {
         _id: 5678,
         name: "Modern Nightstand",
-        rating: 3,
+        rating: 3.5,
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
         price: 255,
-        discount: 8,
+        discount: 0,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
     },
     {
         _id: 9101,
         name: "Wooden dresser",
-        rating: 5,
+        rating: 4.7,
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
         price: 468,
@@ -39,7 +39,9 @@ const Wishlist = () => {
     return (
         <div className="w-full h-[80vh]">
             <div className="w-full py-[3rem] flex items-center justify-center">
-                <h1 className="text-[6.4rem] font-bold">Wishlist</h1>
+                <h1 className="text-[6.4rem] text-colorPrimary font-bold">
+                    Wishlist
+                </h1>
             </div>
             {testWishItems.length ? (
                 <div className="h-[80%] w-[80%] mx-auto flex flex-col items-center justify-center">
