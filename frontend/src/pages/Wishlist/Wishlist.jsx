@@ -10,6 +10,7 @@ export const testWishItems = [
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
         price: 223,
+        discount: 10,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
     }, */
     {
@@ -19,6 +20,7 @@ export const testWishItems = [
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
         price: 255,
+        discount: 8,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
     },
     {
@@ -28,6 +30,7 @@ export const testWishItems = [
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
         price: 468,
+        discount: 22,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
     },
 ];
@@ -44,10 +47,7 @@ const Wishlist = () => {
                         There are {testWishItems.length} items in your wishlist
                     </h3>
                     {testWishItems.map((item, index) => (
-                        <WishlistItem
-                            key={index}
-                            wishItem={testWishItems[index]}
-                        />
+                        <WishlistItem key={index} wishItem={item} />
                     ))}
                 </div>
             ) : (
