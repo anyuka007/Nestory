@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../Button/Button";
 import StarRating from "../StarRating/StarRating";
 import ProductCard from "../ProductCard/ProductCard";
@@ -7,7 +6,7 @@ const product = {
     name: "Product Name",
     image: "/images/beds/bed1.webp",
     rate: 4.5,
-    oldPrice: 0,
+    percentage: "70%",
     price: 560,
 };
 const Hero = () => {

@@ -3,27 +3,25 @@
 import { Heart } from "lucide-react";
 import StarRating from "../StarRating/StarRating";
 import styles from "./ProductCard.module.css";
+import { parse } from "postcss";
+import WishHeart from "../WishHeart/WishHeart";
 
 const ProductCard = ({ product }) => {
+    const percentageValue = parseInt(product.percentage);
     return (
         <div
             className={` 
-            ${product.oldPrice > 0 ? styles.onSale : ""} ${styles.wishList}
+            ${product.percentage ? styles.onSale : ""} 
             flex flex-col relative w-[372px] h-[500px] justify-center items-center bg-gray-100 rounded-3xl`}
             style={{
-                "--percentage": `"${Math.round(
-                    ((product.oldPrice - product.price) / product.oldPrice) *
-                        100
-                )}%"`,
+                "--percentage": `"${percentageValue}%"`,
 
                 "--colorSecondary":
-                    (product.oldPrice - product.price) / product.oldPrice > 0.4
-                        ? "#EE6352"
-                        : "#ffb128",
+                    percentageValue > 40 ? "#EE6352" : "#ffb128",
             }}
         >
-            <div className="absolute top-[15px] right-[10px]">
-                <Heart size={16} />
+            <div className="absolute top-[20px] right-[20px] z-20">
+                <WishHeart />
             </div>
             <img
                 className="hover:scale-110 duration-300 ease-in-out"
@@ -37,18 +35,21 @@ const ProductCard = ({ product }) => {
                     {product.name}
                 </h3>
                 <StarRating rate={product.rate} />
-                {product.oldPrice > 0 ? (
+                {product.percentage ? (
                     <p className="flex justify-center items-center gap-2">
                         <del className="no-underline">
                             <bdi className="text-[12px] text-[#8097a4] line-through ">
                                 <span className="text-[12px]">$</span>
-                                {product.oldPrice}
+                                {product.price}
                             </bdi>
                         </del>
                         <ins className="no-underline">
                             <bdi className="text-[16px] weight-[700] text-colorPrimary ">
                                 <span className="text-3xl">$</span>
-                                {product.price}
+                                {(
+                                    (product.price * (100 - percentageValue)) /
+                                    100
+                                ).toFixed(2)}
                             </bdi>
                         </ins>
                     </p>
