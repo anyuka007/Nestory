@@ -10,6 +10,8 @@
 
 :root {
     font-size: 62.5%;
+    --colorSecondary: #ffb128;
+    --colorPrimary: #0B3954;
 }
 
 body {
