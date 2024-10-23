@@ -4,6 +4,7 @@ import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
 import Bestsellers from "../../components/Bestsellers/Bestsellers";
 import Footer from "../../components/Footer/Footer";
+import SearchItem from "../../components/SearchItem/SearchItem.jsx";
 
 const Home = () => {
     return (
@@ -17,6 +18,9 @@ const Home = () => {
                 </section>
                 <section>
                     <Bestsellers />
+                </section>
+                <section>
+                    <SearchItem />
                 </section>
             </main>
         </>
