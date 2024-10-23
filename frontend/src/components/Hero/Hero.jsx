@@ -7,7 +7,7 @@ const product = {
     name: "Product Name",
     image: "/images/beds/bed1.webp",
     rate: 4.5,
-    oldPrice: 1000,
+    oldPrice: 0,
     price: 560,
 };
 const Hero = () => {
