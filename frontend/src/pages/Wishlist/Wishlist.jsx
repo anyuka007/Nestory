@@ -36,6 +36,21 @@ export const testWishItems = [
 ];
 
 const Wishlist = () => {
+    const deleteWishItem = (id) => {
+        console.log(
+            "item to del: ",
+            testWishItems.find((i) => i._id === id).name,
+            id
+        );
+    };
+    const addToCart = (id) => {
+        console.log(
+            "item to add: ",
+            testWishItems.find((i) => i._id === id).name,
+            id
+        );
+    };
+
     return (
         <div className="w-full h-[80vh]">
             <div className="w-full py-[3rem] flex items-center justify-center">
@@ -49,7 +64,13 @@ const Wishlist = () => {
                         There are {testWishItems.length} items in your wishlist
                     </h3>
                     {testWishItems.map((item, index) => (
-                        <WishlistItem key={index} wishItem={item} />
+                        <WishlistItem
+                            key={index}
+                            wishItem={item}
+                            deleteWishItem={() => deleteWishItem(item._id)}
+                            addToCart={() => addToCart(item._id)}
+                            /* addToChart={() => addToCart(item._id)} */
+                        />
                     ))}
                 </div>
             ) : (
