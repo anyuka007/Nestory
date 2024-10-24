@@ -12,10 +12,16 @@
     font-size: 62.5%;
     --colorSecondary: #ffb128;
     --colorPrimary: #0b3954;
+    --colorTertiary: #ee6352;
 }
 
 body {
     font-size: 1.6rem;
     font-family: "Sora", sans-serif;
     color: var(--colorPrimary);
+}
+
+.number {
+    @apply absolute -top-4 -right-4 bg-colorTertiary text-white w-7 h-7 rounded-full flex items-center justify-center text-[11px];
+    /* text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.6); */
 }
