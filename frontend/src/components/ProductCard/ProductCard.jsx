@@ -3,7 +3,7 @@
 import { Heart } from "lucide-react";
 import StarRating from "../StarRating/StarRating";
 import styles from "./ProductCard.module.css";
-import { parse } from "postcss";
+// import { parse } from "postcss";
 import WishHeart from "../WishHeart/WishHeart";
 
 const ProductCard = ({ product }) => {

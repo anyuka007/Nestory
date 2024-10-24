@@ -11,7 +11,7 @@ const Navbar = () => {
                 {/* MOBILE */}
                 <div className="w-full flex justify-between items-center md:hidden">
                     <div>
-                        <Link to={"/"}>Logo</Link>
+                        <Link to={"/"}>neSTory</Link>
                     </div>
                     <div className="flex justify-between items-center gap-2">
                         <HamburgMenu />
@@ -25,7 +25,7 @@ const Navbar = () => {
                     {/* LEFT */}
                     <div className="w-2/3 flex justify-between items-center">
                         <div>
-                            <Link to={"/"}>Logo</Link>
+                            <Link to={"/"}>neSTory</Link>
                         </div>
                         <div className="flex justify-between items-center gap-2">
                             <input
