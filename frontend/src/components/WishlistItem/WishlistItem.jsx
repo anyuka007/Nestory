@@ -7,12 +7,31 @@ import { Trash2 } from "lucide-react";
 const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
     return (
         <div className="h-fit md:h-[28rem] py-[3rem] flex flex-col lg:flex-row justify-around border-b">
-            <div className="basis-[23%] flex justify-center items-center">
-                <img
-                    src={wishItem.imgUrl}
-                    alt="wish item photo"
-                    className="w-[20rem] h-[20rem]"
-                />
+            <div className="md:basis-[23%] flex justify-between md:justify-center">
+                <div className="basis-[15%]">
+                    {wishItem.discount > 0 && (
+                        <p className="text-white text-center bg-colorTertiary w-[5rem]">
+                            -{wishItem.discount}%
+                        </p>
+                    )}
+                </div>
+                <div>
+                    <Link to="to={`/product/${wishItem._id}`}">
+                        <img
+                            src={wishItem.imgUrl}
+                            alt="wish item photo"
+                            className="w-[20rem] h-[20rem]"
+                        />
+                    </Link>
+                </div>
+                <div className=" text-center basis-[15%]">
+                    <button
+                        onClick={deleteWishItem}
+                        className="text-colorPrimary md:hidden"
+                    >
+                        <Trash2 />
+                    </button>
+                </div>
             </div>
             <div className="basis-[47%] flex flex-col justify-center">
                 <p className="pt-[1rem]">{wishItem.name}</p>
@@ -24,17 +43,14 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                     </Link>
                 </p>
             </div>
-            <div className="basis-[23%] flex flex-col justify-center ">
+            <div className="basis-[20%] flex flex-col justify-center ">
                 <div className="flex justify-between">
                     {wishItem.discount ? (
                         <div>
-                            <p className="text-white text-center bg-red-600 w-[5rem]">
-                                -{wishItem.discount}%
-                            </p>
                             <p className="line-through text-[2rem]">
                                 {wishItem.price.toFixed(2)}€
                             </p>
-                            <p className="text-[2rem] text-colorSecondary">
+                            <p className="text-[2rem] text-colorTertiary">
                                 {Math.round(
                                     wishItem.price *
                                         (1 - wishItem.discount / 100)
@@ -49,7 +65,7 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                     )}
                     <button
                         onClick={deleteWishItem}
-                        className="text-colorPrimary"
+                        className="text-colorPrimary hidden md:block"
                     >
                         <Trash2 />
                     </button>
@@ -57,11 +73,13 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
 
                 <p className="text-green-500">Is available</p>
                 <p className="text-green-500">Free shipping</p>
-                <Button
-                    text="Add to cart"
-                    width="250px"
-                    onClickHandler={addToCart}
-                />
+                <div className="flex justify-center mt-4">
+                    <Button
+                        text="Add to cart"
+                        width="250px"
+                        onClickHandler={addToCart}
+                    />
+                </div>
             </div>
         </div>
     );
