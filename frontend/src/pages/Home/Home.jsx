@@ -19,6 +19,7 @@ const Home = () => {
                 <section>
                     <Bestsellers />
                 </section>
+               
             </main>
         </>
     );
