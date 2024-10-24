@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 
 const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
     return (
-        <div className="h-[28rem] py-[3rem] flex justify-around border-b">
+        <div className="h-fit md:h-[28rem] py-[3rem] flex flex-col lg:flex-row justify-around border-b">
             <div className="basis-[23%] flex justify-center items-center">
                 <img
                     src={wishItem.imgUrl}

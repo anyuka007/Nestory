@@ -17,5 +17,5 @@
 body {
     font-size: 1.6rem;
     font-family: "Sora", sans-serif;
-    color: #0b3954;
+    color: var(--colorPrimary);
 }
