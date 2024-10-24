@@ -64,8 +64,9 @@ form {
   margin-bottom: 20px;
 }
 
-button {
-  grid-column: span 2; /* !!! Button spans full width !!! */
+/* button {
+  grid-column: span 2;
+  
   background-color: #f39c12;
   border: none;
   padding: 12px 20px;
@@ -74,11 +75,11 @@ button {
   font-size: 16px;
   width: 100%;
   cursor: pointer;
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: #e67e22;
-}
+} */
 
 .changeButton {
   margin-top: 20px;
