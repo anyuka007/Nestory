@@ -1,7 +1,10 @@
-import React from "react";
-
-const Categories = () => {
-    return <div>Categories</div>;
+const Categories = ({ categoryName }) => {
+    return (
+        <div>
+            Categories:
+            <p>Displaying {categoryName} Items...</p>
+        </div>
+    );
 };
 
 export default Categories;

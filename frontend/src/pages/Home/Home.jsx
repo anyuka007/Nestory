@@ -4,6 +4,7 @@ import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
 import Bestsellers from "../../components/Bestsellers/Bestsellers";
 import Footer from "../../components/Footer/Footer";
+import CategoryLists from "../../components/CategoryLists/CategoryLists";
 
 const Home = () => {
     return (
@@ -13,11 +14,12 @@ const Home = () => {
                     <Hero />
                 </section>
                 <section>
-                    <Categories />
+                    <CategoryLists />
                 </section>
                 <section>
                     <Bestsellers />
                 </section>
+               
             </main>
         </>
     );
