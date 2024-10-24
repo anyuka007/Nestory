@@ -4,8 +4,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                colorSecondary: "#ffb128", // 自定义颜色
+                colorSecondary: "#ffb128",
                 colorPrimary: "#0B3954",
+                colorTertiary: "#ee6352",
             },
         },
     },
