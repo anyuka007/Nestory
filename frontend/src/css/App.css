@@ -12,6 +12,7 @@
     font-size: 62.5%;
     --colorSecondary: #ffb128;
     --colorPrimary: #0b3954;
+    --colorTertiary: #ee6352;
 }
 
 body {
@@ -21,6 +22,6 @@ body {
 }
 
 .number {
-    @apply absolute -top-4 -right-4 bg-colorSecondary text-white w-7 h-7 rounded-full flex items-center justify-center text-[11px];
-    text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.6);
+    @apply absolute -top-4 -right-4 bg-colorTertiary text-white w-7 h-7 rounded-full flex items-center justify-center text-[11px];
+    /* text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.6); */
 }

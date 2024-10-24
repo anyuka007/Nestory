@@ -6,7 +6,7 @@ import "../../css/App.css";
 
 const Navbar = () => {
     return (
-        <div className=" md:px-20 lg:px-40 xl:px-80 w-full h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
+        <div className="px-10 md:px-20 lg:px-40 xl:px-80 w-full h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
             <div className="h-[60%] flex justify-between w-full">
                 {/* MOBILE */}
                 <div className="w-full flex justify-between items-center md:hidden">
