@@ -1,0 +1,224 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  /* justify-content: flex-start; */
+  align-items: center;
+  height: 100hv;
+  /* width: 100%;
+  max-width: 800px; */
+  padding: 40px;
+  /* margin: 0 auto; */
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.imageContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.imageContainer img {
+  max-width: 100%; /*good for our responsive*/
+  height: auto;
+}
+.container h2 {
+  margin-bottom: 30px;
+  margin-top: -5px;
+}
+.container input[type="email"],
+.container input[type="password"] {
+  width: 440px;
+  height: 45px;
+  padding: 10px 10px 10px 30px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 23px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.container input[type="email"]:focus,
+.container input[type="password"]:focus {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /*Повеќе сенка при фокус*/
+  background-color: white; /* Позадината станува бела при фокус */
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.inputContainer .icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .container .signInButton {
+  width: 440px;
+  height: 43px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+  outline: none;
+  transition: all 0.15s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .signInButton:hover {
+  outline: none;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.container .signInButton:focus {
+  background-color: #4154ce;
+} */
+
+.container .remember {
+  /* transform: translateY(-2px); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.container a {
+  color: var(--colorPrimary);
+  text-decoration: none;
+  font-size: 14px;
+}
+.container a:hover {
+  color: var(--colorSecondary);
+  text-decoration: underline;
+}
+
+/* this is our toggle switch style, button for remember me*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 2px;
+
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: var(--colorPrimary);
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+.socialButtons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.buttonGithub,
+.buttonGoogle {
+  background-color: var(--colorPrimary);
+  padding: 15px 20px;
+  font-size: 16px;
+  height: 43px;
+  color: white;
+  border: none;
+  border-radius: 50px 50px 50px 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttonGithub i,
+.buttonGoogle i {
+  margin-right: 10px;
+}
+
+.buttonGoogle:hover,
+.buttonGithub:hover {
+  transform: translateY(-2px);
+  outline: none;
+  border: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+  margin: 40px 0;
+  border-top: 1px solid black;
+  border: 0;
+  /* by default hr has a border, that's why 0 */
+}
+
+/* hr {
+  margin: 40px 0;
+  border: 0;
+  height: 1px;
+  background-color: black;
+} */
+
+.changeButton {
+  /* margin-bottom: -10px; */
+  margin-top: 40px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* @media (max-width: 600px) {
+    .container {
+      padding: 1rem;
+      max-width: 90%; 
+    }
+  } */
