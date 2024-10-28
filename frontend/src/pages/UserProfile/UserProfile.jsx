@@ -5,8 +5,8 @@ import UserProfileMenu from "../../components/UserProfile/UserProfileMenu";
 const UserProfile = () => {
     const location = useLocation();
     return (
-        <div className="flex flex-col md:flex-row">
-            <div className="basis-[80%] order-1 md:order-2">
+        <div className="flex flex-col lg:flex-row">
+            <div className="basis-[80%] order-2">
                 {location.pathname === "/user" && (
                     <>
                         <h3 className="lg:text-[3.2rem] text-center">
