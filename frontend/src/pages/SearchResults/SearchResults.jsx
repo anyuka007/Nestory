@@ -17,7 +17,6 @@ export const testSearchList = [
     {
         _id: 9101,
         name: "Cosy RTV sofa",
-        
         description:
             "Nunc aliquet ipsum eu dictumst quis natoque. Etiam scelerisque ipsum consequat lectus est ad aliquet diam fusce fermentum curabitur.",
         price: 1999,
@@ -30,17 +29,15 @@ export const testSearchList = [
          price: 1670.00,
         description:
             "Malesuada consectetuer eros nulla euismod maecenas metus purus dignissim. Id magnis cras mauris tempor nisi nibh semper parturient erat fermentum.",
-       
         discount: 8,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore2/wp-content/uploads/2023/01/befurniturestore2-product-pic21-960x750.webp",
     },
 ];
-
 const SearchList = () => {
     return (
         <div className="w-full  mx-auto flex flex-col items-center justify-center ">
             <div className="w-full   justify-center ">
-                <h1 className="text-[4.4rem] font-bold text-colorPrimary bg-gray-300 p-5 mx-auto flex flex-col items-center justify-center" >3 results found for: sofa</h1>
+                <h1 className="text-[2.4rem] md:text-[4.2rem] font-bold text-colorPrimary p-5 mx-auto flex flex-col items-center justify-center" >3 results found for: sofa</h1>
             </div>
             {testSearchList.length ? (
                 <div className="mx-auto flex flex-col items-center justify-center">
