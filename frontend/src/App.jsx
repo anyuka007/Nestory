@@ -15,6 +15,7 @@ import UserOrders from "./pages/UserProfile/UserOrders";
 import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 
 const App = () => (
+
   <AppProvider>
     <BrowserRouter>
       <Routes>
