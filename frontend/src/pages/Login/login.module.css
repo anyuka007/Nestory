@@ -35,9 +35,11 @@
   margin-bottom: 30px;
   margin-top: -5px;
 }
+
 .container input[type="email"],
-.container input[type="password"] {
-  width: 440px;
+.container input[type="password"],
+.container input[type="text"] {
+  width: 400px;
   height: 45px;
   padding: 10px 10px 10px 30px;
   margin: 10px 0;
@@ -50,10 +52,10 @@
 }
 
 .container input[type="email"]:focus,
-.container input[type="password"]:focus {
+.container input[type="password"]:focus,
+.container input[type="text"]:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /*Повеќе сенка при фокус*/
-  background-color: white; /* Позадината станува бела при фокус */
+  background-color: white;
 }
 
 .inputContainer {
@@ -63,7 +65,7 @@
 
 .inputContainer .icon {
   position: absolute;
-  left: 15px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
   color: #999;
@@ -75,8 +77,8 @@ form {
   align-items: center;
 }
 
-/* .container .signInButton {
-  width: 440px;
+.container .signInButton {
+  width: 400px;
   height: 43px;
   color: white;
   border: none;
@@ -88,6 +90,8 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--colorSecondary);
+  border-radius: 23px;
 }
 
 .container .signInButton:hover {
@@ -97,15 +101,15 @@ form {
 }
 
 .container .signInButton:focus {
-  background-color: #4154ce;
-} */
+  background-color: var(--colorPrimary);
+}
 
 .container .remember {
   /* transform: translateY(-2px); */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px 20px 20px 20px;
   margin-bottom: 10px;
   gap: 10px;
 }
@@ -166,6 +170,8 @@ input:checked + .slider:before {
   justify-content: center;
   margin-bottom: 20px;
   gap: 20px;
+  border-bottom: 1px solid #999;
+  padding-bottom: 40px;
 }
 
 .buttonGithub,
@@ -195,30 +201,69 @@ input:checked + .slider:before {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-hr {
-  margin: 40px 0;
-  border-top: 1px solid black;
-  border: 0;
-  /* by default hr has a border, that's why 0 */
-}
-
-/* hr {
-  margin: 40px 0;
-  border: 0;
-  height: 1px;
-  background-color: black;
-} */
-
 .changeButton {
   /* margin-bottom: -10px; */
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
-/* @media (max-width: 600px) {
-    .container {
-      padding: 1rem;
-      max-width: 90%; 
-    }
+/* .error {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px 20px;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+} */
+
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  /* .imageContainer {
+    display: none;
   } */
+
+  .formContainer {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .container input[type="email"],
+  .container input[type="password"],
+  .container input[type="text"],
+  .container .signInButton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .formContainer {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .container input[type="email"],
+  .container input[type="password"],
+  .container input[type="text"],
+  .container .signInButton {
+    width: 100%;
+  }
+
+  .imageContainer {
+    display: none;
+  }
+}
