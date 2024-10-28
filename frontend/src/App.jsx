@@ -27,7 +27,7 @@ const App = () => (
                     <Route path="wishlist" element={<Wishlist />} />
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
-                    <Route path="/user" element={<UserProfile />}>
+                    <Route path="user" element={<UserProfile />}>
                         <Route path="orders" element={<UserOrders />} />
                         <Route path="data" element={<UserProfileInfo />} />
                     </Route>
