@@ -22,7 +22,7 @@ const Home = () => {
                 </section>
                 {/* TABLET */}
                 <section className="hidden sm:block md:hidden w-full">
-                    <Bestsellers cardWidth={280} visibleCards={2} />
+                    <Bestsellers cardWidth={260} visibleCards={2} />
                 </section>
                 {/* DESKTOP */}
                 <section className="hidden md:block lg:hidden w-full">
@@ -34,7 +34,7 @@ const Home = () => {
                 </section>
                 {/* DESKTOP X LARGE */}
                 <section className="hidden xl:block w-full">
-                    <Bestsellers cardWidth={372} visibleCards={3} />
+                    <Bestsellers cardWidth={340} visibleCards={3} />
                 </section>
             </main>
         </>

@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-
-import { Heart } from "lucide-react";
 import StarRating from "../StarRating/StarRating";
 import styles from "./ProductCard.module.css";
 // import { parse } from "postcss";
@@ -12,7 +10,7 @@ const ProductCard = ({ product }) => {
         <div
             className={` 
             ${product.percentage ? styles.onSale : ""} 
-            flex flex-col relative w-full h-[500px] md:h-[460px] lg:h-[450px] xl:h-[550px] justify-center items-center bg-gray-100 rounded-3xl`}
+            flex flex-col relative w-full aspect-[3/4.5] justify-center items-center bg-gray-100 rounded-3xl`}
             style={{
                 "--percentage": `"${percentageValue}%"`,
 
@@ -20,15 +18,13 @@ const ProductCard = ({ product }) => {
                     percentageValue > 40 ? "#EE6352" : "#ffb128",
             }}
         >
-            <div className="absolute top-[14px] right-[14px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-20">
+            <div className="absolute top-[18px] right-[18px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-20">
                 <WishHeart />
             </div>
             <img
                 className="hover:scale-110 duration-300 ease-in-out w-[90%] "
                 src={`${product.image}`}
                 alt={`${product.name}`}
-                // width={350}
-                // height={350}
             />
             <div className="flex flex-col gap-2 justify-center items-center">
                 <h3 className="text-[16px] my-3  lg:mt-8 text-colorPrimary">
