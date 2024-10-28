@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
+
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
 import Bestsellers from "../../components/Bestsellers/Bestsellers";
