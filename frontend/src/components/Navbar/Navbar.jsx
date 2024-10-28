@@ -21,9 +21,9 @@ const Navbar = () => {
                     </div>
                 </div>
                 {/* TABLET */}
-                <div className="hidden md:flex justify-between items-center w-full">
+                <div className="hidden md:flex justify-between items-center w-full gap-10">
                     {/* LEFT */}
-                    <div className="w-2/3 flex justify-between items-center">
+                    <div className="w-2/3 flex justify-between items-center lg:gap-8">
                         <div>
                             <Link to={"/"}>neSTory</Link>
                         </div>
@@ -31,7 +31,7 @@ const Navbar = () => {
                             <input
                                 type="text"
                                 placeholder="Search"
-                                className=" bg-slate-100 rounded-md px-2 py-1 lg:w-[40rem] xl:w-[62rem] h-[4rem] focus:outline-none"
+                                className=" bg-slate-100 rounded-md px-2 py-1 md:w-[30rem] lg:w-[40rem] xl:w-[58rem] h-[4rem] focus:outline-none"
                             />
                             <Link to={"/search"}>
                                 <Search />

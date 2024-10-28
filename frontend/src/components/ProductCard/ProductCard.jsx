@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
         <div
             className={` 
             ${product.percentage ? styles.onSale : ""} 
-            flex flex-col relative w-[372px] h-[500px] justify-center items-center bg-gray-100 rounded-3xl`}
+            flex flex-col relative w-full h-[500px] md:h-[460px] lg:h-[450px] xl:h-[550px] justify-center items-center bg-gray-100 rounded-3xl`}
             style={{
                 "--percentage": `"${percentageValue}%"`,
 
@@ -20,18 +20,18 @@ const ProductCard = ({ product }) => {
                     percentageValue > 40 ? "#EE6352" : "#ffb128",
             }}
         >
-            <div className="absolute top-[20px] right-[20px] z-20">
+            <div className="absolute top-[14px] right-[14px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-20">
                 <WishHeart />
             </div>
             <img
-                className="hover:scale-110 duration-300 ease-in-out"
+                className="hover:scale-110 duration-300 ease-in-out w-[90%] "
                 src={`${product.image}`}
                 alt={`${product.name}`}
-                width={372}
-                height={372}
+                // width={350}
+                // height={350}
             />
             <div className="flex flex-col gap-2 justify-center items-center">
-                <h3 className="text-[16px] mb-3 text-colorPrimary">
+                <h3 className="text-[16px] my-3  lg:mt-8 text-colorPrimary">
                     {product.name}
                 </h3>
                 <StarRating rate={product.rate} />
