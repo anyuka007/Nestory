@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const products = [
+export const products = [
     {
         name: "Product Name",
         image: "/images/beds/bed1.webp",
@@ -39,9 +39,16 @@ const products = [
         percentage: "10%",
         price: 1060,
     },
+    {
+        name: "Product Name",
+        image: "/images/deskes/desk2.webp",
+        rate: 4.9,
+        percentage: 0,
+        price: 1060,
+    },
 ];
 
-const Bestsellers = ({ cardWidth, visibleCards }) => {
+const HotDeals = ({ cardWidth, visibleCards }) => {
     const [currentIndex, setCurrentIndex] = useState(1);
     const [isTransitionEnabled, setIsTransitionEnabled] = useState(false);
     const [isButtonEnabled, setIsButtonEnabled] = useState(true);
@@ -118,7 +125,7 @@ const Bestsellers = ({ cardWidth, visibleCards }) => {
 
     return (
         <>
-            <h2 className="text-[3rem] lg:text-[4.5rem] text-colorPrimary font-bold text-center mt-20">
+            <h2 className=" text-colorPrimary font-bold text-center mt-20">
                 HOT DEALS
             </h2>
             <div className="flex justify-center items-center my-10 flex-shrink-0">
@@ -169,4 +176,4 @@ const Bestsellers = ({ cardWidth, visibleCards }) => {
     );
 };
 
-export default Bestsellers;
+export default HotDeals;

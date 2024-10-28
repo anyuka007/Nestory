@@ -21,6 +21,26 @@ body {
     color: var(--colorPrimary);
 }
 
+@media (min-width: 768px) {
+    body h2 {
+        font-size: 2.4rem;
+
+    }
+}
+
+@media (min-width: 1024px) {
+    body h2 {
+        font-size: 3.2rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    body h2 {
+        font-size: 4rem;
+    }
+}
+
+
 .number {
     @apply absolute -top-4 -right-4 bg-colorTertiary text-white w-7 h-7 rounded-full flex items-center justify-center text-[11px];
     /* text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.6); */
