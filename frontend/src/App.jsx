@@ -7,7 +7,6 @@ import NotFound from "./pages/NotFound/NotFound";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchResults from "./pages/SearchResults/SearchResults";
 import Wishlist from "./pages/Wishlist/Wishlist";
-import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Category from "./pages/Category/Category";
 import UserProfile from "./pages/UserProfile/UserProfile";
@@ -16,6 +15,7 @@ import UserOrders from "./pages/UserProfile/UserOrders";
 import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 
 const App = () => (
+
     <AppProvider>
         <BrowserRouter>
             <Routes>
@@ -42,6 +42,7 @@ const App = () => (
             </Routes>
         </BrowserRouter>
     </AppProvider>
+
 );
 
 export default App;
