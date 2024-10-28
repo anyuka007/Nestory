@@ -12,6 +12,8 @@ import Login from "./pages/Login/Login";
 import Category from "./pages/Category/Category";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import UserOrders from "./pages/UserProfile/UserOrders";
+import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 
 const App = () => (
     <AppProvider>
@@ -25,7 +27,10 @@ const App = () => (
                     <Route path="wishlist" element={<Wishlist />} />
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
-                    <Route path="user" element={<UserProfile />} />
+                    <Route path="user" element={<UserProfile />}>
+                        <Route path="orders" element={<UserOrders />} />
+                        <Route path="data" element={<UserProfileInfo />} />
+                    </Route>
                     <Route
                         path="category/:categoryName"
                         element={<Category />}

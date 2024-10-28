@@ -8,7 +8,7 @@ export const testWishItems = [
         name: "Circle corners table",
         rating: 4.2,
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
         price: 223,
         discount: 10,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
@@ -18,7 +18,7 @@ export const testWishItems = [
         name: "Modern Nightstand",
         rating: 3.5,
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
         price: 255,
         discount: 0,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
@@ -28,9 +28,9 @@ export const testWishItems = [
         name: "Wooden dresser",
         rating: 4.7,
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
         price: 468,
-        discount: 22,
+        discount: 41,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
     },
 ];
@@ -53,14 +53,14 @@ const Wishlist = () => {
 
     return (
         <div>
-            <div className="py-[3rem] flex items-center justify-center">
-                <h1 className="text-[6.4rem] text-colorPrimary font-bold">
+            <div className="py-[1rem] lg:py-[3rem] flex items-center justify-center">
+                <h1 className="lg:text-[6.4rem] text-colorPrimary font-bold">
                     Wishlist
                 </h1>
             </div>
             {testWishItems.length ? (
                 <div className="flex flex-col items-center justify-center">
-                    <h3 className=" w-[100%] text-[3.2rem] text-center font-bold border-b">
+                    <h3 className=" w-[100%] lg:text-[3.2rem] text-center border-b">
                         There are {testWishItems.length} items in your wishlist
                     </h3>
                     {testWishItems.map((item, index) => (
