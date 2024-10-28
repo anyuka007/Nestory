@@ -37,7 +37,7 @@ const SearchList = () => {
     return (
         <div className="w-full  mx-auto flex flex-col items-center justify-center ">
             <div className="w-full   justify-center ">
-                <h1 className="text-[4.4rem] font-bold text-colorPrimary bg-gray-300 p-5 mx-auto flex flex-col items-center justify-center" >3 results found for: sofa</h1>
+                <h1 className="text-[2.4rem] md:text-[4.2rem] font-bold text-colorPrimary p-5 mx-auto flex flex-col items-center justify-center" >3 results found for: sofa</h1>
             </div>
             {testSearchList.length ? (
                 <div className="mx-auto flex flex-col items-center justify-center">
