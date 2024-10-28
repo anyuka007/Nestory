@@ -35,7 +35,7 @@ const Home = () => {
                 </section>
                 {/* DESKTOP X LARGE */}
                 <section className="hidden xl:block w-full">
-                    <HotDeals cardWidth={340} visibleCards={3} />
+                    <HotDeals cardWidth={370} visibleCards={3} />
                 </section>
                 <section>
                     <TopRated />

@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
                     percentageValue > 40 ? "#EE6352" : "#ffb128",
             }}
         >
-            <div className="absolute top-[18px] right-[18px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-20">
+            <div className="absolute top-[18px] right-[18px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-10">
                 <WishHeart />
             </div>
             <img

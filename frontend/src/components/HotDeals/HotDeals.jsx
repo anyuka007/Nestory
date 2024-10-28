@@ -125,7 +125,7 @@ const HotDeals = ({ cardWidth, visibleCards }) => {
 
     return (
         <>
-            <h2 className=" text-colorPrimary font-bold text-center mt-20">
+            <h2 className=" text-colorPrimary font-bold text-center mt-56">
                 HOT DEALS
             </h2>
             <div className="flex justify-center items-center my-10 flex-shrink-0">
