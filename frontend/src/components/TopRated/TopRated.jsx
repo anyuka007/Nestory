@@ -10,7 +10,7 @@ const TopRated = () => {
             {/* MOBILE */}
             <div className="w-full flex flex-col space-y-10 md:hidden items-center justify-center">
                 {products.map((product, index) => (
-                    <div className="w-[88%] mt-10 " key={index}>
+                    <div className="w-[80%] mt-10 " key={index}>
                         <ProductCard product={product} />
                     </div>
                 ))}

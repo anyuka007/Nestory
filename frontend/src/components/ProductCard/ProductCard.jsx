@@ -3,6 +3,7 @@ import StarRating from "../StarRating/StarRating";
 import styles from "./ProductCard.module.css";
 // import { parse } from "postcss";
 import WishHeart from "../WishHeart/WishHeart";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
     const percentageValue = parseInt(product.percentage);
@@ -21,15 +22,17 @@ const ProductCard = ({ product }) => {
             <div className="absolute top-[18px] right-[18px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-10">
                 <WishHeart />
             </div>
-            <img
+            <Link
                 className="hover:scale-110 duration-300 ease-in-out w-[90%] "
-                src={`${product.image}`}
-                alt={`${product.name}`}
-            />
+                to={`/product/${product._id}`}
+            >
+                <img src={`${product.image}`} alt={`${product.name}`} />
+            </Link>
             <div className="flex flex-col gap-2 justify-center items-center">
                 <h3 className="text-[16px] my-3  lg:mt-8 text-colorPrimary">
-                    {product.name}
+                    <Link to={`/product/${product._id}`}> {product.name} </Link>
                 </h3>
+
                 <StarRating rate={product.rate} />
                 {product.percentage ? (
                     <p className="flex justify-center items-center gap-2">

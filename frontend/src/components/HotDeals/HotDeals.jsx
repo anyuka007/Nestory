@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const products = [
     {
+        _id: 1,
         name: "Product Name",
         image: "/images/beds/bed1.webp",
         rate: 4.5,
@@ -12,6 +13,7 @@ export const products = [
         price: 560,
     },
     {
+        _id: 2,
         name: "Product Name",
         image: "/images/sofas/sofa1.webp",
         rate: 4.8,
@@ -19,6 +21,7 @@ export const products = [
         price: 1560,
     },
     {
+        _id: 3,
         name: "Product Name",
         image: "/images/tables/table2.webp",
         rate: 4.2,
@@ -26,6 +29,7 @@ export const products = [
         price: 360,
     },
     {
+        _id: 4,
         name: "Product Name",
         image: "/images/chairs/chair1.webp",
         rate: 4.9,
@@ -33,15 +37,17 @@ export const products = [
         price: 1060,
     },
     {
+        _id: 5,
         name: "Product Name",
-        image: "/images/deskes/desk1.webp",
+        image: "/images/desks/desk1.webp",
         rate: 4.9,
         percentage: "10%",
         price: 1060,
     },
     {
+        _id: 6,
         name: "Product Name",
-        image: "/images/deskes/desk2.webp",
+        image: "/images/desks/desk2.webp",
         rate: 4.9,
         percentage: 0,
         price: 1060,
