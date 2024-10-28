@@ -9,3 +9,10 @@
     text-decoration: line-through;
     
 }
+
+
+    
+    @media screen and (min-width:767px) {
+        .handy{display: grid;
+        color: red;}
+         }
