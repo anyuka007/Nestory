@@ -15,34 +15,29 @@ import UserOrders from "./pages/UserProfile/UserOrders";
 import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 
 const App = () => (
-
-    <AppProvider>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<SharedLayout />}>
-                    <Route index element={<Home />} />
-                    {/* Weitere Routen hier zwischen */}
-                    <Route path="search" element={<SearchResults />} />
-                    <Route path="cart" element={<ShoppingCart />} />
-                    <Route path="wishlist" element={<Wishlist />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="user" element={<UserProfile />}>
-                        <Route path="orders" element={<UserOrders />} />
-                        <Route path="data" element={<UserProfileInfo />} />
-                    </Route>
-                    <Route
-                        path="category/:categoryName"
-                        element={<Category />}
-                    />
-                    <Route path="product" element={<ProductDetails />} />
-                    {/* Weitere Routen hier zwischen */}
-                    <Route path="*" element={<NotFound />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    </AppProvider>
-
+  <AppProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          {/* Weitere Routen hier zwischen */}
+          <Route path="search" element={<SearchResults />} />
+          <Route path="cart" element={<ShoppingCart />} />
+          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Login />} />
+          <Route path="user" element={<UserProfile />}>
+            <Route path="orders" element={<UserOrders />} />
+            <Route path="data" element={<UserProfileInfo />} />
+          </Route>
+          <Route path="category/:categoryName" element={<Category />} />
+          <Route path="product" element={<ProductDetails />} />
+          {/* Weitere Routen hier zwischen */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </AppProvider>
 );
 
 export default App;
