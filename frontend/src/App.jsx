@@ -7,36 +7,38 @@ import NotFound from "./pages/NotFound/NotFound";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchResults from "./pages/SearchResults/SearchResults";
 import Wishlist from "./pages/Wishlist/Wishlist";
-import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Category from "./pages/Category/Category";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import UserOrders from "./pages/UserProfile/UserOrders";
+import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 
 const App = () => (
-    <AppProvider>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<SharedLayout />}>
-                    <Route index element={<Home />} />
-                    {/* Weitere Routen hier zwischen */}
-                    <Route path="search" element={<SearchResults />} />
-                    <Route path="cart" element={<ShoppingCart />} />
-                    <Route path="wishlist" element={<Wishlist />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="user" element={<UserProfile />} />
-                    <Route
-                        path="category/:categoryName"
-                        element={<Category />}
-                    />
-                    <Route path="product/:id" element={<ProductDetails />} />
-                    {/* Weitere Routen hier zwischen */}
-                    <Route path="*" element={<NotFound />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    </AppProvider>
+
+  <AppProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          {/* Weitere Routen hier zwischen */}
+          <Route path="search" element={<SearchResults />} />
+          <Route path="cart" element={<ShoppingCart />} />
+          <Route path="wishlist" element={<Wishlist />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Login />} />
+          <Route path="user" element={<UserProfile />}>
+            <Route path="orders" element={<UserOrders />} />
+            <Route path="data" element={<UserProfileInfo />} />
+          </Route>
+          <Route path="category/:categoryName" element={<Category />} />
+          <Route path="product" element={<ProductDetails />} />
+          {/* Weitere Routen hier zwischen */}
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </AppProvider>
 );
 
 export default App;
