@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import UserProfileMenu from "../../components/UserProfile/UserProfileMenu";
+import SubscribeBox from "../../components/UserProfile/SubscribeBox/SubscribeBox";
 
 const UserProfile = () => {
     const location = useLocation();
     return (
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex  justify-center flex-col lg:flex-row">
             <div className="basis-[80%] order-2">
                 {location.pathname === "/user" && (
                     <>
@@ -16,6 +17,7 @@ const UserProfile = () => {
                             Welcome to your account. Here you can view your
                             current orders and manage your personal information.
                         </p>
+                        <SubscribeBox />
                     </>
                 )}
                 <Outlet />
