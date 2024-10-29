@@ -4,9 +4,15 @@ import { ChevronDown } from "lucide-react";
 
 const UserProfileInfo = () => {
     const [dropdowns, setDropdowns] = useState({
-        dropdown1: false,
-        dropdown2: false,
-        dropdown3: false,
+        dropdownPersonalData: false,
+        dropdownAccessData: false,
+        dropdownAddress: false,
+    });
+
+    const [isEditMode, setIsEditMode] = useState({
+        personalDataDetails: false,
+        accessDataDetails: false,
+        addressDetails: false,
     });
 
     const dropDownHandler = (id) => {
@@ -15,6 +21,14 @@ const UserProfileInfo = () => {
             [id]: !prevState[id],
         }));
     };
+
+    const editModeHandler = (id) => {
+        setIsEditMode((prevState) => ({
+            ...prevState,
+            [id]: !prevState[id],
+        }));
+    };
+
     return (
         <div className="flex flex-col h-full">
             <h2 className="text-center text-[3rem] md:text-[4rem] lg:[4.8rem] mb-[1rem]">
@@ -27,8 +41,10 @@ const UserProfileInfo = () => {
                         <div className="flex gap-2">
                             <p>Show details</p>
                             <button
-                                id="dropdown1"
-                                onClick={() => dropDownHandler("dropdown1")}
+                                id="dropdownPersonalData"
+                                onClick={() =>
+                                    dropDownHandler("dropdownPersonalData")
+                                }
                             >
                                 <ChevronDown />
                             </button>
@@ -36,10 +52,32 @@ const UserProfileInfo = () => {
                     </div>
                     <div
                         className={`${
-                            !dropdowns.dropdown1 ? "hidden" : ""
+                            !dropdowns.dropdownPersonalData ? "hidden" : ""
                         } text-red-500 w-24 h-24`}
                     >
-                        TEST
+                        {!isEditMode.personalDataDetails ? (
+                            <div id="personalDataDetails">
+                                Info
+                                <button
+                                    onClick={() =>
+                                        editModeHandler("personalDataDetails")
+                                    }
+                                >
+                                    Edit
+                                </button>
+                            </div>
+                        ) : (
+                            <div>
+                                Form
+                                <button
+                                    onClick={() =>
+                                        editModeHandler("personalDataDetails")
+                                    }
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div>
@@ -48,8 +86,10 @@ const UserProfileInfo = () => {
                         <div className="flex gap-2">
                             <p>Show details</p>
                             <button
-                                id="dropdown2"
-                                onClick={() => dropDownHandler("dropdown2")}
+                                id="dropdownAccessData"
+                                onClick={() =>
+                                    dropDownHandler("dropdownAccessData")
+                                }
                             >
                                 <ChevronDown />
                             </button>
@@ -57,10 +97,32 @@ const UserProfileInfo = () => {
                     </div>
                     <div
                         className={`${
-                            !dropdowns.dropdown2 ? "hidden" : ""
+                            !dropdowns.dropdownAccessData ? "hidden" : ""
                         } text-red-500 w-24 h-24`}
                     >
-                        TEST
+                        {!isEditMode.accessDataDetails ? (
+                            <div>
+                                Info
+                                <button
+                                    onClick={() =>
+                                        editModeHandler("accessDataDetails")
+                                    }
+                                >
+                                    Edit
+                                </button>
+                            </div>
+                        ) : (
+                            <div>
+                                Form
+                                <button
+                                    onClick={() =>
+                                        editModeHandler("accessDataDetails")
+                                    }
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div>
@@ -69,8 +131,10 @@ const UserProfileInfo = () => {
                         <div className="flex gap-2">
                             <p>Show details</p>
                             <button
-                                id="dropdown3"
-                                onClick={() => dropDownHandler("dropdown3")}
+                                id="dropdownAddress"
+                                onClick={() =>
+                                    dropDownHandler("dropdownAddress")
+                                }
                             >
                                 <ChevronDown />
                             </button>
@@ -78,10 +142,32 @@ const UserProfileInfo = () => {
                     </div>
                     <div
                         className={`${
-                            !dropdowns.dropdown3 ? "hidden" : ""
+                            !dropdowns.dropdownAddress ? "hidden" : ""
                         } text-red-500 w-24 h-24`}
                     >
-                        TEST
+                        {!isEditMode.addressDetails ? (
+                            <div>
+                                Info
+                                <button
+                                    onClick={() =>
+                                        editModeHandler("addressDetails")
+                                    }
+                                >
+                                    Edit
+                                </button>
+                            </div>
+                        ) : (
+                            <div>
+                                Form
+                                <button
+                                    onClick={() =>
+                                        editModeHandler("addressDetails")
+                                    }
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
