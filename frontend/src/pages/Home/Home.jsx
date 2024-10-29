@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Hero from "../../components/Hero/Hero";
-import Categories from "../../components/Categories/Categories";
 import HotDeals from "../../components/HotDeals/HotDeals";
-import Footer from "../../components/Footer/Footer";
 import CategoryLists from "../../components/CategoryLists/CategoryLists";
 import TopRated from "../../components/TopRated/TopRated";
 import Button from "../../components/Button/Button";
