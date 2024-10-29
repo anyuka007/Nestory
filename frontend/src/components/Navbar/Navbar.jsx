@@ -1,4 +1,4 @@
-import { Heart, Search, ShoppingBag, User } from "lucide-react";
+import { Heart, LayoutGrid, Search, ShoppingBag, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import HamburgMenu from "../HamburgMenu/HamburgMenu";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
@@ -6,9 +6,10 @@ import "../../css/App.css";
 
 const Navbar = () => {
     return (
-        <div className="px-10 md:px-20 lg:px-40 xl:px-80 w-full h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
+        <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
             <div className="h-[60%] flex justify-between w-full">
                 {/* MOBILE */}
+
                 <div className="w-full flex justify-between items-center md:hidden">
                     <div>
                         <Link to={"/"}>neSTory</Link>
@@ -17,6 +18,31 @@ const Navbar = () => {
                         <HamburgMenu />
                         <Link to={"/search"}>
                             <Search />
+                        </Link>
+                    </div>
+                </div>
+                <div className="w-full flex justify-around items-center md:hidden fixed bottom-0 left-0 z-20 h-[8rem] bg-white shadow-sm shadow-gray-200">
+                    <div>
+                        <Link to={"/shop"}>
+                            <LayoutGrid size={26} />
+                        </Link>
+                    </div>
+
+                    <div className="relative">
+                        <Link to={"/cart"}>
+                            <span className="number">0</span>
+                            <ShoppingBag size={26} />
+                        </Link>
+                    </div>
+                    <div className="relative">
+                        <Link to={"/wishlist"}>
+                            <span className="number">3</span>
+                            <Heart size={26} />
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={"/login"}>
+                            <User size={26} />
                         </Link>
                     </div>
                 </div>

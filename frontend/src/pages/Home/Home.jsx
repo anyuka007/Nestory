@@ -6,6 +6,7 @@ import HotDeals from "../../components/HotDeals/HotDeals";
 import Footer from "../../components/Footer/Footer";
 import CategoryLists from "../../components/CategoryLists/CategoryLists";
 import TopRated from "../../components/TopRated/TopRated";
+import Button from "../../components/Button/Button";
 
 const Home = () => {
     return (
@@ -39,6 +40,16 @@ const Home = () => {
                 </section>
                 <section>
                     <TopRated />
+                </section>
+                <section className="mt-48">
+                    <Link className="w-full flex justify-center" to="/shop">
+                        <Button
+                            text="Go To Shop"
+                            width="30%"
+                            height="54px"
+                            fontSize="22px"
+                        />
+                    </Link>
                 </section>
             </main>
         </>

@@ -42,7 +42,7 @@ const CategoryLists = () => {
             </div>
 
             <div
-                className="hidden md:grid w-full gap-4"
+                className="hidden md:grid lg:hidden w-full gap-4"
                 style={{
                     gridTemplateColumns: "repeat(2, 1fr)",
                     gridTemplateRows: "auto auto auto",
@@ -65,6 +65,7 @@ const CategoryLists = () => {
                     />
                 ))}
             </div>
+            {/* DESKTOP */}
         </>
     );
 };
