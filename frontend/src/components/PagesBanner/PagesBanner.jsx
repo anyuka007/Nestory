@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const PagesBanner = ({ title, quantity }) => {
     return (
         <div>

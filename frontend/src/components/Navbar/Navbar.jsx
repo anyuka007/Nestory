@@ -6,8 +6,8 @@ import "../../css/App.css";
 
 const Navbar = () => {
     return (
-        <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
-            <div className="h-[60%] flex justify-between w-full">
+        <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[6rem] xl:h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
+            <div className="h-full xl:h-[60%] flex justify-between w-full">
                 {/* MOBILE */}
 
                 <div className="w-full flex justify-between items-center md:hidden">
@@ -88,7 +88,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className="hidden h-[40%] xl:flex  w-full">
+            <div className="hidden xl:h-[40%] xl:flex  w-full">
                 {/* <Link to={"category/:categoryName"}>Category</Link> */}
                 <CategoryMenu />
             </div>
