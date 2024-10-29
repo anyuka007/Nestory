@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Button from "../Button/Button";
+import { Package, Settings, Heart, LogOut } from "lucide-react";
 
 const UserProfileMenu = () => {
     const location = useLocation();
@@ -27,16 +28,13 @@ const UserProfileMenu = () => {
                             Your account
                         </Link>
                     </div>
-                    <div>
-                        {/* <Button
-                            text="Log out"
-                            width="100px"
-                            onClickHandler={handleLogout}
-                        /> */}
-                        <Link to="/login" className="h-8">
-                            Log out
-                        </Link>
-                    </div>
+
+                    <Link to="/login" className="h-8">
+                        <div className="flex gap-2">
+                            <p>Log out</p>
+                            <LogOut />
+                        </div>
+                    </Link>
                 </div>
                 <div className=" pt-4 flex">
                     <Link
@@ -62,7 +60,7 @@ const UserProfileMenu = () => {
                                     : "inherit",
                         }}
                     >
-                        Profile
+                        <p>Profile</p>
                     </Link>
                     <Link to="/wishlist" className="pl-2">
                         Wishlist
@@ -80,10 +78,11 @@ const UserProfileMenu = () => {
                                 ? "var(--colorTertiary)"
                                 : "inherit",
                     }}
+                    className="text-[2rem]"
                 >
-                    Your account
+                    <p className="font-bold">Your account</p>
                 </Link>
-                <div className="pl-[3rem] flex flex-col">
+                <div className="pl-[3rem] mt-[1.5rem] flex flex-col gap-3">
                     <Link
                         to="/user/orders"
                         style={{
@@ -93,7 +92,10 @@ const UserProfileMenu = () => {
                                     : "inherit",
                         }}
                     >
-                        Orders
+                        <div className="flex gap-2">
+                            <Package />
+                            <p>Orders</p>
+                        </div>
                     </Link>
                     <Link
                         to="/user/data"
@@ -104,15 +106,25 @@ const UserProfileMenu = () => {
                                     : "inherit",
                         }}
                     >
-                        Profile
+                        <div className="flex gap-2">
+                            <Settings />
+                            <p>Profile</p>
+                        </div>
                     </Link>
-                    <Link to="/wishlist">Wishlist</Link>
-                </div>
-                <div className="pt-[3rem]">
-                    <Link to="/login" className="h-8">
-                        Log out
+                    <Link to="/wishlist">
+                        <div className="flex gap-2">
+                            <Heart />
+                            <p>Wishlist</p>
+                        </div>
                     </Link>
                 </div>
+
+                <Link to="/login" className="h-8 text-[2rem]">
+                    <div className="pt-[3rem] flex gap-3">
+                        <p className="font-bold">Log out</p>
+                        <LogOut />
+                    </div>
+                </Link>
             </div>
         </div>
     );

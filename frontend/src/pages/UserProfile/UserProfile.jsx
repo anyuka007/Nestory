@@ -7,7 +7,7 @@ const UserProfile = () => {
     const location = useLocation();
     return (
         <>
-            <div className="mt-[3rem] h-[50vh] flex justify-center flex-col lg:flex-row">
+            <div className="mt-[3rem] flex justify-center flex-col lg:flex-row">
                 <div className="basis-[80%] order-2">
                     {location.pathname === "/user" && (
                         <>
