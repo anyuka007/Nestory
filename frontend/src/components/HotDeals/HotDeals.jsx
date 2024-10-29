@@ -2,6 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Timer from "../Timer/Timer";
 
 export const products = [
     {
@@ -140,6 +141,7 @@ const HotDeals = ({ cardWidth, visibleCards }) => {
             <h2 className=" text-colorPrimary font-bold text-center mt-56">
                 HOT DEALS
             </h2>
+            <Timer />
             <div className="flex justify-center items-center my-10 flex-shrink-0">
                 <button
                     className="next bg-colorPrimary hover:bg-[#030f42] text-white py-2 mr-1 rounded-full w-16 h-16 flex items-center justify-center"
