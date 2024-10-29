@@ -32,7 +32,7 @@ const App = () => (
             <Route path="data" element={<UserProfileInfo />} />
           </Route>
           <Route path="category/:categoryName" element={<Category />} />
-          <Route path="product" element={<ProductDetails />} />
+          <Route path="product/:_id" element={<ProductDetails />} />
           {/* Weitere Routen hier zwischen */}
           <Route path="*" element={<NotFound />} />
         </Route>
