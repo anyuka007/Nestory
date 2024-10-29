@@ -60,8 +60,8 @@ const ShoppingCart = () => {
         )}
       </div>
 
-      <div className="pay w-1/3 px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.3)] rounded-lg h-fit">
-        <h2 className="text-lg font-bold mb-6">Order Summary</h2>
+      <div className="pay w-[28%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.3)] rounded-lg h-fit">
+        <h2 className="text-[3rem] font-bold mb-6">Order Summary</h2>
         <div className="">
           <div className="flex justify-between">
             <span>Total Value:</span>
@@ -72,7 +72,7 @@ const ShoppingCart = () => {
             <span>5.00 €</span>
           </div>
           <div className="line border-t border-gray-300 my-10"></div>
-          <div className="flex justify-between font-bold text-lg mb-2">
+          <div className="flex justify-between font-bold text-3xl mb-2">
             <span>Gesamtsumme:</span>
             <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span>
           </div>
