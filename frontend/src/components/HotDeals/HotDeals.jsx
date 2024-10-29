@@ -7,6 +7,7 @@ export const products = [
     {
         _id: 1,
         name: "Product Name",
+        category: "Beds",
         image: "/images/beds/bed1.webp",
         rate: 4.5,
         percentage: "70%",
@@ -15,6 +16,7 @@ export const products = [
     {
         _id: 2,
         name: "Product Name",
+        category: "Sofas",
         image: "/images/sofas/sofa1.webp",
         rate: 4.8,
         percentage: "30%",
@@ -23,6 +25,7 @@ export const products = [
     {
         _id: 3,
         name: "Product Name",
+        category: "Tables",
         image: "/images/tables/table2.webp",
         rate: 4.2,
         percentage: "50%",
@@ -31,6 +34,7 @@ export const products = [
     {
         _id: 4,
         name: "Product Name",
+        category: "Chairs",
         image: "/images/chairs/chair1.webp",
         rate: 4.9,
         percentage: "10%",
@@ -39,6 +43,7 @@ export const products = [
     {
         _id: 5,
         name: "Product Name",
+        category: "Desks",
         image: "/images/desks/desk1.webp",
         rate: 4.9,
         percentage: "10%",
@@ -47,6 +52,7 @@ export const products = [
     {
         _id: 6,
         name: "Product Name",
+        category: "Desks",
         image: "/images/desks/desk2.webp",
         rate: 4.9,
         percentage: 0,
