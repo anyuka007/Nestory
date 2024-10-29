@@ -1,6 +1,5 @@
 import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem.jsx";
 import Button from "../../components/Button/Button";
-import WishHeart from "../../components/WishHeart/WishHeart.jsx";
 
 const testCartItems = [
   {
@@ -60,26 +59,33 @@ const ShoppingCart = () => {
           </div>
         )}
       </div>
-      <div className="w-1/3 p-6 bg-gray-200 rounded-lg">
-        <h2 className="text-lg font-bold mb-4">Order Summary</h2>
-        <div className="space-y-2">
+
+      <div className="pay w-1/3 px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.3)] rounded-lg h-fit">
+        <h2 className="text-lg font-bold mb-6">Order Summary</h2>
+        <div className="">
           <div className="flex justify-between">
             <span>Total Value:</span>
             <span>{totalPrice} €</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <span>Shipping Costs:</span>
             <span>5.00 €</span>
           </div>
-          <div className="flex justify-between font-bold text-lg">
+          <div className="line border-t border-gray-300 my-10"></div>
+          <div className="flex justify-between font-bold text-lg mb-2">
             <span>Gesamtsumme:</span>
             <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span>
           </div>
+          <span className="text-sm text-gray-500 mt-8">
+            inkl. gesetzlicher MwSt.
+          </span>
         </div>
-        <Button
-          text="Zur Kasse"
-          className="bg-red-600 text-white w-full py-2 mt-4 font-bold"
-        />
+        <div className="mt-12">
+          <Button
+            text="Zur Kasse"
+            className="text-white w-full py-2 mt-6 font-bold"
+          />
+        </div>
       </div>
     </div>
   );

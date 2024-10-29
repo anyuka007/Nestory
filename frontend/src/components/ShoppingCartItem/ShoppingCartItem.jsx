@@ -2,10 +2,19 @@
 import { Link } from "react-router-dom";
 import StarRating from "../StarRating/StarRating";
 import { Trash2 } from "lucide-react";
+import WishHeart from "../WishHeart/WishHeart";
 
 const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
   return (
-    <div className="h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-b">
+    <div className="relative h-fit md:h-[20rem] py-[3rem] flex flex-col md:flex-row justify-around border-b">
+      {/* Top-Right Icons */}
+      <div className="absolute top-1 right-6 flex space-x-2">
+        <Trash2
+          onClick={deleteCartItem}
+          className="text-colorPrimary cursor-pointer"
+        />
+      </div>
+      {/* <div className="h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-b"> */}
       {/* Left Section: Image and Delete Button (Mobile) */}
       <div className="md:basis-[30%] flex md:flex-col justify-between md:justify-center md:mx-8">
         <div className="basis-[15%]">
@@ -30,14 +39,14 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
             />
           </Link>
         </div>
-        <div className="text-center basis-[15%] flex justify-center">
+        {/* <div className="text-center basis-[15%] flex justify-center">
           <button
             onClick={deleteCartItem}
             className="h-8 w-8 text-colorPrimary md:hidden mb-auto"
           >
             <Trash2 />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Middle Section: Product Details */}
@@ -47,24 +56,25 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
         <p className="pt-8 text-sm text-gray-600">{cartItem.description}</p>
 
         {/* Quantity Selector */}
-        <div className="mt-4">
+        <div className="flex flex-row items-center mt-4">
           <label htmlFor="quantity" className="text-gray-700 mr-2">
             Quantity:
           </label>
-          <select id="quantity" className="border rounded px-2 py-1">
+          <select id="quantity" className="border rounded px-2 py-1 mr-4">
             {[1, 2, 3, 4, 5].map((qty) => (
               <option key={qty} value={qty}>
                 {qty}
               </option>
             ))}
           </select>
+          <WishHeart className="text-colorPrimary cursor-pointer" />
         </div>
 
-        <p className="mt-auto pt-4">
+        {/* <p className="mt-auto pt-4">
           <Link to={`/product/${cartItem._id}`} className="underline">
             Details
           </Link>
-        </p>
+        </p> */}
       </div>
 
       {/* Right Section: Price, Availability, and Remove Button (Desktop) */}
@@ -85,12 +95,12 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
           ) : (
             <p className="text-[2rem]">{cartItem.price.toFixed(2)}€</p>
           )}
-          <button
+          {/* <button
             onClick={deleteCartItem}
             className="p-4 text-colorPrimary hidden md:block mb-auto"
           >
             <Trash2 />
-          </button>
+          </button> */}
         </div>
 
         <p className="text-green-600">Is available</p>
