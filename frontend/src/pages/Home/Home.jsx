@@ -41,7 +41,7 @@ const Home = () => {
                 <section>
                     <TopRated />
                 </section>
-                <section className="mt-48">
+                <section className="hidden md:block mt-48">
                     <Link className="w-full flex justify-center" to="/shop">
                         <Button
                             text="Go To Shop"
