@@ -7,6 +7,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
     const [sectionFormData, setSectionFormData] = useState(formData);
     const [editMode, setEditMode] = useState(false);
+    const [passwordError, setPasswordError] = useState("");
 
     const toggleShowPassword = (fieldName) => {
         setShowPassword((prevState) => ({
@@ -78,6 +79,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                         e.target.value
                                     )
                                 }
+                                /* name={field.name} */
                             />
 
                             {(field.name === "password" ||
@@ -104,20 +106,33 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             )}
                         </div>
                     ))}
-                    <Button
-                        text="Save"
-                        width="100px"
-                        height="3rem"
-                        onClickHandler={() => {
-                            dispatchSectionForm({
-                                type: "submit_" + sectionId,
-                                sectionId,
-                                formData: sectionFormData,
-                            });
-                            setEditMode((prev) => !prev);
-                        }}
-                        Save
-                    />
+                    <div className="flex gap-5">
+                        <Button
+                            text="Save"
+                            width="100px"
+                            height="3rem"
+                            onClickHandler={() => {
+                                if (!formData.valid) {
+                                    setPasswordError(
+                                        "Passwords do not match. Please try again"
+                                    );
+                                    return;
+                                }
+                                dispatchSectionForm({
+                                    type: "submit_" + sectionId,
+                                    sectionId,
+                                    formData: sectionFormData,
+                                });
+                                setEditMode((prev) => !prev);
+                            }}
+                            Save
+                        />
+                        {passwordError && (
+                            <p className="text-colorTertiary flex items-center">
+                                {passwordError}
+                            </p>
+                        )}
+                    </div>
                 </div>
             )}
         </>

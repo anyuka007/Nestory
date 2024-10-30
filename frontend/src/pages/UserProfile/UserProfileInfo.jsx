@@ -5,7 +5,7 @@ const reducer = (formData, action) => {
     switch (action.type) {
         case "submit_accessData":
             if (action.formData.password !== action.formData.confirmPassword) {
-                alert("ALERT Passwords sollen gleich sein!!!");
+                //alert("ALERT Passwords sollen gleich sein!!!");
                 return {
                     ...formData,
                     [action.sectionId]: {
@@ -65,7 +65,7 @@ const UserProfileInfo = () => {
             { name: "email", label: "Email", type: "email" },
         ],
         accessData: [
-            { name: "username", label: "Username" },
+            /* { name: "username", label: "Username" }, */
             { name: "password", label: "Password", type: "password" },
             {
                 name: "confirmPassword",
