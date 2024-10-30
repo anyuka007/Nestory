@@ -44,15 +44,15 @@ const ShoppingCart = () => {
     .toFixed(2);
 
   return (
-    <div className="min-h-screen bg-white flex">
-      <div className="w-2/3 p-6">
+    <div className="min-h-screen bg-white flex flex-col xl:flex-row">
+      <div className="w-2/3 p-6 md:w-full">
         <h1 className="text-xl font-bold mb-4">Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
           <div className="space-y-4">
             {cartItems.map((item) => (
-              <div className="flex mb-4" key={item._id}>
+              <div className="flex mb-4 md:w-full" key={item._id}>
                 <ShoppingCartItem cartItem={item} />
               </div>
             ))}
@@ -60,8 +60,8 @@ const ShoppingCart = () => {
         )}
       </div>
 
-      <div className="pay w-[28%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.3)] rounded-lg h-fit">
-        <h2 className="text-[3rem] font-bold mb-6">Order Summary</h2>
+      <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[28%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.3)] rounded-lg h-fit">
+        <h2 className="text-3xl font-bold mb-6">Order Summary</h2>
         <div className="">
           <div className="flex justify-between">
             <span>Total Value:</span>
@@ -72,7 +72,7 @@ const ShoppingCart = () => {
             <span>5.00 €</span>
           </div>
           <div className="line border-t border-gray-300 my-10"></div>
-          <div className="flex justify-between font-bold text-3xl mb-2">
+          <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
             <span>Gesamtsumme:</span>
             <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span>
           </div>

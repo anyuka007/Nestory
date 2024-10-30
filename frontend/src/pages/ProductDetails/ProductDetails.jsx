@@ -1,90 +1,109 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import WishlistItem from "../../components/WishlistItem/WishlistItem";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import StarRating from "../../components/StarRating/StarRating";
+import WishHeart from "../../components/WishHeart/WishHeart";
 
-export const testWishItems = [
-    {
-        _id: 1234,
-        name: "Circle corners table",
-        rating: 4.2,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
-        price: 223,
-        discount: 10,
-        imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-    },
-    {
-        _id: 5678,
-        name: "Modern Nightstand",
-        rating: 3.5,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
-        price: 255,
-        discount: 0,
-        imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
-    },
-    {
-        _id: 9101,
-        name: "Wooden dresser",
-        rating: 4.7,
-        description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum, autem eius repudiandae excepturi. Asperiores, dicta quo.",
-        price: 468,
-        discount: 22,
-        imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
-    },
-];
-
-const Wishlist = () => {
-    const deleteWishItem = (id) => {
-        console.log(
-            "item to del: ",
-            testWishItems.find((i) => i._id === id).name,
-            id
-        );
-    };
-    const addToCart = (id) => {
-        console.log(
-            "item to add: ",
-            testWishItems.find((i) => i._id === id).name,
-            id
-        );
-    };
-
-    return (
-        <div>
-            <div className="py-[3rem] flex items-center justify-center">
-                <h1 className="text-[6.4rem] text-colorPrimary font-bold">
-                    Wishlist
-                </h1>
-            </div>
-            {testWishItems.length ? (
-                <div className="flex flex-col items-center justify-center">
-                    <h3 className=" w-[100%] text-[3.2rem] text-center font-bold border-b">
-                        There are {testWishItems.length} items in your wishlist
-                    </h3>
-                    {testWishItems.map((item, index) => (
-                        <WishlistItem
-                            key={index}
-                            wishItem={item}
-                            deleteWishItem={() => deleteWishItem(item._id)}
-                            addToCart={() => addToCart(item._id)}
-                            /* addToChart={() => addToCart(item._id)} */
-                        />
-                    ))}
-                </div>
-            ) : (
-                <div className="flex flex-col items-center justify-center">
-                    <h3 className="text-[3.2rem] font-bold mb-[1.5rem]">
-                        Your wishlist is empty
-                    </h3>
-                    <p className="bg-[#FFB128] py-[1.5rem] px-[3.5rem] text-[1.4rem] text-white  font-bold rounded-[8rem]">
-                        <Link to={"/"}>Go Shopping</Link>
-                    </p>
-                </div>
-            )}
-        </div>
-    );
+const product = {
+  _id: 1234,
+  name: "Circle corners table",
+  rating: 4.2,
+  description:
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
+  price: 223,
+  discount: 10,
+  imgUrl:
+    "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
 };
 
-export default Wishlist;
+const ProductDetails = () => {
+  const [quantity, setQuantity] = useState(1);
+
+  const increaseQuantity = () => {
+    if (quantity < 5) setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) setQuantity(quantity - 1);
+  };
+
+  return (
+    <div className="flex-col gap-2 mt-2 xl:mt-28 flex md:flex-row justify-around items-center bg-white">
+      {/* Left Section: Image */}
+      <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0">
+        <img
+          src={product.imgUrl}
+          alt="product"
+          className="w-[30rem] md:w-[65rem] md:h-[65rem]"
+        />
+      </div>
+
+      {/* Right Section: Product Details */}
+      <div className="basis-[40%] flex flex-col justify-center space-y-10 xl:mt-[-25rem]">
+        <h1 className="text-3xl xl:text-5xl font-semibold mb-3">
+          {product.name}
+        </h1>
+        <StarRating rate={product.rating} />
+        <p className="xl:w-[70%] text-2xl text-gray-600 mt-4">
+          {product.description}
+        </p>
+
+        {/* Quantity Selector */}
+        <div className="flex items-center mt-6">
+          {/* <label htmlFor="quantity" className="text-gray-700 mr-2">
+            Quantity:
+          </label> */}
+          <div className="flex items-center border rounded">
+            {/* <select id="quantity" className="border rounded px-2 py-1 mr-4">
+            {[1, 2, 3, 4, 5].map((qty) => (
+              <option key={qty} value={qty}>
+                {qty}
+              </option>
+            ))}
+          </select> */}
+            <button
+              onClick={decreaseQuantity}
+              className="px-2 py-1 text-gray-700 hover:bg-gray-200"
+            >
+              -
+            </button>
+            <span className="px-4 py-1">{quantity}</span>
+            <button
+              onClick={increaseQuantity}
+              className="px-2 py-1 text-gray-700 hover:bg-gray-200"
+            >
+              +
+            </button>
+          </div>
+          <WishHeart className="text-colorPrimary cursor-pointer" />
+        </div>
+        <div className="basis-[18%] flex flex-col justify-center">
+          {product.discount > 0 ? (
+            <div className="flex items-center space-x-2">
+              <p className="line-through text-3xl">
+                {product.price.toFixed(2)}€
+              </p>
+              <p className="text-5xl text-colorTertiary">
+                {Math.round(
+                  product.price * (1 - product.discount / 100)
+                ).toFixed(2)}
+                €
+              </p>
+            </div>
+          ) : (
+            <p className="text-3xl">{product.price.toFixed(2)}€</p>
+          )}
+          <p className="text-green-600 mt-4">Available</p>
+          <p className="text-green-600">Free Shipping</p>
+          <div className="mt-6 text-sm text-gray-500">
+            <p>Delivery: 2 - 3 business days</p>
+            <p>Shipping method: Parcel, immediately available</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Section: Price and Availability */}
+    </div>
+  );
+};
+
+export default ProductDetails;
