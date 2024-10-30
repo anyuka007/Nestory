@@ -17,7 +17,7 @@ const UserProfileInfo = () => {
     const [formData, setFormData] = useState({
         personalData: { firstName: "", lastName: "", email: "" },
         accessData: { username: "", password: "" },
-        address: { street: "", city: "", zip: "" },
+        address: { street: "", house: "", city: "", zip: "", country: "" },
     });
 
     const [showPassword, setShowPassword] = useState(false);
@@ -55,10 +55,15 @@ const UserProfileInfo = () => {
         accessData: [
             { name: "username", label: "Username" },
             { name: "password", label: "Password", type: "password" },
+            {
+                name: "confirmPassword",
+                label: "Confirm password",
+                type: "password",
+            },
         ],
         address: [
             { name: "street", label: "Street" },
-            { name: "house", label: "street" },
+            { name: "house", label: "House" },
             { name: "city", label: "City" },
             { name: "zip", label: "Zip Code" },
             { name: "country", label: "Country" },

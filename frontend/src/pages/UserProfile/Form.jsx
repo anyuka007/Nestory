@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import Input from "./Input";
+import { Eye, EyeOff } from "lucide-react";
 
 const Form = ({ sectionId, fields, formData, onInputChange }) => {
-    // Lokaler Zustand für die Passwortsichtbarkeit
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState({});
+
+    const toggleShowPassword = (fieldName) => {
+        setShowPassword((prevState) => ({
+            ...prevState,
+            [fieldName]: !prevState[fieldName],
+        }));
+    };
 
     return (
         <div>
@@ -12,8 +19,9 @@ const Form = ({ sectionId, fields, formData, onInputChange }) => {
                     <Input
                         label={field.label}
                         type={
-                            field.name === "password"
-                                ? showPassword
+                            field.name === "password" ||
+                            field.name === "confirmPassword"
+                                ? showPassword[field.name]
                                     ? "text"
                                     : "password"
                                 : field.type || "text"
@@ -24,14 +32,24 @@ const Form = ({ sectionId, fields, formData, onInputChange }) => {
                         }
                     />
 
-                    {/* Umschalt-Button für Passwortsichtbarkeit */}
-                    {field.name === "password" && (
+                    {(field.name === "password" ||
+                        field.name === "confirmPassword") && (
                         <button
                             type="button"
-                            onClick={() => setShowPassword(!showPassword)}
-                            className="text-sm text-blue-500 mt-1"
+                            onClick={() => toggleShowPassword(field.name)}
+                            className="text-m mt-1"
                         >
-                            {showPassword ? "Hide Password" : "Show Password"}
+                            {showPassword[field.name] ? (
+                                <div className="flex gap-2">
+                                    <EyeOff size={20} />
+                                    <p>Hide Password</p>
+                                </div>
+                            ) : (
+                                <div className="flex gap-2">
+                                    <Eye size={20} />
+                                    <p>Show Password</p>
+                                </div>
+                            )}
                         </button>
                     )}
                 </div>
