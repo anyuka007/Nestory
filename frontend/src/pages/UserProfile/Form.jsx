@@ -7,7 +7,6 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
     const [sectionFormData, setSectionFormData] = useState(formData);
     const [editMode, setEditMode] = useState(false);
-    const [passwordError, setPasswordError] = useState("");
 
     const toggleShowPassword = (fieldName) => {
         setShowPassword((prevState) => ({
@@ -112,12 +111,6 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             width="100px"
                             height="3rem"
                             onClickHandler={() => {
-                                if (!formData.valid) {
-                                    setPasswordError(
-                                        "Passwords do not match. Please try again"
-                                    );
-                                    return;
-                                }
                                 dispatchSectionForm({
                                     type: "submit_" + sectionId,
                                     sectionId,
@@ -127,9 +120,9 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             }}
                             Save
                         />
-                        {passwordError && (
+                        {!formData.valid && formData.errors.confirmPassword && (
                             <p className="text-colorTertiary flex items-center">
-                                {passwordError}
+                                {formData.errors.confirmPassword}
                             </p>
                         )}
                     </div>

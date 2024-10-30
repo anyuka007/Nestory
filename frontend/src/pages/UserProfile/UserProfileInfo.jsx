@@ -13,7 +13,24 @@ const reducer = (formData, action) => {
                         valid: false,
                         errors: {
                             ...formData.errors,
-                            confirmPassword: "Passwords missmatch",
+                            confirmPassword:
+                                "Passwords do not match. Please try again",
+                        },
+                    },
+                };
+            }
+            if (
+                formData.accessData.password === "" &&
+                formData.accessData.password === action.formData.password
+            ) {
+                return {
+                    ...formData,
+                    [action.sectionId]: {
+                        ...action.formData,
+                        valid: false,
+                        errors: {
+                            ...formData.errors,
+                            confirmPassword: "EMPTY Password! AAAAAA",
                         },
                     },
                 };
