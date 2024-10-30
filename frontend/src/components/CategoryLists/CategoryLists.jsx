@@ -25,7 +25,7 @@ const categoryLists = [
 const CategoryLists = () => {
     return (
         <>
-            <h2 className=" font-bold mt-[20rem] mb-[5rem] text-center">
+            <h2 className="text-4xl font-bold mt-[20rem] mb-[5rem] text-center">
                 NESTORY CATEGORIES
             </h2>
             {/* MOBILE */}
