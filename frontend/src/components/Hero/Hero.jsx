@@ -11,11 +11,11 @@ const product = {
 };
 const Hero = () => {
     return (
-        <div className="mx-auto w-full h-[650px] bg-colorPrimary rounded-3xl relative">
+        <div className="mx-auto w-full aspect-[4/2] bg-colorPrimary rounded-3xl relative">
             <img
                 src="/images/hero/hero-pic1.webp"
                 alt="hero-pic1"
-                className="left-1/2 transform -translate-x-1/2 rounded-3xl absolute top-20"
+                className="w-[86%] rounded-3xl absolute left-1/2 transform -translate-x-1/2  top-1/2 -translate-y-1/3 "
             />
         </div>
     );

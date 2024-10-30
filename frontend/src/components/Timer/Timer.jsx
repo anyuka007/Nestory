@@ -17,16 +17,16 @@ const Timer = () => {
     }, []);
     return (
         <div className="flex justify-around items-center w-full gap-4 my-20">
-            <div className="w-1/5 border-b-2  border-colorSecondary pb-6 text-center">
-                <h1 className="text-[3rem] font-bold">
+            <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
+                <h1 className="text-4xl md:text-[3rem] font-bold">
                     {Math.floor(timer / (1000 * 60 * 60 * 24)) < 10
                         ? `0${Math.floor(timer / (1000 * 60 * 60 * 24))}`
                         : Math.floor(timer / (1000 * 60 * 60 * 24))}
                 </h1>
                 <p>days</p>
             </div>
-            <div className="w-1/5 border-b-2  border-colorSecondary pb-6 text-center">
-                <h1 className="text-[3rem] font-bold">
+            <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
+                <h1 className="text-4xl md:text-[3rem] font-bold">
                     {Math.floor(
                         (timer % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
                     ) < 10
@@ -39,8 +39,8 @@ const Timer = () => {
                 </h1>
                 <p>hours</p>
             </div>
-            <div className="w-1/5 border-b-2  border-colorSecondary pb-6 text-center">
-                <h1 className="text-[3rem] font-bold">
+            <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
+                <h1 className="text-4xl md: text-[3rem] font-bold">
                     {Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60)) < 10
                         ? `0${Math.floor(
                               (timer % (1000 * 60 * 60)) / (1000 * 60)
@@ -49,8 +49,8 @@ const Timer = () => {
                 </h1>
                 <p>minutes</p>
             </div>
-            <div className="w-1/5 border-b-2  border-colorSecondary pb-6 text-center">
-                <h1 className="text-[3rem] font-bold">
+            <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
+                <h1 className="text-4xl md:text-[3rem] font-bold">
                     {Math.floor((timer % (1000 * 60)) / 1000) < 10
                         ? `0${Math.floor((timer % (1000 * 60)) / 1000)}`
                         : Math.floor((timer % (1000 * 60)) / 1000)}
