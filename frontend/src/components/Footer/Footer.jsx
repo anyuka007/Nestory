@@ -1,57 +1,144 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import {fa-brands fa-paypal} from '@awesome.me/kit-KIT_CODE/icons';
+//import { faCcPaypal} from "react-icons/fa";
+//import { FaCcVisa } from "react-icons/fa";
+//import { FaCcPaypal } from "react-icons/fa";
+//import { FaGithub} from "react-icons/fa";
+//import { FaCcMastercard } from "react-icons/fa";
 const Footer = () => {
     return (
         <>
             <div>
-                <footer className="flex justify-center m-12 ">
-                    <div className="">
-                        <div>
-                            <h1 className="border-t-4 pt-16 text-center text-[2rem]">
-                                Spaces that improve your quality of life -
-                                Request an estimate
-                            </h1>
-                            <p className="flex justify-center pt-12">Phone</p>{" "}
-                            <a className="flex justify-center" href="">
-                                +49(40)88799
-                            </a>
-                            <p className="flex justify-center pt-12"> Mail</p>
-                            <a className="flex justify-center" href="">
-                                netory-furnitor@hotmil.com
-                            </a>
+                <footer   >
+                    <div className="  m-12 md:mx-[24rem] ">
+                        {/* oben teil 70/80% */}
+                        <div >
+                            <div>
+                                <h1 className=" border-t-4 pt-16 text-center text-[2rem] md:flex">
+                                    Spaces that improve your quality of life -
+                                    Request an estimate
+                                </h1>
+                            </div>
+                            <div>
+                                <p className=" text-center pt-12 text-[1.3rem] md:flex ">
+                                    Phone
+                                </p>
+                                <p className="text-center md:flex text-[1.5rem]">
+                                    <Link>+49(40)88799</Link>
+                                </p>
+                                <p className="text-center md:flex pt-12 text-[1.3rem]">
+                                    {" "}
+                                    Mail
+                                </p>
+                                <p className="text-center md:flex">
+                                    <Link to="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=ee272b19-4411-433f-8f28-5c13cb6fd407&redirect_uri=https%3A%2F%2Fsupport.microsoft.com%2Fsignin-oidc&response_type=code%20id_token&scope=openid%20profile%20offline_access&response_mode=form_post&nonce=638658020109283406.MzJmODBmZmMtZWVkMy00NDdlLTgwZTItOWI2NDNhZDVkMDhiNjAxNmJlNmUtNjQ0Ny00ZWNlLTg3Y2UtMjRkZGJmZWFkMTZi&nopa=2&state=CfDJ8C0ohqf0LPdLoRrMGwogAwwSEv6mdcEFmX7U9jsOkPgWe8NDPgOF1yCi9uVofFSWvD9yMU16TQ-lBVTC4V3ZAEclp_WRM1yqTAp05_FFzqdnnTqz9wTtXmOngyB2H0ejAtjYDc2fkJkSHvevPcQ7DZbnnlJoCQKXbaqTQ_NKAGpVU8KO51krks1UQbJnEJpj0ugtqj39L1WjVtDz5bKn2v2ZUrM0fmCZ9NjIcc4IweNuI5J9Dna35sAlBUf8gYVhHAVEYqk2NunDEpfN-VTpM1FV5IgpVEkvqL3hj5kBkE42VfXYnxiWXdGOc_qIXWIZo2vc0EaU_GyfrCkKLG_qAfH-cXEP6OnIxOYgDQDGr7N8iul4nmPnHkXCkfVygPJ1mdcBpq6VFJpdL2LnSnMkr2s&x-client-SKU=ID_NET6_0&x-client-ver=8.0.2.0">
+                                        {" "}
+                                        netory-furnitor@hotmil.com
+                                    </Link>
+                                </p>
+                            </div>
                         </div>
-                        <div className="pt-12 flex justify-center gap-16 flex text-[2rem] border-b-4 pb-16 "><b></b>
+                        {/* unten teil 30/40% */}
+                        <div className="md: pt-12 px-6 flex gap-[7rem] text-[1.6rem] border-b-4 pb-16 font-bold ">
+                            <b></b>
                             <ul className="">
-                                <a href="">
+                                <Link>
                                     <li>- SHOP</li>
-                                </a>
-                                <a href="">
+                                </Link>
+                                <Link>
                                     <li>- PROJECTS</li>
-                                </a>
-                                <a href="">
+                                </Link>
+                                <Link>
                                     <li>- FAQ</li>
-                                </a>
-                                <a href="">
+                                </Link>
+                                <Link>
                                     <li>- SERVICES</li>
-                                </a>
-                                <a href="">
+                                </Link>
+                                <Link>
                                     <li>- ABOUT US</li>
-                                </a>
-                                <a href="">
+                                </Link>
+                                <Link>
+                                    {" "}
                                     <li>- CONTACT</li>
-                                </a>
+                                </Link>
                             </ul>
                             <ul>
-                                <a href=""><li>- CHAIRS</li></a>
-                                <a href=""><li>- BEDS</li></a>
-                                <a href=""><li>- TABELS</li></a>
-                                <a href=""><li>- SOFAS</li></a>
+                                <Link>
+                                    <li>- CHAIRS</li>
+                                </Link>
+                                <Link>
+                                    <li>- BEDS</li>
+                                </Link>
+                                <Link>
+                                    <li>- TABELS</li>
+                                </Link>
+                                <Link>
+                                    <li>- SOFAS</li>
+                                </Link>
                             </ul>
                         </div>
                         <div>
-                            <div className="pt-8"><p className="text-[1.3rem]">©2024 Betheme by <a href="">Muffin group</a> | All Rights Reserved | Powered by <a href="">WordPass</a></p></div>
-                            {/* <div><FontAwesomeIcon icon="fa-brands fa-paypal" /></div> */}
+                            <div className="pt-8 flex justify-center">
+                                <p className="text-[1.3rem]">
+                                    ©2024 neSTory by{" "}
+                                    <Link to="/" className="hover:underline">
+                                        LaLa Group
+                                    </Link>{" "}
+                                    | All Rights Reserved | Powered by{" "}
+                                    <Link className="hover:underline">
+                                        {" "}
+                                        WordPass
+                                    </Link>
+                                </p>
+                            </div>
+                            {/* <div><FontAwesomeIcon icon="fa-brands fa-paypal" /></div>
+                            <div><FontAwesomeIcon icon="fa-brands fa-cc-paypal" style={{color: "#74C0FC",}} /></div> */}
+                            {/* <div><FontAwesomeIcon icon={faCcPaypal} style={{color: "#74C0FC",}} /></div> */}
+
+                            <div className="flex justify-center p-8 ">
+                                {" "}
+                                <Link to="https://www.paypal.com/de/digital-wallet/send-receive-money?kid=p79723554003&gclid=Cj0KCQjwj4K5BhDYARIsAD1Ly2oibhjoC_gTjsxjBgXXjbfBL47gewp8fzA-D2ztlRVx6_hkvuMa8AAaAnhDEALw_wcB&gclsrc=aw.ds">
+                                    <img
+                                        className=" hover:bg-blue-100 hover: hover:rounded-md w-28"
+                                        src="https://themes.muffingroup.com/be/furniturestore2/wp-content/themes/betheme/images/payment-methods/PayPal.svg"
+                                        alt="paypal"
+                                    />
+                                </Link>
+                                <Link to="https://www.visa.de/">
+                                    <img
+                                        className="hover:bg-blue-100 hover:rounded-md w-28"
+                                        src="https://themes.muffingroup.com/be/furniturestore2/wp-content/themes/betheme/images/payment-methods/Visa.svg"
+                                        alt="visa"
+                                    />
+                                </Link>
+                                <Link to="https://www.unzer.com/de/mastercard/?utm_term&utm_campaign=11188183112&utm_campaign=11188183112&utm_source=adwords&utm_source=adwords&utm_medium=ppc&utm_medium=ppc&gad_source=1&gclid=Cj0KCQjwj4K5BhDYARIsAD1Ly2pPLmht4RSx1vkFXmgIzokjkYLoAxGRPqywepcSAtQL1-v311_qZeAaAirvEALw_wcB">
+                                    <img
+                                        className="hover:bg-blue-100 hover:rounded-md w-28"
+                                        src="https://themes.muffingroup.com/be/furniturestore2/wp-content/themes/betheme/images/payment-methods/Mastercard.svg"
+                                        alt="mastercart"
+                                    />
+                                </Link>
+                                <Link to="https://www.priceless.com/celebrity/19354/pay-and-get-germany">
+                                    <img
+                                        className="hover:bg-blue-100 hover:rounded-md w-28"
+                                        src="https://themes.muffingroup.com/be/furniturestore2/wp-content/themes/betheme/images/payment-methods/Maestro.svg"
+                                        alt=""
+                                    />
+                                </Link>
+                                <Link to="https://stripe.com/de?utm_campaign=EMEA_DE_en_Google_Search_Brand_Stripe_EXA-866170064&utm_medium=cpc&utm_source=google&ad_content=276018915073&utm_term=stripe&utm_matchtype=e&utm_adposition=&utm_device=c&gad_source=1&gclid=Cj0KCQjwsoe5BhDiARIsAOXVoUs8n7sUDmGGz9QaBwqXrCwcUgsT-bDZH9AzOxPRuClxSS6HwafyAHkaAoJMEALw_wcB">
+                                    <img
+                                        className="hover:bg-blue-100 hover:rounded-md w-28"
+                                        src="https://themes.muffingroup.com/be/furniturestore2/wp-content/themes/betheme/images/payment-methods/Stripe.svg"
+                                        alt=""
+                                    />
+                                </Link>
+                            </div>
+                            <p className="flex justify-center">.....</p>
+                            {/* <button className="text-blue-400" ><FaCcVisa /></button>
+                            <button ><FaCcPaypal /> </button>
+                            <button><FaGithub /></button>
+                            <button><FaCcMastercard /></button>  */}
                         </div>
                     </div>
                 </footer>
