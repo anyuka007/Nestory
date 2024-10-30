@@ -1,25 +1,48 @@
-import { Heart, LayoutGrid, Search, ShoppingBag, User } from "lucide-react";
+import { Heart, LayoutGrid, Search, ShoppingBag, User, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import HamburgMenu from "../HamburgMenu/HamburgMenu";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
 import "../../css/App.css";
+import { useState } from "react";
 
 const Navbar = () => {
+    const [search, setSearch] = useState(false);
     return (
-        <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200">
-            <div className="h-[60%] flex justify-between w-full">
+        <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[6rem] xl:h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200  ">
+            <div className="h-full xl:h-[60%] flex justify-between w-full ">
                 {/* MOBILE */}
 
-                <div className="w-full flex justify-between items-center md:hidden">
+                <div className="w-full flex justify-between items-center md:hidden relative">
                     <div>
                         <Link to={"/"}>neSTory</Link>
                     </div>
-                    <div className="flex justify-between items-center gap-2">
+                    <div className="flex justify-between items-center gap-2 ">
                         <HamburgMenu />
-                        <Link to={"/search"}>
-                            <Search />
-                        </Link>
+                        {!search && (
+                            <Search onClick={() => setSearch(!search)} />
+                        )}
                     </div>
+                    {search && (
+                        <div className="w-full flex absolute top-28 left-0 justify-center items-center gap-2 z-10 bg-white">
+                            <input
+                                type="text"
+                                placeholder="Search"
+                                className=" bg-slate-100 rounded-md w-[80%]  h-[4rem] focus:outline-none relative"
+                            />
+                            <Link
+                                className="absolute right-[7rem]"
+                                to={"/search"}
+                            >
+                                <Search />
+                            </Link>
+                            <X
+                                onClick={() => setSearch(!search)}
+                                className="cursor-pointer transition-transform duration-300
+                    ease-in-out transform hover:rotate-180 text-gray-400
+                    hover:text-gray-900"
+                            />
+                        </div>
+                    )}
                 </div>
                 <div className="w-full flex justify-around items-center md:hidden fixed bottom-0 left-0 z-20 h-[8rem] bg-white shadow-sm shadow-gray-200">
                     <div>
@@ -59,6 +82,7 @@ const Navbar = () => {
                                 placeholder="Search"
                                 className=" bg-slate-100 rounded-md px-2 py-1 md:w-[30rem] lg:w-[40rem] xl:w-[58rem] h-[4rem] focus:outline-none"
                             />
+
                             <Link to={"/search"}>
                                 <Search />
                             </Link>
@@ -88,7 +112,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className="hidden h-[40%] xl:flex  w-full">
+            <div className="hidden xl:h-[40%] xl:flex  w-full">
                 {/* <Link to={"category/:categoryName"}>Category</Link> */}
                 <CategoryMenu />
             </div>
