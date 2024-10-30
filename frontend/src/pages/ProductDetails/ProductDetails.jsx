@@ -48,35 +48,25 @@ const ProductDetails = () => {
         </p>
 
         {/* Quantity Selector */}
-        <div className="flex items-center mt-6">
-          {/* <label htmlFor="quantity" className="text-gray-700 mr-2">
-            Quantity:
-          </label> */}
+        <div className="flex items-center mt-6 space-x-4">
           <div className="flex items-center border rounded">
-            {/* <select id="quantity" className="border rounded px-2 py-1 mr-4">
-            {[1, 2, 3, 4, 5].map((qty) => (
-              <option key={qty} value={qty}>
-                {qty}
-              </option>
-            ))}
-          </select> */}
             <button
               onClick={decreaseQuantity}
-              className="px-2 py-1 text-gray-700 hover:bg-gray-200"
+              className="px-2 py-1 text-colorPrimary hover:bg-gray-200"
             >
               -
             </button>
-            <span className="px-4 py-1">{quantity}</span>
+            <span className="px-4 py-1 text-colorPrimary">{quantity}</span>
             <button
               onClick={increaseQuantity}
-              className="px-2 py-1 text-gray-700 hover:bg-gray-200"
+              className="px-2 py-1 text-colorPrimary hover:bg-gray-200"
             >
               +
             </button>
           </div>
           <WishHeart className="text-colorPrimary cursor-pointer" />
         </div>
-        <div className="basis-[18%] flex flex-col justify-center">
+        <div className="discount basis-[18%] flex flex-col justify-center">
           {product.discount > 0 ? (
             <div className="flex items-center space-x-2">
               <p className="line-through text-3xl">
