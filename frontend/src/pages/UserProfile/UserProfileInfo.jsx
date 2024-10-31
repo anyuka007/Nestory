@@ -1,8 +1,48 @@
 import React, { useReducer } from "react";
 import UserProfileSection from "./UserProfileSection";
 
+const defaultFormData = {
+    personalData: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        valid: true,
+        errors: {},
+    },
+    accessData: {
+        username: "",
+        password: "",
+        confirmPassword: "",
+        valid: true,
+        errors: {},
+    },
+    address: {
+        street: "",
+        house: "",
+        city: "",
+        zip: "",
+        country: "",
+        valid: true,
+        errors: {},
+    },
+};
+
 const reducer = (formData, action) => {
     switch (action.type) {
+        case "cancelPasswordChange":
+            /* formData.accessData.password = "";
+            formData.valid = true;
+            formData.errors = {};
+            break; */
+            return {
+                ...formData,
+                [action.sectionId]: {
+                    ...defaultFormData.sectionId,
+                    valid: true,
+                    errors: {},
+                },
+            };
+
         case "submit_accessData":
             if (action.formData.password !== action.formData.confirmPassword) {
                 //alert("ALERT Passwords sollen gleich sein!!!");
@@ -49,31 +89,10 @@ const reducer = (formData, action) => {
 };
 
 const UserProfileInfo = () => {
-    const [formData, dispatchSectionForm] = useReducer(reducer, {
-        personalData: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            valid: true,
-            errors: {},
-        },
-        accessData: {
-            username: "",
-            password: "",
-            confirmPassword: "",
-            valid: true,
-            errors: {},
-        },
-        address: {
-            street: "",
-            house: "",
-            city: "",
-            zip: "",
-            country: "",
-            valid: true,
-            errors: {},
-        },
-    });
+    const [formData, dispatchSectionForm] = useReducer(
+        reducer,
+        defaultFormData
+    );
 
     const fieldDefinitions = {
         personalData: [

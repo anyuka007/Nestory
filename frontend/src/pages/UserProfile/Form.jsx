@@ -107,16 +107,28 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                     ))}
                     <div className="flex gap-5">
                         <Button
+                            text="Cancel"
+                            width="100px"
+                            height="3rem"
+                            onClickHandler={() => {
+                                setEditMode((prev) => !prev);
+                                dispatchSectionForm({
+                                    type: "cancelPasswordChange",
+                                    sectionId,
+                                });
+                            }}
+                        />
+                        <Button
                             text="Save"
                             width="100px"
                             height="3rem"
                             onClickHandler={() => {
+                                setEditMode((prev) => !prev);
                                 dispatchSectionForm({
                                     type: "submit_" + sectionId,
                                     sectionId,
                                     formData: sectionFormData,
                                 });
-                                setEditMode((prev) => !prev);
                             }}
                             Save
                         />
