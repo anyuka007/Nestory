@@ -6,6 +6,7 @@ import ColorSelector from "../../components/ColorSelector/ColorSelector";
 import { PiPackageBold } from "react-icons/pi";
 import { MdHeadsetMic } from "react-icons/md";
 import QuantitySelector from "../../components/QuantitySelector/QuantitySelector";
+import Reviews from "../../components/Reviews/Reviews";
 
 const product = {
   _id: 1234,
@@ -23,7 +24,7 @@ const ProductDetails = () => {
   return (
     <>
       {/* <WishHeart className="text-colorPrimary cursor-pointer" /> */}
-      <div className="flex-col gap-2 mt-1 xl:mt-10 xl:mb-64 flex lg:flex-row justify-around items-center bg-white">
+      <div className="flex-col gap-2 mt-1 xl:mt-[6rem] xl:mb-64 flex lg:flex-row justify-around items-center bg-white">
         {/* Left Section: Image */}
         <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0">
           <img
@@ -41,7 +42,7 @@ const ProductDetails = () => {
           <div className="flex items-end">
             <StarRating rate={product.rating} />
             <a
-              href="#reviews"
+              href="#reviews" // This links to the reviews section
               className="no-underline text-[1rem] ml-2 text-gray-600 hover:text-gray-700 hover:underline"
             >
               (1 customer review)
@@ -127,6 +128,13 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* <ReviewSection /> */}
+      <div
+        id="reviews"
+        className="pt-[16rem] pb-[16rem] lg:pt-[12rem] lg:pb-[31rem]"
+      >
+        <Reviews />
       </div>
     </>
   );
