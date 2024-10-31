@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import Input from "./Input";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "../../components/Button/Button";
@@ -111,7 +112,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             width="100px"
                             height="3rem"
                             onClickHandler={() => {
-                                setEditMode((prev) => !prev);
+                                setEditMode((prev) => false);
                                 dispatchSectionForm({
                                     type: "cancelPasswordChange",
                                     sectionId,
@@ -123,7 +124,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             width="100px"
                             height="3rem"
                             onClickHandler={() => {
-                                setEditMode((prev) => !prev);
+                                setEditMode((prev) => false);
                                 dispatchSectionForm({
                                     type: "submit_" + sectionId,
                                     sectionId,

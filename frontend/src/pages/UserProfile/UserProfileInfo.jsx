@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import UserProfileSection from "./UserProfileSection";
 
 const defaultFormData = {
@@ -37,7 +37,7 @@ const reducer = (formData, action) => {
             return {
                 ...formData,
                 [action.sectionId]: {
-                    ...defaultFormData.sectionId,
+                    ...defaultFormData[action.sectionId],
                     valid: true,
                     errors: {},
                 },
@@ -75,6 +75,14 @@ const reducer = (formData, action) => {
                     },
                 };
             }
+            return {
+                ...formData,
+                [action.sectionId]: {
+                    ...action.formData,
+                    valid: true,
+                    errors: {},
+                },
+            };
         default:
             //   fetch patch usercollection => formDate. NB Password hash!
             return {
