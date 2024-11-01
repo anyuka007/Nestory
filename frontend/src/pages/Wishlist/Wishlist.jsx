@@ -79,7 +79,7 @@ const Wishlist = () => {
                         Your wishlist is empty
                     </h3>
                     <p className="bg-[#FFB128] py-[1.5rem] px-[3.5rem] text-[1.4rem] text-white  font-bold rounded-[8rem]">
-                        <Link to={"/"}>Go Shopping</Link>
+                        <Link to={"/shop"}>Go Shopping</Link>
                     </p>
                 </div>
             )}

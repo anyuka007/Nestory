@@ -1,50 +1,106 @@
-import React, { useState } from "react";
+import { useReducer } from "react";
 import UserProfileSection from "./UserProfileSection";
 
+const defaultFormData = {
+    personalData: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        valid: true,
+        errors: {},
+    },
+    accessData: {
+        username: "",
+        password: "",
+        confirmPassword: "",
+        valid: true,
+        errors: {},
+    },
+    address: {
+        street: "",
+        house: "",
+        city: "",
+        zip: "",
+        country: "",
+        valid: true,
+        errors: {},
+    },
+};
+
+const reducer = (formData, action) => {
+    switch (action.type) {
+        case "cancelPasswordChange":
+            /* formData.accessData.password = "";
+            formData.valid = true;
+            formData.errors = {};
+            break; */
+            return {
+                ...formData,
+                [action.sectionId]: {
+                    ...defaultFormData[action.sectionId],
+                    valid: true,
+                    errors: {},
+                },
+            };
+
+        case "submit_accessData":
+            if (action.formData.password !== action.formData.confirmPassword) {
+                //alert("ALERT Passwords sollen gleich sein!!!");
+                return {
+                    ...formData,
+                    [action.sectionId]: {
+                        ...action.formData,
+                        valid: false,
+                        errors: {
+                            ...formData.errors,
+                            confirmPassword:
+                                "Passwords do not match. Please try again",
+                        },
+                    },
+                };
+            }
+            if (
+                formData.accessData.password === "" &&
+                formData.accessData.password === action.formData.password
+            ) {
+                return {
+                    ...formData,
+                    [action.sectionId]: {
+                        ...action.formData,
+                        valid: false,
+                        errors: {
+                            ...formData.errors,
+                            confirmPassword: "EMPTY Password! AAAAAA",
+                        },
+                    },
+                };
+            }
+            return {
+                ...formData,
+                [action.sectionId]: {
+                    ...action.formData,
+                    valid: true,
+                    errors: {},
+                },
+            };
+        default:
+            //   fetch patch usercollection => formDate. NB Password hash!
+            return {
+                ...formData,
+                [action.sectionId]: {
+                    ...action.formData,
+                    valid: true,
+                    errors: {},
+                },
+            };
+    }
+};
+
 const UserProfileInfo = () => {
-    const [dropdowns, setDropdowns] = useState({
-        personalData: false,
-        accessData: false,
-        address: false,
-    });
-
-    const [editModes, setEditModes] = useState({
-        personalData: false,
-        accessData: false,
-        address: false,
-    });
-
-    const [formData, setFormData] = useState({
-        personalData: { firstName: "", lastName: "", email: "" },
-        accessData: { username: "", password: "" },
-        address: { street: "", city: "", zip: "" },
-    });
-
-    const [showPassword, setShowPassword] = useState(false);
-
-    const toggleDropdown = (section) => {
-        setDropdowns((prev) => ({
-            ...prev,
-            [section]: !prev[section],
-        }));
-    };
-
-    const toggleEditMode = (section) => {
-        setEditModes((prev) => ({
-            ...prev,
-            [section]: !prev[section],
-        }));
-    };
-
-    const handleInputChange = (section, field, value) => {
-        setFormData((prev) => ({
-            ...prev,
-            [section]: {
-                ...prev[section],
-                [field]: value,
-            },
-        }));
-    };
+    const [formData, dispatchSectionForm] = useReducer(
+        reducer,
+        defaultFormData
+    );
 
     const fieldDefinitions = {
         personalData: [
@@ -53,12 +109,17 @@ const UserProfileInfo = () => {
             { name: "email", label: "Email", type: "email" },
         ],
         accessData: [
-            { name: "username", label: "Username" },
+            /* { name: "username", label: "Username" }, */
             { name: "password", label: "Password", type: "password" },
+            {
+                name: "confirmPassword",
+                label: "Confirm password",
+                type: "password",
+            },
         ],
         address: [
             { name: "street", label: "Street" },
-            { name: "house", label: "street" },
+            { name: "house", label: "House" },
             { name: "city", label: "City" },
             { name: "zip", label: "Zip Code" },
             { name: "country", label: "Country" },
@@ -67,7 +128,7 @@ const UserProfileInfo = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <h2 className="text-center text-[3rem] md:text-[4rem] lg:text-[4.8rem] mb-[1rem]">
+            <h2 className="text-center text-[3rem] md:text-[4rem] mb-[1rem]">
                 Your profile
             </h2>
             <div>
@@ -79,15 +140,9 @@ const UserProfileInfo = () => {
                             sectionId.charAt(0).toUpperCase() +
                             sectionId.slice(1)
                         }
-                        isOpen={dropdowns[sectionId]}
-                        isEditMode={editModes[sectionId]}
                         formData={formData[sectionId]}
                         fields={fieldDefinitions[sectionId]}
-                        onToggleDropdown={toggleDropdown}
-                        onToggleEditMode={toggleEditMode}
-                        onInputChange={handleInputChange}
-                        /* showPassword={showPassword}
-                        setShowPassword={setShowPassword} */
+                        dispatchSectionForm={dispatchSectionForm}
                     />
                 ))}
             </div>

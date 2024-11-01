@@ -1,56 +1,43 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
 import Form from "./Form";
+import Button from "../../components/Button/Button";
+import { useState } from "react";
 
 const UserProfileSection = ({
     sectionId,
     title,
-    isOpen,
-    isEditMode,
     formData,
     fields,
-    onToggleDropdown,
-    onToggleEditMode,
-    onInputChange,
-}) => (
-    <div>
-        <div className="flex justify-between">
-            <p>{title}</p>
-            <div className="flex gap-2">
-                <p>Show details</p>
-                <button onClick={() => onToggleDropdown(sectionId)}>
-                    <ChevronDown />
-                </button>
+    dispatchSectionForm,
+}) => {
+    const [dropdown, setDropdown] = useState(false);
+
+    return (
+        <div>
+            <div
+                className={`flex justify-between bg-[#F6F6F6] my-4 p-6 ${
+                    dropdown ? "border-b-2" : ""
+                }`}
+            >
+                <p>{title}</p>
+                <div className="flex gap-2">
+                    <p>Show details</p>
+                    <button onClick={() => setDropdown((prev) => !prev)}>
+                        <ChevronDown />
+                    </button>
+                </div>
+            </div>
+            <div className={`${dropdown ? "" : "hidden"}`}>
+                <Form
+                    sectionId={sectionId}
+                    fields={fields}
+                    formData={formData}
+                    dispatchSectionForm={dispatchSectionForm}
+                />
             </div>
         </div>
-        <div className={`${isOpen ? "" : "hidden"} text-red-500 w-full`}>
-            {!isEditMode ? (
-                <div>
-                    {Object.entries(formData).map(([key, value]) => (
-                        <p key={key}>
-                            {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
-                            {key === "password" ? "*".repeat(16) : value || " "}
-                        </p>
-                    ))}
-                    <button onClick={() => onToggleEditMode(sectionId)}>
-                        Edit
-                    </button>
-                </div>
-            ) : (
-                <div>
-                    <Form
-                        sectionId={sectionId}
-                        fields={fields}
-                        formData={formData}
-                        onInputChange={onInputChange}
-                    />
-                    <button onClick={() => onToggleEditMode(sectionId)}>
-                        Save
-                    </button>
-                </div>
-            )}
-        </div>
-    </div>
-);
+    );
+};
 
 export default UserProfileSection;
