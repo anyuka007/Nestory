@@ -45,8 +45,10 @@ const ShoppingCart = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col xl:flex-row">
-      <div className="w-2/3 p-6 md:w-full">
-        <h1 className="text-xl font-bold mb-4">Shopping Cart</h1>
+      <div className="left w-full p-14 md:w-full">
+        <h1 className="title text-center md:text-left text-4xl font-bold mb-8">
+          Shopping Cart
+        </h1>
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
@@ -60,7 +62,7 @@ const ShoppingCart = () => {
         )}
       </div>
 
-      <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[28%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.3)] rounded-lg h-fit">
+      <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[35%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
         <h2 className="text-3xl font-bold mb-6">Order Summary</h2>
         <div className="">
           <div className="flex justify-between">
