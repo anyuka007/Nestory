@@ -40,7 +40,7 @@ const Timer = () => {
                 <p>hours</p>
             </div>
             <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
-                <h1 className="text-4xl md: text-[3rem] font-bold">
+                <h1 className="text-4xl md:text-[3rem] font-bold">
                     {Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60)) < 10
                         ? `0${Math.floor(
                               (timer % (1000 * 60 * 60)) / (1000 * 60)

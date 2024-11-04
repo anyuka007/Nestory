@@ -77,6 +77,9 @@ const HamburgMenu = ({ className }) => {
                             className="flex gap-2"
                             key={category}
                             to={`/category/${category}`}
+                            onClick={() => {
+                                window.scrollTo(0, 0);
+                            }}
                         >
                             {categoriesIcon[index]}
                             {category}

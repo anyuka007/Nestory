@@ -40,7 +40,13 @@ const Home = () => {
                     <TopRated />
                 </section>
                 <section className="hidden md:block mt-48">
-                    <Link className="w-full flex justify-center" to="/shop">
+                    <Link
+                        className="w-full flex justify-center"
+                        to="/shop"
+                        onClick={() => {
+                            window.scrollTo(0, 0);
+                        }}
+                    >
                         <Button
                             text="Go To Shop"
                             width="30%"
