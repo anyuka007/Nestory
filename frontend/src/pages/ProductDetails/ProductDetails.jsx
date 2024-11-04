@@ -7,6 +7,7 @@ import { PiPackageBold } from "react-icons/pi";
 import { MdHeadsetMic } from "react-icons/md";
 import QuantitySelector from "../../components/QuantitySelector/QuantitySelector";
 import Reviews from "../../components/Reviews/Reviews";
+import Carousel from "../../components/Carousel/Carousel";
 
 const product = {
   _id: 1234,
@@ -130,6 +131,7 @@ const ProductDetails = () => {
         </div>
       </div>
       {/* <ReviewSection /> */}
+      <Carousel />
       <div
         id="reviews"
         className="pt-[16rem] pb-[16rem] lg:pt-[12rem] lg:pb-[31rem]"

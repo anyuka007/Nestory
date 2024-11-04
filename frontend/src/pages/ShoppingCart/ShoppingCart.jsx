@@ -75,16 +75,16 @@ const ShoppingCart = () => {
           </div>
           <div className="line border-t border-gray-300 my-10"></div>
           <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
-            <span>Gesamtsumme:</span>
+            <span>Total amount:</span>
             <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span>
           </div>
           <span className="text-sm text-gray-500 mt-8">
-            inkl. gesetzlicher MwSt.
+            incl. applicable VAT.
           </span>
         </div>
         <div className="mt-12">
           <Button
-            text="Zur Kasse"
+            text="Checkout"
             className="text-white w-full py-2 mt-6 font-bold"
           />
         </div>
