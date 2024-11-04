@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function DownFooter() {
   return (
     <div>
-       <div className="border-t-2 mx-36 text-center">
+       <div className="border--2 mx-36 text-center">
                 <section className=" md:flex md:justify-evenly">
                     <div className="pt-8 flex justify-center">
                         <p className="text-[1.3rem]">
