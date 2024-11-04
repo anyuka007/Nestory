@@ -1,4 +1,3 @@
-import React from "react";
 import OrderItem from "../../components/UserProfile/OrderItem/OrderItem";
 
 const testOrders = [
@@ -13,6 +12,7 @@ const testOrders = [
         date: "2024-09-18",
         status: "delivered",
         priceByOrder: 200.7,
+        quantity: 2,
     },
     {
         _id: 5678,
@@ -25,6 +25,7 @@ const testOrders = [
         date: "2024-10-29",
         status: "assembling",
         priceByOrder: 255,
+        quantity: 3,
     },
     {
         _id: 9101,
@@ -37,6 +38,7 @@ const testOrders = [
         date: "2024-10-29",
         status: "in transit",
         priceByOrder: 276.12,
+        quantity: 1,
     },
 ];
 

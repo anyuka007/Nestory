@@ -20,7 +20,10 @@ const OrderSchema = new mongoose.Schema(
                     ref: "Product",
                     required: true,
                 },
+                // name: {type: String, required: true},
+                // imgUrl: {type: String, required: true},
                 quantity: { type: Number, required: true },
+                // price soll mit discount berechnet werden
                 price: {
                     type: Number,
                     required: true,
@@ -32,6 +35,7 @@ const OrderSchema = new mongoose.Schema(
             required: true,
             enum: ["delivered", "assembling", "in transit"],
         },
+        total: { type: Number, required: true },
     },
     { timestamps: true }
 );
