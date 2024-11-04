@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Footer5 from "../components/Footer5/Footer5";
+import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
 
 const SharedLayout = () => {
@@ -10,7 +10,7 @@ const SharedLayout = () => {
       <main className="px-16 md:px-20 lg:px-40 xl:px-80 w-full pt-[13rem]">
         <Outlet />
       </main>
-      <Footer5 />
+      <Footer />
     </>
   );
 };
