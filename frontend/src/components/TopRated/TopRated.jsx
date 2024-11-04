@@ -4,7 +4,7 @@ import { products } from "../../components/HotDeals/HotDeals";
 const TopRated = () => {
     return (
         <div className="w-full mt-56">
-            <h2 className="text-colorPrimary font-bold text-center mt-20">
+            <h2 className=" text-colorPrimary font-bold text-center mt-20">
                 TOP RATED PRODUCTS
             </h2>
             {/* MOBILE */}

@@ -1,11 +1,21 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-// import { IoIosMenu, IoMdClose } from "react-icons/io";
 import { Menu, X } from "lucide-react";
+import { Armchair, BedDouble, Sofa } from "lucide-react";
+import { MdTableRestaurant } from "react-icons/md";
+import { TbDesk } from "react-icons/tb";
+
 const HamburgMenu = ({ className }) => {
     const [open, setOpen] = useState(false);
     const categories = ["Sofas", "Chairs", "Tables", "Beds", "Desks"];
+    const categoriesIcon = [
+        <Sofa size={26} />,
+        <Armchair size={26} />,
+        <MdTableRestaurant size={26} />,
+        <BedDouble size={26} />,
+        <TbDesk size={26} />,
+    ];
     const menuRef = useRef(null);
 
     useEffect(() => {
@@ -42,7 +52,7 @@ const HamburgMenu = ({ className }) => {
             {/* Sliding Menu */}
             <div
                 ref={menuRef}
-                className={`fixed top-0 right-0 h-[100vh] w-64 space-y-4 bg-white shadow-lg transform transition-transform duration-500 ease-in-out z-20 ${
+                className={`fixed top-0 right-0 h-[100vh] w-80 space-y-4 bg-white shadow-lg transform transition-transform duration-500 ease-in-out z-20 ${
                     open ? "translate-x-0" : "translate-x-full"
                 }`}
             >
@@ -62,8 +72,16 @@ const HamburgMenu = ({ className }) => {
                     className="flex flex-col pl-14 p-8 gap-4 space-y-6 "
                     onClick={handleClick}
                 >
-                    {categories.map((category) => (
-                        <Link key={category} to={`/category/${category}`}>
+                    {categories.map((category, index) => (
+                        <Link
+                            className="flex gap-2"
+                            key={category}
+                            to={`/category/${category}`}
+                            onClick={() => {
+                                window.scrollTo(0, 0);
+                            }}
+                        >
+                            {categoriesIcon[index]}
                             {category}
                         </Link>
                     ))}

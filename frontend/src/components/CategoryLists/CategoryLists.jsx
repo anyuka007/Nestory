@@ -1,36 +1,37 @@
 import CategoryListCard from "../CategoryListCard/CategoryListCard";
+import { Category3D } from "../Category3D/Category3D";
 
 const categoryLists = [
     {
         title: "BEDS",
-        img: "/images/beds/bed2.webp",
+        img: "/images/categories/pic2.webp",
     },
     {
         title: "SOFAS",
-        img: "/images/sofas/sofa1.webp",
+        img: "/images/categories/pic1.webp",
     },
     {
         title: "DESKS",
-        img: "/images/desks/desk1.webp",
+        img: "/images/categories/pic3.webp",
     },
     {
         title: "CHAIRS",
-        img: "/images/chairs/chair4.webp",
+        img: "/images/categories/pic4.webp",
     },
     {
         title: "TABLES",
-        img: "/images/tables/table1.webp",
+        img: "/images/categories/pic5.webp",
     },
 ];
 const CategoryLists = () => {
     return (
-        <>
-            <h2 className=" font-bold mt-[20rem] mb-[5rem] text-center">
+        <div className="w-full mt-[10rem]  md:mt-[16rem] lg:mt-[25rem] ">
+            <h2 className="font-bold mb-[2rem] lg:mb-[5rem] text-center">
                 NESTORY CATEGORIES
             </h2>
             {/* MOBILE */}
             {/* <div className="w-full grid grid-cols-4 grid-rows-2 h-[600px] gap-4 "> */}
-            <div className="md:hidden w-[90%] aspect-[4/3] flex flex-col mx-auto gap-10 ">
+            <div className="md:hidden w-full aspect-[4/3] flex flex-col mx-auto gap-10 ">
                 {categoryLists.map((item, index) => (
                     <CategoryListCard
                         key={index}
@@ -66,7 +67,10 @@ const CategoryLists = () => {
                 ))}
             </div>
             {/* DESKTOP */}
-        </>
+            <div className="hidden lg:block w-full mx-auto h-screen rounded-3xl my-[-10rem] cursor-pointer">
+                <Category3D />
+            </div>
+        </div>
     );
 };
 

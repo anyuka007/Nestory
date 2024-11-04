@@ -8,6 +8,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// import LogoLine from "../../components/LogoLine/LogoLine";
 
 const App = () => {
   const {
@@ -69,7 +70,7 @@ const App = () => {
             <FaGoogle /> Google
           </button>
         </div>
-
+        {/* <LogoLine /> */}
         <p>
           {isSignUp
             ? "Or sign up with credentials"

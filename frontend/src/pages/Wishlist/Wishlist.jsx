@@ -54,9 +54,9 @@ const Wishlist = () => {
     return (
         <div>
             <div className="py-[1rem] lg:py-[3rem] flex items-center justify-center">
-                <h1 className="lg:text-[6.4rem] text-colorPrimary font-bold">
+                <h2 className=" text-[2.4rem] md:text-[4rem] lg:text-[4.8rem] text-colorPrimary font-bold">
                     Wishlist
-                </h1>
+                </h2>
             </div>
             {testWishItems.length ? (
                 <div className="flex flex-col items-center justify-center">
@@ -79,7 +79,7 @@ const Wishlist = () => {
                         Your wishlist is empty
                     </h3>
                     <p className="bg-[#FFB128] py-[1.5rem] px-[3.5rem] text-[1.4rem] text-white  font-bold rounded-[8rem]">
-                        <Link to={"/"}>Go Shopping</Link>
+                        <Link to={"/shop"}>Go Shopping</Link>
                     </p>
                 </div>
             )}

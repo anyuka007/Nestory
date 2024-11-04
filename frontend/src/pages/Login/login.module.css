@@ -34,6 +34,7 @@
 .container h2 {
   margin-bottom: 30px;
   margin-top: -5px;
+  font-size: 3rem;
 }
 
 .container input[type="email"],
@@ -44,7 +45,8 @@
   padding: 10px 10px 10px 30px;
   margin: 10px 0;
   border: none;
-  border-radius: 23px;
+  /* border-radius: 23px; */
+  border-radius: 3px;
   background-color: #f1f1f1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   outline: none;
@@ -123,7 +125,7 @@ form {
   text-decoration: underline;
 }
 
-/* this is our toggle switch style, button for remember me*/
+/* this is our toggle switch style button for remember me*/
 .switch {
   position: relative;
   display: inline-block;
@@ -177,7 +179,7 @@ input:checked + .slider:before {
 .buttonGithub,
 .buttonGoogle {
   background-color: var(--colorPrimary);
-  padding: 15px 20px;
+  padding: 10px 15px;
   font-size: 16px;
   height: 43px;
   color: white;

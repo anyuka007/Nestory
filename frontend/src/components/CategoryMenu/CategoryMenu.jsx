@@ -19,6 +19,9 @@ const CategoryMenu = ({ categoryName }) => {
                     key={category}
                     className="flex  items-center gap-2"
                     to={`/category/${category}`}
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                    }}
                 >
                     {categoriesIcon[index]}
                     <span className="text-3xl">{category}</span>

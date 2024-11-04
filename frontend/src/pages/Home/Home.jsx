@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 
 import Hero from "../../components/Hero/Hero";
-import Categories from "../../components/Categories/Categories";
 import HotDeals from "../../components/HotDeals/HotDeals";
-import Footer from "../../components/Footer/Footer";
 import CategoryLists from "../../components/CategoryLists/CategoryLists";
 import TopRated from "../../components/TopRated/TopRated";
 import Button from "../../components/Button/Button";
@@ -41,8 +39,14 @@ const Home = () => {
                 <section>
                     <TopRated />
                 </section>
-                <section className="mt-48">
-                    <Link className="w-full flex justify-center" to="/shop">
+                <section className="hidden md:block mt-48">
+                    <Link
+                        className="w-full flex justify-center"
+                        to="/shop"
+                        onClick={() => {
+                            window.scrollTo(0, 0);
+                        }}
+                    >
                         <Button
                             text="Go To Shop"
                             width="30%"
