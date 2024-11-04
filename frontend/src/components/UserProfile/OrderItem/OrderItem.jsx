@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { PackageCheck, Truck, PackageOpen } from "lucide-react";
 
@@ -48,13 +47,19 @@ const OrderItem = ({ orderItem }) => {
                                 </div>
                                 <div>
                                     <p>Amount: </p>
-                                    <p className="md:text-[2rem]">2</p>
+                                    <p className="md:text-[2rem]">
+                                        {orderItem.quantity}
+                                    </p>
                                 </div>
                             </div>
                             <div>
                                 <p>Total price: </p>
                                 <p className="md:text-[2rem] text-colorTertiary">
-                                    {(orderItem.priceByOrder * 2).toFixed(2)}€
+                                    {(
+                                        orderItem.priceByOrder *
+                                        orderItem.quantity
+                                    ).toFixed(2)}
+                                    €
                                 </p>
                             </div>
                         </div>

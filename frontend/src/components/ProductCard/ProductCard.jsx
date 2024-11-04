@@ -15,6 +15,7 @@ const ProductCard = ({ product }) => {
       style={{
         "--percentage": `"${percentageValue}%"`,
 
+
         "--colorSecondary": percentageValue > 40 ? "#EE6352" : "#ffb128",
       }}
     >
@@ -31,6 +32,36 @@ const ProductCard = ({ product }) => {
         <h3 className="text-[16px] my-3  lg:mt-8 text-colorPrimary">
           <Link to={`/product/${product._id}`}> {product.name} </Link>
         </h3>
+
+                "--colorSecondary":
+                    percentageValue > 40 ? "#EE6352" : "#ffb128",
+            }}
+        >
+            <div className="absolute top-[18px] right-[18px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-10">
+                <WishHeart />
+            </div>
+            <Link
+                className="hover:scale-110 duration-300 ease-in-out w-[90%] "
+                to={`/product/${product._id}`}
+                onClick={() => {
+                    window.scrollTo(0, 0);
+                }}
+            >
+                <img src={`${product.image}`} alt={`${product.name}`} />
+            </Link>
+            <div className="flex flex-col gap-2 justify-center items-center">
+                <h3 className="text-[16px] my-3  lg:mt-8 text-colorPrimary">
+                    <Link
+                        to={`/product/${product._id}`}
+                        onClick={() => {
+                            window.scrollTo(0, 0);
+                        }}
+                    >
+                        {" "}
+                        {product.name}{" "}
+                    </Link>
+                </h3>
+
 
         <StarRating rate={product.rate} />
         {product.percentage ? (
