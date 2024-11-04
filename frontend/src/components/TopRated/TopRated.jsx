@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
 import ProductCard from "../ProductCard/ProductCard";
-import { products } from "../../components/HotDeals/HotDeals";
 
 const TopRated = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchDeals = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/api/products/topRated"
+                );
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching deals:", error);
+            }
+        };
+        fetchDeals();
+    }, []);
+
     return (
         <div className="w-full mt-56">
             <h2 className=" text-colorPrimary font-bold text-center mt-20">

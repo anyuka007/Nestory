@@ -4,64 +4,65 @@ import ProductCard from "../ProductCard/ProductCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Timer from "../Timer/Timer";
 
-export const products = [
-    {
-        _id: 1,
-        name: "Product Name",
-        category: "Beds",
-        image: "/images/beds/bed1.webp",
-        rate: 4.5,
-        percentage: "70%",
-        price: 560,
-    },
-    {
-        _id: 2,
-        name: "Product Name",
-        category: "Sofas",
-        image: "/images/sofas/sofa1.webp",
-        rate: 4.8,
-        percentage: "30%",
-        price: 1560,
-    },
-    {
-        _id: 3,
-        name: "Product Name",
-        category: "Tables",
-        image: "/images/tables/table2.webp",
-        rate: 4.2,
-        percentage: "50%",
-        price: 360,
-    },
-    {
-        _id: 4,
-        name: "Product Name",
-        category: "Chairs",
-        image: "/images/chairs/chair1.webp",
-        rate: 4.9,
-        percentage: "10%",
-        price: 1060,
-    },
-    {
-        _id: 5,
-        name: "Product Name",
-        category: "Desks",
-        image: "/images/desks/desk1.webp",
-        rate: 4.9,
-        percentage: "10%",
-        price: 1060,
-    },
-    {
-        _id: 6,
-        name: "Product Name",
-        category: "Desks",
-        image: "/images/desks/desk2.webp",
-        rate: 4.9,
-        percentage: 0,
-        price: 1060,
-    },
-];
+// export const products = [
+//     {
+//         _id: 1,
+//         name: "Product Name",
+//         category: "Beds",
+//         image: "/images/beds/bed1.webp",
+//         rate: 4.5,
+//         percentage: "70%",
+//         price: 560,
+//     },
+//     {
+//         _id: 2,
+//         name: "Product Name",
+//         category: "Sofas",
+//         image: "/images/sofas/sofa1.webp",
+//         rate: 4.8,
+//         percentage: "30%",
+//         price: 1560,
+//     },
+//     {
+//         _id: 3,
+//         name: "Product Name",
+//         category: "Tables",
+//         image: "/images/tables/table2.webp",
+//         rate: 4.2,
+//         percentage: "50%",
+//         price: 360,
+//     },
+//     {
+//         _id: 4,
+//         name: "Product Name",
+//         category: "Chairs",
+//         image: "/images/chairs/chair1.webp",
+//         rate: 4.9,
+//         percentage: "10%",
+//         price: 1060,
+//     },
+//     {
+//         _id: 5,
+//         name: "Product Name",
+//         category: "Desks",
+//         image: "/images/desks/desk1.webp",
+//         rate: 4.9,
+//         percentage: "10%",
+//         price: 1060,
+//     },
+//     {
+//         _id: 6,
+//         name: "Product Name",
+//         category: "Desks",
+//         image: "/images/desks/desk2.webp",
+//         rate: 4.9,
+//         percentage: 0,
+//         price: 1060,
+//     },
+// ];
 
 const HotDeals = ({ cardWidth, visibleCards }) => {
+    const [products, setProducts] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(1);
     const [isTransitionEnabled, setIsTransitionEnabled] = useState(false);
     const [isButtonEnabled, setIsButtonEnabled] = useState(true);
@@ -76,6 +77,21 @@ const HotDeals = ({ cardWidth, visibleCards }) => {
     ];
 
     const slideRef = useRef(null);
+
+    useEffect(() => {
+        const fetchDeals = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/api/products/deals"
+                );
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching deals:", error);
+            }
+        };
+        fetchDeals();
+    }, []);
 
     const prevPageHandler = () => {
         if (!isButtonEnabled) return;
