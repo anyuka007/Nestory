@@ -25,12 +25,23 @@ const ProductCard = ({ product }) => {
             <Link
                 className="hover:scale-110 duration-300 ease-in-out w-[90%] "
                 to={`/product/${product._id}`}
+                onClick={() => {
+                    window.scrollTo(0, 0);
+                }}
             >
                 <img src={`${product.image}`} alt={`${product.name}`} />
             </Link>
             <div className="flex flex-col gap-2 justify-center items-center">
                 <h3 className="text-[16px] my-3  lg:mt-8 text-colorPrimary">
-                    <Link to={`/product/${product._id}`}> {product.name} </Link>
+                    <Link
+                        to={`/product/${product._id}`}
+                        onClick={() => {
+                            window.scrollTo(0, 0);
+                        }}
+                    >
+                        {" "}
+                        {product.name}{" "}
+                    </Link>
                 </h3>
 
                 <StarRating rate={product.rate} />

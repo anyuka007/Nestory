@@ -19,7 +19,8 @@ const Category = () => {
             <div className="w-full flex flex-wrap justify-start gap-10 mt-16">
                 {products.map(
                     (product, index) =>
-                        product.category === categoryName && (
+                        product.category.toLowerCase() ===
+                            categoryName.toLowerCase() && (
                             <div
                                 className="w-full sm:basis-[45%] lg:basis-[31%] "
                                 key={index}
