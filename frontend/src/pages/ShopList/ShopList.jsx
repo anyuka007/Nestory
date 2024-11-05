@@ -1,8 +1,24 @@
+import { useEffect, useState } from "react";
 import PagesBanner from "../../components/PagesBanner/PagesBanner";
-import { products } from "../../components/HotDeals/HotDeals";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 const ShopList = () => {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchDeals = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/api/products"
+                );
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Error fetching deals:", error);
+            }
+        };
+        fetchDeals();
+    }, []);
     return (
         <>
             <div>
