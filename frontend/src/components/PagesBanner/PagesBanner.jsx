@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-
 /* eslint-disable react/prop-types */
-const PagesBanner = ({ title, quantity, initialProducts }) => {
-    const [products, setProducts] = useState(initialProducts);
-    const [sortOptions, setSortOptions] = useState("default");
 
-    useEffect(() => {
-        [];
-    });
+import { useContext, useState } from "react";
+import { AppContext } from "../../context/AppProvider.jsx";
 
-    // const handleFilterChange = (e) => {}
+const PagesBanner = ({ title, quantity }) => {
+    const { setSortOptions } = useContext(AppContext);
+    const [sortOptions, setSortOptionsState] = useState("default");
+
     const handleSortChange = (e) => {
-        setOptions(e.target.value);
+        e.preventDefault();
+        setSortOptionsState(e.target.value);
+        setSortOptions(e.target.value);
     };
+
     return (
         <div>
             {/* MOBILE */}
@@ -31,7 +31,7 @@ const PagesBanner = ({ title, quantity, initialProducts }) => {
             </div>
             {/* TABLET DESKTOP */}
             <div className="hidden w-full mt-24 aspect-[6/1.2] md:block bg-pageBannerBGC rounded-[3.5rem] relative">
-                <div className="flex gap-6 items-center  absolute top-1/2 left-[18%] transform -translate-x-1/2 -translate-y-1/2">
+                <div className="flex gap-6 items-center absolute top-1/2 left-[18%] transform -translate-x-1/2 -translate-y-1/2">
                     <div className="w-[2.6rem] h-[0.8rem] bg-colorSecondary rounded-3xl"></div>
                     <span className="text-7xl xl:text-8xl text-white font-bold">
                         {title}
