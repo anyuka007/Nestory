@@ -1,5 +1,18 @@
+import { useEffect, useState } from "react";
+
 /* eslint-disable react/prop-types */
-const PagesBanner = ({ title, quantity }) => {
+const PagesBanner = ({ title, quantity, initialProducts }) => {
+    const [products, setProducts] = useState(initialProducts);
+    const [sortOptions, setSortOptions] = useState("default");
+
+    useEffect(() => {
+        [];
+    });
+
+    // const handleFilterChange = (e) => {}
+    const handleSortChange = (e) => {
+        setOptions(e.target.value);
+    };
     return (
         <div>
             {/* MOBILE */}
@@ -34,11 +47,17 @@ const PagesBanner = ({ title, quantity }) => {
                 <p className="hidden md:block">
                     showing all {quantity} results
                 </p>
-                <select className="focus:outline-none cursor-pointer">
+                <select
+                    className="focus:outline-none cursor-pointer"
+                    onChange={handleSortChange}
+                    value={sortOptions}
+                >
                     <option value="default">Default sorting</option>
                     <option value="sales">Sort by Sales: high to low</option>
-                    <option value="price">Sort by Price: low to high</option>
-                    <option value="price">Sort by Price: high to low</option>
+                    <option value="priceAsc">Sort by Price: low to high</option>
+                    <option value="priceDesc">
+                        Sort by Price: high to low
+                    </option>
                     <option value="newest">Sort by Newest</option>
                     <option value="rating">Sort by Rating</option>
                 </select>

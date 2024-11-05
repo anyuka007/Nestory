@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import StarRating from "../StarRating/StarRating";
 import styles from "./ProductCard.module.css";
-// import { parse } from "postcss";
 import WishHeart from "../WishHeart/WishHeart";
 import { Link } from "react-router-dom";
 

@@ -39,10 +39,10 @@ const productSchema = new Schema(
             required: true,
             default: 0,
         },
-        isHot: {
-            type: Boolean,
-            default: false,
-        },
+        // isHot: {
+        //     type: Boolean,
+        //     default: false,
+        // },
     },
     { timestamps: true }
 );
