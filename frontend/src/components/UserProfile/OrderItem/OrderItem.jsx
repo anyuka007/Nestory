@@ -46,7 +46,7 @@ const OrderItem = ({ orderItem }) => {
                                     </p>
                                 </div>
                                 <div>
-                                    <p>Amount: </p>
+                                    <p>Quantity: </p>
                                     <p className="md:text-[2rem]">
                                         {orderItem.quantity}
                                     </p>

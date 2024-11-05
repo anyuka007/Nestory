@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema(
     {
-        date: { type: Date, required: true, default: Date.now },
         userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
@@ -13,6 +12,7 @@ const OrderSchema = new mongoose.Schema(
             ref: "Address",
             required: true,
         },
+        shippingFee: { type: Number, default: 50, required: true },
         items: [
             {
                 productID: {
@@ -20,8 +20,6 @@ const OrderSchema = new mongoose.Schema(
                     ref: "Product",
                     required: true,
                 },
-                // name: {type: String, required: true},
-                // imgUrl: {type: String, required: true},
                 quantity: { type: Number, required: true },
                 // price soll mit discount berechnet werden
                 price: {
