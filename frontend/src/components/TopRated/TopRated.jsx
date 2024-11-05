@@ -8,7 +8,7 @@ const TopRated = () => {
         const fetchDeals = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/products/topRated"
+                    "http://localhost:3000/api/products/?type=topRated"
                 );
                 const data = await response.json();
                 setProducts(data);
