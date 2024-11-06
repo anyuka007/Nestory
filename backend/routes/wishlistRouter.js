@@ -9,7 +9,7 @@ import { authorize } from "../middleware.js/auth.js";
 
 const wishlistRouter = express.Router();
 
-wishlistRouter.route("/").get(authorize, getUserWishlist);
+wishlistRouter.route("/").get(/* authorize, */ getUserWishlist);
 wishlistRouter.route("/all").get(authorize, getAllWishlists);
 wishlistRouter
     .route("/:id")

@@ -16,7 +16,11 @@ export const getAllWishlists = async (req, res) => {
 
 // Fetch the wishlist for the user from the database
 export const getUserWishlist = async (req, res) => {
-    const userId = req.body.userId;
+    console.log("aaaaaaaaaaa", req.user);
+    //const userId = req.body.userId;
+    //const userId = req.user?.id;
+    const userId = "672b410a792afd795be5c2be";
+
     if (!userId) {
         return res.status(400).json({ error: "User Id is required" });
     }
@@ -33,7 +37,28 @@ export const getUserWishlist = async (req, res) => {
                 wishlist.items.length.toString().brightMagenta
             } items in user's wishlist`
         );
-        res.status(200).json(wishlist);
+        await wishlist.populate("items.productId");
+        const items = wishlist.items.map((item) => {
+            return {
+                name: item.productId.name,
+                description: item.productId.description,
+                imgUrl: item.productId.image,
+                discount: item.productId.percentage,
+                price: item.productId.price,
+                rating: item.productId.rating,
+            };
+        });
+
+        const userWishlist = {
+            _id: wishlist._id,
+            userId: wishlist.userId,
+            items: items,
+            createdAt: wishlist.createdAt,
+            updatedAt: wishlist.updatedAt,
+        };
+        //console.log("userWishlist", userWishlist);
+
+        res.status(200).json(userWishlist);
     } catch (error) {
         console.error(`Error fetching userWishlist: ${error.message}`.red);
 
