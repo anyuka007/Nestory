@@ -8,6 +8,8 @@ import { MdHeadsetMic } from "react-icons/md";
 import QuantitySelector from "../../components/QuantitySelector/QuantitySelector";
 import Reviews from "../../components/Reviews/Reviews";
 import Carousel from "../../components/Carousel/Carousel";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const product = {
   _id: 1234,
@@ -21,7 +23,45 @@ const product = {
     "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
 };
 
+// const ProductDetails = () => {
+//   const navigate = useNavigate();
+
+//   const handleCartClick = () => {
+//     const token = document.cookie
+//       .split("; ")
+//       .find((row) => row.startsWith("token="))
+//       ?.split("=")[1];
+//     if (token) {
+//       navigate("/cart");
+//     } else {
+//       navigate("/login");
+//     }
+//   };
+
 const ProductDetails = () => {
+  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+    if (token) {
+      setIsAuthenticated(true); // User is authenticated
+    } else {
+      setIsAuthenticated(false); // User is not authenticated
+    }
+  }, []); // Only run this effect once when the component mounts
+
+  const handleCartClick = () => {
+    if (isAuthenticated) {
+      navigate("/cart");
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <>
       {/* <WishHeart className="text-colorPrimary cursor-pointer" /> */}
@@ -91,7 +131,10 @@ const ProductDetails = () => {
           <div className="parent flex justify-between items-center">
             <QuantitySelector />
 
-            <button className="buy w-full px-6 py-4 my-6 text-white bg-colorSecondary text-3xl hover:bg-colorPrimary rounded-full">
+            <button
+              onClick={handleCartClick}
+              className="buy w-full px-6 py-4 my-6 text-white bg-colorSecondary text-3xl hover:bg-colorPrimary rounded-full"
+            >
               Shopping Cart
             </button>
           </div>

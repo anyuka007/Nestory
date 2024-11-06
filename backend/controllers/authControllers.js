@@ -70,7 +70,7 @@ export const registerUser = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.cookie("token", token, { httpOnly: true });
+    res.cookie("token", token, { httpOnly: true, maxAge: 3600000 });
 
     console.log("Register successful");
 
@@ -104,7 +104,7 @@ export const loginUser = async (req, res) => {
     }
   );
 
-  res.cookie("jwt", token, { httpOnly: true });
+  res.cookie("jwt", token, { httpOnly: true, maxAge: 3600000 });
 
   console.log("Login successful");
 

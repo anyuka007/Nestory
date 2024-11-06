@@ -1,4 +1,4 @@
-import { verifyJwt } from "../controllers/authController.js";
+import { verifyJwt } from "../controllers/authControllers.js";
 import dotenv from "dotenv";
 dotenv.config();
 

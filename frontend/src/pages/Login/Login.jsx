@@ -64,7 +64,14 @@ const App = () => {
       const result = await response.json();
       if (response.ok) {
         console.log("Success:", result);
-        navigate("/cart");
+
+        if (isSignUp) {
+          alert("Account created successfully! Redirecting to login...");
+          setIsSignUp(false); //se prefrla na login
+          navigate("/login");
+        } else {
+          navigate("/cart");
+        }
       } else {
         console.error("Error:", result.message || "An error occurred");
         alert(result.message || "An error occurred");
