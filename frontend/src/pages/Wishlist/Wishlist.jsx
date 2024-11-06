@@ -64,12 +64,26 @@ const Wishlist = () => {
         }
     };
 
-    const deleteWishItem = (id) => {
-        console.log(
-            "item to del: ",
-            wishlist.find((i) => i._id === id).name,
-            id
-        );
+    const deleteWishItem = async (id) => {
+        //console.log("item to del: ", wishlist.find((i) => i._id === id).name, id);
+        try {
+            const response = await fetch(
+                `http://localhost:3000/wishlist/${id}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            if (!response.ok) {
+                throw new Error("Failed to del wishlistItem");
+            } else {
+                fetchWishlist();
+            }
+        } catch (error) {
+            console.log("Error deleting WishlistItem".red, error);
+        }
     };
     const addToCart = (id) => {
         console.log(

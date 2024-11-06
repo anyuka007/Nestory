@@ -40,6 +40,7 @@ export const getUserWishlist = async (req, res) => {
         await wishlist.populate("items.productId");
         const items = wishlist.items.map((item) => {
             return {
+                _id: item.productId._id,
                 name: item.productId.name,
                 description: item.productId.description,
                 imgUrl: item.productId.image,
@@ -70,14 +71,18 @@ export const getUserWishlist = async (req, res) => {
 
 // Remove the item from the wishlist
 export const deleteWishlistItem = async (req, res) => {
-    const userId = req.body.userId;
+    //const userId = req.body.userId;
+    //const userId = req.user?.id;
+    const userId = "672b410a792afd795be5c2be";
     const productToDel = req.params.id;
+    console.log("productToDel ID", productToDel);
     if (!userId) {
         return res.status(400).json({ error: "User Id is required" });
     }
     try {
         // Fetch the wishlist for the user from the database
         const wishlist = await Wishlist.findOne({ userId: userId });
+        console.log("wishlist", wishlist);
 
         // Check if the wishlist exists
         if (!wishlist) {
@@ -113,7 +118,9 @@ export const deleteWishlistItem = async (req, res) => {
 
 // Add the item to the wishlist
 export const addWishlistItem = async (req, res) => {
-    const userId = req.body.userId;
+    //const userId = req.body.userId;
+    //const userId = req.user?.id;
+    const userId = "672b410a792afd795be5c2be";
     if (!userId) {
         return res.status(400).json({ error: "User Id is required" });
     }
