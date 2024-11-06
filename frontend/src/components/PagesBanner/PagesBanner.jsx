@@ -42,7 +42,8 @@ const PagesBanner = ({ title, quantity }) => {
             </div>
             <div className="flex justify-end md:justify-between items-center mt-48">
                 <p className="hidden md:block">
-                    showing all {quantity} results
+                    showing all <span className="font-bold">{quantity}</span>{" "}
+                    results
                 </p>
                 <select
                     className="focus:outline-none cursor-pointer"
