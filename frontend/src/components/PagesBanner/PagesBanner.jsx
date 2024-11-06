@@ -1,16 +1,13 @@
 /* eslint-disable react/prop-types */
 
-import { useContext, useState } from "react";
-import { AppContext } from "../../context/AppProvider.jsx";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppProvider";
 
 const PagesBanner = ({ title, quantity }) => {
-    const { setSortOptions } = useContext(AppContext);
-    const [sortOptions, setSortOptionsState] = useState("default");
+    const { sortOption, setSortOption } = useContext(AppContext);
 
     const handleSortChange = (e) => {
-        e.preventDefault();
-        setSortOptionsState(e.target.value);
-        setSortOptions(e.target.value);
+        setSortOption(e.target.value);
     };
 
     return (
@@ -50,7 +47,7 @@ const PagesBanner = ({ title, quantity }) => {
                 <select
                     className="focus:outline-none cursor-pointer"
                     onChange={handleSortChange}
-                    value={sortOptions}
+                    value={sortOption}
                 >
                     <option value="default">Default sorting</option>
                     <option value="sales">Sort by Sales: high to low</option>

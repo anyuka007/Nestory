@@ -1,16 +1,18 @@
 import { useParams } from "react-router-dom";
 import PagesBanner from "../../components/PagesBanner/PagesBanner";
 import ProductCard from "../../components/ProductCard/ProductCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../context/AppProvider";
 
 const Category = () => {
     const [products, setProducts] = useState([]);
+    const { sortOption } = useContext(AppContext);
 
     useEffect(() => {
-        const fetchDeals = async () => {
+        const fetchProducts = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:3000/api/products"
+                    `http://localhost:3000/api/products/?sort=${sortOption}`
                 );
                 const data = await response.json();
                 setProducts(data);
@@ -18,8 +20,8 @@ const Category = () => {
                 console.error("Error fetching deals:", error);
             }
         };
-        fetchDeals();
-    }, []);
+        fetchProducts();
+    }, [sortOption]);
 
     const { categoryName } = useParams();
     const filteredProducts = products.filter(
@@ -34,7 +36,7 @@ const Category = () => {
                     quantity={filteredProducts.length}
                 />
             </div>
-            <div className="w-full flex flex-wrap justify-start gap-10 mt-16">
+            <div className="w-full flex flex-wrap justify-start gap-11 mt-16">
                 {products.map(
                     (product, index) =>
                         product.category.toLowerCase() ===
