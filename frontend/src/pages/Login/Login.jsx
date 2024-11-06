@@ -34,10 +34,46 @@ const App = () => {
   //     console.log("Signing in", data);
   //   };
 
-  const onSubmit = (data) => {
-    console.log(isSignUp ? "Signing up" : "Signing in", data);
-  };
+  useEffect(() => {
+    if (isSignUp) {
+      navigate("/register");
+    } else {
+      navigate("/login");
+    }
+  }, [isSignUp, navigate]);
 
+  const onSubmit = async (data) => {
+    console.log("Data being sent:", data);
+    try {
+      const endpoint = isSignUp
+        ? "http://localhost:3000/api/users/register"
+        : "http://localhost:3000/api/users/login";
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          firstName: isSignUp ? data.firstName : undefined,
+          lastName: isSignUp ? data.lastName : undefined,
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        console.log("Success:", result);
+        navigate("/cart");
+      } else {
+        console.error("Error:", result.message || "An error occurred");
+        alert(result.message || "An error occurred");
+      }
+    } catch (error) {
+      console.error("Request failed:", error);
+      alert("Request failed. Please try again.");
+    }
+  };
   // const onSubmit = (data) => {
   //   if (!data.firstName || !data.lastName || !data.email || !data.password) {
   //     setError("form"), { type: "manual", message: "This is required" };
@@ -48,14 +84,6 @@ const App = () => {
     setIsSignUp((prev) => !prev);
     reset();
   };
-
-  useEffect(() => {
-    if (isSignUp) {
-      navigate("/register");
-    } else {
-      navigate("/login");
-    }
-  }, [isSignUp, navigate]);
 
   return (
     <div className={styles.container}>
@@ -118,7 +146,7 @@ const App = () => {
               type="email"
               placeholder="Email"
               // {...register("email", { required: "Email is required" })}
-              {...register("email")}
+              {...register("email", { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
               required
             />
             {/* {errors.email && (
@@ -131,7 +159,10 @@ const App = () => {
               type="password"
               placeholder="Password"
               // {...register("password", { required: "Password is required" })}
-              {...register("password")}
+              {...register("password", {
+                // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                pattern: /^.{8,}$/,
+              })}
               required
             />
           </div>
