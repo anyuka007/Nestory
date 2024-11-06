@@ -11,7 +11,7 @@ const TopRated = () => {
                     "http://localhost:3000/api/products/?type=topRated"
                 );
                 const data = await response.json();
-                setProducts(data);
+                setProducts(data.products);
             } catch (error) {
                 console.error("Error fetching deals:", error);
             }
