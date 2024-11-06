@@ -1,10 +1,21 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 
-const AppContext = React.createContext();
+export const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+    const [sortOption, setSortOption] = useState("default");
+
+    return (
+        <AppContext.Provider
+            value={{
+                sortOption,
+                setSortOption,
+            }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
 };
 
 export default AppProvider;
