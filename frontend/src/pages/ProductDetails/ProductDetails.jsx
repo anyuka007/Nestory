@@ -92,7 +92,7 @@ const ProductDetails = () => {
             <QuantitySelector />
 
             <button className="buy w-full px-6 py-4 my-6 text-white bg-colorSecondary text-3xl hover:bg-colorPrimary rounded-full">
-              BUY NOW
+              Shopping Cart
             </button>
           </div>
           {/* Description reserve */}
