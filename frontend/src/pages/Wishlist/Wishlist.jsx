@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import WishlistItem from "../../components/WishlistItem/WishlistItem";
+import { AppContext } from "../../context/AppProvider";
+import { fetchWishlist } from "../../utils/wishlistUtils/fetchWishList";
 
 /* export const wishlist = [
     {
@@ -36,13 +38,13 @@ import WishlistItem from "../../components/WishlistItem/WishlistItem";
 ]; */
 
 const Wishlist = () => {
-    const [wishlist, setWishlist] = useState([]);
-
-    useEffect(() => {
+    //const [wishlist, setWishlist] = useState([]);
+    const { wishlist, setWishlist } = useContext(AppContext);
+    /* useEffect(() => {
         fetchWishlist();
-    }, []);
+    }, []); */
 
-    const fetchWishlist = async () => {
+    /*const fetchWishlist = async () => {
         try {
             const response = await fetch("http://localhost:3000/wishlist", {
                 method: "GET",
@@ -63,7 +65,7 @@ const Wishlist = () => {
         } catch (error) {
             console.log("Error fetching userWishlist", error);
         }
-    };
+    }; */
 
     const deleteWishItem = async (id) => {
         //console.log("item to del: ", wishlist.find((i) => i._id === id).name, id);
@@ -72,19 +74,19 @@ const Wishlist = () => {
                 `http://localhost:3000/wishlist/${id}`,
                 {
                     method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
                     credentials: "include",
                 }
             );
+
             if (!response.ok) {
-                throw new Error("Failed to del wishlistItem");
+                throw new Error("Failed to delete wishlist item");
             } else {
-                fetchWishlist();
+                // Wishlist erneut abrufen, um die UI zu aktualisieren
+                const updatedWishlist = await fetchWishlist();
+                setWishlist(updatedWishlist);
             }
         } catch (error) {
-            console.log("Error deleting WishlistItem".red, error);
+            console.error("Error deleting wishlist item:", error);
         }
     };
     const addToCart = (id) => {

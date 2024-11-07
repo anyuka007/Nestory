@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import HamburgMenu from "../HamburgMenu/HamburgMenu";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
 import "../../css/App.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../../context/AppProvider";
 
 const Navbar = () => {
     const [search, setSearch] = useState(false);
+    const { wishlist } = useContext(AppContext);
     return (
         <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[6rem] xl:h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200  ">
             <div className="h-full xl:h-[60%] flex justify-between w-full ">
@@ -84,7 +86,7 @@ const Navbar = () => {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <span className="number">3</span>
+                            <span className="number">{wishlist.length}</span>
                             <Heart size={26} />
                         </Link>
                     </div>
@@ -150,7 +152,9 @@ const Navbar = () => {
                                     window.scrollTo(0, 0);
                                 }}
                             >
-                                <span className="number">3</span>
+                                <span className="number">
+                                    {wishlist.length}
+                                </span>
                                 <Heart size={26} />
                             </Link>
                         </div>
