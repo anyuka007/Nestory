@@ -1,8 +1,10 @@
-import React from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import WishlistItem from "../../components/WishlistItem/WishlistItem";
+import { AppContext } from "../../context/AppProvider";
+import { fetchWishlist } from "../../utils/wishlistUtils/fetchWishList";
 
-export const testWishItems = [
+/* export const wishlist = [
     {
         _id: 1234,
         name: "Circle corners table",
@@ -33,20 +35,64 @@ export const testWishItems = [
         discount: 41,
         imgUrl: "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
     },
-];
+]; */
 
 const Wishlist = () => {
-    const deleteWishItem = (id) => {
-        console.log(
-            "item to del: ",
-            testWishItems.find((i) => i._id === id).name,
-            id
-        );
+    //const [wishlist, setWishlist] = useState([]);
+    const { wishlist, setWishlist } = useContext(AppContext);
+    /* useEffect(() => {
+        fetchWishlist();
+    }, []); */
+
+    /*const fetchWishlist = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/wishlist", {
+                method: "GET",
+                credentials: "include",
+            });
+            if (!response.ok) {
+                if (response.status === 404) {
+                    setWishlist([]);
+                } else {
+                    throw new Error("Failed to fetch wishlist");
+                }
+            } else {
+                const data = await response.json();
+                console.log("data", data);
+                const wishlistItems = data.items;
+                setWishlist(wishlistItems);
+            }
+        } catch (error) {
+            console.log("Error fetching userWishlist", error);
+        }
+    }; */
+
+    const deleteWishItem = async (id) => {
+        //console.log("item to del: ", wishlist.find((i) => i._id === id).name, id);
+        try {
+            const response = await fetch(
+                `http://localhost:3000/wishlist/${id}`,
+                {
+                    method: "DELETE",
+                    credentials: "include",
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Failed to delete wishlist item");
+            } else {
+                // Wishlist erneut abrufen, um die UI zu aktualisieren
+                const updatedWishlist = await fetchWishlist();
+                setWishlist(updatedWishlist);
+            }
+        } catch (error) {
+            console.error("Error deleting wishlist item:", error);
+        }
     };
     const addToCart = (id) => {
         console.log(
             "item to add: ",
-            testWishItems.find((i) => i._id === id).name,
+            wishlist.find((i) => i._id === id).name,
             id
         );
     };
@@ -58,12 +104,12 @@ const Wishlist = () => {
                     Wishlist
                 </h2>
             </div>
-            {testWishItems.length ? (
+            {wishlist.length ? (
                 <div className="flex flex-col items-center justify-center">
                     <h3 className=" w-[100%] lg:text-[3.2rem] text-center border-b">
-                        There are {testWishItems.length} items in your wishlist
+                        There are {wishlist.length} items in your wishlist
                     </h3>
-                    {testWishItems.map((item, index) => (
+                    {wishlist.map((item, index) => (
                         <WishlistItem
                             key={index}
                             wishItem={item}

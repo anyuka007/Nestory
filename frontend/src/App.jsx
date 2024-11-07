@@ -16,8 +16,8 @@ import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 import ShopList from "./pages/ShopList/ShopList";
 
 const App = () => (
-    <AppProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+        <AppProvider>
             <Routes>
                 <Route path="/" element={<SharedLayout />}>
                     <Route index element={<Home />} />
@@ -41,8 +41,8 @@ const App = () => (
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
-        </BrowserRouter>
-    </AppProvider>
+        </AppProvider>
+    </BrowserRouter>
 );
 
 export default App;
