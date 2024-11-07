@@ -6,7 +6,7 @@ import { Trash2 } from "lucide-react";
 
 const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
     return (
-        <div className="h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-b">
+        <div className="h-fit w-[100%] md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-b">
             <div className="md:basis-[30%] flex md:flex-col justify-between md:justify-center md:mx-8">
                 <div className="basis-[15%]">
                     {wishItem.discount > 0 && (
@@ -26,7 +26,7 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                         <img
                             src={wishItem.imgUrl}
                             alt="wish item photo"
-                            className="w-[20rem] h-[20rem] mx-auto"
+                            className="w-[25rem] h-[25rem] mx-auto"
                         />
                     </Link>
                 </div>
