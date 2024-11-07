@@ -8,8 +8,9 @@ import { MdHeadsetMic } from "react-icons/md";
 import QuantitySelector from "../../components/QuantitySelector/QuantitySelector";
 import Reviews from "../../components/Reviews/Reviews";
 import Carousel from "../../components/Carousel/Carousel";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppProvider";
 
 const product = {
   _id: 1234,
@@ -39,28 +40,40 @@ const product = {
 //   };
 
 const ProductDetails = () => {
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1];
-    if (token) {
-      setIsAuthenticated(true); // User is authenticated
-    } else {
-      setIsAuthenticated(false); // User is not authenticated
-    }
-  }, []); // Only run this effect once when the component mounts
+  // eslint-disable-next-line no-unused-vars
+  const { cartCount, setCartCount } = useContext(AppContext);
 
-  const handleCartClick = () => {
-    if (isAuthenticated) {
-      navigate("/cart");
-    } else {
-      navigate("/login");
-    }
+  // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // useEffect(() => {
+  //   const token = document.cookie
+  //     .split("; ")
+  //     .find((row) => row.startsWith("token="))
+  //     ?.split("=")[1];
+  //   // setIsAuthenticated(!!token); (Sets isAuthenticated to true or false based on token presence)
+  //   if (token) {
+  //     setIsAuthenticated(true); // User is authenticated
+  //   } else {
+  //     setIsAuthenticated(false); // User is not authenticated
+  //   }
+  // }, []);
+
+  const addToCart = () => {
+    setCartCount((prevCount) => prevCount + 1);
+    console.log(cartCount);
   };
+
+  // const handleCartClick = () => {
+
+  //   addToCart(product);
+  //   if (isAuthenticated) {
+  //     navigate("/cart");
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // };
 
   return (
     <>
@@ -132,10 +145,11 @@ const ProductDetails = () => {
             <QuantitySelector />
 
             <button
-              onClick={handleCartClick}
+              // onClick={handleCartClick}
+              onClick={addToCart}
               className="buy w-full px-6 py-4 my-6 text-white bg-colorSecondary text-3xl hover:bg-colorPrimary rounded-full"
             >
-              Shopping Cart
+              Add to Cart
             </button>
           </div>
           {/* Description reserve */}

@@ -1,44 +1,78 @@
 import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem.jsx";
 import Button from "../../components/Button/Button";
+import { AppContext } from "../../context/AppProvider";
+import { useContext } from "react";
 
-const testCartItems = [
-  {
-    _id: 1234,
-    name: "Circle corners table",
-    rating: 4.2,
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-    price: 223,
-    discount: 10,
-    imgUrl:
-      "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-  },
-  {
-    _id: 5678,
-    name: "Modern Nightstand",
-    rating: 3.5,
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-    price: 255,
-    discount: 0,
-    imgUrl:
-      "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
-  },
-  {
-    _id: 9101,
-    name: "Wooden dresser",
-    rating: 4.7,
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-    price: 468,
-    discount: 41,
-    imgUrl:
-      "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
-  },
-];
+// const testCartItems = [
+//   {
+//     _id: 1234,
+//     name: "Circle corners table",
+//     rating: 4.2,
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
+//     price: 223,
+//     discount: 10,
+//     imgUrl:
+//       "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
+//   },
+//   {
+//     _id: 5678,
+//     name: "Modern Nightstand",
+//     rating: 3.5,
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
+//     price: 255,
+//     discount: 0,
+//     imgUrl:
+//       "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
+//   },
+//   {
+//     _id: 9101,
+//     name: "Wooden dresser",
+//     rating: 4.7,
+//     description:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
+//     price: 468,
+//     discount: 41,
+//     imgUrl:
+//       "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
+//   },
+// ];
 
 const ShoppingCart = () => {
-  const cartItems = testCartItems;
+  // const cartItems = testCartItems;
+  // const addItemsToCart = async (productId, quantity, color) => {
+  //   try {
+  //     const response = await fetch(`http://localhost:3000/cart/${productId}`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ quantity, color }),
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (response.ok) {
+  //       console.log("Product added to cart", data);
+
+  //       setCartItems(data.cart.items);
+  //     } else {
+  //       console.error("Error adding product to cart:", data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Request failed:", error);
+  //   }
+  // };
+
+  const { cartItems, setCartItems } = useContext(AppContext);
+
+  const deleteCartItem = (itemId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item._id !== itemId)
+    );
+  };
+
   const totalPrice = cartItems
     .reduce((total, item) => total + item.price, 0)
     .toFixed(2);
@@ -53,9 +87,13 @@ const ShoppingCart = () => {
           <p>Your cart is empty.</p>
         ) : (
           <div className="space-y-4">
-            {cartItems.map((item) => (
-              <div className="flex mb-4 md:w-full" key={item._id}>
-                <ShoppingCartItem cartItem={item} />
+            {/* novo */}
+            {cartItems.map((cartItem) => (
+              <div className="flex mb-4 md:w-full" key={cartItem._id}>
+                <ShoppingCartItem
+                  cartItem={cartItem}
+                  deleteCartItem={deleteCartItem}
+                />
               </div>
             ))}
           </div>

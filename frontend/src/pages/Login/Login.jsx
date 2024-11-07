@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./login.module.css";
 // import Button from "../../components/Button/Button";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppProvider";
 // import LogoLine from "../../components/LogoLine/LogoLine";
 
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
       rememberMe: false,
     },
   });
-
+  const { setLoginSuccess, setUserId } = useContext(AppContext);
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
@@ -62,6 +63,9 @@ const App = () => {
       });
 
       const result = await response.json();
+      setLoginSuccess(result.success);
+      setUserId(result.userId);
+      console.log(result.userId);
       if (response.ok) {
         console.log("Success:", result);
 

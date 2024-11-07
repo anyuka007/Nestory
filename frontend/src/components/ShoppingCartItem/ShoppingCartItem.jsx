@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import StarRating from "../StarRating/StarRating";
 import { Trash2 } from "lucide-react";
 import WishHeart from "../WishHeart/WishHeart";
+import QuantitySelector from "../QuantitySelector/QuantitySelector";
 
 const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
   return (
@@ -27,7 +28,8 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
         {/* Trash Icon */}
         <div className="absolute top-7 right-6 flex space-x-2">
           <Trash2
-            onClick={deleteCartItem}
+            // novo
+            onClick={deleteCartItem(cartItem.id)}
             className="text-colorPrimary cursor-pointer"
           />
         </div>
@@ -68,7 +70,7 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
           {/* Bottom Middle Div: Quantity, Heart, and Price */}
           <div className="flex flex-row justify-between items-center mt-5">
             <div className="flex items-center">
-              <select
+              {/* <select
                 id="quantity"
                 className="border rounded px-2.5 py-1.5 mr-4"
               >
@@ -77,7 +79,11 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
                     {qty}
                   </option>
                 ))}
-              </select>
+              </select> */}
+              <QuantitySelector
+                size="text-[1.8rem]"
+                padding="py-[0.6rem] px-4"
+              />
               <WishHeart className="text-colorPrimary cursor-pointer" />
             </div>
 

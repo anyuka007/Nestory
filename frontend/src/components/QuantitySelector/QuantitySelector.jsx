@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 
-const QuantitySelector = () => {
+const QuantitySelector = ({ size = "text-3xl", padding = "py-4 px-5" }) => {
   const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
@@ -15,16 +16,24 @@ const QuantitySelector = () => {
       <div className="flex items-center border rounded ">
         <button
           onClick={decreaseQuantity}
-          className="minus px-5 py-4 text-colorPrimary text-3xl hover:bg-gray-200 focus-within:bg-gray-200"
+          className={`minus ${padding} ${size} hover:bg-gray-200`}
         >
           -
         </button>
-        <span className="font-medium w-16 px-5 py-4 text-colorPrimary text-3xl">
+        <span
+          className={`font-medium ${padding} ${size} `}
+          style={{
+            minWidth: "3.75rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           {quantity}
         </span>
         <button
           onClick={increaseQuantity}
-          className="plus px-5 py-4 text-colorPrimary text-3xl hover:bg-gray-200"
+          className={`plus ${padding} ${size} text-center hover:bg-gray-200`}
         >
           +
         </button>
