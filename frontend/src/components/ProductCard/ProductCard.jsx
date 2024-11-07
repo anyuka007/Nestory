@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
         <div
             className={` 
             ${product.percentage ? styles.onSale : ""} 
-            flex flex-col relative w-full aspect-[3/4.5] justify-center items-center bg-gray-100 rounded-3xl`}
+            flex flex-col relative w-full aspect-[3/4] justify-center items-center bg-gray-100 rounded-3xl`}
             style={{
                 "--percentage": `"${percentageValue}%"`,
 
@@ -49,16 +49,21 @@ const ProductCard = ({ product }) => {
                         <del className="no-underline">
                             <bdi className="text-[12px] text-[#8097a4] line-through ">
                                 <span className="text-[12px]">$</span>
-                                {product.price}
+                                {(
+                                    (product.price * (100 + percentageValue)) /
+                                    100
+                                ).toFixed(2)}
+                                {/* {product.price} */}
                             </bdi>
                         </del>
                         <ins className="no-underline">
                             <bdi className="text-[16px] weight-[700] text-colorPrimary ">
                                 <span className="text-3xl">$</span>
-                                {(
+                                {/* {(
                                     (product.price * (100 - percentageValue)) /
                                     100
-                                ).toFixed(2)}
+                                ).toFixed(2)} */}
+                                {product.price}
                             </bdi>
                         </ins>
                     </p>
@@ -66,7 +71,10 @@ const ProductCard = ({ product }) => {
                     <p>
                         <bdi className="text-[16px]">
                             <span className="text-[16px]">$</span>
-                            {product.price}
+                            {(
+                                (product.price * (100 + percentageValue)) /
+                                100
+                            ).toFixed(2)}
                         </bdi>
                     </p>
                 )}
