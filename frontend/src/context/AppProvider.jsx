@@ -23,14 +23,6 @@ const AppProvider = ({ children }) => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const getWishlist = async () => {
-            const items = await fetchWishlist();
-            setWishlist(items);
-        };
-        getWishlist();
-    }, []);
-
     const fetchUser = async () => {
         const res = await fetch("http://localhost:3000/api/checkUser", {
             credentials: "include",
@@ -51,6 +43,16 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchUser();
     }, []);
+
+    useEffect(() => {
+        const getWishlist = async () => {
+            const items = await fetchWishlist();
+            setWishlist(items);
+        };
+        if (user._id) {
+            getWishlist();
+        }
+    }, [user._id]);
 
     return (
         <AppContext.Provider
