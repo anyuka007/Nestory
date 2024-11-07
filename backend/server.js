@@ -4,7 +4,6 @@ import cors from "cors";
 
 import colors from "colors";
 import morgan from "morgan";
-
 import productRouter from "./routes/product.router.js";
 
 await connect();
