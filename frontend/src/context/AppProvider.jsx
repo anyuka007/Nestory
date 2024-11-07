@@ -10,13 +10,15 @@ import { useNavigate } from "react-router-dom";
 export const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-    const [sortOption, setSortOption] = useState("default");
+  const [sortOption, setSortOption] = useState("default");
+  const [cartCount, setCartCount] = useState(0);
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [userId, setUserId] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+
 
     const [wishlist, setWishlist] = useState([]);
-
    
-
-    const [loginSuccess, setLoginSuccess] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState("");
     const [heartCount, setHeartCount] = useState(0);
 
@@ -59,7 +61,8 @@ const AppProvider = ({ children }) => {
             value={{
                 sortOption,
                 setSortOption,
-
+cartCount,
+        setCartCount,
                 wishlist,
                 setWishlist,
 
@@ -71,12 +74,14 @@ const AppProvider = ({ children }) => {
                 setHeartCount,
                 user,
                 setUser,
-
+cartItems,
+        setCartItems,
             }}
         >
             {children}
         </AppContext.Provider>
     );
+
 };
 
 export default AppProvider;

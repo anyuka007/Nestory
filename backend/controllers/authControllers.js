@@ -83,36 +83,31 @@ export const registerUser = async (req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    // Проверка дали корисникот постои , ovoj user ima so wie so id nummer
-    const user = await User.findOne({ email });
-    if (!user) {
-        return res.status(400).json({ message: "User not found" });
+  // Проверка дали корисникот постои , ovoj user ima so wie so id nummer
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.status(400).json({ message: "User not found" });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.status(400).json({ message: "Invalid credentials" });
+  }
+
+  // Генерирање на JWT токен , so jwt go pretvoram mojot id , tokenot mi e ist so mojot id
+  const token = jwt.sign(
+    { id: user._id, email: user.email },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h",
     }
+  );
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        return res.status(400).json({ message: "Invalid credentials" });
-    }
+  res.cookie("jwt", token, { httpOnly: true, maxAge: 3600000 });
 
-    // Генерирање на JWT токен , so jwt go pretvoram mojot id , tokenot mi e ist so mojot id
-    const token = jwt.sign(
-        { id: user._id, email: user.email },
-        process.env.JWT_SECRET,
-        {
-            expiresIn: "1h",
-        }
-    );
+  console.log("Login successful");
 
-    res.cookie("jwt", token, { httpOnly: true });
-
-    console.log("Login successful");
-
-    res.status(200).json({
-        message: "Login successful",
-        token,
-        success: true,
-        user,
-    });
+  res.status(200).json({ message: "Login successful", success: true, user });
 };
