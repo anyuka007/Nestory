@@ -6,7 +6,7 @@ const SearchItems = ({ SearchItem }) => {
             <div className="basis-[30%] flex justify-center items-center ">
                 <Link to={`/product/${SearchItem._id}`}>
                     <img
-                        src={SearchItem.imgUrl}
+                        src={SearchItem.image}
                         alt="search item photo"
                         className="w-[30rem] h-[25rem]"
                     />
@@ -27,7 +27,7 @@ const SearchItems = ({ SearchItem }) => {
                         <p className="text-[2rem] text-colorSecondary">
                             {Math.round(
                                 SearchItem.price *
-                                    (1 - SearchItem.discount / 100)
+                                    (1 - SearchItem.percentage / 100)
                             ).toFixed(2)}
                             €
                         </p>

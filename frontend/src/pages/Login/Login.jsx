@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./login.module.css";
 // import Button from "../../components/Button/Button";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppProvider";
 // import LogoLine from "../../components/LogoLine/LogoLine";
 
 const App = () => {
@@ -26,6 +27,10 @@ const App = () => {
             rememberMe: false,
         },
     });
+
+    //jian
+    const { setLoginSuccess, setUser } = useContext(AppContext);
+    //////
 
     const [isSignUp, setIsSignUp] = useState(false);
     const navigate = useNavigate();
@@ -50,10 +55,12 @@ const App = () => {
                 : "http://localhost:3000/api/users/login";
             const response = await fetch(endpoint, {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json",
                 },
                 credentials: "include", // Send cookies and other credentials with the request
+
                 body: JSON.stringify({
                     email: data.email,
                     password: data.password,
@@ -63,6 +70,12 @@ const App = () => {
             });
 
             const result = await response.json();
+
+            //jian
+            setLoginSuccess(result.success);
+            setUser(result.user);
+            ///////
+
             if (response.ok) {
                 console.log("Success:", result);
                 navigate("/cart");

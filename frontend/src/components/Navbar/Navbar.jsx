@@ -1,14 +1,35 @@
-import { Heart, LayoutGrid, Search, ShoppingBag, User, X } from "lucide-react";
+import {
+    Heart,
+    LayoutGrid,
+    LogOut,
+    Search,
+    ShoppingBag,
+    User,
+    X,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import HamburgMenu from "../HamburgMenu/HamburgMenu";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
 import "../../css/App.css";
+
 import { useState, useContext } from "react";
+
+
 import { AppContext } from "../../context/AppProvider";
 
 const Navbar = () => {
     const [search, setSearch] = useState(false);
-    const { wishlist } = useContext(AppContext);
+
+    const { loginSuccess, searchKeyword, setSearchKeyword, wishlist } =
+        useContext(AppContext);
+    const [clickUser, setClickUser] = useState(false);
+
+    const handleSearch = (e) => {
+        setSearchKeyword(e.target.value);
+        console.log("searchKeyword", searchKeyword);
+    };
+
+
     return (
         <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[6rem] xl:h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200  ">
             <div className="h-full xl:h-[60%] flex justify-between w-full ">
@@ -91,14 +112,39 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div>
-                        <Link
-                            to={"/login"}
-                            onClick={() => {
-                                window.scrollTo(0, 0);
-                            }}
-                        >
-                            <User size={26} />
-                        </Link>
+                        {loginSuccess ? (
+                            <div>
+                                <div onClick={() => setClickUser(!clickUser)}>
+                                    <User />
+                                </div>
+                                {clickUser && (
+                                    <div className="absolute top-16 right-[-5rem] w-max flex flex-col items-center justify-center  border-gray-200 bg-white">
+                                        <Link
+                                            to={"/user"}
+                                            onClick={() => {
+                                                setClickUser(false);
+                                                window.scrollTo(0, 0);
+                                            }}
+                                        >
+                                            Profile
+                                        </Link>
+                                        <div className="flex gap-4 mt-6  border-2">
+                                            <span>Log out</span>
+                                            <LogOut />
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <Link
+                                to={"/login"}
+                                onClick={() => {
+                                    window.scrollTo(0, 0);
+                                }}
+                            >
+                                <User size={26} />
+                            </Link>
+                        )}
                     </div>
                 </div>
                 {/* TABLET */}
@@ -117,6 +163,8 @@ const Navbar = () => {
                         </div>
                         <div className="flex justify-between items-center gap-2">
                             <input
+                                onChange={handleSearch}
+                                value={searchKeyword}
                                 type="text"
                                 placeholder="Search"
                                 className=" bg-slate-100 rounded-md px-2 py-1 md:w-[30rem] lg:w-[40rem] xl:w-[58rem] h-[4rem] focus:outline-none"
@@ -159,14 +207,41 @@ const Navbar = () => {
                             </Link>
                         </div>
                         <div>
-                            <Link
-                                to={"/login"}
-                                onClick={() => {
-                                    window.scrollTo(0, 0);
-                                }}
-                            >
-                                <User size={26} />
-                            </Link>
+                            {loginSuccess ? (
+                                <div className="relative cursor-pointer ">
+                                    <div
+                                        onClick={() => setClickUser(!clickUser)}
+                                    >
+                                        <User />
+                                    </div>
+                                    {clickUser && (
+                                        <div className="absolute top-16 right-[-5rem] w-max p-4 border-gray-200 bg-white ">
+                                            <Link
+                                                to={"/user"}
+                                                onClick={() => {
+                                                    setClickUser(false);
+                                                    window.scrollTo(0, 0);
+                                                }}
+                                            >
+                                                Profile
+                                            </Link>
+                                            <div className="flex gap-2 mt-6">
+                                                <span>Log out</span>
+                                                <LogOut />
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <Link
+                                    to={"/login"}
+                                    onClick={() => {
+                                        window.scrollTo(0, 0);
+                                    }}
+                                >
+                                    <User size={26} />
+                                </Link>
+                            )}
                         </div>
                         <HamburgMenu className="xl:hidden" />
                     </div>
