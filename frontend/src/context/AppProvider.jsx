@@ -1,11 +1,21 @@
 /* eslint-disable react/prop-types */
+
+
+import { fetchWishlist } from "../utils/wishlistUtils/fetchWishList";
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 
 export const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
     const [sortOption, setSortOption] = useState("default");
+
+    const [wishlist, setWishlist] = useState([]);
+
+   
+
     const [loginSuccess, setLoginSuccess] = useState(false);
     const [searchKeyword, setSearchKeyword] = useState("");
     const [heartCount, setHeartCount] = useState(0);
@@ -13,6 +23,14 @@ const AppProvider = ({ children }) => {
     const [user, setUser] = useState({});
 
     const navigate = useNavigate();
+  
+   useEffect(() => {
+        const getWishlist = async () => {
+            const items = await fetchWishlist();
+            setWishlist(items);
+        };
+        getWishlist();
+    }, []);
 
     const fetchUser = async () => {
         const res = await fetch("http://localhost:3000/api/checkUser", {
@@ -33,6 +51,7 @@ const AppProvider = ({ children }) => {
 
     useEffect(() => {
         fetchUser();
+
     }, []);
 
     return (
@@ -40,6 +59,10 @@ const AppProvider = ({ children }) => {
             value={{
                 sortOption,
                 setSortOption,
+
+                wishlist,
+                setWishlist,
+
                 loginSuccess,
                 setLoginSuccess,
                 searchKeyword,
@@ -48,6 +71,7 @@ const AppProvider = ({ children }) => {
                 setHeartCount,
                 user,
                 setUser,
+
             }}
         >
             {children}

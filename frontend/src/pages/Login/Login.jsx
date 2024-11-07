@@ -27,9 +27,11 @@ const App = () => {
             rememberMe: false,
         },
     });
+
     //jian
     const { setLoginSuccess, setUser } = useContext(AppContext);
     //////
+
     const [isSignUp, setIsSignUp] = useState(false);
     const navigate = useNavigate();
 
@@ -53,10 +55,12 @@ const App = () => {
                 : "http://localhost:3000/api/users/login";
             const response = await fetch(endpoint, {
                 method: "POST",
-                credentials: "include",
+
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include", // Send cookies and other credentials with the request
+
                 body: JSON.stringify({
                     email: data.email,
                     password: data.password,
@@ -66,10 +70,12 @@ const App = () => {
             });
 
             const result = await response.json();
+
             //jian
             setLoginSuccess(result.success);
             setUser(result.user);
             ///////
+
             if (response.ok) {
                 console.log("Success:", result);
                 navigate("/cart");

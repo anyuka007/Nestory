@@ -11,13 +11,16 @@ import { Link } from "react-router-dom";
 import HamburgMenu from "../HamburgMenu/HamburgMenu";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
 import "../../css/App.css";
-import { useContext, useEffect, useState } from "react";
+
+import { useState, useContext } from "react";
+
+
 import { AppContext } from "../../context/AppProvider";
 
 const Navbar = () => {
     const [search, setSearch] = useState(false);
 
-    const { loginSuccess, searchKeyword, setSearchKeyword } =
+    const { loginSuccess, searchKeyword, setSearchKeyword, wishlist } =
         useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
 
@@ -25,6 +28,7 @@ const Navbar = () => {
         setSearchKeyword(e.target.value);
         console.log("searchKeyword", searchKeyword);
     };
+
 
     return (
         <div className="px-20 md:px-20 lg:px-40 xl:px-80 w-full h-[6rem] xl:h-[11rem] flex flex-col bg-white fixed z-20 shadow-sm shadow-gray-200  ">
@@ -103,7 +107,7 @@ const Navbar = () => {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <span className="number">3</span>
+                            <span className="number">{wishlist.length}</span>
                             <Heart size={26} />
                         </Link>
                     </div>
@@ -196,7 +200,9 @@ const Navbar = () => {
                                     window.scrollTo(0, 0);
                                 }}
                             >
-                                <span className="number">3</span>
+                                <span className="number">
+                                    {wishlist.length}
+                                </span>
                                 <Heart size={26} />
                             </Link>
                         </div>

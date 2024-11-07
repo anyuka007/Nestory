@@ -13,6 +13,7 @@ import wishlistRouter from "./routes/wishlistRouter.js";
 await connect();
 const app = express();
 
+
 const corsOptions = {
     origin: [
         "http://localhost:5173",
@@ -24,6 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // app.use(cors());
+
 app.use(express.json());
 app.use(cookieParser());
 
