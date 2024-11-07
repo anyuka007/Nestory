@@ -5,7 +5,6 @@ import cookieParser from "cookie-parser";
 
 import colors from "colors";
 import morgan from "morgan";
-
 import productRouter from "./routes/product.router.js";
 import authRouter from "./routes/authRoutes.js";
 import wishlistRouter from "./routes/wishlistRouter.js";
