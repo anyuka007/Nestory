@@ -46,6 +46,7 @@ const Wishlist = () => {
         try {
             const response = await fetch("http://localhost:3000/wishlist", {
                 method: "GET",
+                credentials: "include",
             });
             if (!response.ok) {
                 if (response.status === 404) {
@@ -74,6 +75,7 @@ const Wishlist = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    credentials: "include",
                 }
             );
             if (!response.ok) {

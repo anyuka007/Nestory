@@ -9,11 +9,11 @@ import { authorize } from "../middleware.js/auth.js";
 
 const wishlistRouter = express.Router();
 
-wishlistRouter.route("/").get(/* authorize, */ getUserWishlist);
-wishlistRouter.route("/all").get(authorize, getAllWishlists);
+wishlistRouter.route("/").get(authorize, getUserWishlist);
+wishlistRouter.route("/all").get(/* authorize, */ getAllWishlists);
 wishlistRouter
     .route("/:id")
-    .delete(/*authorize,*/ deleteWishlistItem)
+    .delete(authorize, deleteWishlistItem)
     .post(/* authorize, */ addWishlistItem);
 
 export default wishlistRouter;

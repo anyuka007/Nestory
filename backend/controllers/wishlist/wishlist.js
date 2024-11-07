@@ -18,8 +18,8 @@ export const getAllWishlists = async (req, res) => {
 export const getUserWishlist = async (req, res) => {
     console.log("aaaaaaaaaaa", req.user);
     //const userId = req.body.userId;
-    //const userId = req.user?.id;
-    const userId = "672b410a792afd795be5c2be";
+    const userId = req.user?.id;
+    //const userId = "672b410a792afd795be5c2be";
 
     if (!userId) {
         return res.status(400).json({ error: "User Id is required" });
@@ -72,8 +72,8 @@ export const getUserWishlist = async (req, res) => {
 // Remove the item from the wishlist
 export const deleteWishlistItem = async (req, res) => {
     //const userId = req.body.userId;
-    //const userId = req.user?.id;
-    const userId = "672b410a792afd795be5c2be";
+    const userId = req.user?.id;
+    //const userId = "672b410a792afd795be5c2be";
     const productToDel = req.params.id;
     console.log("productToDel ID", productToDel);
     if (!userId) {
@@ -118,9 +118,9 @@ export const deleteWishlistItem = async (req, res) => {
 
 // Add the item to the wishlist
 export const addWishlistItem = async (req, res) => {
-    //const userId = req.body.userId;
+    const userId = req.body.userId;
     //const userId = req.user?.id;
-    const userId = "672b410a792afd795be5c2be";
+    //const userId = "672b410a792afd795be5c2be";
     if (!userId) {
         return res.status(400).json({ error: "User Id is required" });
     }

@@ -12,7 +12,13 @@ import wishlistRouter from "./routes/wishlistRouter.js";
 
 await connect();
 const app = express();
-app.use(cors());
+const corsOptions = {
+    origin: "http://localhost:5173",
+    credentials: true,
+};
+app.use(cors(corsOptions));
+//app.use(cors());
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -24,5 +30,5 @@ app.use("/wishlist", wishlistRouter);
 
 const port = 3000;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`.yellow.bold);
+    console.log(`Server is running on port ${port}`.yellow.bold);
 });
