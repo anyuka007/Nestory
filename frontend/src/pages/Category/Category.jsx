@@ -40,7 +40,7 @@ const Category = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [products, currentPage]);
+    }, [currentPage]);
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
