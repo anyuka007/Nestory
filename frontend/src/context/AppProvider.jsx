@@ -1,32 +1,29 @@
 /* eslint-disable react/prop-types */
 
-
 import { fetchWishlist } from "../utils/wishlistUtils/fetchWishList";
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 export const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [sortOption, setSortOption] = useState("default");
-  const [cartCount, setCartCount] = useState(0);
-  const [loginSuccess, setLoginSuccess] = useState(false);
-  const [userId, setUserId] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
+    const [sortOption, setSortOption] = useState("default");
+    const [cartCount, setCartCount] = useState(0);
+    const [loginSuccess, setLoginSuccess] = useState(false);
 
+    const [cartItems, setCartItems] = useState([]);
 
     const [wishlist, setWishlist] = useState([]);
-   
+
     const [searchKeyword, setSearchKeyword] = useState("");
     const [heartCount, setHeartCount] = useState(0);
 
     const [user, setUser] = useState({});
 
     const navigate = useNavigate();
-  
-   useEffect(() => {
+
+    useEffect(() => {
         const getWishlist = async () => {
             const items = await fetchWishlist();
             setWishlist(items);
@@ -53,7 +50,6 @@ const AppProvider = ({ children }) => {
 
     useEffect(() => {
         fetchUser();
-
     }, []);
 
     return (
@@ -61,8 +57,8 @@ const AppProvider = ({ children }) => {
             value={{
                 sortOption,
                 setSortOption,
-cartCount,
-        setCartCount,
+                cartCount,
+                setCartCount,
                 wishlist,
                 setWishlist,
 
@@ -74,14 +70,13 @@ cartCount,
                 setHeartCount,
                 user,
                 setUser,
-cartItems,
-        setCartItems,
+                cartItems,
+                setCartItems,
             }}
         >
             {children}
         </AppContext.Provider>
     );
-
 };
 
 export default AppProvider;
