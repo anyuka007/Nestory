@@ -67,15 +67,58 @@ const ShoppingCart = () => {
 
   const { cartItems, setCartItems } = useContext(AppContext);
 
-  const deleteCartItem = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item._id !== itemId)
-    );
+  // const deleteCartItem = (itemId) => {
+  //   setCartItems((prevItems) =>
+  //     prevItems.filter((item) => item._id !== itemId)
+  //   );
+  // };
+  const fetchCartItems = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/cart", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (!response.ok) {
+        if (response.status === 404) {
+          return [];
+        } else {
+          throw new Error("Failed to fetch cart items");
+        }
+      } else {
+        const data = await response.json();
+        console.log("data:", data);
+        return data.items;
+      }
+    } catch (error) {
+      console.log("Error fetching users cart items", error);
+      throw error;
+    }
   };
 
-  const totalPrice = cartItems
-    .reduce((total, item) => total + item.price, 0)
-    .toFixed(2);
+  const deleteCartItem = async (id) => {
+    // try {
+    //     const response = await fetch(
+    //         `http://localhost:3000/cart/${id}`,
+    //         {
+    //             method: "DELETE",
+    //             credentials: "include",
+    //         }
+    //     );
+    //     if (!response.ok) {
+    //         throw new Error("Failed to delete cart item");
+    //     } else {
+    //         const updatedCartItems = await fetchCartItems();
+    //         setCartItems(updatedCartItems);
+    //     }
+    // } catch (error) {
+    //     console.error("Error deleting cart item:", error);
+    // }
+  };
+
+  // const totalPrice = cartItems
+  //   .reduce((total, item) => total + item.price, 0)
+  //   .toFixed(2);
+  const totalPrice = 0;
 
   return (
     <div className="min-h-screen bg-white flex flex-col xl:flex-row">
