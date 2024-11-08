@@ -12,17 +12,17 @@ import Carousel from "../../components/Carousel/Carousel";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppProvider";
 
-const product = {
-  _id: 1234,
-  name: "Circle corners table",
-  rating: 4.2,
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-  price: 223,
-  discount: 10,
-  imgUrl:
-    "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-};
+// const product = {
+//   _id: 1234,
+//   name: "Circle corners table",
+//   rating: 4.2,
+//   description:
+//     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
+//   price: 223,
+//   discount: 10,
+//   imgUrl:
+//     "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
+// };
 
 // const ProductDetails = () => {
 //   const navigate = useNavigate();
@@ -43,7 +43,8 @@ const ProductDetails = () => {
   // const navigate = useNavigate();
 
   // eslint-disable-next-line no-unused-vars
-  const { cartCount, setCartCount } = useContext(AppContext);
+  const { cartCount, setCartCount, product } = useContext(AppContext);
+  console.log("productDetails", product);
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -61,6 +62,11 @@ const ProductDetails = () => {
   // }, []);
 
   const addToCart = () => {
+    // try {
+
+    // } catch (error) {
+
+    // }
     setCartCount((prevCount) => prevCount + 1);
     console.log(cartCount);
   };
@@ -82,7 +88,7 @@ const ProductDetails = () => {
         {/* Left Section: Image */}
         <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0">
           <img
-            src={product.imgUrl}
+            src={product.image}
             alt="product"
             className="w-[30rem] md:w-[65rem] md:h-[65rem]"
           />
@@ -104,14 +110,14 @@ const ProductDetails = () => {
           </div>
 
           <div className="discount basis-[18%] flex flex-col justify-center">
-            {product.discount > 0 ? (
+            {product.percentage > 0 ? (
               <div className="flex items-center space-x-5">
                 <p className="line-through text-3xl">
                   {product.price.toFixed(2)}€
                 </p>
                 <p className="text-5xl text-colorTertiary">
                   {Math.round(
-                    product.price * (1 - product.discount / 100)
+                    product.price * (1 - product.percentage / 100)
                   ).toFixed(2)}
                   €
                 </p>
