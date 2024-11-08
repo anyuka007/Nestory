@@ -27,6 +27,9 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                             src={wishItem.imgUrl}
                             alt="wish item photo"
                             className="w-[25rem] h-[25rem] mx-auto"
+                            onClick={() => {
+                                window.scrollTo(0, 0);
+                            }}
                         />
                     </Link>
                 </div>
@@ -44,7 +47,13 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                 <StarRating rate={wishItem.rating} />
                 <p className="pt-8">{wishItem.description}</p>
                 <p className="mt-auto pt-4">
-                    <Link to={`/product/${wishItem._id}`} className="underline">
+                    <Link
+                        to={`/product/${wishItem._id}`}
+                        className="underline"
+                        onClick={() => {
+                            window.scrollTo(0, 0);
+                        }}
+                    >
                         Details
                     </Link>
                 </p>
