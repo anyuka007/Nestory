@@ -11,15 +11,12 @@ const AppProvider = ({ children }) => {
     const [sortOption, setSortOption] = useState("default");
     const [cartCount, setCartCount] = useState(0);
     const [loginSuccess, setLoginSuccess] = useState(false);
-
     const [cartItems, setCartItems] = useState([]);
-
     const [wishlist, setWishlist] = useState([]);
-
     const [searchKeyword, setSearchKeyword] = useState("");
     const [heartCount, setHeartCount] = useState(0);
-
     const [user, setUser] = useState({});
+    const [product, setProduct] = useState({});
 
     const navigate = useNavigate();
 
@@ -63,7 +60,6 @@ const AppProvider = ({ children }) => {
                 setCartCount,
                 wishlist,
                 setWishlist,
-
                 loginSuccess,
                 setLoginSuccess,
                 searchKeyword,
@@ -74,6 +70,8 @@ const AppProvider = ({ children }) => {
                 setUser,
                 cartItems,
                 setCartItems,
+                product,
+                setProduct,
             }}
         >
             {children}
