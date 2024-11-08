@@ -16,7 +16,7 @@ export const getAllWishlists = async (req, res) => {
 
 // Fetch the wishlist for the user from the database
 export const getUserWishlist = async (req, res) => {
-    console.log("aaaaaaaaaaa", req.user);
+    //console.log("bbbbb getUserWishList", req.user?.id);
     //const userId = req.body.userId;
     const userId = req.user?.id;
     //const userId = "672b410a792afd795be5c2be";
