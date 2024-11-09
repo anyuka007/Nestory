@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
             }}
         >
             <div className="absolute top-[18px] right-[18px] md:top-[12px] md:right-[12px] lg:top-[16px] lg:right-[16px] xl:top-[20px] xl:right-[20px] z-10">
-                <WishHeart />
+                <WishHeart productId={product._id} />
             </div>
 
             <Link

@@ -5,6 +5,7 @@ export const addToWishlist = async (id) => {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
         });
         if (!response.ok) {
             throw new Error("Failed to add wishlistItem");

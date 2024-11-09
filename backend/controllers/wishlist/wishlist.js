@@ -38,17 +38,25 @@ export const getUserWishlist = async (req, res) => {
             } items in user's wishlist`
         );
         await wishlist.populate("items.productId");
-        const items = wishlist.items.map((item) => {
-            return {
-                _id: item.productId._id,
-                name: item.productId.name,
-                description: item.productId.description,
-                imgUrl: item.productId.image,
-                discount: item.productId.percentage,
-                price: item.productId.price,
-                rating: item.productId.rating,
-            };
-        });
+        const items = wishlist.items
+            .filter((item) => item.productId !== null)
+            .map((item) => {
+                if (!item.productId) {
+                    console.error(
+                        `Product not found for wishlist item with _id: ${item._id}`
+                    );
+                    return null;
+                }
+                return {
+                    _id: item.productId._id,
+                    name: item.productId.name,
+                    description: item.productId.description,
+                    imgUrl: item.productId.image,
+                    discount: item.productId.percentage,
+                    price: item.productId.price,
+                    rating: item.productId.rating,
+                };
+            });
 
         const userWishlist = {
             _id: wishlist._id,
@@ -57,7 +65,7 @@ export const getUserWishlist = async (req, res) => {
             createdAt: wishlist.createdAt,
             updatedAt: wishlist.updatedAt,
         };
-        //console.log("userWishlist", userWishlist);
+        console.log("userWishlist", userWishlist);
 
         res.status(200).json(userWishlist);
     } catch (error) {
@@ -118,13 +126,14 @@ export const deleteWishlistItem = async (req, res) => {
 
 // Add the item to the wishlist
 export const addWishlistItem = async (req, res) => {
-    const userId = req.body.userId;
-    //const userId = req.user?.id;
+    //const userId = req.body.userId;
+    const userId = req.user?.id;
     //const userId = "672b410a792afd795be5c2be";
     if (!userId) {
         return res.status(400).json({ error: "User Id is required" });
     }
     const productToAdd = req.params.id;
+    console.log("productToAdd", productToAdd);
 
     try {
         // Fetch the wishlist for the user from the database
@@ -132,14 +141,18 @@ export const addWishlistItem = async (req, res) => {
 
         // Check if the wishlist exists
         if (!wishlist) {
-            return res.status(404).json({ error: "Wishlist not found" });
+            const newWishlist = new Wishlist({
+                userId: req.user.id,
+                items: [],
+            });
+            await newWishlist.save();
         }
 
         // Check if the item is already in the wishlist
         const isItemInWishlist = wishlist.items.some(
             (el) => el.productId.toString() === productToAdd.toString()
         );
-        //console.log("isItemInWishlist", isItemInWishlist);
+        console.log("isItemInWishlist", isItemInWishlist);
 
         // Check if the item is already in the wishlist
         if (isItemInWishlist) {
@@ -151,6 +164,7 @@ export const addWishlistItem = async (req, res) => {
         // Add the item to the wishlist
         wishlist.items.push({ productId: productToAdd });
         await wishlist.save();
+        console.log("wishlist", wishlist);
 
         res.status(200).json({ success: true });
     } catch (error) {

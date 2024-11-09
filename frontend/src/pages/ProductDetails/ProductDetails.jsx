@@ -68,7 +68,7 @@ async function fetchProductById(productId) {
 
 const ProductDetails = () => {
     const { _id } = useParams();
-    console.log(_id);
+    // console.log(_id);
     const [product, setProduct] = useState();
 
     // const navigate = useNavigate();
@@ -76,18 +76,26 @@ const ProductDetails = () => {
     // eslint-disable-next-line no-unused-vars
     const { cartCount, setCartCount } = useContext(AppContext);
 
+    // Das ignore-Flag wird verwendet, um sicherzustellen, dass der Zustand nicht aktualisiert wird, wenn die Komponente nicht mehr angezeigt wird.
     useEffect(() => {
+        let ignore = false;
         const getProduct = async () => {
             try {
-                console.log("11111111");
+                setProduct(null);
                 const product = await fetchProductById(_id);
-                setProduct(product);
+                if (!ignore) {
+                    setProduct(product);
+                }
             } catch (error) {
                 console.error("Failed to fetch product:", error);
             }
         };
         getProduct();
-    }, []);
+
+        return () => {
+            ignore = true;
+        };
+    }, [_id]);
 
     //console.log("productDetails", product);
 
