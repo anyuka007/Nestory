@@ -1,16 +1,35 @@
 import { Heart } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppProvider";
 import { addToWishlist } from "../../utils/wishlistUtils/addToWishlist";
 import { deleteWishItem } from "../../utils/wishlistUtils/deleteWishItem";
 import { fetchWishlist } from "../../utils/wishlistUtils/fetchWishList";
+import { useLocation } from "react-router-dom";
 
 const WishHeart = ({ productId }) => {
     const [isWish, setIsWish] = useState(false);
-    const { heartCount, wishlist, setWishlist } = useContext(AppContext);
+    const { heartCount, wishlist, setWishlist, user } = useContext(AppContext);
+    const location = useLocation();
+
+    useEffect(() => {
+        const isInWishlist = wishlist.some(
+            (product) => product._id === productId
+        );
+
+        if (user._id && isInWishlist) {
+            setIsWish(true);
+        } else {
+            setIsWish(false);
+        }
+        //console.log("isInwishlistsStart", productId, isInWishlist);
+    }, [wishlist, user, productId, location]);
 
     const handleHeart = async (id) => {
-        console.log("wishlist", wishlist);
+        if (!user._id) {
+            alert("Only registered user can add products to wishlist");
+            return;
+        }
+        //console.log("wishlist", wishlist);
         if (!id) {
             console.error("Product ID is undefined".red);
             return;
@@ -33,14 +52,6 @@ const WishHeart = ({ productId }) => {
         } catch (error) {
             console.error("Error adding/deleting to wishlist:", error);
         }
-        // try {
-        //     await addToWishlist(id);
-        //     setIsWish(!isWish);
-        /*  if (isWish) {
-                heartCount - 1;
-            } else {
-                heartCount + 1;
-            } */
     };
 
     return (
