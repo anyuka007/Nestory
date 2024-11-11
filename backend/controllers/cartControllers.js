@@ -1,12 +1,42 @@
 import Cart from "../models/Cart.js";
 
-export const addProductToCart = async (req, res) => {
-  const { productId, quantity, color } = req.body;
+export const getUserCart = async (req, res) => {
   const { id } = req.user;
+  // const userId = req.user.id;
+  console.log("userId", id);
+  //dali e prisuten korisnikot proveruvam preku
+  if (!id) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+
+  try {
+    const cart = await Cart.findOne({ userId: id }).populate("items.productId");
+    // const cart = await Cart.findOne({ userId }).populate("items.productId");
+    // console.log(cart);
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    console.log("User's cart retrieved successfully");
+
+    return res.status(200).json(cart);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+export const addProductToCart = async (req, res) => {
+  console.log(111);
+  const { productId } = req.params;
+  const { quantity, color } = req.body;
+  const { id } = req.user;
+  console.log(productId);
+  // console.log("user:", id);
 
   try {
     let cart = await Cart.findOne({ userId: id });
-
+    console.log(cart);
     if (!cart) {
       cart = new Cart({
         userId: id,
@@ -36,9 +66,11 @@ export const addProductToCart = async (req, res) => {
 
 export const deleteProductFromCart = async (req, res) => {
   const { productId } = req.params;
+  console.log("productId", productId);
   const { id } = req.user;
   try {
-    const cart = await Cart.findOne({ id });
+    // const cart = await Cart.findOne({ id });
+    const cart = await Cart.findOne({ userId: id });
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
@@ -68,7 +100,8 @@ export const updateProductInCart = async (req, res) => {
   const { quantity, color } = req.body;
 
   try {
-    const cart = await Cart.findOne({ id });
+    // const cart = await Cart.findOne({ id });
+    const cart = await Cart.findOne({ userId: id });
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
@@ -82,6 +115,7 @@ export const updateProductInCart = async (req, res) => {
       return res.status(404).json({ message: "Product not found in cart" });
     }
 
+    // if (quantity !== undefined ) item.quantity = quantity;
     if (quantity) item.quantity = quantity;
     if (color) item.color = color;
 
