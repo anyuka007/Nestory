@@ -23,6 +23,7 @@ const Navbar = () => {
         setSearchKeyword,
         wishlist,
         cartCount,
+        user,
     } = useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
 
@@ -103,12 +104,16 @@ const Navbar = () => {
                     </div>
                     <div className="relative">
                         <Link
-                            to={"/wishlist"}
+                            to={user._id ? "/wishlist" : "/login"}
                             onClick={() => {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <span className="number">{wishlist.length}</span>
+                            {user._id && (
+                                <span className="number">
+                                    {wishlist.length}
+                                </span>
+                            )}
                             <Heart size={26} />
                         </Link>
                     </div>
@@ -196,14 +201,16 @@ const Navbar = () => {
                         </div>
                         <div className="relative">
                             <Link
-                                to={"/wishlist"}
+                                to={user._id ? "/wishlist" : "/login"}
                                 onClick={() => {
                                     window.scrollTo(0, 0);
                                 }}
                             >
-                                <span className="number">
-                                    {wishlist.length}
-                                </span>
+                                {user._id && (
+                                    <span className="number">
+                                        {wishlist.length}
+                                    </span>
+                                )}
                                 <Heart size={26} />
                             </Link>
                         </div>
