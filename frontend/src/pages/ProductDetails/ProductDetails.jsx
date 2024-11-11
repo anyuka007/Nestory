@@ -74,7 +74,17 @@ const ProductDetails = () => {
     // const navigate = useNavigate();
 
     // eslint-disable-next-line no-unused-vars
-    const { cartCount, setCartCount, setCartItems } = useContext(AppContext);
+    const {
+        cartCount,
+        setCartCount,
+        setCartItems,
+        isFlying,
+        setIsFlying,
+        flyStyle,
+        setFlyStyle,
+        bagIconRef,
+        imgRef,
+    } = useContext(AppContext);
 
     // Das ignore-Flag wird verwendet, um sicherzustellen, dass der Zustand nicht aktualisiert wird, wenn die Komponente nicht mehr angezeigt wird.
     useEffect(() => {
@@ -141,6 +151,55 @@ const ProductDetails = () => {
         }
         setCartCount((prevCount) => prevCount + 1);
         console.log(cartCount);
+
+        //fly animation
+        const startRect = imgRef.current.getBoundingClientRect();
+        const endRect = bagIconRef.current.getBoundingClientRect();
+        const scale = 0.1; // 最终缩小比例
+        const elementWidth = startRect.width * scale;
+        const elementHeight = startRect.height * scale;
+
+        // 设置飞行元素的初始位置和大小
+        setFlyStyle({
+            left: `${startRect.left}px`,
+            top: `${startRect.top}px`,
+            opacity: 1,
+
+            transform: "scale(1)",
+        });
+        setIsFlying(true);
+
+        setTimeout(() => {
+            // 计算目标位置，使飞行元素缩小后对准购物车图标的中心
+            const adjustedLeft =
+                endRect.left - startRect.left - elementWidth / 4;
+            const adjustedTop =
+                endRect.top -
+                startRect.top -
+                elementHeight * 2.1 -
+                window.scrollY;
+            console.log(adjustedLeft, adjustedTop);
+
+            setFlyStyle({
+                left: `${adjustedLeft}px`,
+                top: `${adjustedTop}px`,
+                // display: "none",
+                opacity: 0.3,
+
+                transform: `scale(${scale})`,
+            });
+        }, 100);
+    };
+
+    const handleTransitionEnd = () => {
+        setIsFlying(false);
+
+        // 重置飞行元素为按钮的位置，准备下一次动画
+        setFlyStyle((prevStyle) => ({
+            ...prevStyle,
+            opacity: 1,
+            transform: "scale(1)",
+        }));
     };
 
     // const handleCartClick = () => {
@@ -163,6 +222,7 @@ const ProductDetails = () => {
                     {/* Left Section: Image */}
                     <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0">
                         <img
+                            ref={imgRef}
                             src={product.image}
                             alt="product"
                             className="w-[30rem] md:w-[65rem] md:h-[65rem]"
@@ -238,6 +298,18 @@ const ProductDetails = () => {
                             >
                                 Add to Cart
                             </button>
+
+                            {/* flaying element */}
+                            {isFlying && (
+                                <div
+                                    className="fixed w-[40%] aspect-square rounded-full bg-cover bg-no-repeat transition-all duration-[1500ms] ease-in-out pointer-events-none z-[21]"
+                                    style={{
+                                        backgroundImage: `url(${product.image})`,
+                                        ...flyStyle,
+                                    }}
+                                    onTransitionEnd={handleTransitionEnd} // 动画结束后隐藏
+                                ></div>
+                            )}
                         </div>
                         {/* Description reserve */}
                         {/* <p className="xl:w-[70%] text-2xl text-gray-600 mt-4">

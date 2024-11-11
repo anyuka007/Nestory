@@ -23,6 +23,7 @@ const Navbar = () => {
         setSearchKeyword,
         wishlist,
         cartCount,
+        bagIconRef,
     } = useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
 
@@ -90,7 +91,7 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <div className="relative">
+                    <div ref={bagIconRef} className="relative">
                         <Link
                             to={"/cart"}
                             onClick={() => {
@@ -183,7 +184,7 @@ const Navbar = () => {
                     </div>
                     {/* RIGHT */}
                     <div className="w-1/3 flex justify-end items-center gap-16">
-                        <div className="relative">
+                        <div ref={bagIconRef} className="relative">
                             <Link
                                 to={"/cart"}
                                 onClick={() => {
