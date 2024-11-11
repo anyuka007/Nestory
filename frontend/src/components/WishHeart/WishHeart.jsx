@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Heart } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppProvider";
