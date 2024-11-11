@@ -35,7 +35,7 @@ const WishHeart = ({ productId }) => {
             return;
         }
         const isInWishlist = wishlist.some((product) => product._id === id);
-        console.log("isInwishlistForHeart", isInWishlist);
+        //console.log("isInwishlistForHeart", isInWishlist);
 
         try {
             if (!isInWishlist) {

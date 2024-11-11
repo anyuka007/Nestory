@@ -11,10 +11,11 @@ import authRouter from "./routes/authRoutes.js";
 import wishlistRouter from "./routes/wishlistRouter.js";
 import cartRouter from "./routes/cartRoutes.js";
 import productDetailsRouter from "./routes/productDetailsRoutes.js";
+import ordersRouter from "./routes/ordersRouter.js";
+import addressRouter from "./routes/addressRouter.js";
 
 await connect();
 const app = express();
-
 
 const corsOptions = {
     origin: [
@@ -39,6 +40,8 @@ app.use("/api/users", authRouter);
 app.use("/wishlist", wishlistRouter);
 app.use("/cart", cartRouter);
 app.use("/product", productDetailsRouter);
+app.use("/account/orders", ordersRouter);
+app.use("/address", addressRouter);
 
 const port = 3000;
 app.listen(port, () => {
