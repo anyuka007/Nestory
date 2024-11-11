@@ -12,7 +12,6 @@ import { AppContext } from "../../context/AppProvider";
 // import LogoLine from "../../components/LogoLine/LogoLine";
 
 const App = () => {
-
   const {
     register,
     handleSubmit,
@@ -28,8 +27,8 @@ const App = () => {
       rememberMe: false,
     },
   });
-  
-  const { setLoginSuccess, setUser} = useContext(AppContext);
+
+  const { setLoginSuccess, setUser } = useContext(AppContext);
   const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
 
@@ -55,8 +54,8 @@ const App = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        }, 
-        credentials: "include", 
+        },
+        credentials: "include",
         body: JSON.stringify({
           email: data.email,
           password: data.password,
@@ -66,9 +65,9 @@ const App = () => {
       });
 
       const result = await response.json();
-       setLoginSuccess(result.success);
-            setUser(result.user);
-    
+      setLoginSuccess(result.success);
+      setUser(result.user);
+
       if (response.ok) {
         console.log("Success:", result);
 
@@ -137,111 +136,109 @@ const App = () => {
 
                   <p className={styles.error}>{errors.firstName.message}</p>
                 )} */}
-                            </div>
-                            <div className={styles.inputContainer}>
-                                <FaUser className={styles.icon} />
-                                <input
-                                    type="text"
-                                    placeholder="Last Name"
-                                    // {...register("lastName", {
-                                    //   required: "Last name is required",
-                                    // })}
-                                    {...register("lastName")}
-                                    required
-                                />
-                                {/* {errors.lastName && (
+              </div>
+              <div className={styles.inputContainer}>
+                <FaUser className={styles.icon} />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  // {...register("lastName", {
+                  //   required: "Last name is required",
+                  // })}
+                  {...register("lastName")}
+                  required
+                />
+                {/* {errors.lastName && (
                   <p className={styles.error}>{errors.lastName.message}</p>
                 )} */}
-                            </div>
-                        </>
-                    )}
-                    <div className={styles.inputContainer}>
-                        <MdEmail className={styles.icon} />
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            // {...register("email", { required: "Email is required" })}
-                            {...register("email", {
-                                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            })}
-                            required
-                        />
-                        {/* {errors.email && (
+              </div>
+            </>
+          )}
+          <div className={styles.inputContainer}>
+            <MdEmail className={styles.icon} />
+            <input
+              type="email"
+              placeholder="Email"
+              // {...register("email", { required: "Email is required" })}
+              {...register("email", {
+                pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              })}
+              required
+            />
+            {/* {errors.email && (
               <p className={styles.error}>{errors.email.message}</p>
             )} */}
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <RiLockPasswordFill className={styles.icon} />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            // {...register("password", { required: "Password is required" })}
-                            {...register("password", {
-                                // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
-                                pattern: /^.{8,}$/,
-                            })}
-                            required
-                        />
-                    </div>
-                    {/* {errors.password && (
+          </div>
+          <div className={styles.inputContainer}>
+            <RiLockPasswordFill className={styles.icon} />
+            <input
+              type="password"
+              placeholder="Password"
+              // {...register("password", { required: "Password is required" })}
+              {...register("password", {
+                // pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
+                pattern: /^.{8,}$/,
+              })}
+              required
+            />
+          </div>
+          {/* {errors.password && (
             <p className={styles.error}>{errors.password.message}</p>
           )} */}
-                    {isSignUp && (
-                        <div className={styles.inputContainer}>
-                            <RiLockPasswordFill className={styles.icon} />
-                            <input
-                                type="password"
-                                placeholder="Repeat Password"
-                                // {...register("Repeat Password", {
-                                //   required: "Please repeat the Password",
-                                // })}
-                                {...register("password")}
-                                required
-                            />
-                            {/* {errors.repeatPassword && (
+          {isSignUp && (
+            <div className={styles.inputContainer}>
+              <RiLockPasswordFill className={styles.icon} />
+              <input
+                type="password"
+                placeholder="Repeat Password"
+                // {...register("Repeat Password", {
+                //   required: "Please repeat the Password",
+                // })}
+                {...register("password")}
+                required
+              />
+              {/* {errors.repeatPassword && (
                 <p className={styles.error}>{errors.repeatPassword.message}</p>
               )} */}
-                        </div>
-                    )}
-                    <div className={styles.remember}>
-                        <label htmlFor="rememberMe">Remember me</label>
-                        <label className={styles.switch}>
-                            <input
-                                type="checkbox"
-                                id="rememberMe"
-                                {...register("rememberMe")}
-                            />
-                            <span className={styles.slider}></span>
-                        </label>
-                    </div>
-                    <button className={styles.signInButton} type="submit">
-                        {isSignUp ? "Create account" : "Sign in"}
-                    </button>
-                </form>
+            </div>
+          )}
+          <div className={styles.remember}>
+            <label htmlFor="rememberMe">Remember me</label>
+            <label className={styles.switch}>
+              <input
+                type="checkbox"
+                id="rememberMe"
+                {...register("rememberMe")}
+              />
+              <span className={styles.slider}></span>
+            </label>
+          </div>
+          <button className={styles.signInButton} type="submit">
+            {isSignUp ? "Create account" : "Sign in"}
+          </button>
+        </form>
 
-                <p className={styles.changeButton}>
-                    {isSignUp
-                        ? "Already have an account?"
-                        : "Don't have an account?"}{" "}
-                    <a href="#" onClick={toggleForm}>
-                        {isSignUp ? "Sign in" : "Sign up"}
-                    </a>
-                </p>
-            </div>
-            <div className={styles.imageContainer}>
-                <img
-                    src="/images/logo/logo.png"
-                    alt="Logo or decorative image"
-                    className="logo"
-                    style={{
-                        width: "400px",
-                        height: "auto",
-                        borderRadius: "23px",
-                    }}
-                />
-            </div>
-        </div>
-    );
+        <p className={styles.changeButton}>
+          {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
+          <a href="#" onClick={toggleForm}>
+            {isSignUp ? "Sign in" : "Sign up"}
+          </a>
+        </p>
+      </div>
+      <div className={styles.imageContainer}>
+        <img
+          src="/images/logo/logo.png"
+          alt="Logo or decorative image"
+          className="logo"
+          style={{
+            width: "400px",
+            height: "auto",
+            borderRadius: "23px",
+          }}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default App;

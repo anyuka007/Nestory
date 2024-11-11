@@ -12,18 +12,6 @@ import Carousel from "../../components/Carousel/Carousel";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppProvider";
 
-// const product = {
-//   _id: 1234,
-//   name: "Circle corners table",
-//   rating: 4.2,
-//   description:
-//     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-//   price: 223,
-//   discount: 10,
-//   imgUrl:
-//     "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-// };
-
 // const ProductDetails = () => {
 //   const navigate = useNavigate();
 
@@ -43,8 +31,9 @@ const ProductDetails = () => {
   // const navigate = useNavigate();
 
   // eslint-disable-next-line no-unused-vars
-  const { cartCount, setCartCount, product } = useContext(AppContext);
-  console.log("productDetails", product);
+  const { cartCount, setCartCount, setCartItems, product } =
+    useContext(AppContext);
+  // console.log("productDetails", product);
 
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -61,12 +50,31 @@ const ProductDetails = () => {
   //   }
   // }, []);
 
-  const addToCart = () => {
-    // try {
+  const addToCart = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/cart/${product._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quantity: 2, color: "black" }),
+          credentials: "include",
+        }
+      );
 
-    // } catch (error) {
-
-    // }
+      const data = await response.json();
+      console.log("fetched data:", data);
+      if (response.ok) {
+        console.log("Product added to cart", data);
+        setCartItems(data.cart.items);
+      } else {
+        console.error("Error adding product to cart:", data.message);
+      }
+    } catch (error) {
+      console.error("Request failed:", error);
+    }
     setCartCount((prevCount) => prevCount + 1);
     console.log(cartCount);
   };
@@ -152,7 +160,7 @@ const ProductDetails = () => {
 
             <button
               // onClick={handleCartClick}
-              onClick={addToCart}
+              onClick={() => addToCart()}
               className="buy w-full px-6 py-4 my-6 text-white bg-colorSecondary text-3xl hover:bg-colorPrimary rounded-full"
             >
               Add to Cart

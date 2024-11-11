@@ -4,23 +4,42 @@ import StarRating from "../StarRating/StarRating";
 import { Trash2 } from "lucide-react";
 import WishHeart from "../WishHeart/WishHeart";
 import QuantitySelector from "../QuantitySelector/QuantitySelector";
+import { useState } from "react";
 
-const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
+const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+  // const [color, setColor] = useState(cartItem.color);
+
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+    updateCartItem(cartItem.productId._id, newQuantity);
+    // updateCartItem(cartItem.productId._id, newQuantity, color);
+  };
+
+  // const handleColorChange = (e) => {
+  //   const newColor = e.target.value;
+  //   setColor(newColor); // Update local state
+  //   updateCartItem(cartItem.productId._id, quantity, newColor); // Sync with backend
+  // };
+
+  console.log(cartItem.productId._id);
+  console.log("cartItem", cartItem);
+
   return (
-    <div className="relative border-b py-7">
-      {/* Top Section: Discount and Trash Icon */}
+    <div className="w-full relative border-b py-7">
+      {/* Top Section: percentage and Trash Icon */}
       <div className="flex justify-between">
-        {/* Discount Label */}
+        {/* percentage Label */}
         <div className="basis-[15%]">
-          {cartItem.discount > 0 && (
+          {cartItem.productId.percentage > 0 && (
             <p
               className={`text-white text-center ${
-                cartItem.discount > 40
+                cartItem.productId.percentage > 40
                   ? "bg-colorTertiary"
                   : "bg-colorSecondary"
               } w-[5rem]`}
             >
-              -{cartItem.discount}%
+              -{cartItem.productId.percentage}%
             </p>
           )}
         </div>
@@ -29,20 +48,19 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
         <div className="absolute top-7 right-6 flex space-x-2">
           <Trash2
             // novo
-            onClick={deleteCartItem(cartItem.id)}
+            onClick={() => deleteCartItem(cartItem.productId._id)}
             className="text-colorPrimary cursor-pointer"
           />
         </div>
       </div>
-
       {/* Middle Section */}
       <div className="big flex flex-col md:flex-row justify-between mt-4">
         {/* Product Image */}
         <div className="flex flex-col md:basis-[25%] md:mx-8">
-          <Link to={`/product/${cartItem._id}`}>
+          <Link to={`/product/${cartItem.productId._id}`}>
             <img
-              src={cartItem.imgUrl}
-              alt="product"
+              src={cartItem.productId.image}
+              alt={cartItem.productId.name}
               className="w-[18rem] h-[18rem] mx-auto"
             />
           </Link>
@@ -55,13 +73,13 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
           <div className=" flex flex-col md:flex md:flex-row">
             <div className="flex flex-col justify-center basis-2/3">
               <p className="text-center md:text-left md:pt-8 font-semibold text-3xl mb-4">
-                {cartItem.name}
+                {cartItem.productId.name}
               </p>
               <div className="flex justify-center md:justify-start">
-                <StarRating rate={cartItem.rating} />
+                <StarRating rate={cartItem.productId.rating} />
               </div>
               <p className="text-center sm:text-left pt-8 text-xl text-gray-600">
-                {cartItem.description}
+                {cartItem.productId.description}
               </p>
             </div>
             <div className="hidden md:block basis-1/3"></div>
@@ -81,6 +99,12 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
                 ))}
               </select> */}
               <QuantitySelector
+                quantity={quantity}
+                onIncrease={() => handleQuantityChange(quantity + 1)}
+                onDecrease={() =>
+                  handleQuantityChange(Math.max(1, quantity - 1))
+                }
+                onClick={() => handleQuantityChange(quantity + 1)}
                 size="text-[1.8rem]"
                 padding="py-[0.6rem] px-4"
               />
@@ -89,20 +113,23 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem }) => {
 
             {/* Price */}
             <div className="flex items-center">
-              {cartItem.discount ? (
+              {cartItem.productId.percentage ? (
                 <div>
                   <p className="line-through text-[2rem]">
-                    {cartItem.price.toFixed(2)}€
+                    {cartItem.productId.price.toFixed(2)}€
                   </p>
                   <p className="text-[2rem] text-colorTertiary">
                     {Math.round(
-                      cartItem.price * (1 - cartItem.discount / 100)
+                      cartItem.productId.price *
+                        (1 - cartItem.productId.percentage / 100)
                     ).toFixed(2)}
                     €
                   </p>
                 </div>
               ) : (
-                <p className="text-[2rem]">{cartItem.price.toFixed(2)}€</p>
+                <p className="text-[2rem]">
+                  {cartItem.productId.price.toFixed(2)}€
+                </p>
               )}
             </div>
           </div>

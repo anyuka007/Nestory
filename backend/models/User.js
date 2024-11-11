@@ -1,21 +1,5 @@
 import mongoose from "mongoose";
 
-// muss haben- Jian
-const productSchema = new mongoose.Schema({
-  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-  quantity: { type: Number, required: true },
-  color: { type: String, required: true },
-});
-
-// muss auch
-const reviewSchema = new mongoose.Schema({
-  productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-  reviewText: { type: String, required: true },
-  rating: { type: Number, required: true },
-});
-
-// muss wishlistSchema auch- Anna
-
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -39,19 +23,42 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    //  so oder enum - rollen
-    isAdmin: {
-      type: Boolean,
-      default: false,
+    // cartItems: [
+    cart: [
+      {
+        quantity: {
+          type: Number,
+          default: 1,
+        },
+        color: {
+          type: String,
+          default: "white",
+        },
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+        },
+      },
+    ],
+    role: {
+      type: String,
+      enum: ["customer", "admin"],
+      default: "customer",
     },
-
-    //   wie das verbinden ...
-    cart: [productSchema],
-    product: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-    reviews: [reviewSchema],
   },
   { timestamps: true }
 );
+//  oder :
+//
+// isAdmin: {
+//   type: Boolean,
+//   default: false,
+// },
+//
+//   cart: [productSchema],
+//   product: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+//   reviews: [reviewSchema],
+// },
 
 const User = mongoose.model("User", userSchema);
 export default User;

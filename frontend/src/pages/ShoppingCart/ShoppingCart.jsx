@@ -1,77 +1,11 @@
 import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem.jsx";
 import Button from "../../components/Button/Button";
 import { AppContext } from "../../context/AppProvider";
-import { useContext } from "react";
-
-// const testCartItems = [
-//   {
-//     _id: 1234,
-//     name: "Circle corners table",
-//     rating: 4.2,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-//     price: 223,
-//     discount: 10,
-//     imgUrl:
-//       "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-//   },
-//   {
-//     _id: 5678,
-//     name: "Modern Nightstand",
-//     rating: 3.5,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-//     price: 255,
-//     discount: 0,
-//     imgUrl:
-//       "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic11-800x800.webp",
-//   },
-//   {
-//     _id: 9101,
-//     name: "Wooden dresser",
-//     rating: 4.7,
-//     description:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-//     price: 468,
-//     discount: 41,
-//     imgUrl:
-//       "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic17-800x800.webp",
-//   },
-// ];
+import { useContext, useEffect } from "react";
 
 const ShoppingCart = () => {
-  // const cartItems = testCartItems;
-  // const addItemsToCart = async (productId, quantity, color) => {
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/cart/${productId}`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ quantity, color }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (response.ok) {
-  //       console.log("Product added to cart", data);
-
-  //       setCartItems(data.cart.items);
-  //     } else {
-  //       console.error("Error adding product to cart:", data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Request failed:", error);
-  //   }
-  // };
-
   const { cartItems, setCartItems } = useContext(AppContext);
 
-  // const deleteCartItem = (itemId) => {
-  //   setCartItems((prevItems) =>
-  //     prevItems.filter((item) => item._id !== itemId)
-  //   );
-  // };
   const fetchCartItems = async () => {
     try {
       const response = await fetch("http://localhost:3000/cart", {
@@ -86,8 +20,8 @@ const ShoppingCart = () => {
         }
       } else {
         const data = await response.json();
-        console.log("data:", data);
-        return data.items;
+        console.log("data:", data.items);
+        setCartItems(data.items); //treba da aktueliziram sto imam so novite data
       }
     } catch (error) {
       console.log("Error fetching users cart items", error);
@@ -95,24 +29,55 @@ const ShoppingCart = () => {
     }
   };
 
-  const deleteCartItem = async (id) => {
-    // try {
-    //     const response = await fetch(
-    //         `http://localhost:3000/cart/${id}`,
-    //         {
-    //             method: "DELETE",
-    //             credentials: "include",
-    //         }
-    //     );
-    //     if (!response.ok) {
-    //         throw new Error("Failed to delete cart item");
-    //     } else {
-    //         const updatedCartItems = await fetchCartItems();
-    //         setCartItems(updatedCartItems);
-    //     }
-    // } catch (error) {
-    //     console.error("Error deleting cart item:", error);
-    // }
+  useEffect(() => {
+    fetchCartItems();
+  }, [setCartItems]);
+  console.log("cartItems", cartItems);
+
+  const deleteCartItem = async (productId) => {
+    try {
+      const response = await fetch(`http://localhost:3000/cart/${productId}`, {
+        method: "DELETE",
+        credentials: "include", // Cookie mit Token senden
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete cart item");
+      } else {
+        const updatedCart = await response.json();
+        console.log(updatedCart);
+        console.log(updatedCart.cart.items);
+        setCartItems(updatedCart.cart.items); // Aktualisierte Cart-Items setzen
+      }
+    } catch (error) {
+      console.error("Error deleting cart item:", error);
+    }
+  };
+
+  const updateCartItem = async (productId, quantity, color) => {
+    console.log(333);
+    try {
+      console.log("pred fetch");
+      const response = await fetch(`http://localhost:3000/cart/${productId}`, {
+        method: "PATCH",
+        credentials: "include", // Cookie mit JWT senden
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ quantity, color }),
+      });
+      console.log("posle fetch");
+
+      if (!response.ok) {
+        throw new Error("Failed to update cart item");
+      } else {
+        const updatedCart = await response.json();
+        console.log(updatedCart);
+        setCartItems(updatedCart.cart.items);
+      }
+    } catch (error) {
+      console.error("Error updating cart item:", error);
+    }
   };
 
   // const totalPrice = cartItems
@@ -135,7 +100,10 @@ const ShoppingCart = () => {
               <div className="flex mb-4 md:w-full" key={cartItem._id}>
                 <ShoppingCartItem
                   cartItem={cartItem}
-                  deleteCartItem={deleteCartItem}
+                  // deleteCartItem={deleteCartItem(cartItem.productId)}
+                  deleteCartItem={() => deleteCartItem(cartItem.productId._id)}
+                  // updateCartItem={() => updateCartItem(cartItem.productId._id)}
+                  updateCartItem={updateCartItem}
                 />
               </div>
             ))}
@@ -157,7 +125,7 @@ const ShoppingCart = () => {
           <div className="line border-t border-gray-300 my-10"></div>
           <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
             <span>Total amount:</span>
-            <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span>
+            {/* <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span> */}
           </div>
           <span className="text-sm text-gray-500 mt-8">
             incl. applicable VAT.
