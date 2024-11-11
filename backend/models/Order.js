@@ -15,7 +15,7 @@ const OrderSchema = new mongoose.Schema(
         shippingFee: { type: Number, default: 50, required: true },
         items: [
             {
-                productID: {
+                productId: {
                     type: mongoose.Schema.Types.ObjectId,
                     ref: "Product",
                     required: true,

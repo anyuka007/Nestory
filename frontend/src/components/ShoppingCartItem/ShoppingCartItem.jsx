@@ -108,7 +108,10 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
                 size="text-[1.8rem]"
                 padding="py-[0.6rem] px-4"
               />
-              <WishHeart className="text-colorPrimary cursor-pointer" />
+              <WishHeart
+                className="text-colorPrimary cursor-pointer"
+                productId={cartItem.productId._id}
+              />
             </div>
 
             {/* Price */}
