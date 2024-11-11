@@ -14,6 +14,6 @@ wishlistRouter.route("/all").get(/* authorize, */ getAllWishlists);
 wishlistRouter
     .route("/:id")
     .delete(authorize, deleteWishlistItem)
-    .post(/* authorize, */ addWishlistItem);
+    .post(authorize, addWishlistItem);
 
 export default wishlistRouter;
