@@ -23,6 +23,7 @@ const Navbar = () => {
         setSearchKeyword,
         wishlist,
         cartCount,
+        cartItems,
         bagIconRef,
         handleLogout,
         user,
@@ -95,12 +96,17 @@ const Navbar = () => {
 
                     <div ref={bagIconRef} className="relative">
                         <Link
-                            to={"/cart"}
+                            to={user._id ? "/cart" : "/login"}
                             onClick={() => {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <span className="number">{cartCount}</span>
+                            {user._id && (
+                                <span className="number">
+                                    {cartItems.length}
+                                </span>
+                            )}
+                            {/* <span className="number">{cartCount}</span> */}
                             <ShoppingBag size={26} />
                         </Link>
                     </div>
@@ -126,7 +132,7 @@ const Navbar = () => {
                                     <User />
                                 </div>
                                 {clickUser && (
-                                    <div className="absolute top-16 right-[-5rem] w-max flex flex-col items-center justify-center  border-gray-200 bg-white">
+                                    <div className="absolute  top-16 right-[-5rem] w-max flex flex-col items-center justify-center  border-gray-200 bg-white">
                                         <Link
                                             to={"/user"}
                                             onClick={() => {
@@ -136,13 +142,17 @@ const Navbar = () => {
                                         >
                                             Profile
                                         </Link>
-                                        <div className="flex gap-4 mt-6  border-2">
-                                            {/* julijana: button hinzugefügt für onClick handler */}
-                                            <button onClick={handleLogout}>
+                                        <button
+                                            onClick={() => {
+                                                handleLogout();
+                                                setClickUser(false);
+                                            }}
+                                        >
+                                            <div className="flex gap-2 mt-6 w-fit">
                                                 <span>Log out</span>
                                                 <LogOut />
-                                            </button>
-                                        </div>
+                                            </div>
+                                        </button>
                                     </div>
                                 )}
                             </div>
@@ -195,12 +205,16 @@ const Navbar = () => {
                     <div className="w-1/3 flex justify-end items-center gap-16">
                         <div ref={bagIconRef} className="relative">
                             <Link
-                                to={"/cart"}
+                                to={user._id ? "/cart" : "/login"}
                                 onClick={() => {
                                     window.scrollTo(0, 0);
                                 }}
                             >
-                                <span className="number">{cartCount}</span>
+                                {user._id && (
+                                    <span className="number">
+                                        {wishlist.length}
+                                    </span>
+                                )}
                                 <ShoppingBag size={26} />
                             </Link>
                         </div>
@@ -228,7 +242,7 @@ const Navbar = () => {
                                         <User />
                                     </div>
                                     {clickUser && (
-                                        <div className="absolute top-16 right-[-5rem] w-max p-4 border-gray-200 bg-white ">
+                                        <div className="absolute flex flex-col top-16 right-[-5rem] w-max p-4 border-gray-200 bg-white ">
                                             <Link
                                                 to={"/user"}
                                                 onClick={() => {
@@ -238,13 +252,18 @@ const Navbar = () => {
                                             >
                                                 Profile
                                             </Link>
-                                            <div className="flex gap-2 mt-6">
-                                                {/* julijana: button + onClick */}
-                                                <span>Log out</span>
-                                                <button onClick={handleLogout}>
+                                            {/* julijana: button + onClick */}
+                                            <button
+                                                onClick={() => {
+                                                    handleLogout();
+                                                    setClickUser(false);
+                                                }}
+                                            >
+                                                <div className="flex gap-2 mt-6 w-fit">
+                                                    <span>Log out</span>
                                                     <LogOut />
-                                                </button>{" "}
-                                            </div>
+                                                </div>
+                                            </button>
                                         </div>
                                     )}
                                 </div>
