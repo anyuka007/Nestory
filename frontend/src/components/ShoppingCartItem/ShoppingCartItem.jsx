@@ -8,12 +8,10 @@ import { useState } from "react";
 
 const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
     const [quantity, setQuantity] = useState(cartItem.quantity);
-    // const [color, setColor] = useState(cartItem.color);
-    console.log("cartItem", cartItem);
+
     const handleQuantityChange = (newQuantity) => {
         setQuantity(newQuantity);
         updateCartItem(cartItem.productId._id, newQuantity);
-        // updateCartItem(cartItem.productId._id, newQuantity, color);
     };
 
     // const handleColorChange = (e) => {
@@ -100,17 +98,18 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
               </select> */}
                             <QuantitySelector
                                 quantity={quantity}
-                                onIncrease={() =>
+                                setQuantity={setQuantity}
+                                increaseQuantity={() =>
                                     handleQuantityChange(quantity + 1)
                                 }
-                                onDecrease={() =>
+                                decreaseQuantity={() =>
                                     handleQuantityChange(
                                         Math.max(1, quantity - 1)
                                     )
                                 }
-                                onClick={() =>
-                                    handleQuantityChange(quantity + 1)
-                                }
+                                // onClick={() =>
+                                //     handleQuantityChange(quantity + 1)
+                                // }
                                 size="text-[1.8rem]"
                                 padding="py-[0.6rem] px-4"
                             />
