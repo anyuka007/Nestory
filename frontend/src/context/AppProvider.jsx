@@ -71,7 +71,7 @@ const AppProvider = ({ children }) => {
     const handleLogout = async () => {
         try {
             console.log(555);
-            await fetch("/api/logout", {
+            await fetch("http://localhost:3000/api/users/logout", {
                 method: "POST",
                 credentials: "include",
             });

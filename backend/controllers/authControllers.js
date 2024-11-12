@@ -77,16 +77,18 @@ export const registerUser = async (req, res) => {
     //     expiresIn: "15d",
     //   });
 
-    res.cookie("token", token, {
+    res.cookie("jwt", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 5 * 60 * 60 * 1000,
+      sameSite: "strict",
     });
 
     console.log("Register successful");
     //dali ovde vo ovoj res treba da dadam pveke podatoci za userot?
     //token ne e potreben, vaka koga se zacuvuva vo local storage
-    res.status(201).json({ message: "User registered", token });
+    //od tuka go brisam token
+    res.status(201).json({ message: "User registered" });
   } catch (error) {
     console.error("Login error:", error);
     return res.status(500).json({ message: "Internal server error" });
@@ -125,6 +127,7 @@ export const loginUser = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 5 * 60 * 60 * 1000,
+      sameSite: "strict",
     });
 
     //   res.cookie("refreshToken", refreshToken, {
@@ -147,6 +150,7 @@ export const logoutUser = async (req, res) => {
     res.clearCookie("jwt", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      path: "/",
       sameSite: "strict",
     });
 
