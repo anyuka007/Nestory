@@ -76,7 +76,7 @@ const App = () => {
           setIsSignUp(false); //se prefrla na login
           navigate("/login");
         } else {
-          navigate("/cart");
+          navigate("/");
         }
       } else {
         console.error("Error:", result.message || "An error occurred");
