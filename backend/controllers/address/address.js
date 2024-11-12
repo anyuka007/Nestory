@@ -85,8 +85,9 @@ export const editAddress = async (req, res) => {
         await Address.updateOne({ _id: addressId }, data);
         const updatedAddress = await Address.findById(addressId);
         console.log(
-            "The Address was successfully updated".brightMagenta,
-            updatedAddress
+            `The Address was successfully ${
+                "updated".brightMagenta
+            }, ${updatedAddress}`
         );
         return res.send(updatedAddress); // oder einfach {success: true}?
     } catch (error) {
