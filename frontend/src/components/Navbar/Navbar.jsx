@@ -22,13 +22,14 @@ const Navbar = () => {
         searchKeyword,
         setSearchKeyword,
         wishlist,
-        cartCount,
         cartItems,
         bagIconRef,
         handleLogout,
         user,
     } = useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
+
+    console.log("cartItems in navbar", cartItems);
 
     const handleSearch = (e) => {
         setSearchKeyword(e.target.value);
@@ -103,6 +104,7 @@ const Navbar = () => {
                         >
                             {user._id && (
                                 <span className="number">
+                                    {/* {cartCount} */}
                                     {cartItems.length}
                                 </span>
                             )}
@@ -212,7 +214,7 @@ const Navbar = () => {
                             >
                                 {user._id && (
                                     <span className="number">
-                                        {wishlist.length}
+                                        {cartItems.length}
                                     </span>
                                 )}
                                 <ShoppingBag size={26} />

@@ -17,6 +17,7 @@ const AppProvider = ({ children }) => {
     const [heartCount, setHeartCount] = useState(0);
     const [user, setUser] = useState({});
     const [product, setProduct] = useState({});
+    const [quantityForCart, setQuantityForCart] = useState(0);
 
     //fly to shopping cart
     const [isFlying, setIsFlying] = useState(false);
@@ -70,7 +71,7 @@ const AppProvider = ({ children }) => {
     const handleLogout = async () => {
         try {
             console.log(555);
-            await fetch("/api/logout", {
+            await fetch("http://localhost:3000/api/users/logout", {
                 method: "POST",
                 credentials: "include",
             });
@@ -108,6 +109,8 @@ const AppProvider = ({ children }) => {
                 setProduct,
                 resetUserData,
                 handleLogout,
+                quantityForCart,
+                setQuantityForCart,
 
                 //fly animation
                 isFlying,

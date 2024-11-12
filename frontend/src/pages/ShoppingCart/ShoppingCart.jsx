@@ -57,7 +57,7 @@ const ShoppingCart = () => {
         }
     };
 
-    const updateCartItem = async (productId, quantity, color) => {
+    const updateCartItem = async (productId, quantity, color = "black") => {
         console.log(333);
         try {
             console.log("pred fetch");
@@ -113,7 +113,6 @@ const ShoppingCart = () => {
                                     deleteCartItem={() =>
                                         deleteCartItem(cartItem.productId._id)
                                     }
-                                    // updateCartItem={() => updateCartItem(cartItem.productId._id)}
                                     updateCartItem={updateCartItem}
                                 />
                             </div>

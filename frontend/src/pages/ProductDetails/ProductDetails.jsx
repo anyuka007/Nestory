@@ -60,6 +60,8 @@ const ProductDetails = () => {
     const [product, setProduct] = useState();
     const { user } = useContext(AppContext);
 
+    // const [quantity, setQuantity] = useState(cartItem.quantity);
+
     // const navigate = useNavigate();
 
     // eslint-disable-next-line no-unused-vars
@@ -75,6 +77,12 @@ const ProductDetails = () => {
         imgRef,
     } = useContext(AppContext);
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const [quantityProductDetails, setQuantityProductDetails] = useState(1);
+    console.log("quantityProductDetails", quantityProductDetails);
+    const handleQuantityChange = (newQuantity) => {
+        setQuantityProductDetails(newQuantity);
+    };
 
     // Das ignore-Flag wird verwendet, um sicherzustellen, dass der Zustand nicht aktualisiert wird, wenn die Komponente nicht mehr angezeigt wird.
     useEffect(() => {
@@ -127,7 +135,10 @@ const ProductDetails = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ quantity: 2, color: "black" }),
+                    body: JSON.stringify({
+                        quantity: quantityProductDetails,
+                        color: "black",
+                    }),
                     credentials: "include",
                 }
             );
@@ -291,7 +302,20 @@ const ProductDetails = () => {
                         <ColorSelector />
 
                         <div className="parent flex justify-between items-center">
-                            <QuantitySelector />
+                            <QuantitySelector
+                                quantity={quantityProductDetails}
+                                setQuantity={setQuantityProductDetails}
+                                increaseQuantity={() =>
+                                    handleQuantityChange(
+                                        quantityProductDetails + 1
+                                    )
+                                }
+                                decreaseQuantity={() =>
+                                    handleQuantityChange(
+                                        Math.max(1, quantityProductDetails - 1)
+                                    )
+                                }
+                            />
 
                             <button
                                 // onClick={handleCartClick}
