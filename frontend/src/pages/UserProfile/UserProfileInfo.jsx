@@ -123,7 +123,13 @@ const UserProfileInfo = () => {
                 console.log("Fetched address:", address);
                 dispatchSectionForm({
                     type: "setUserAddress",
-                    address: address,
+                    address: {
+                        street: address.street,
+                        house: address.house,
+                        city: address.city,
+                        zip: address.zip,
+                        country: address.country,
+                    },
                 });
                 return;
             } else {
