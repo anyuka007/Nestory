@@ -3,6 +3,7 @@ import { useState } from "react";
 import Input from "./Input";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "../../components/Button/Button";
+import { formatKey } from "../../utils/formatKey";
 
 const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
@@ -44,9 +45,16 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                 <div key={key}>
                                     <p className=" pl-6">
                                         {key === "password" ||
-                                        key === "confirmPassword"
-                                            ? ""
-                                            : value}
+                                        key === "confirmPassword" ? (
+                                            ""
+                                        ) : (
+                                            <div className="flex">
+                                                <span className="text-pageBannerBGC w-[10rem]">
+                                                    {formatKey(key)}
+                                                </span>
+                                                <span class>{value}</span>
+                                            </div>
+                                        )}
                                     </p>
                                 </div>
                             ))

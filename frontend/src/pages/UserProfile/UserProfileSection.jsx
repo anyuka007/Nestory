@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import Form from "./Form";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
+import { formatKey } from "../../utils/formatKey";
 
 const UserProfileSection = ({
     sectionId,
@@ -20,7 +21,7 @@ const UserProfileSection = ({
                     dropdown ? "border-b-2" : ""
                 }`}
             >
-                <p>{title}</p>
+                <p>{formatKey(title)}</p>
                 <div className="flex gap-2">
                     <p>Show details</p>
                     <button onClick={() => setDropdown((prev) => !prev)}>

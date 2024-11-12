@@ -180,10 +180,7 @@ const UserProfileInfo = () => {
                     <UserProfileSection
                         key={sectionId}
                         sectionId={sectionId}
-                        title={
-                            sectionId.charAt(0).toUpperCase() +
-                            sectionId.slice(1)
-                        }
+                        title={sectionId}
                         formData={formData[sectionId]}
                         fields={fieldDefinitions[sectionId]}
                         dispatchSectionForm={dispatchSectionForm}
