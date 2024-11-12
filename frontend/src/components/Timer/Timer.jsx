@@ -5,7 +5,7 @@ const Timer = () => {
     useEffect(() => {
         const updateTimer = () => {
             const date = new Date();
-            const dateline = new Date("2024-12-06 00:00:00");
+            const dateline = new Date("2024-11-21 00:00:00");
             const time = dateline.getTime() - date.getTime();
             setTimer(time);
         };
