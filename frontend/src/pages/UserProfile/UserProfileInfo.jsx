@@ -1,4 +1,4 @@
-import { useContext, useEffect, useReducer, useState } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import UserProfileSection from "./UserProfileSection";
 import { AppContext } from "../../context/AppProvider";
 import { getUserAddress } from "../../utils/addressUtils/getUserAddress";
@@ -34,7 +34,8 @@ const UserProfileInfo = () => {
 
     const reducer = (prevState, action) => {
         switch (action.type) {
-            case "cancelPasswordChange":
+            // Reset the specified section to default values and mark it as valid
+            /* case "cancelChange":
                 return {
                     ...prevState,
                     [action.sectionId]: {
@@ -42,8 +43,9 @@ const UserProfileInfo = () => {
                         valid: true,
                         errors: {},
                     },
-                };
+                }; */
 
+            // Check if passwords do not match
             case "submit_accessData":
                 if (
                     action.formData.password !== action.formData.confirmPassword
@@ -61,6 +63,7 @@ const UserProfileInfo = () => {
                         },
                     };
                 }
+                // Check if password field is empty
                 if (
                     prevState.accessData.password === "" &&
                     prevState.accessData.password === action.formData.password
@@ -72,11 +75,13 @@ const UserProfileInfo = () => {
                             valid: false,
                             errors: {
                                 ...prevState.errors,
-                                confirmPassword: "EMPTY Password! AAAAAA",
+                                confirmPassword:
+                                    "Please enter your new password.",
                             },
                         },
                     };
                 }
+                // If no errors, mark the section as valid
                 return {
                     ...prevState,
                     [action.sectionId]: {
@@ -85,10 +90,14 @@ const UserProfileInfo = () => {
                         errors: {},
                     },
                 };
+
+            // Set the state to the provided user information
             case "setUserInfo":
                 return {
                     ...action.userInfo,
                 };
+
+            // Update the address in the state
             case "setUserAddress":
                 return {
                     ...prevState,
@@ -99,6 +108,7 @@ const UserProfileInfo = () => {
                     },
                 };
 
+            // Default action to update the specified section and mark it as valid
             default:
                 //   fetch patch usercollection => formDate. NB Password hash!
                 return {
@@ -145,6 +155,7 @@ const UserProfileInfo = () => {
                 userInfo: defaultFormData,
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user._id]);
 
     const fieldDefinitions = {

@@ -7,7 +7,7 @@ export const getUserAddress = async (userId) => {
             throw new Error("Failed to get user's address");
         }
         const data = await response.json();
-        //console.log("dataAddress", data);
+        console.log("dataAddress", data);
         return data;
     } catch (error) {
         console.error(error.message);
