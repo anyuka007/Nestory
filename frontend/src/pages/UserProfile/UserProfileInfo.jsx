@@ -5,7 +5,7 @@ import { getUserAddress } from "../../utils/addressUtils/getUserAddress";
 
 const UserProfileInfo = () => {
     const { user } = useContext(AppContext);
-    console.log("user._id", user._id);
+    //console.log("user._id", user._id);
 
     const defaultFormData = {
         personalData: {
@@ -120,10 +120,11 @@ const UserProfileInfo = () => {
         const fetchAddress = async () => {
             if (user._id) {
                 const address = await getUserAddress(user._id);
-                console.log("Fetched address:", address);
+                //console.log("Fetched address:", address);
                 dispatchSectionForm({
                     type: "setUserAddress",
                     address: {
+                        id: address._id,
                         street: address.street,
                         house: address.house,
                         city: address.city,

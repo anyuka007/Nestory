@@ -39,11 +39,11 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                         Object.entries(formData)
                             .filter(
                                 ([field, _]) =>
-                                    field !== "valid" && field !== "errors"
+                                    !["id", "valid", "errors"].includes(field)
                             )
                             .map(([key, value]) => (
                                 <div key={key}>
-                                    <p className=" pl-6">
+                                    <div className=" pl-6">
                                         {key === "password" ||
                                         key === "confirmPassword" ? (
                                             ""
@@ -52,10 +52,10 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                                 <span className="text-pageBannerBGC w-[10rem]">
                                                     {formatKey(key)}
                                                 </span>
-                                                <span class>{value}</span>
+                                                <span>{value}</span>
                                             </div>
                                         )}
-                                    </p>
+                                    </div>
                                 </div>
                             ))
                     )}
