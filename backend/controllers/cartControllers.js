@@ -17,7 +17,7 @@ export const getUserCart = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    console.log("User's cart retrieved successfully");
+    console.log("User's cart retrieved successfully", cart);
 
     return res.status(200).json(cart);
   } catch (error) {
@@ -27,23 +27,33 @@ export const getUserCart = async (req, res) => {
 };
 
 export const addProductToCart = async (req, res) => {
-  console.log(111);
   const { productId } = req.params;
   const { quantity, color } = req.body;
   const { id } = req.user;
-  console.log(productId);
-  // console.log("user:", id);
+
+  if (!productId || !quantity || !id) {
+    return res
+      .status(400)
+      .json({ message: "Missing required fields", isAuthenticated: false });
+  }
 
   try {
-    let cart = await Cart.findOne({ userId: id });
-    console.log(cart);
+    let cart = await Cart.findOne({ userId: id }).populate("items.productId");
+
     if (!cart) {
       cart = new Cart({
         userId: id,
-        items: [{ productId, quantity, color }],
+        items: [{ productId, quantity: parseInt(quantity, 10), color }],
       });
       await cart.save();
-      return res.status(201).json({ message: "Product added to cart", cart });
+      cart = await cart.populate("items.productId").execPopulate();
+      return res
+        .status(201)
+        .json({
+          message: "Product added to cart",
+          cart,
+          isAuthenticated: true,
+        });
     }
 
     const productIndex = cart.items.findIndex(
@@ -51,13 +61,20 @@ export const addProductToCart = async (req, res) => {
     );
 
     if (productIndex !== -1) {
-      cart.items[productIndex].quantity += quantity;
+      cart.items[productIndex].quantity += parseInt(quantity, 10);
     } else {
-      cart.items.push({ productId, quantity, color });
+      cart.items.push({ productId, quantity: parseInt(quantity, 10), color });
     }
 
     await cart.save();
-    res.status(200).json({ message: "Product added/updated in cart", cart });
+    cart = await Cart.findOne({ userId: id }).populate("items.productId");
+    res
+      .status(200)
+      .json({
+        message: "Product added/updated in cart",
+        cart,
+        isAuthenticated: true,
+      });
   } catch (error) {
     console.error("Error adding product to cart:", error);
     res.status(500).json({ message: "Server error" });
@@ -66,18 +83,17 @@ export const addProductToCart = async (req, res) => {
 
 export const deleteProductFromCart = async (req, res) => {
   const { productId } = req.params;
-  console.log("productId", productId);
   const { id } = req.user;
+
   try {
-    // const cart = await Cart.findOne({ id });
-    const cart = await Cart.findOne({ userId: id });
+    let cart = await Cart.findOne({ userId: id }).populate("items.productId");
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
     }
 
     const itemIndex = cart.items.findIndex(
-      (item) => item.productId.toString() === productId
+      (item) => item.productId._id.toString() === productId
     );
 
     if (itemIndex === -1) {
@@ -85,8 +101,10 @@ export const deleteProductFromCart = async (req, res) => {
     }
 
     cart.items.splice(itemIndex, 1);
-
     await cart.save();
+
+    await cart.populate("items.productId");
+
     res.status(200).json({ message: "Product removed from cart", cart });
   } catch (error) {
     console.error("Error removing item from cart:", error);
@@ -100,8 +118,7 @@ export const updateProductInCart = async (req, res) => {
   const { quantity, color } = req.body;
 
   try {
-    // const cart = await Cart.findOne({ id });
-    const cart = await Cart.findOne({ userId: id });
+    const cart = await Cart.findOne({ userId: id }).populate("items.productId");
 
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });
@@ -115,11 +132,14 @@ export const updateProductInCart = async (req, res) => {
       return res.status(404).json({ message: "Product not found in cart" });
     }
 
-    // if (quantity !== undefined ) item.quantity = quantity;
-    if (quantity) item.quantity = quantity;
-    if (color) item.color = color;
+    if (quantity !== undefined) item.quantity = parseInt(quantity, 10);
+    if (color !== undefined) item.color = color;
+    // if (quantity) item.quantity = quantity;
+    // if (color) item.color = color;
 
     await cart.save();
+    await cart.populate("items.productId").execPopulate();
+
     res.status(200).json({ message: "Product updated in cart", cart });
   } catch (error) {
     console.error("Error updating item in cart:", error);

@@ -51,6 +51,34 @@ const AppProvider = ({ children }) => {
     }
   }, [user._id]);
 
+  //julijana
+  const resetUserData = () => {
+    setUser({});
+    setCartItems([]);
+    setWishlist([]);
+    setCartCount(0);
+    setHeartCount(0);
+    setLoginSuccess(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      console.log(555);
+      await fetch("/api/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      console.log("Logout successful");
+      resetUserData();
+      //   navigate("/login");
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+  //-----bis hier
+
   return (
     <AppContext.Provider
       value={{
@@ -72,6 +100,8 @@ const AppProvider = ({ children }) => {
         setCartItems,
         product,
         setProduct,
+        resetUserData,
+        handleLogout,
       }}
     >
       {children}
