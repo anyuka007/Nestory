@@ -33,6 +33,8 @@ export const addProductToCart = async (req, res) => {
     const { quantity, color } = req.body;
     const { id } = req.user;
 
+    console.log("quantity from productDetails", quantity);
+
     if (!productId || !quantity || !id) {
         return res.status(400).json({
             message: "Missing required fields",
@@ -121,24 +123,67 @@ export const deleteProductFromCart = async (req, res) => {
     }
 };
 
+// export const updateProductInCart = async (req, res) => {
+//     const { productId } = req.params;
+//     const { id } = req.user;
+//     const { quantity, color } = req.body;
+
+//     try {
+//         const cart = await Cart.findOne({ userId: id }).populate(
+//             "items.productId"
+//         );
+
+//         if (!cart) {
+//             return res.status(404).json({ message: "Cart not found" });
+//         }
+
+//         const item = cart.items.find(
+//             (item) => item.productId.toString() === productId
+//         );
+
+//         if (!item) {
+//             return res
+//                 .status(404)
+//                 .json({ message: "Product not found in cart" });
+//         }
+
+//         if (quantity !== undefined) item.quantity = parseInt(quantity, 10);
+//         if (color !== undefined) item.color = color;
+//         // if (quantity) item.quantity = quantity;
+//         // if (color) item.color = color;
+
+//         await cart.save();
+//         await cart.populate("items.productId").execPopulate();
+
+//         res.status(200).json({ message: "Product updated in cart", cart });
+//     } catch (error) {
+//         console.error("Error updating item in cart:", error);
+//         res.status(500).json({ message: "Server error" });
+//     }
+// };
+
 export const updateProductInCart = async (req, res) => {
     const { productId } = req.params;
-    const { id } = req.user;
+    const { id } = req.user; // 当前用户 ID
     const { quantity, color } = req.body;
+
+    console.log("Updating cart for user ID:", id);
+    console.log("Updating product ID:", productId);
+    console.log("Quantity:", quantity, "Color:", color);
 
     try {
         const cart = await Cart.findOne({ userId: id }).populate(
             "items.productId"
         );
-
+        console.log("old cart", cart);
         if (!cart) {
             return res.status(404).json({ message: "Cart not found" });
         }
 
         const item = cart.items.find(
-            (item) => item.productId.toString() === productId
+            (item) => item.productId._id.toString() === productId
         );
-
+        console.log("item", item);
         if (!item) {
             return res
                 .status(404)
@@ -147,11 +192,11 @@ export const updateProductInCart = async (req, res) => {
 
         if (quantity !== undefined) item.quantity = parseInt(quantity, 10);
         if (color !== undefined) item.color = color;
-        // if (quantity) item.quantity = quantity;
-        // if (color) item.color = color;
 
         await cart.save();
-        await cart.populate("items.productId").execPopulate();
+        await cart.populate("items.productId");
+
+        console.log("Updated cart:", cart);
 
         res.status(200).json({ message: "Product updated in cart", cart });
     } catch (error) {
