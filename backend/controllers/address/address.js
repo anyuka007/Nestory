@@ -15,8 +15,9 @@ export const getAllAddresses = async (req, res) => {
 };
 
 export const getUsersAddress = async (req, res) => {
-    // const userId = req.user?.id;
-    const userId = req.body.userId;
+    //const userId = req.user?.id;
+    //const userId = req.body.userId;
+    const userId = req.query.userId;
     if (!userId) {
         console.error("User ID is missing".red);
         return res.status(400).send("User ID is missing");

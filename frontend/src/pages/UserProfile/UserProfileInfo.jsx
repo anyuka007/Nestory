@@ -1,10 +1,11 @@
-import { useContext, useEffect, useReducer } from "react";
+import { useContext, useEffect, useReducer, useState } from "react";
 import UserProfileSection from "./UserProfileSection";
 import { AppContext } from "../../context/AppProvider";
-import { act } from "react";
+import { getUserAddress } from "../../utils/addressUtils/getUserAddress";
 
 const UserProfileInfo = () => {
     const { user } = useContext(AppContext);
+    console.log("user._id", user._id);
 
     const defaultFormData = {
         personalData: {
@@ -31,11 +32,11 @@ const UserProfileInfo = () => {
         },
     };
 
-    const reducer = (formData, action) => {
+    const reducer = (prevState, action) => {
         switch (action.type) {
             case "cancelPasswordChange":
                 return {
-                    ...formData,
+                    ...prevState,
                     [action.sectionId]: {
                         ...defaultFormData[action.sectionId],
                         valid: true,
@@ -48,12 +49,12 @@ const UserProfileInfo = () => {
                     action.formData.password !== action.formData.confirmPassword
                 ) {
                     return {
-                        ...formData,
+                        ...prevState,
                         [action.sectionId]: {
                             ...action.formData,
                             valid: false,
                             errors: {
-                                ...formData.errors,
+                                ...prevState.errors,
                                 confirmPassword:
                                     "Passwords do not match. Please try again",
                             },
@@ -61,37 +62,47 @@ const UserProfileInfo = () => {
                     };
                 }
                 if (
-                    formData.accessData.password === "" &&
-                    formData.accessData.password === action.formData.password
+                    prevState.accessData.password === "" &&
+                    prevState.accessData.password === action.formData.password
                 ) {
                     return {
-                        ...formData,
+                        ...prevState,
                         [action.sectionId]: {
                             ...action.formData,
                             valid: false,
                             errors: {
-                                ...formData.errors,
+                                ...prevState.errors,
                                 confirmPassword: "EMPTY Password! AAAAAA",
                             },
                         },
                     };
                 }
                 return {
-                    ...formData,
+                    ...prevState,
                     [action.sectionId]: {
                         ...action.formData,
                         valid: true,
                         errors: {},
                     },
                 };
-            case "initialUserInfo":
+            case "setUserInfo":
                 return {
                     ...action.userInfo,
                 };
+            case "setUserAddress":
+                return {
+                    ...prevState,
+                    address: {
+                        ...action.address,
+                        valid: true,
+                        errors: {},
+                    },
+                };
+
             default:
                 //   fetch patch usercollection => formDate. NB Password hash!
                 return {
-                    ...formData,
+                    ...prevState,
                     [action.sectionId]: {
                         ...action.formData,
                         valid: true,
@@ -106,9 +117,24 @@ const UserProfileInfo = () => {
     );
 
     useEffect(() => {
+        const fetchAddress = async () => {
+            if (user._id) {
+                const address = await getUserAddress(user._id);
+                console.log("Fetched address:", address);
+                dispatchSectionForm({
+                    type: "setUserAddress",
+                    address: address,
+                });
+                return;
+            } else {
+                return null;
+            }
+        };
         if (user._id) {
+            fetchAddress(user._id);
+
             dispatchSectionForm({
-                type: "initialUserInfo",
+                type: "setUserInfo",
                 userInfo: defaultFormData,
             });
         }
