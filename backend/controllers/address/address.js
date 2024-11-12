@@ -76,7 +76,7 @@ export const editAddress = async (req, res) => {
                 .send("Please provide data to update the address");
         }
         const addressToUpdate = await Address.findById(addressId);
-        console.log("addressToUpdate: ", addressToUpdate);
+        //console.log("addressToUpdate: ", addressToUpdate);
         if (!addressToUpdate) {
             console.log("Address not found".red);
             return res.status(404).send("Address not found");
@@ -85,9 +85,8 @@ export const editAddress = async (req, res) => {
         await Address.updateOne({ _id: addressId }, data);
         const updatedAddress = await Address.findById(addressId);
         console.log(
-            `The Address was successfully ${
-                "updated".brightMagenta
-            }, ${updatedAddress}`
+            "The Address was successfully updated".brightMagenta,
+            updatedAddress
         );
         return res.send(updatedAddress); // oder einfach {success: true}?
     } catch (error) {
