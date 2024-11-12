@@ -34,7 +34,7 @@ const AppProvider = ({ children }) => {
         if (!res.ok) {
             setUser({});
             setLoginSuccess(false);
-            navigate("/login");
+            navigate("/");
             return;
         }
         const data = await res.json();

@@ -58,6 +58,7 @@ const ProductDetails = () => {
     const { _id } = useParams();
     // console.log(_id);
     const [product, setProduct] = useState();
+    const { user } = useContext(AppContext);
 
     // const navigate = useNavigate();
 
@@ -73,7 +74,7 @@ const ProductDetails = () => {
         bagIconRef,
         imgRef,
     } = useContext(AppContext);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     // Das ignore-Flag wird verwendet, um sicherzustellen, dass der Zustand nicht aktualisiert wird, wenn die Komponente nicht mehr angezeigt wird.
     useEffect(() => {
@@ -115,6 +116,10 @@ const ProductDetails = () => {
 
     const addToCart = async () => {
         try {
+            if (!user._id) {
+                alert("Please login to add to cart");
+                return;
+            }
             const response = await fetch(
                 `http://localhost:3000/cart/${product._id}`,
                 {
@@ -129,7 +134,7 @@ const ProductDetails = () => {
 
             const data = await response.json();
             console.log("fetched data:", data);
-            setIsAuthenticated(data.isAuthenticated);
+            // setIsAuthenticated(data.isAuthenticated);
 
             if (response.ok) {
                 console.log("Product added to cart", data.cart.items);
