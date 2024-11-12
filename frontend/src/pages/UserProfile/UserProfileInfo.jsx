@@ -1,115 +1,127 @@
-import { useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
 import UserProfileSection from "./UserProfileSection";
-
-const defaultFormData = {
-    personalData: {
-        firstName: "",
-        lastName: "",
-        email: "",
-        valid: true,
-        errors: {},
-    },
-    accessData: {
-        username: "",
-        password: "",
-        confirmPassword: "",
-        valid: true,
-        errors: {},
-    },
-    address: {
-        street: "",
-        house: "",
-        city: "",
-        zip: "",
-        country: "",
-        valid: true,
-        errors: {},
-    },
-};
-
-const reducer = (formData, action) => {
-    switch (action.type) {
-        case "cancelPasswordChange":
-            /* formData.accessData.password = "";
-            formData.valid = true;
-            formData.errors = {};
-            break; */
-            return {
-                ...formData,
-                [action.sectionId]: {
-                    ...defaultFormData[action.sectionId],
-                    valid: true,
-                    errors: {},
-                },
-            };
-
-        case "submit_accessData":
-            if (action.formData.password !== action.formData.confirmPassword) {
-                //alert("ALERT Passwords sollen gleich sein!!!");
-                return {
-                    ...formData,
-                    [action.sectionId]: {
-                        ...action.formData,
-                        valid: false,
-                        errors: {
-                            ...formData.errors,
-                            confirmPassword:
-                                "Passwords do not match. Please try again",
-                        },
-                    },
-                };
-            }
-            if (
-                formData.accessData.password === "" &&
-                formData.accessData.password === action.formData.password
-            ) {
-                return {
-                    ...formData,
-                    [action.sectionId]: {
-                        ...action.formData,
-                        valid: false,
-                        errors: {
-                            ...formData.errors,
-                            confirmPassword: "EMPTY Password! AAAAAA",
-                        },
-                    },
-                };
-            }
-            return {
-                ...formData,
-                [action.sectionId]: {
-                    ...action.formData,
-                    valid: true,
-                    errors: {},
-                },
-            };
-        default:
-            //   fetch patch usercollection => formDate. NB Password hash!
-            return {
-                ...formData,
-                [action.sectionId]: {
-                    ...action.formData,
-                    valid: true,
-                    errors: {},
-                },
-            };
-    }
-};
+import { AppContext } from "../../context/AppProvider";
+import { act } from "react";
 
 const UserProfileInfo = () => {
+    const { user } = useContext(AppContext);
+
+    const defaultFormData = {
+        personalData: {
+            firstName: user.firstName ?? "",
+            lastName: user.lastName ?? "",
+            valid: true,
+            errors: {},
+        },
+        accessData: {
+            email: user.email ?? "",
+            password: "",
+            confirmPassword: "",
+            valid: true,
+            errors: {},
+        },
+        address: {
+            street: "",
+            house: "",
+            city: "",
+            zip: "",
+            country: "",
+            valid: true,
+            errors: {},
+        },
+    };
+
+    const reducer = (formData, action) => {
+        switch (action.type) {
+            case "cancelPasswordChange":
+                return {
+                    ...formData,
+                    [action.sectionId]: {
+                        ...defaultFormData[action.sectionId],
+                        valid: true,
+                        errors: {},
+                    },
+                };
+
+            case "submit_accessData":
+                if (
+                    action.formData.password !== action.formData.confirmPassword
+                ) {
+                    return {
+                        ...formData,
+                        [action.sectionId]: {
+                            ...action.formData,
+                            valid: false,
+                            errors: {
+                                ...formData.errors,
+                                confirmPassword:
+                                    "Passwords do not match. Please try again",
+                            },
+                        },
+                    };
+                }
+                if (
+                    formData.accessData.password === "" &&
+                    formData.accessData.password === action.formData.password
+                ) {
+                    return {
+                        ...formData,
+                        [action.sectionId]: {
+                            ...action.formData,
+                            valid: false,
+                            errors: {
+                                ...formData.errors,
+                                confirmPassword: "EMPTY Password! AAAAAA",
+                            },
+                        },
+                    };
+                }
+                return {
+                    ...formData,
+                    [action.sectionId]: {
+                        ...action.formData,
+                        valid: true,
+                        errors: {},
+                    },
+                };
+            case "initialUserInfo":
+                return {
+                    ...action.userInfo,
+                };
+            default:
+                //   fetch patch usercollection => formDate. NB Password hash!
+                return {
+                    ...formData,
+                    [action.sectionId]: {
+                        ...action.formData,
+                        valid: true,
+                        errors: {},
+                    },
+                };
+        }
+    };
     const [formData, dispatchSectionForm] = useReducer(
         reducer,
         defaultFormData
     );
 
+    useEffect(() => {
+        if (user._id) {
+            dispatchSectionForm({
+                type: "initialUserInfo",
+                userInfo: defaultFormData,
+            });
+        }
+    }, [user._id]);
+
     const fieldDefinitions = {
         personalData: [
             { name: "firstName", label: "First name" },
             { name: "lastName", label: "Last name" },
-            { name: "email", label: "Email", type: "email" },
+            /* { name: "email", label: "Email", type: "email" }, */
         ],
         accessData: [
-            /* { name: "username", label: "Username" }, */
+            { name: "email", label: "Email", type: "email" },
             { name: "password", label: "Password", type: "password" },
             {
                 name: "confirmPassword",

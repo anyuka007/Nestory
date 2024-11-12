@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const SearchItems = ({ SearchItem }) => {
     return (
-        <div className="h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row  md:justify-center  " >
+        <div className="w-full h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row  md:justify-center  " >
             <div className="basis-[30%] flex justify-center items-center ">
                 <Link to={`/product/${SearchItem._id}`}>
                     <img

@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import SearchItems from "../../components/SearchItem/SearchItems";
+import {AppContext} from "../../context/AppProvider";
 const SearchList = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const location = useLocation();
-    //Get the search term from the URL, e.g., "/search?query=sofa"
-    //const searchQuery = new URLSearchParams(location.search).get("query");
-    const searchQuery = `beds`;
-    //const searchQuery = `${category}`;
+    const {searchKeyword}= useContext(AppContext);
+  
+
     useEffect(() => {
         const fetchSearchResults = async () => {
             setLoading(true);
             try {
                 //const response = await fetch(`http://localhost:3000/api/products/search/?query=beds`);
-                 const response = await fetch(`http://localhost:3000/api/products/search/?query=${searchQuery}`);
+                 const response = await fetch(`http://localhost:3000/api/products/search/?query=${searchKeyword}`);
                 const data = await response.json();
                 console.log(data);
                 setSearchResults(data.products || []);
@@ -25,16 +25,16 @@ const SearchList = () => {
                 setLoading(false);
             }
         };
-    if (searchQuery) {
+    if (searchKeyword) {
             fetchSearchResults();
         }
-    }, [searchQuery]);
+    }, [searchKeyword]);
 
     return (
         <div className="w-full mx-auto flex flex-col items-center justify-center ">
             <div className="w-full justify-center ">
                 <h1 className="text-[2.4rem] md:text-[4.2rem] font-bold text-colorPrimary p-5 mx-auto flex flex-col items-center justify-center">
-                    {searchResults.length} results found for: {searchQuery}
+                    {searchResults.length} results found for: {searchKeyword}
                 </h1>
             </div>
             {loading ? (

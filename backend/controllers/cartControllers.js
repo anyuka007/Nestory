@@ -18,8 +18,8 @@ export const getUserCart = async (req, res) => {
         if (!cart) {
             return res.status(404).json({ message: "Cart not found" });
         }
-        console.log(cart);
-        console.log("User's cart retrieved successfully");
+
+        console.log("User's cart retrieved successfully", cart);
 
         return res.status(200).json(cart);
     } catch (error) {
@@ -34,7 +34,12 @@ export const addProductToCart = async (req, res) => {
     const { id } = req.user;
 
     if (!productId || !quantity || !id) {
-        return res.status(400).json({ message: "Missing required fields" });
+        return res
+            .status(400)
+            .json({
+                message: "Missing required fields",
+                isAuthenticated: false,
+            });
     }
 
     try {
@@ -43,17 +48,17 @@ export const addProductToCart = async (req, res) => {
         );
 
         if (!cart) {
-            // 如果没有cart，创建一个新的并保存
             cart = new Cart({
                 userId: id,
                 items: [{ productId, quantity: parseInt(quantity, 10), color }],
             });
             await cart.save();
-            // 保存后再次 populate，确保返回包含 product 信息的 cart
             cart = await cart.populate("items.productId").execPopulate();
-            return res
-                .status(201)
-                .json({ message: "Product added to cart", cart });
+            return res.status(201).json({
+                message: "Product added to cart",
+                cart,
+                isAuthenticated: true,
+            });
         }
 
         const productIndex = cart.items.findIndex(
@@ -71,14 +76,11 @@ export const addProductToCart = async (req, res) => {
         }
 
         await cart.save();
-
-        // 保存后再次 populate，以确保返回完整的 product 信息
-        // cart = await Cart.findOne({ userId: id }).populate("items.productId");
-        await cart.populate("items.productId").execPopulate();
-
+        cart = await Cart.findOne({ userId: id }).populate("items.productId");
         res.status(200).json({
             message: "Product added/updated in cart",
             cart,
+            isAuthenticated: true,
         });
     } catch (error) {
         console.error("Error adding product to cart:", error);
@@ -172,7 +174,6 @@ export const deleteProductFromCart = async (req, res) => {
     const { id } = req.user;
 
     try {
-        // 查找用户的购物车并填充 productId
         let cart = await Cart.findOne({ userId: id }).populate(
             "items.productId"
         );
@@ -191,12 +192,9 @@ export const deleteProductFromCart = async (req, res) => {
                 .json({ message: "Product not found in cart" });
         }
 
-        // 移除该商品
         cart.items.splice(itemIndex, 1);
         await cart.save();
 
-        // 再次填充 productId 确保返回的 cart 包含完整的 product 信息
-        // cart = await Cart.findOne({ userId: id }).populate("items.productId");
         await cart.populate("items.productId");
 
         res.status(200).json({ message: "Product removed from cart", cart });
@@ -212,8 +210,9 @@ export const updateProductInCart = async (req, res) => {
     const { quantity, color } = req.body;
 
     try {
-        // const cart = await Cart.findOne({ id });
-        const cart = await Cart.findOne({ userId: id });
+        const cart = await Cart.findOne({ userId: id }).populate(
+            "items.productId"
+        );
 
         if (!cart) {
             return res.status(404).json({ message: "Cart not found" });
@@ -229,13 +228,14 @@ export const updateProductInCart = async (req, res) => {
                 .json({ message: "Product not found in cart" });
         }
 
-        // if (quantity !== undefined ) item.quantity = quantity;
-        if (quantity) item.quantity = quantity;
-        if (color) item.color = color;
+        if (quantity !== undefined) item.quantity = parseInt(quantity, 10);
+        if (color !== undefined) item.color = color;
+        // if (quantity) item.quantity = quantity;
+        // if (color) item.color = color;
 
         await cart.save();
-
         await cart.populate("items.productId").execPopulate();
+
         res.status(200).json({ message: "Product updated in cart", cart });
     } catch (error) {
         console.error("Error updating item in cart:", error);

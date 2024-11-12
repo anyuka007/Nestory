@@ -16,7 +16,7 @@ import { AppContext } from "../../context/AppProvider";
 
 const Navbar = () => {
     const [search, setSearch] = useState(false);
-
+    //julijana : handleLogout hinzugefügt
     const {
         loginSuccess,
         searchKeyword,
@@ -24,6 +24,8 @@ const Navbar = () => {
         wishlist,
         cartCount,
         bagIconRef,
+        handleLogout,
+        user,
     } = useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
 
@@ -104,12 +106,16 @@ const Navbar = () => {
                     </div>
                     <div className="relative">
                         <Link
-                            to={"/wishlist"}
+                            to={user._id ? "/wishlist" : "/login"}
                             onClick={() => {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <span className="number">{wishlist.length}</span>
+                            {user._id && (
+                                <span className="number">
+                                    {wishlist.length}
+                                </span>
+                            )}
                             <Heart size={26} />
                         </Link>
                     </div>
@@ -131,8 +137,11 @@ const Navbar = () => {
                                             Profile
                                         </Link>
                                         <div className="flex gap-4 mt-6  border-2">
-                                            <span>Log out</span>
-                                            <LogOut />
+                                            {/* julijana: button hinzugefügt für onClick handler */}
+                                            <button onClick={handleLogout}>
+                                                <span>Log out</span>
+                                                <LogOut />
+                                            </button>
                                         </div>
                                     </div>
                                 )}
@@ -197,14 +206,16 @@ const Navbar = () => {
                         </div>
                         <div className="relative">
                             <Link
-                                to={"/wishlist"}
+                                to={user._id ? "/wishlist" : "/login"}
                                 onClick={() => {
                                     window.scrollTo(0, 0);
                                 }}
                             >
-                                <span className="number">
-                                    {wishlist.length}
-                                </span>
+                                {user._id && (
+                                    <span className="number">
+                                        {wishlist.length}
+                                    </span>
+                                )}
                                 <Heart size={26} />
                             </Link>
                         </div>
@@ -228,8 +239,11 @@ const Navbar = () => {
                                                 Profile
                                             </Link>
                                             <div className="flex gap-2 mt-6">
+                                                {/* julijana: button + onClick */}
                                                 <span>Log out</span>
-                                                <LogOut />
+                                                <button onClick={handleLogout}>
+                                                    <LogOut />
+                                                </button>{" "}
                                             </div>
                                         </div>
                                     )}

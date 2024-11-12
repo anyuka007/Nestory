@@ -14,20 +14,7 @@ import { AppContext } from "../../context/AppProvider";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 
-// const product = {
-//   _id: 1234,
-//   name: "Circle corners table",
-//   rating: 4.2,
-//   description:
-//     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-//   price: 223,
-//   discount: 10,
-//   imgUrl:
-//     "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-// };
-
 // const ProductDetails = () => {
-//   const navigate = useNavigate();
 
 //   const handleCartClick = () => {
 //     const token = document.cookie
@@ -67,6 +54,7 @@ async function fetchProductById(productId) {
 }
 
 const ProductDetails = () => {
+    // const navigate = useNavigate();
     const { _id } = useParams();
     // console.log(_id);
     const [product, setProduct] = useState();
@@ -85,6 +73,7 @@ const ProductDetails = () => {
         bagIconRef,
         imgRef,
     } = useContext(AppContext);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     // Das ignore-Flag wird verwendet, um sicherzustellen, dass der Zustand nicht aktualisiert wird, wenn die Komponente nicht mehr angezeigt wird.
     useEffect(() => {
@@ -140,6 +129,8 @@ const ProductDetails = () => {
 
             const data = await response.json();
             console.log("fetched data:", data);
+            setIsAuthenticated(data.isAuthenticated);
+
             if (response.ok) {
                 console.log("Product added to cart", data.cart.items);
                 setCartItems(data.cart.items);
@@ -149,6 +140,7 @@ const ProductDetails = () => {
         } catch (error) {
             console.error("Request failed:", error);
         }
+
         setCartCount((prevCount) => prevCount + 1);
         console.log(cartCount);
 
@@ -202,6 +194,11 @@ const ProductDetails = () => {
         }));
     };
 
+    // if (isAuthenticated) {
+    //   navigate("#");
+    // } else {
+    //   navigate("/login");
+    // }
     // const handleCartClick = () => {
 
     //   addToCart(product);
