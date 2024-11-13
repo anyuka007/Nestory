@@ -58,6 +58,9 @@ const ProductDetails = () => {
     const { _id } = useParams();
     // console.log(_id);
     const [product, setProduct] = useState();
+    const { user } = useContext(AppContext);
+
+    // const [quantity, setQuantity] = useState(cartItem.quantity);
 
     // const navigate = useNavigate();
 
@@ -73,7 +76,13 @@ const ProductDetails = () => {
         bagIconRef,
         imgRef,
     } = useContext(AppContext);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    // const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const [quantityProductDetails, setQuantityProductDetails] = useState(1);
+    console.log("quantityProductDetails", quantityProductDetails);
+    const handleQuantityChange = (newQuantity) => {
+        setQuantityProductDetails(newQuantity);
+    };
 
     // Das ignore-Flag wird verwendet, um sicherzustellen, dass der Zustand nicht aktualisiert wird, wenn die Komponente nicht mehr angezeigt wird.
     useEffect(() => {
@@ -115,6 +124,10 @@ const ProductDetails = () => {
 
     const addToCart = async () => {
         try {
+            if (!user._id) {
+                alert("Please login to add to cart");
+                return;
+            }
             const response = await fetch(
                 `http://localhost:3000/cart/${product._id}`,
                 {
@@ -122,14 +135,17 @@ const ProductDetails = () => {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ quantity: 2, color: "black" }),
+                    body: JSON.stringify({
+                        quantity: quantityProductDetails,
+                        color: "black",
+                    }),
                     credentials: "include",
                 }
             );
 
             const data = await response.json();
             console.log("fetched data:", data);
-            setIsAuthenticated(data.isAuthenticated);
+            // setIsAuthenticated(data.isAuthenticated);
 
             if (response.ok) {
                 console.log("Product added to cart", data.cart.items);
@@ -286,7 +302,20 @@ const ProductDetails = () => {
                         <ColorSelector />
 
                         <div className="parent flex justify-between items-center">
-                            <QuantitySelector />
+                            <QuantitySelector
+                                quantity={quantityProductDetails}
+                                setQuantity={setQuantityProductDetails}
+                                increaseQuantity={() =>
+                                    handleQuantityChange(
+                                        quantityProductDetails + 1
+                                    )
+                                }
+                                decreaseQuantity={() =>
+                                    handleQuantityChange(
+                                        Math.max(1, quantityProductDetails - 1)
+                                    )
+                                }
+                            />
 
                             <button
                                 // onClick={handleCartClick}

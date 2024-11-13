@@ -17,6 +17,7 @@ const AppProvider = ({ children }) => {
     const [heartCount, setHeartCount] = useState(0);
     const [user, setUser] = useState({});
     const [product, setProduct] = useState({});
+    const [quantityForCart, setQuantityForCart] = useState(0);
 
     //fly to shopping cart
     const [isFlying, setIsFlying] = useState(false);
@@ -34,7 +35,7 @@ const AppProvider = ({ children }) => {
         if (!res.ok) {
             setUser({});
             setLoginSuccess(false);
-            navigate("/login");
+            navigate("/");
             return;
         }
         const data = await res.json();
@@ -46,6 +47,20 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchUser();
     }, []);
+
+    useEffect(() => {
+        const fetchCart = async () => {
+            const response = await fetch("http://localhost:3000/cart", {
+                credentials: "include",
+            });
+            const data = await response.json();
+            setCartItems(data.items);
+            console.log(data.items);
+        };
+        if (user._id) {
+            fetchCart();
+        }
+    }, [user._id]);
 
     useEffect(() => {
         const getWishlist = async () => {
@@ -70,7 +85,7 @@ const AppProvider = ({ children }) => {
     const handleLogout = async () => {
         try {
             console.log(555);
-            await fetch("/api/logout", {
+            await fetch("http://localhost:3000/api/users/logout", {
                 method: "POST",
                 credentials: "include",
             });
@@ -108,6 +123,8 @@ const AppProvider = ({ children }) => {
                 setProduct,
                 resetUserData,
                 handleLogout,
+                quantityForCart,
+                setQuantityForCart,
 
                 //fly animation
                 isFlying,

@@ -3,6 +3,7 @@ import {
   registerUser,
   loginUser,
   logoutUser,
+  refreshToken,
 } from "../controllers/authControllers.js";
 
 const router = express.Router();
@@ -10,6 +11,7 @@ const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
+router.get("/refresh", refreshToken);
 
 export default router;
 

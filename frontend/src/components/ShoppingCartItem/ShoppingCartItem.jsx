@@ -8,12 +8,10 @@ import { useState } from "react";
 
 const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
     const [quantity, setQuantity] = useState(cartItem.quantity);
-    // const [color, setColor] = useState(cartItem.color);
-    console.log("cartItem", cartItem);
+
     const handleQuantityChange = (newQuantity) => {
         setQuantity(newQuantity);
         updateCartItem(cartItem.productId._id, newQuantity);
-        // updateCartItem(cartItem.productId._id, newQuantity, color);
     };
 
     // const handleColorChange = (e) => {
@@ -49,7 +47,7 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
                     <Trash2
                         // novo
                         onClick={() => deleteCartItem(cartItem.productId._id)}
-                        className="text-colorPrimary cursor-pointer"
+                        className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95"
                     />
                 </div>
             </div>
@@ -100,17 +98,18 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
               </select> */}
                             <QuantitySelector
                                 quantity={quantity}
-                                onIncrease={() =>
+                                setQuantity={setQuantity}
+                                increaseQuantity={() =>
                                     handleQuantityChange(quantity + 1)
                                 }
-                                onDecrease={() =>
+                                decreaseQuantity={() =>
                                     handleQuantityChange(
                                         Math.max(1, quantity - 1)
                                     )
                                 }
-                                onClick={() =>
-                                    handleQuantityChange(quantity + 1)
-                                }
+                                // onClick={() =>
+                                //     handleQuantityChange(quantity + 1)
+                                // }
                                 size="text-[1.8rem]"
                                 padding="py-[0.6rem] px-4"
                             />
@@ -125,17 +124,26 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
                             {cartItem.productId.percentage ? (
                                 <div>
                                     <p className="line-through text-[2rem]">
-                                        {cartItem.productId.price.toFixed(2)}€
+                                        {Math.round(
+                                            cartItem.productId.price *
+                                                (1 +
+                                                    cartItem.productId
+                                                        .percentage /
+                                                        100)
+                                        ).toFixed(2)}
+                                        €
+                                        {/* {cartItem.productId.price.toFixed(2)}€ */}
                                     </p>
                                     <p className="text-[2rem] text-colorTertiary">
-                                        {Math.round(
+                                        {cartItem.productId.price.toFixed(2)}€
+                                        {/* {Math.round(
                                             cartItem.productId.price *
                                                 (1 -
                                                     cartItem.productId
                                                         .percentage /
                                                         100)
                                         ).toFixed(2)}
-                                        €
+                                        € */}
                                     </p>
                                 </div>
                             ) : (

@@ -1,10 +1,11 @@
 import { useContext, useEffect, useReducer } from "react";
 import UserProfileSection from "./UserProfileSection";
 import { AppContext } from "../../context/AppProvider";
-import { act } from "react";
+import { getUserAddress } from "../../utils/addressUtils/getUserAddress";
 
 const UserProfileInfo = () => {
     const { user } = useContext(AppContext);
+    //console.log("user._id", user._id);
 
     const defaultFormData = {
         personalData: {
@@ -31,67 +32,87 @@ const UserProfileInfo = () => {
         },
     };
 
-    const reducer = (formData, action) => {
+    const reducer = (prevState, action) => {
         switch (action.type) {
-            case "cancelPasswordChange":
+            // Reset the specified section to default values and mark it as valid
+            /* case "cancelChange":
                 return {
-                    ...formData,
+                    ...prevState,
                     [action.sectionId]: {
                         ...defaultFormData[action.sectionId],
                         valid: true,
                         errors: {},
                     },
-                };
+                }; */
 
+            // Check if passwords do not match
             case "submit_accessData":
                 if (
                     action.formData.password !== action.formData.confirmPassword
                 ) {
                     return {
-                        ...formData,
+                        ...prevState,
                         [action.sectionId]: {
                             ...action.formData,
                             valid: false,
                             errors: {
-                                ...formData.errors,
+                                ...prevState.errors,
                                 confirmPassword:
                                     "Passwords do not match. Please try again",
                             },
                         },
                     };
                 }
+                // Check if password field is empty
                 if (
-                    formData.accessData.password === "" &&
-                    formData.accessData.password === action.formData.password
+                    prevState.accessData.password === "" &&
+                    prevState.accessData.password === action.formData.password
                 ) {
                     return {
-                        ...formData,
+                        ...prevState,
                         [action.sectionId]: {
                             ...action.formData,
                             valid: false,
                             errors: {
-                                ...formData.errors,
-                                confirmPassword: "EMPTY Password! AAAAAA",
+                                ...prevState.errors,
+                                confirmPassword:
+                                    "Please enter your new password.",
                             },
                         },
                     };
                 }
+                // If no errors, mark the section as valid
                 return {
-                    ...formData,
+                    ...prevState,
                     [action.sectionId]: {
                         ...action.formData,
                         valid: true,
                         errors: {},
                     },
                 };
-            case "initialUserInfo":
+
+            // Set the state to the provided user information
+            case "setUserInfo":
                 return {
                     ...action.userInfo,
                 };
+
+            // Update the address in the state
+            case "setUserAddress":
+                return {
+                    ...prevState,
+                    address: {
+                        ...action.address,
+                        valid: true,
+                        errors: {},
+                    },
+                };
+
+            // Default action to update the specified section and mark it as valid
             default:
                 //   fetch patch usercollection => formDate. NB Password hash!
                 return {
-                    ...formData,
+                    ...prevState,
                     [action.sectionId]: {
                         ...action.formData,
                         valid: true,
@@ -106,12 +127,35 @@ const UserProfileInfo = () => {
     );
 
     useEffect(() => {
+        const fetchAddress = async () => {
+            if (user._id) {
+                const address = await getUserAddress();
+                //console.log("Fetched address:", address);
+                dispatchSectionForm({
+                    type: "setUserAddress",
+                    address: {
+                        id: address?._id,
+                        street: address?.street ?? "",
+                        house: address?.house ?? "",
+                        city: address?.city ?? "",
+                        zip: address?.zip ?? "",
+                        country: address?.country ?? "",
+                    },
+                });
+                return;
+            } else {
+                return null;
+            }
+        };
         if (user._id) {
+            fetchAddress(user._id);
+
             dispatchSectionForm({
-                type: "initialUserInfo",
+                type: "setUserInfo",
                 userInfo: defaultFormData,
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user._id]);
 
     const fieldDefinitions = {
@@ -148,10 +192,7 @@ const UserProfileInfo = () => {
                     <UserProfileSection
                         key={sectionId}
                         sectionId={sectionId}
-                        title={
-                            sectionId.charAt(0).toUpperCase() +
-                            sectionId.slice(1)
-                        }
+                        title={sectionId}
                         formData={formData[sectionId]}
                         fields={fieldDefinitions[sectionId]}
                         dispatchSectionForm={dispatchSectionForm}

@@ -61,6 +61,7 @@ const App = () => {
           password: data.password,
           firstName: isSignUp ? data.firstName : undefined,
           lastName: isSignUp ? data.lastName : undefined,
+          rememberMe: data.rememberMe,
         }),
       });
 
@@ -76,7 +77,7 @@ const App = () => {
           setIsSignUp(false); //se prefrla na login
           navigate("/login");
         } else {
-          navigate("/cart");
+          navigate("/");
         }
       } else {
         console.error("Error:", result.message || "An error occurred");
