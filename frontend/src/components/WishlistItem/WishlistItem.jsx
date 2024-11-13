@@ -65,8 +65,8 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                             <p className="line-through text-[2rem]">
                                 {/* {wishItem.price.toFixed(2)} */}
                                 {Math.round(
-                                    wishItem.price *
-                                        (1 + wishItem.discount / 100)
+                                    wishItem.price /
+                                        (1 - wishItem.discount / 100)
                                 ).toFixed(2)}
                                 €
                             </p>
