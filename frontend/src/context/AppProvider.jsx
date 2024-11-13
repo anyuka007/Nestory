@@ -39,7 +39,7 @@ const AppProvider = ({ children }) => {
             return;
         }
         const data = await res.json();
-        console.log("fetchUser", data);
+        // console.log("fetchUser", data);
         setUser(data.user);
         setLoginSuccess(data.success);
     };

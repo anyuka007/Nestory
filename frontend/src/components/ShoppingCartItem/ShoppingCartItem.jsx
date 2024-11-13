@@ -124,17 +124,26 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
                             {cartItem.productId.percentage ? (
                                 <div>
                                     <p className="line-through text-[2rem]">
-                                        {cartItem.productId.price.toFixed(2)}€
+                                        {Math.round(
+                                            cartItem.productId.price *
+                                                (1 +
+                                                    cartItem.productId
+                                                        .percentage /
+                                                        100)
+                                        ).toFixed(2)}
+                                        €
+                                        {/* {cartItem.productId.price.toFixed(2)}€ */}
                                     </p>
                                     <p className="text-[2rem] text-colorTertiary">
-                                        {Math.round(
+                                        {cartItem.productId.price.toFixed(2)}€
+                                        {/* {Math.round(
                                             cartItem.productId.price *
                                                 (1 -
                                                     cartItem.productId
                                                         .percentage /
                                                         100)
                                         ).toFixed(2)}
-                                        €
+                                        € */}
                                     </p>
                                 </div>
                             ) : (
