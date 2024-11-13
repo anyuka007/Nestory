@@ -31,7 +31,7 @@ const SearchList = () => {
     }, [searchKeyword]);
 
     return (
-        <div className="w-full mx-auto flex flex-col items-center justify-center ">
+        <div className="w-full flex flex-col items-center justify-center  md:flex md:justify-between">
             <div className="w-full justify-center ">
                 <h1 className="text-[2.4rem] md:text-[4.2rem] font-bold text-colorPrimary p-5 mx-auto flex flex-col items-center justify-center">
                     {searchResults.length} results found for: {searchKeyword}
@@ -40,7 +40,7 @@ const SearchList = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : searchResults.length ? (
-                <div className="mx-auto flex flex-col items-center justify-center">
+                <div className=" mx-auto flex flex-col items-center justify-center  md:flex md:justify-between ">
                     {searchResults.map((item) => (
                         <SearchItems key={item._id} SearchItem={item} />
                     ))}
