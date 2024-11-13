@@ -1,13 +1,24 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./Input";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "../../components/Button/Button";
+import { formatKey } from "../../utils/formatKey";
+import { updateUserAddress } from "../../utils/addressUtils/updateUserAddress";
+import { addAddress } from "../../utils/addressUtils/addAddres";
 
 const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
     const [sectionFormData, setSectionFormData] = useState(formData);
     const [editMode, setEditMode] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
+    //console.log("formData", formData);
+    //console.log("sectionFormData", sectionFormData);
+
+    // update formData once user, address fetches responcies recieved and updated in UserProfileInfo
+    useEffect(() => {
+        setSectionFormData(formData);
+    }, [formData]);
 
     const toggleShowPassword = (fieldName) => {
         setShowPassword((prevState) => ({
@@ -29,25 +40,33 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                 <div className="flex flex-col gap-2 py-4">
                     {Object.entries(formData)
                         .filter(
-                            ([field, _]) =>
+                            ([field /* , _ */]) =>
                                 field !== "valid" && field !== "errors"
                         )
+                        // eslint-disable-next-line no-unused-vars
                         .every(([_, value]) => !value) ? (
                         <p className="text-pageBannerBGC  pl-6">No data</p>
                     ) : (
                         Object.entries(formData)
                             .filter(
-                                ([field, _]) =>
-                                    field !== "valid" && field !== "errors"
+                                ([field /* , _ */]) =>
+                                    !["id", "valid", "errors"].includes(field)
                             )
                             .map(([key, value]) => (
                                 <div key={key}>
-                                    <p className=" pl-6">
+                                    <div className=" pl-6">
                                         {key === "password" ||
-                                        key === "confirmPassword"
-                                            ? ""
-                                            : value}
-                                    </p>
+                                        key === "confirmPassword" ? (
+                                            ""
+                                        ) : (
+                                            <div className="flex">
+                                                <span className="text-pageBannerBGC w-[10rem]">
+                                                    {formatKey(key)}
+                                                </span>
+                                                <span>{value}</span>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             ))
                     )}
@@ -112,31 +131,85 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             width="100px"
                             height="3rem"
                             onClickHandler={() => {
-                                setEditMode((prev) => false);
-                                dispatchSectionForm({
-                                    type: "cancelPasswordChange",
-                                    sectionId,
-                                });
+                                setEditMode(() => false);
+                                setSectionFormData(formData);
                             }}
                         />
                         <Button
                             text="Save"
                             width="100px"
                             height="3rem"
-                            onClickHandler={() => {
-                                setEditMode((prev) => false);
+                            onClickHandler={async () => {
+                                if (!sectionFormData) {
+                                    console.error(
+                                        "sectionFormData is undefined"
+                                    );
+                                    return;
+                                }
+                                switch (sectionId) {
+                                    case "address":
+                                        if (
+                                            sectionFormData.street === "" ||
+                                            sectionFormData.house === "" ||
+                                            sectionFormData.city === "" ||
+                                            sectionFormData.zip === "" ||
+                                            sectionFormData.country === ""
+                                        ) {
+                                            setErrorMessage(
+                                                "Please fill in all fields"
+                                            );
+                                            return;
+                                        } else if (
+                                            formData.street === "" &&
+                                            formData.house === "" &&
+                                            formData.city === "" &&
+                                            formData.zip === "" &&
+                                            formData.country === ""
+                                        ) {
+                                            await addAddress(sectionFormData);
+                                            setErrorMessage("");
+                                        } else {
+                                            try {
+                                                await updateUserAddress(
+                                                    sectionFormData.id,
+                                                    sectionFormData
+                                                );
+                                                setErrorMessage("");
+                                                /* console.log(
+                                                    "editAddress completed successfully to: ",
+                                                    sectionFormData
+                                                ); */
+                                            } catch (error) {
+                                                console.error(
+                                                    "Error editing address:",
+                                                    error
+                                                );
+                                            }
+                                        }
+                                        break;
+                                    case "personalData":
+                                    case "accessData":
+                                        console.log("Coming soon...");
+                                        break;
+                                    default:
+                                        console.log("Invalid sectionId");
+                                }
+
+                                setEditMode(() => false);
                                 dispatchSectionForm({
                                     type: "submit_" + sectionId,
                                     sectionId,
                                     formData: sectionFormData,
                                 });
                             }}
-                            Save
                         />
                         {!formData.valid && formData.errors.confirmPassword && (
                             <p className="text-colorTertiary flex items-center">
                                 {formData.errors.confirmPassword}
                             </p>
+                        )}
+                        {errorMessage && (
+                            <p className="text-red-600">{errorMessage}</p>
                         )}
                     </div>
                 </div>
