@@ -67,7 +67,8 @@ export const addAddress = async (req, res) => {
 };
 
 export const editAddress = async (req, res) => {
-    const addressId = req.params.id;
+    //const addressId = req.params.id;
+    const userId = req.user?.id;
     try {
         const data = req.body;
         // Check if the request body contains data to update
@@ -76,15 +77,18 @@ export const editAddress = async (req, res) => {
                 .status(400)
                 .send("Please provide data to update the address");
         }
-        const addressToUpdate = await Address.findById(addressId);
+        //const addressToUpdate = await Address.findById(addressId);
+        const addressToUpdate = await Address.findOne({ userId: userId });
         //console.log("addressToUpdate: ", addressToUpdate);
         if (!addressToUpdate) {
             console.log("Address not found".red);
             return res.status(404).send("Address not found");
         }
         // Update the address with the provided data
-        await Address.updateOne({ _id: addressId }, data);
-        const updatedAddress = await Address.findById(addressId);
+        //await Address.updateOne({ _id: addressId }, data);
+        await Address.updateOne({ userId: userId }, data);
+        //const updatedAddress = await Address.findById(addressId);
+        const updatedAddress = await Address.findOne({ userId: userId });
         console.log(
             `The Address was successfully ${
                 "updated".brightMagenta

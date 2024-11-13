@@ -160,6 +160,26 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                             );
                                             return;
                                         } else if (
+                                            isNaN(
+                                                Number(sectionFormData.house)
+                                            ) ||
+                                            Number(sectionFormData.house) < 1
+                                        ) {
+                                            setErrorMessage(
+                                                "House number must be a positive number."
+                                            );
+                                            return;
+                                        } else if (
+                                            isNaN(
+                                                Number(sectionFormData.zip)
+                                            ) ||
+                                            Number(sectionFormData.zip) < 100
+                                        ) {
+                                            setErrorMessage(
+                                                "Zip must be a positive number > 100"
+                                            );
+                                            return;
+                                        } else if (
                                             formData.street === "" &&
                                             formData.house === "" &&
                                             formData.city === "" &&
@@ -171,7 +191,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                         } else {
                                             try {
                                                 await updateUserAddress(
-                                                    sectionFormData.id,
+                                                    /* sectionFormData.id, */
                                                     sectionFormData
                                                 );
                                                 setErrorMessage("");

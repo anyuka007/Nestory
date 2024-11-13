@@ -12,9 +12,11 @@ const addressRouter = express.Router();
 addressRouter
     .route("/")
     .get(authorize, getUsersAddress)
-    .post(authorize, addAddress);
+    .post(authorize, addAddress)
+    .patch(authorize, editAddress);
+
 addressRouter.route("/all").get(/* authorize, */ getAllAddresses);
 
-addressRouter.route("/:id").patch(authorize, editAddress);
+//addressRouter.route("/:id").patch(authorize, editAddress);
 
 export default addressRouter;
