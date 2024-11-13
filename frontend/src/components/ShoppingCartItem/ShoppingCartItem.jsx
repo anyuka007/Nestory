@@ -47,7 +47,7 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
                     <Trash2
                         // novo
                         onClick={() => deleteCartItem(cartItem.productId._id)}
-                        className="text-colorPrimary cursor-pointer"
+                        className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95"
                     />
                 </div>
             </div>

@@ -39,7 +39,7 @@ const AppProvider = ({ children }) => {
             return;
         }
         const data = await res.json();
-        // console.log("fetchUser", data);
+        console.log("fetchUser", data);
         setUser(data.user);
         setLoginSuccess(data.success);
     };
@@ -47,6 +47,20 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchUser();
     }, []);
+
+    useEffect(() => {
+        const fetchCart = async () => {
+            const response = await fetch("http://localhost:3000/cart", {
+                credentials: "include",
+            });
+            const data = await response.json();
+            setCartItems(data.items);
+            console.log(data.items);
+        };
+        if (user._id) {
+            fetchCart();
+        }
+    }, [user._id]);
 
     useEffect(() => {
         const getWishlist = async () => {

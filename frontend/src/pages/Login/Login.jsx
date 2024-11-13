@@ -61,6 +61,7 @@ const App = () => {
           password: data.password,
           firstName: isSignUp ? data.firstName : undefined,
           lastName: isSignUp ? data.lastName : undefined,
+          rememberMe: data.rememberMe,
         }),
       });
 
