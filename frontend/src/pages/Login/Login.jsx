@@ -228,7 +228,7 @@ const App = () => {
       </div>
       <div className={styles.imageContainer}>
         <img
-          src="/images/logo/logo.png"
+          src="/images/logo/nestoryFull.png"
           alt="Logo or decorative image"
           className="logo"
           style={{

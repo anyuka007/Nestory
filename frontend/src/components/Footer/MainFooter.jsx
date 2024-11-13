@@ -2,26 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function MainFooter() {
-    return (
-        <div>
-            <>
-                <footer>
-                    <div className="py-8 w-[80%] mx-auto my-20 md:mb-[-8rem] text-center md:text-left text-colorPrimary">
-                        <div className="TWO justify-around w-full lg:flex md:gap-1 md:pt-10">
-                            <div className="left w-full md:basis-[50%]">
-                                <h1 className="text-center lg:text-start pt-16 text-[1.5rem] lg:text-[2.8rem] xl:text-[3rem] font-semibold">
-                                    Spaces that improve your quality of life -
-                                    Request an estimate
-                                </h1>
-                                <div className="flex flex-col justify-center text-center lg:flex-row items-center lg:justify-start md:gap-3">
-                                    <div className="text-center w-[30rem] flex flex-col lg:items-start ">
-                                        <p className=" pt-4 text-[1.5rem] xl:text-[1.8rem]  ">
-                                            Phone
-                                        </p>
-                                        <p className="text-[1.2rem] xl:text-[1.5rem]">
-                                            <Link>+49(40)88799</Link>
-                                        </p>
-                                    </div>
+  return (
+    <div>
+      <>
+        <footer>
+          <div className="pb-8 w-[80%] mx-auto mb-20 md:mb-[-8rem] text-center md:text-left text-colorPrimary">
+            <div className="TWO justify-around w-full lg:flex md:gap-1">
+              <div className="left w-full md:basis-[50%]">
+                <h1 className="text-center lg:text-start pt-16 text-[1.5rem] lg:text-[2.8rem] xl:text-[3rem] font-semibold">
+                  Spaces that improve your quality of life - Request an estimate
+                </h1>
+                <div className="flex flex-col justify-center text-center lg:flex-row items-center lg:justify-start md:gap-3">
+                  <div className="text-center w-[30rem] flex flex-col lg:items-start ">
+                    <p className=" pt-4 text-[1.5rem] xl:text-[1.8rem]  ">
+                      Phone
+                    </p>
+                    <p className="text-[1.2rem] xl:text-[1.5rem]">
+                      <Link>+49(40)88799</Link>
+                    </p>
+                  </div>
 
                                     <div className="w-[30rem] flex flex-col lg:items-start">
                                         <p className="pt-4 text-[1.5rem] xl:text-[1.8rem]">
