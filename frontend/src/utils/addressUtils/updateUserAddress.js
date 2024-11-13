@@ -1,4 +1,4 @@
-export const updateUserAddress = async (addressId, newAddressData) => {
+export const updateUserAddress = async (/* addressId, */ newAddressData) => {
     /* console.log(
         "patch fetch addrssId, newAddressData",
         addressId,
@@ -6,7 +6,8 @@ export const updateUserAddress = async (addressId, newAddressData) => {
     ); */
     try {
         const response = await fetch(
-            `http://localhost:3000/address/${addressId}`,
+            //`http://localhost:3000/address/${addressId}`,
+            `http://localhost:3000/address`,
             {
                 method: "PATCH",
                 headers: {
