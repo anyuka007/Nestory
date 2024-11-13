@@ -80,11 +80,7 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                         </div>
                     ) : (
                         <p className="text-[2rem]">
-                            {/* {wishItem.price.toFixed(2)} */}
-                            {Math.round(
-                                wishItem.price * (1 + wishItem.discount / 100)
-                            ).toFixed(2)}
-                            €
+                            {wishItem.price.toFixed(2)}€
                         </p>
                     )}
                     <button
