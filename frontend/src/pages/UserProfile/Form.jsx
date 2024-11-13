@@ -156,8 +156,9 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                             sectionFormData.country === ""
                                         ) {
                                             setErrorMessage(
-                                                "Please fill in all fields in the section form data."
+                                                "Please fill in all fields"
                                             );
+                                            return;
                                         } else if (
                                             formData.street === "" &&
                                             formData.house === "" &&
@@ -166,12 +167,14 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                             formData.country === ""
                                         ) {
                                             await addAddress(sectionFormData);
+                                            setErrorMessage("");
                                         } else {
                                             try {
                                                 await updateUserAddress(
                                                     sectionFormData.id,
                                                     sectionFormData
                                                 );
+                                                setErrorMessage("");
                                                 /* console.log(
                                                     "editAddress completed successfully to: ",
                                                     sectionFormData
@@ -205,10 +208,12 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                 {formData.errors.confirmPassword}
                             </p>
                         )}
+                        {errorMessage && (
+                            <p className="text-red-600">{errorMessage}</p>
+                        )}
                     </div>
                 </div>
             )}
-            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
         </>
     );
 };
