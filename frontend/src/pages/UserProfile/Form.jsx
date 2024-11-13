@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import { formatKey } from "../../utils/formatKey";
 import { updateUserAddress } from "../../utils/addressUtils/updateUserAddress";
 import { addAddress } from "../../utils/addressUtils/addAddres";
+import { updateUser } from "../../utils/userUtils/updateUser";
 
 const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
@@ -208,6 +209,32 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                         }
                                         break;
                                     case "personalData":
+                                        if (
+                                            sectionFormData.firstName === "" ||
+                                            sectionFormData.lastName === ""
+                                        ) {
+                                            setErrorMessage(
+                                                "Please fill in all fields"
+                                            );
+                                            return;
+                                        } else {
+                                            try {
+                                                await updateUser(
+                                                    sectionFormData
+                                                );
+                                                setErrorMessage("");
+                                                /* console.log(
+                                                    "updateUser completed successfully to: ",
+                                                    sectionFormData
+                                                ); */
+                                            } catch (error) {
+                                                console.error(
+                                                    "Error editing user:",
+                                                    error
+                                                );
+                                            }
+                                        }
+                                        break;
                                     case "accessData":
                                         console.log("Coming soon...");
                                         break;

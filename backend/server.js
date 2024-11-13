@@ -13,6 +13,7 @@ import cartRouter from "./routes/cartRoutes.js";
 import productDetailsRouter from "./routes/productDetailsRoutes.js";
 import ordersRouter from "./routes/ordersRouter.js";
 import addressRouter from "./routes/addressRouter.js";
+import userRouter from "./routes/userRouter.js";
 
 await connect();
 const app = express();
@@ -43,6 +44,7 @@ app.use("/cart", cartRouter);
 app.use("/product", productDetailsRouter);
 app.use("/account/orders", ordersRouter);
 app.use("/address", addressRouter);
+app.use("/account/user", userRouter);
 
 const port = 3000;
 app.listen(port, () => {
