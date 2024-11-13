@@ -1,10 +1,11 @@
 import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem.jsx";
 import Button from "../../components/Button/Button";
 import { AppContext } from "../../context/AppProvider";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const ShoppingCart = () => {
     const { cartItems, setCartItems } = useContext(AppContext);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const fetchCartItems = async () => {
         try {
@@ -86,10 +87,21 @@ const ShoppingCart = () => {
         }
     };
 
+    useEffect(() => {
+        setTotalPrice(
+            cartItems.reduce(
+                (total, item) => total + item.productId.price * item.quantity,
+                0
+            )
+        );
+    }, [cartItems]);
+
     // const totalPrice = cartItems
-    //   .reduce((total, item) => total + item.price, 0)
-    //   .toFixed(2);
-    const totalPrice = 0;
+    //     .reduce(
+    //         (total, item) => total + item.productId.price * item.quantity,
+    //         0
+    //     )
+    //     .toFixed(2);
 
     return (
         <div className="min-h-screen bg-white flex flex-col xl:flex-row">
@@ -130,12 +142,14 @@ const ShoppingCart = () => {
                     </div>
                     <div className="flex justify-between items-center">
                         <span>Shipping Costs:</span>
-                        <span>5.00 €</span>
+                        <span>50.00 €</span>
                     </div>
                     <div className="line border-t border-gray-300 my-10"></div>
                     <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
                         <span>Total amount:</span>
-                        {/* <span>{(parseFloat(totalPrice) + 5.0).toFixed(2)} €</span> */}
+                        <span>
+                            {(parseFloat(totalPrice) + 50.0).toFixed(2)} €
+                        </span>
                     </div>
                     <span className="text-sm text-gray-500 mt-8">
                         incl. applicable VAT.

@@ -190,7 +190,7 @@ export const updateProductInCart = async (req, res) => {
         // if (color) item.color = color;
 
         await cart.save();
-        await cart.populate("items.productId").execPopulate();
+        await cart.populate("items.productId");
 
         res.status(200).json({ message: "Product updated in cart", cart });
     } catch (error) {
