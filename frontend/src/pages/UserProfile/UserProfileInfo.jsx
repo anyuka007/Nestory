@@ -129,17 +129,17 @@ const UserProfileInfo = () => {
     useEffect(() => {
         const fetchAddress = async () => {
             if (user._id) {
-                const address = await getUserAddress(user._id);
+                const address = await getUserAddress();
                 //console.log("Fetched address:", address);
                 dispatchSectionForm({
                     type: "setUserAddress",
                     address: {
-                        id: address._id,
-                        street: address.street,
-                        house: address.house,
-                        city: address.city,
-                        zip: address.zip,
-                        country: address.country,
+                        id: address?._id,
+                        street: address?.street ?? "",
+                        house: address?.house ?? "",
+                        city: address?.city ?? "",
+                        zip: address?.zip ?? "",
+                        country: address?.country ?? "",
                     },
                 });
                 return;

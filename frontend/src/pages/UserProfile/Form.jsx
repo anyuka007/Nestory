@@ -5,13 +5,15 @@ import { Eye, EyeOff } from "lucide-react";
 import Button from "../../components/Button/Button";
 import { formatKey } from "../../utils/formatKey";
 import { updateUserAddress } from "../../utils/addressUtils/updateUserAddress";
+import { addAddress } from "../../utils/addressUtils/addAddres";
 
 const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
     const [sectionFormData, setSectionFormData] = useState(formData);
     const [editMode, setEditMode] = useState(false);
-    console.log("formData", formData);
-    console.log("sectionFormData", sectionFormData);
+    const [errorMessage, setErrorMessage] = useState("");
+    //console.log("formData", formData);
+    //console.log("sectionFormData", sectionFormData);
 
     // update formData once user, address fetches responcies recieved and updated in UserProfileInfo
     useEffect(() => {
@@ -41,7 +43,8 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                             ([field /* , _ */]) =>
                                 field !== "valid" && field !== "errors"
                         )
-                        .every(([/* _, */ value]) => !value) ? (
+                        // eslint-disable-next-line no-unused-vars
+                        .every(([_, value]) => !value) ? (
                         <p className="text-pageBannerBGC  pl-6">No data</p>
                     ) : (
                         Object.entries(formData)
@@ -145,20 +148,40 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                 }
                                 switch (sectionId) {
                                     case "address":
-                                        try {
-                                            await updateUserAddress(
-                                                sectionFormData.id,
-                                                sectionFormData
+                                        if (
+                                            sectionFormData.street === "" ||
+                                            sectionFormData.house === "" ||
+                                            sectionFormData.city === "" ||
+                                            sectionFormData.zip === "" ||
+                                            sectionFormData.country === ""
+                                        ) {
+                                            setErrorMessage(
+                                                "Please fill in all fields in the section form data."
                                             );
-                                            console.log(
-                                                "editAddress completed successfully to: ",
-                                                sectionFormData
-                                            );
-                                        } catch (error) {
-                                            console.error(
-                                                "Error editing address:",
-                                                error
-                                            );
+                                        } else if (
+                                            formData.street === "" &&
+                                            formData.house === "" &&
+                                            formData.city === "" &&
+                                            formData.zip === "" &&
+                                            formData.country === ""
+                                        ) {
+                                            await addAddress(sectionFormData);
+                                        } else {
+                                            try {
+                                                await updateUserAddress(
+                                                    sectionFormData.id,
+                                                    sectionFormData
+                                                );
+                                                /* console.log(
+                                                    "editAddress completed successfully to: ",
+                                                    sectionFormData
+                                                ); */
+                                            } catch (error) {
+                                                console.error(
+                                                    "Error editing address:",
+                                                    error
+                                                );
+                                            }
                                         }
                                         break;
                                     case "personalData":
@@ -185,6 +208,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                     </div>
                 </div>
             )}
+            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
         </>
     );
 };

@@ -1,9 +1,9 @@
 export const updateUserAddress = async (addressId, newAddressData) => {
-    console.log(
+    /* console.log(
         "patch fetch addrssId, newAddressData",
         addressId,
         newAddressData
-    );
+    ); */
     try {
         const response = await fetch(
             `http://localhost:3000/address/${addressId}`,
@@ -12,6 +12,7 @@ export const updateUserAddress = async (addressId, newAddressData) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(newAddressData),
             }
         );
@@ -19,10 +20,10 @@ export const updateUserAddress = async (addressId, newAddressData) => {
             throw new Error("Failed to update user's address");
         }
         const data = await response.json();
-        console.log("dataUpdated", data);
+        //console.log("dataUpdated", data);
         return data;
     } catch (error) {
         console.error(error.message);
-        return null;
+        throw error;
     }
 };
