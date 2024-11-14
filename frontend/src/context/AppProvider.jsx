@@ -54,7 +54,6 @@ const AppProvider = ({ children }) => {
             const response = await fetch("http://localhost:3000/cart", {
                 credentials: "include",
             });
-
             if (!response.ok) {
                 if (response.status === 404) {
                     return [];

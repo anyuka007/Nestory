@@ -231,7 +231,7 @@ const ProductDetails = () => {
         return (
             <>
                 {/* <WishHeart className="text-colorPrimary cursor-pointer" /> */}
-                <div className="flex-col gap-2 mt-1 xl:mt-[6rem] xl:mb-64 flex lg:flex-row justify-around items-center bg-white">
+                <div className="flex-col gap-2 mt-1 xl:mt-[6rem] xl:mb-40 flex lg:flex-row justify-around items-center bg-white">
                     {/* Left Section: Image */}
                     <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0">
                         <img
@@ -244,7 +244,7 @@ const ProductDetails = () => {
 
                     {/* Right Section: Product Details */}
                     <div className="basis-[30%] flex flex-col justify-center space-y-10 ">
-                        <h1 className="text-3xl xl:text-5xl font-semibold mb-3">
+                        <h1 className="text-4xl xl:text-5xl font-semibold mb-3">
                             {product.name}
                         </h1>
                         <div className="flex items-end">
@@ -347,7 +347,7 @@ const ProductDetails = () => {
                         {/* <p className="xl:w-[70%] text-2xl text-gray-600 mt-4">
           {product.description}
         </p> */}
-                        <div className="parent flex flex-col space-y-6 mt-8 xl:mt-16">
+                        <div className="parent flex flex-col pt-6 mt-8 xl:mt-16">
                             {/* Free Shipping */}
                             <div className="flex items-center p-10 border border-gray-200 rounded-lg shadow-sm">
                                 <div className="icon text-6xl mr-8  text-colorPrimary">
@@ -381,6 +381,11 @@ const ProductDetails = () => {
                     </div>
                 </div>
                 {/* <ReviewSection /> */}
+                <div className="text-center pb-24">
+                    <h3 className="text-5xl font-semibold">
+                        Customers who viewed this product also viewed
+                    </h3>
+                </div>
                 <Carousel />
                 <div
                     id="reviews"
