@@ -92,7 +92,6 @@ const WishlistItem = ({ wishItem, deleteWishItem, addToCart }) => {
                 </div>
 
                 <p className="text-green-600">Is available</p>
-                <p className="text-green-600">Free shipping</p>
                 <div className="flex justify-center mt-auto pt-8">
                     <Button
                         text="Add to cart"
