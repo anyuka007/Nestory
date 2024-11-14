@@ -9,6 +9,7 @@ const AddressForm = ({
     setEditAddressForm,
     setNewAddressForm,
     addressData,
+    noAddress,
 }) => {
     const {
         register,
@@ -29,7 +30,7 @@ const AddressForm = ({
     const onSubmit = (data) => {
         const method =
             // addressData && Object.keys(addressData).length > 0
-            addressData.noAddress ? "POST" : "PATCH";
+            noAddress ? "POST" : "PATCH";
 
         const res = fetch(`http://localhost:3000/address`, {
             method: method,
@@ -147,9 +148,7 @@ const AddressForm = ({
                     type="submit"
                     className="w-1/3 h-16 mt-4 bg-colorPrimary text-white font-semibold py-2 px-6 rounded-lg hover:bg-colorSecondary"
                 >
-                    {addressData.noAddress
-                        ? "Add New Address"
-                        : "Update/Save Address"}
+                    {noAddress ? "Add New Address" : "Update/Save Address"}
                 </button>
             </form>
         </div>

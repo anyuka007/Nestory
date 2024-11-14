@@ -7,13 +7,14 @@ import AddressForm from "../AddressForm/AddressForm";
 const stripePromise = loadStripe(
     "pk_test_51QJFIqB6FGkciLDVFadGaB60QdwzTdDz9gmQ5p8ZpdUIAe2Eyu9JRIwi8PTGngffBKhXJT55h7Rjb0Gs3AJAZ9O1003CvjfwGl"
 );
-const CheckOut = () => {
+const CheckOut = ({ totalPrice, clearCart }) => {
     const { cartItems = [] } = useContext(AppContext);
     const [editAddressForm, setEditAddressForm] = useState(false);
     const [newAddressForm, setNewAddressForm] = useState(false);
     const [showAddressForm, setShowAddressForm] = useState(false);
     const [addressChecked, setAddressChecked] = useState(false);
     const [addressData, setAddressData] = useState({});
+    const [noAddress, setNoAddress] = useState(true);
 
     console.log(addressChecked);
     const handlePayment = async () => {
@@ -47,11 +48,18 @@ const CheckOut = () => {
         const res = await fetch(`http://localhost:3000/address`, {
             credentials: "include",
         });
+        if (res.status === 404) {
+            setNewAddressForm(true);
+            setNoAddress(true);
+            return {};
+        }
         const data = await res.json();
         console.log("Address data", data);
         setAddressData(data);
-        if (!data.noAddress) setShowAddressForm(true);
-        setNewAddressForm(true);
+        // if (!data.noAddress) setShowAddressForm(true);
+        setShowAddressForm(true);
+        setNoAddress(false);
+        // setNewAddressForm(true);
     };
 
     return (
@@ -63,6 +71,7 @@ const CheckOut = () => {
                         setEditAddressForm={setEditAddressForm}
                         setNewAddressForm={setNewAddressForm}
                         addressData={addressData}
+                        noAddress={noAddress}
                     />
                 </div>
             )}
@@ -72,18 +81,18 @@ const CheckOut = () => {
                 <div className="">
                     <div className="flex justify-between">
                         <span>Total Value:</span>
-                        {/* <span>{totalPrice} €</span> */}
+                        <span>{totalPrice} €</span>
                     </div>
                     <div className="flex justify-between items-center">
                         <span>Shipping Costs:</span>
-                        <span>5.00 €</span>
+                        <span>50.00 €</span>
                     </div>
                     <div className="line border-t border-gray-300 my-10"></div>
                     <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
                         <span>Total amount:</span>
-                        {/* <span>
-                    {(parseFloat(totalPrice) + 5.0).toFixed(2)} €
-                </span> */}
+                        <span>
+                            {(parseFloat(totalPrice) + 50.0).toFixed(2)} €
+                        </span>
                     </div>
                     <span className="text-sm text-gray-500 mt-8">
                         incl. applicable VAT.
@@ -92,6 +101,7 @@ const CheckOut = () => {
                 <div>
                     <div className="flex items-center gap-2 mb-4">
                         <input
+                            disabled={noAddress}
                             type="checkbox"
                             checked={addressChecked}
                             onChange={(e) =>

@@ -245,7 +245,7 @@ export const checkoutSuccess = async (req, res) => {
             const newOrder = new Order({
                 userId: session.metadata.userId, // 用户ID
                 items: cartItems.items.map((item) => ({
-                    productID: item.productId._id, // 商品ID
+                    productId: item.productId._id, // 商品ID
                     quantity: item.quantity, // 商品数量
                     price: item.productId.price, // 商品价格
                 })),

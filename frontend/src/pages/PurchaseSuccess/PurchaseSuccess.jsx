@@ -1,13 +1,16 @@
 import { ArrowRight, CheckCircle, HandHeart } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppProvider";
 
 import Confetti from "react-confetti";
 
 const PurchaseSuccess = () => {
     const [isProcessing, setIsProcessing] = useState(true);
     //  const { clearCart } = useCartStore();
+    const { setCartItems } = useContext(AppContext);
     const [error, setError] = useState(null);
+    const { setSessionId } = useContext(AppContext);
     const navigate = useNavigate();
     useEffect(() => {
         const handleCheckoutSuccess = async (sessionId) => {
@@ -23,10 +26,21 @@ const PurchaseSuccess = () => {
                         credentials: "include",
                     }
                 );
-                // await axios.post("/payments/checkout-success", {
-                //     sessionId,
-                // });
+
                 // clearCart();
+                const res = await fetch("http://localhost:3000/cart", {
+                    method: "DELETE",
+                    credentials: "include",
+                });
+                if (!res.ok) {
+                    if (res.status === 404) {
+                        return [];
+                    } else {
+                        throw new Error("Failed to fetch cart items");
+                    }
+                }
+                // const data = await res.json();
+                setCartItems([]);
             } catch (error) {
                 console.log(error);
             } finally {
@@ -39,6 +53,7 @@ const PurchaseSuccess = () => {
         );
         if (sessionId) {
             handleCheckoutSuccess(sessionId);
+            setSessionId(sessionId);
         } else {
             setIsProcessing(false);
             setError("No session ID found in the URL");

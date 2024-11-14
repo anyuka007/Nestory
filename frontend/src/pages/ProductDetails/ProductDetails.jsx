@@ -261,14 +261,20 @@ const ProductDetails = () => {
                             {product.percentage > 0 ? (
                                 <div className="flex items-center space-x-5">
                                     <p className="line-through text-3xl">
-                                        {product.price.toFixed(2)}€
-                                    </p>
-                                    <p className="text-5xl text-colorTertiary">
+                                        {/* {product.price.toFixed(2)}€ */}
                                         {Math.round(
-                                            product.price *
+                                            product.price /
                                                 (1 - product.percentage / 100)
                                         ).toFixed(2)}
                                         €
+                                    </p>
+                                    <p className="text-5xl text-colorTertiary">
+                                        {/* {Math.round(
+                                            product.price *
+                                                (1 - product.percentage / 100)
+                                        ).toFixed(2)}
+                                        € */}
+                                        {product.price.toFixed(2)}€
                                     </p>
                                 </div>
                             ) : (

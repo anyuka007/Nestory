@@ -14,17 +14,23 @@ export const getAllOrders = async (req, res) => {
 };
 
 export const getUserOrders = async (req, res) => {
-    const userId = req.user?.id;
-    console.log("userId", userId);
+    // const userId = req.user?.id;
+    // console.log("userId", userId);
+    const { sessionId } = req.query;
+    console.log("sessionId in getUserOrders", sessionId);
 
-    if (!userId) {
-        console.error("User ID is missing".red);
-        return res.status(400).send("User ID is missing");
+    // if (!userId) {
+    //     console.error("User ID is missing".red);
+    //     return res.status(400).send("User ID is missing");
+    // }
+    if (!sessionId) {
+        console.error("sessionId is missing".red);
+        return res.status(400).send("sessionId is missing");
     }
     try {
-        console.log("Fetching order for userId:", userId);
-        const order = await Order.findOne({ userId: userId })
-            .populate("items.productID")
+        console.log("Fetching order for stripeSessionId:", sessionId);
+        const order = await Order.findOne({ stripeSessionId: sessionId })
+            .populate("items.productId")
             .populate("userId", "name email")
             .populate("shippingAddress");
 
