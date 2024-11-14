@@ -198,3 +198,17 @@ export const updateProductInCart = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
+
+export const deleteCart = async (req, res) => {
+    const { id } = req.user;
+    try {
+        const cart = await Cart.findOneAndDelete({ userId: id });
+        if (!cart) {
+            return res.status(404).json({ message: "Cart not found" });
+        }
+        return res.status(200).json({ message: "Cart deleted", cart });
+    } catch (error) {
+        console.error("Error deleting cart:", error);
+        return res.status(500).json({ message: "Server error" });
+    }
+};

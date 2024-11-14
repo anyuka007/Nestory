@@ -55,8 +55,8 @@ const ProductCard = ({ product }) => {
                             <bdi className="text-[12px] text-[#8097a4] line-through ">
                                 <span className="text-[12px]">$</span>
                                 {(
-                                    (product.price * (100 + percentageValue)) /
-                                    100
+                                    product.price /
+                                    ((100 - percentageValue) / 100)
                                 ).toFixed(2)}
                                 {/* {product.price} */}
                             </bdi>

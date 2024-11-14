@@ -2,6 +2,7 @@ import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem
 import Button from "../../components/Button/Button";
 import { AppContext } from "../../context/AppProvider";
 import { useContext, useEffect, useState } from "react";
+import CheckOut from "../../components/CheckOut/CheckOut.jsx";
 
 const ShoppingCart = () => {
     const { cartItems, setCartItems } = useContext(AppContext);
@@ -96,13 +97,6 @@ const ShoppingCart = () => {
         );
     }, [cartItems]);
 
-    // const totalPrice = cartItems
-    //     .reduce(
-    //         (total, item) => total + item.productId.price * item.quantity,
-    //         0
-    //     )
-    //     .toFixed(2);
-
     return (
         <div className="min-h-screen bg-white flex flex-col xl:flex-row">
             <div className="left w-full p-14 md:w-full">
@@ -133,7 +127,8 @@ const ShoppingCart = () => {
                 )}
             </div>
 
-            <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[35%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
+            <CheckOut totalPrice={totalPrice} />
+            {/* <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[35%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
                 <h2 className="text-3xl font-bold mb-6">Order Summary</h2>
                 <div className="">
                     <div className="flex justify-between">
@@ -161,7 +156,7 @@ const ShoppingCart = () => {
                         className="text-white w-full py-2 mt-6 font-bold"
                     />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
