@@ -14,10 +14,11 @@ const AppProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState("");
-    const [heartCount, setHeartCount] = useState(0);
+    // const [heartCount, setHeartCount] = useState(0);
     const [user, setUser] = useState({});
     const [product, setProduct] = useState({});
     const [quantityForCart, setQuantityForCart] = useState(0);
+    const [sessionId, setSessionId] = useState("");
 
     //fly to shopping cart
     const [isFlying, setIsFlying] = useState(false);
@@ -39,7 +40,7 @@ const AppProvider = ({ children }) => {
             return;
         }
         const data = await res.json();
-        console.log("fetchUser", data);
+        // console.log("fetchUser", data);
         setUser(data.user);
         setLoginSuccess(data.success);
     };
@@ -62,7 +63,7 @@ const AppProvider = ({ children }) => {
             }
             const data = await response.json();
             setCartItems(data.items);
-            console.log(data.items);
+            // console.log(data.items);
         };
         if (user._id) {
             fetchCart();
@@ -85,7 +86,7 @@ const AppProvider = ({ children }) => {
         setCartItems([]);
         setWishlist([]);
         setCartCount(0);
-        setHeartCount(0);
+        // setHeartCount(0);
         setLoginSuccess(false);
     };
 
@@ -120,8 +121,8 @@ const AppProvider = ({ children }) => {
                 setLoginSuccess,
                 searchKeyword,
                 setSearchKeyword,
-                heartCount,
-                setHeartCount,
+                // heartCount,
+                // setHeartCount,
                 user,
                 setUser,
                 cartItems,
@@ -132,6 +133,8 @@ const AppProvider = ({ children }) => {
                 handleLogout,
                 quantityForCart,
                 setQuantityForCart,
+                sessionId,
+                setSessionId,
 
                 //fly animation
                 isFlying,

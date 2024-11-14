@@ -14,6 +14,8 @@ import productDetailsRouter from "./routes/productDetailsRoutes.js";
 import ordersRouter from "./routes/ordersRouter.js";
 import addressRouter from "./routes/addressRouter.js";
 import userRouter from "./routes/userRouter.js";
+import paymentRouter from "./routes/payment.route.js";
+import orderRouter from "./routes/order.route.js";
 
 await connect();
 const app = express();
@@ -45,6 +47,8 @@ app.use("/product", productDetailsRouter);
 app.use("/account/orders", ordersRouter);
 app.use("/address", addressRouter);
 app.use("/account/user", userRouter);
+app.use("/api/payments", paymentRouter);
+app.use("/api/order", orderRouter);
 
 const port = 3000;
 app.listen(port, () => {

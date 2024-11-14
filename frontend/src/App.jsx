@@ -14,11 +14,19 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import UserOrders from "./pages/UserProfile/UserOrders";
 import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 import ShopList from "./pages/ShopList/ShopList";
+import PurchaseSuccess from "./pages/PurchaseSuccess/PurchaseSuccess";
+import PurchaseCancel from "./pages/PurchaseCancel/PurchaseCancel";
+import ShowOrders from "./pages/ShowOrders/ShowOrders";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import DashboardLayout from "./pages/DashboardLayout";
+import DashboardProducts from "./pages/DashboardProducts/DashboardProducts";
+import DashboardUsers from "./pages/DashboardUsers/DashboardUsers";
 
 const App = () => (
     <BrowserRouter>
         <AppProvider>
             <Routes>
+                {/* home page and his children pages */}
                 <Route path="/" element={<SharedLayout />}>
                     <Route index element={<Home />} />
                     {/* Weitere Routen hier zwischen */}
@@ -37,7 +45,30 @@ const App = () => (
                         element={<Category />}
                     />
                     <Route path="product/:_id" element={<ProductDetails />} />
+                    <Route
+                        path="purchase-success"
+                        element={<PurchaseSuccess />}
+                    />
+                    <Route
+                        path="purchase-cancel"
+                        element={<PurchaseCancel />}
+                    />
+                    <Route path="show-orders" element={<ShowOrders />} />
                     {/* Weitere Routen hier zwischen */}
+                    <Route path="*" element={<NotFound />} />
+                </Route>
+
+                {/* dashboard page */}
+                <Route path="/dashboard" element={<DashboardLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route
+                        path="/dashboard-products"
+                        element={<DashboardProducts />}
+                    />
+                    <Route
+                        path="/dashboard-users"
+                        element={<DashboardUsers />}
+                    />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>

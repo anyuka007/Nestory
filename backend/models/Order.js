@@ -34,6 +34,7 @@ const OrderSchema = new mongoose.Schema(
             enum: ["delivered", "assembling", "in transit"],
         },
         total: { type: Number, required: true },
+        stripeSessionId: { type: String, unique: true },
     },
     { timestamps: true }
 );

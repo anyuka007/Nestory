@@ -125,8 +125,8 @@ const ShoppingCartItem = ({ cartItem, deleteCartItem, updateCartItem }) => {
                                 <div>
                                     <p className="line-through text-[2rem]">
                                         {Math.round(
-                                            cartItem.productId.price *
-                                                (1 +
+                                            cartItem.productId.price /
+                                                (1 -
                                                     cartItem.productId
                                                         .percentage /
                                                         100)
