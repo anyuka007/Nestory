@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   EffectCoverflow,
@@ -12,6 +14,27 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
 const Carousel = () => {
+  const [carouselProducts, setCarouselProducts] = useState([]);
+  console.log("probe1");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      console.log("probe");
+      try {
+        const response = await fetch(
+          "http://localhost:3000/api/products/?type=topRated"
+        );
+        const data = await response.json();
+        console.log("products in carousel", data);
+        setCarouselProducts(data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []); //einmal render
+
   return (
     // <main className="bg-colorSecondary relative w-[min(90rem,90%)] mx-auto min-h-screen gap-6 py-12 flex flex-col lg:flex-row items-center">
     <main className="relative w-full mx-auto flex flex-col items-center">
@@ -42,11 +65,26 @@ const Carousel = () => {
           1560: { slidesPerView: 4 },
         }}
         modules={[EffectCoverflow, Pagination, Keyboard, Mousewheel, Autoplay]}
-        className="swiper w-full max-w-[8xl] mx-auto pt-4"
+        className="swiper w-full max-w-[9xl] mx-auto pt-4"
       >
         {/* Add similar SwiperSlide elements */}
         {/* <SwiperSlide className="swiper-slide--two bg-cover bg-center h-72"> */}
-        <SwiperSlide className="bg-cover bg-center h-[30rem]">
+        {/* Photos */}
+        {carouselProducts.map((product) => (
+          <SwiperSlide
+            key={product.id}
+            className="bg-cover bg-center h-[30rem]"
+          >
+            <Link to={`/product/${product._id}`}>
+              <img
+                src={product.image}
+                alt={product.name}
+                className="object-cover w-full h-full"
+              />
+            </Link>
+          </SwiperSlide>
+        ))}
+        {/* <SwiperSlide className="bg-cover bg-center h-[30rem]">
           <img
             src="/images/beds/bed2.webp"
             alt="Scallop"
