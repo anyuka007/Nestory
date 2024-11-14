@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import WishlistItem from "../../components/WishlistItem/WishlistItem";
 import { AppContext } from "../../context/AppProvider";
 import { fetchWishlist } from "../../utils/wishlistUtils/fetchWishList";
 
 const Wishlist = () => {
-    const { wishlist, setWishlist, user } = useContext(AppContext);
+    const { wishlist, setWishlist, user, setCartItems } =
+        useContext(AppContext);
 
     const deleteWishItem = async (id) => {
         //console.log("item to del: ", wishlist.find((i) => i._id === id).name, id);
@@ -29,12 +30,43 @@ const Wishlist = () => {
             console.error("Error deleting wishlist item:", error);
         }
     };
-    const addToCart = (id) => {
+    /* const addToCart = (id) => {
         console.log(
             "item to add: ",
             wishlist.find((i) => i._id === id).name,
             id
         );
+    }; */
+
+    const addToCart = async (productId) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3000/cart/${productId}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        quantity: 1,
+                        color: "black",
+                    }),
+                    credentials: "include",
+                }
+            );
+
+            const data = await response.json();
+            console.log("fetched data:", data);
+
+            if (response.ok) {
+                console.log("Product added to cart", data);
+                setCartItems(data.cart.items);
+            } else {
+                console.error("Error adding product to cart:", data.message);
+            }
+        } catch (error) {
+            console.error("Request failed:", error);
+        }
     };
 
     return (
