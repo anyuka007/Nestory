@@ -226,9 +226,9 @@ const App = () => {
           </a>
         </p>
       </div>
-      <div className={styles.imageContainer}>
-        <img
-          src="/images/logo/nestoryFull.png"
+      {/* <div className={styles.imageContainer}>
+         <img
+          src="/images/logo/cozy.webp"
           alt="Logo or decorative image"
           className="logo"
           style={{
@@ -236,8 +236,8 @@ const App = () => {
             height: "auto",
             borderRadius: "23px",
           }}
-        />
-      </div>
+        /> 
+      </div>  */}
     </div>
   );
 };
