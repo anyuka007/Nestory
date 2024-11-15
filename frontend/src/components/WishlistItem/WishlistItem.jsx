@@ -37,22 +37,22 @@ const WishlistItem = ({ wishItem }) => {
             console.error("Request failed:", error);
         }
 
-        // Start der Animation
+        // Start der Animation - startRect.width / 2
         setIsFlying(true);
 
         const startRect = imgRef.current.getBoundingClientRect();
-        const endRect = bagIconRef.current.getBoundingClientRect();
-        /* if (bagIconRef.current.clientX === 0) {
-            endRect =
-                bagIconRef.current.parent.parent.parent.getBoundingClientRect();
-        }
-        console.log(
-            "bbbbb",
-            startRect,
-            endRect,
-            bagIconRef,
-            window.clientWidth
-        ); */
+        const bagPosition = bagIconRef.current.getBoundingClientRect();
+        const isBagAtBottom = bagPosition.x === 0 && bagPosition.y === 0;
+        /* console.log("isBagAtBottom: ", isBagAtBottom);
+        console.log("bagPosition: ", bagPosition); */
+        const y = window.innerHeight - 40;
+        const x = (3 * window.innerWidth) / 8;
+        const endRect = isBagAtBottom
+            ? {
+                  left: x,
+                  top: y,
+              }
+            : bagPosition;
 
         const scale = 0.2;
 
@@ -65,8 +65,12 @@ const WishlistItem = ({ wishItem }) => {
 
         setTimeout(() => {
             // set endPosition of the center of image to the center of the shopping bag icon(size=26px/2)
-            const adjustedLeft = endRect.left - startRect.width / 2 + 13;
-            const adjustedTop = endRect.top - startRect.height / 2 + 13;
+            const adjustedLeft = isBagAtBottom
+                ? endRect.left - startRect.width / 2
+                : endRect.left - startRect.width / 2 + 13;
+            const adjustedTop = isBagAtBottom
+                ? endRect.top - startRect.height / 2
+                : endRect.top - startRect.height / 2 + 13;
 
             setFlyStyle(() => ({
                 left: `${adjustedLeft}px`,
