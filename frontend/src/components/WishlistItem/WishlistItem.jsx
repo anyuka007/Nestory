@@ -43,10 +43,9 @@ const WishlistItem = ({ wishItem }) => {
         const startRect = imgRef.current.getBoundingClientRect();
         const bagPosition = bagIconRef.current.getBoundingClientRect();
         const isBagAtBottom = bagPosition.x === 0 && bagPosition.y === 0;
-        /* console.log("isBagAtBottom: ", isBagAtBottom);
-        console.log("bagPosition: ", bagPosition); */
-        const y = window.innerHeight - 40;
-        const x = (3 * window.innerWidth) / 8;
+        // if navbar is at the bottom, it has position absolute (is out of DOM) and getBoundingClientRect() gives 0 fpr all props
+        const y = window.innerHeight - 40; // 40 = 1/2 from navbar height (whenn at the bottom)
+        const x = (3 * window.innerWidth) / 8; // center of the second element in nav bar (whenn at the bottom)
         const endRect = isBagAtBottom
             ? {
                   left: x,
@@ -55,7 +54,7 @@ const WishlistItem = ({ wishItem }) => {
             : bagPosition;
 
         const scale = 0.2;
-
+        // setting start position for image animation (original image position)
         setFlyStyle(() => ({
             left: `${startRect.left}px`,
             top: `${startRect.top}px`,
