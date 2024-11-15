@@ -11,7 +11,7 @@ export default function DividerLogo() {
           <img
             src="/images/logo/nestoryFull.png"
             alt="Logo"
-            className="h-auto w-40 rounded-full "
+            className="h-auto w-40"
           />
         </div>
 
