@@ -39,10 +39,16 @@ const AppProvider = ({ children }) => {
             navigate("/");
             return;
         }
+
         const data = await res.json();
-        // console.log("fetchUser", data);
+
+        console.log("fetchUser", data);
         setUser(data.user);
         setLoginSuccess(data.success);
+        if (data.user.role === "admin") {
+            navigate("/dashboard");
+            return;
+        }
     };
 
     useEffect(() => {

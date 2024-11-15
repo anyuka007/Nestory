@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import "./css/App.css";
-import AppProvider from "./context/AppProvider";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AppProvider, { AppContext } from "./context/AppProvider";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import SharedLayout from "./pages/SharedLayout";
 import Home from "./pages/Home/Home";
 import NotFound from "./pages/NotFound/NotFound";
@@ -21,11 +22,40 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import DashboardLayout from "./pages/DashboardLayout";
 import DashboardProducts from "./pages/DashboardProducts/DashboardProducts";
 import DashboardUsers from "./pages/DashboardUsers/DashboardUsers";
+import { useContext } from "react";
+
+// Role-based redirect
+// const RoleBasedRedirect = () => {
+//     const { user } = useContext(AppContext);
+
+//     // if user is admin, redirect to dashboard
+//     if (user?.role === "admin") {
+//         return <Navigate to="/dashboard" replace />;
+//     }
+
+//     // For other roles (customer), redirect to home
+//     return <Navigate to="/" replace />;
+// };
+
+// Protected route for admin pages
+const ProtectedRoute = ({ children }) => {
+    const { user } = useContext(AppContext);
+
+    // if not admin, redirect to home
+    if (!user || user.role !== "admin") {
+        return <Navigate to="/" replace />;
+    }
+
+    return children;
+};
 
 const App = () => (
     <BrowserRouter>
         <AppProvider>
             <Routes>
+                {/* 根路径下的角色重定向 */}
+                {/* <Route path="/" element={<RoleBasedRedirect />} /> */}
+
                 {/* home page and his children pages */}
                 <Route path="/" element={<SharedLayout />}>
                     <Route index element={<Home />} />
@@ -59,16 +89,17 @@ const App = () => (
                 </Route>
 
                 {/* dashboard page */}
-                <Route path="/dashboard" element={<DashboardLayout />}>
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <DashboardLayout />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<Dashboard />} />
-                    <Route
-                        path="/dashboard-products"
-                        element={<DashboardProducts />}
-                    />
-                    <Route
-                        path="/dashboard-users"
-                        element={<DashboardUsers />}
-                    />
+                    <Route path="products" element={<DashboardProducts />} />
+                    <Route path="users" element={<DashboardUsers />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
