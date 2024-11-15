@@ -1,14 +1,18 @@
 import { Outlet } from "react-router-dom";
-import DashboardNavbar from "./DashboardNavbar/DashboardNavbar";
+import DashboardNavbar from "../components/DashboardNavbar/DashboardNavbar";
+import DashboardSidebar from "../components/DashboardSidebar/DashboardSidebar";
 
 const DashboardLayout = () => (
     <>
-        <DashboardNavbar />
-
-        <main className="px-16 md:px-20 lg:px-40 xl:px-80 w-full pt-[16rem]">
-            <Outlet />
-        </main>
-        {/* <Footer /> */}
+        <div className="flex bg-[#151c2c]">
+            <div className="basis-1/4 bg-bgSoft p-5">
+                <DashboardSidebar />
+            </div>
+            <div className="basis-3/4 p-5">
+                <DashboardNavbar />
+                <Outlet /> {/* 子路由内容将显示在这里 */}
+            </div>
+        </div>
     </>
 );
 
