@@ -1,14 +1,57 @@
-import { Search } from "lucide-react";
+import { ArrowDownUp, Search } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { GrUserAdmin } from "react-icons/gr";
+import { ImUserTie } from "react-icons/im";
 // import Pagination from "./components/Pagination";
 
 const DashboardUsers = () => {
     const { register, handleSubmit } = useForm();
+    const [users, setUsers] = useState([]);
+
+    const [sortedUsers, setSortedUsers] = useState([]);
+    const [sortOrder, setSortOrder] = useState("asc");
+    const [sortColumn, setSortColumn] = useState("");
     const navigate = useNavigate();
 
     const onSearch = (data) => {
         console.log("Search:", data);
+    };
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/account/user/admin",
+                    {
+                        credentials: "include",
+                    }
+                );
+                const data = await response.json();
+                console.log("users in dashboard", data);
+                setUsers(data);
+                setSortedUsers(data);
+            } catch (error) {
+                console.log("Error fetching products", error);
+            }
+        };
+        fetchProducts();
+    }, []);
+
+    const handleSort = (column) => {
+        const isAsc = column === sortColumn && sortOrder === "asc";
+        const newSortOrder = isAsc ? "desc" : "asc";
+        setSortColumn(column);
+        setSortOrder(newSortOrder);
+        const sorted = [...users].sort((a, b) => {
+            if (newSortOrder === "asc") {
+                return a[column] > b[column] ? 1 : -1;
+            } else {
+                return a[column] < b[column] ? 1 : -1;
+            }
+        });
+        setSortedUsers(sorted);
     };
 
     return (
@@ -37,48 +80,96 @@ const DashboardUsers = () => {
             </div>
 
             {/* Table Section */}
-            <div className="overflow-x-auto">
-                <table className="w-full border-collapse border border-colorPrimary text-left text-gray-200">
-                    <thead>
-                        <tr className="bg-colorPrimary">
-                            <th className="px-4 py-2">First Name</th>
-                            <th className="px-4 py-2">Last Name</th>
-                            <th className="px-4 py-2">Email</th>
-                            <th className="px-4 py-2">Create</th>
-                            <th className="px-4 py-2">Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="border-t border-colorPrimary text-gray-200">
-                            <td className="px-4 py-2 flex items-center gap-3">
-                                <img
-                                    src="/images/logo/logo5.png"
-                                    alt="John Doe"
-                                    className="w-10 h-10 rounded-full object-cover"
-                                />
-                                John
-                            </td>
-                            <td className="px-4 py-2">Doe</td>
-                            <td className="px-4 py-2">John@mail.com</td>
-                            <td className="px-4 py-2">03.11.2024</td>
-                            <td className="px-4 py-2">Admin</td>
-                            <td className="px-4 py-2 flex gap-2">
-                                <button
-                                    onClick={() =>
-                                        navigate("/dashboard/users/update/test")
-                                    }
-                                    className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600"
+            {/* Pagination and Sorting */}
+            {users.length > 0 ? (
+                <div className="overflow-x-auto">
+                    <table className="w-full border-collapse border border-colorPrimary text-left text-gray-200">
+                        <thead>
+                            <tr className="bg-colorPrimary">
+                                <th className="px-4 py-2">
+                                    First Name
+                                    <ArrowDownUp
+                                        onClick={() => {
+                                            handleSort("firstName");
+                                        }}
+                                        size={20}
+                                        className="cursor-pointer inline-block ml-4"
+                                    />
+                                </th>
+                                <th className="px-4 py-2">
+                                    Last Name
+                                    <ArrowDownUp
+                                        onClick={() => {
+                                            handleSort("lastName");
+                                        }}
+                                        size={20}
+                                        className="cursor-pointer inline-block ml-4"
+                                    />
+                                </th>
+                                <th className="px-4 py-2">Email</th>
+                                <th className="px-4 py-2">Create</th>
+                                <th className="px-4 py-2">
+                                    Role
+                                    <ArrowDownUp
+                                        onClick={() => {
+                                            handleSort("role");
+                                        }}
+                                        size={20}
+                                        className="cursor-pointer inline-block ml-4"
+                                    />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sortedUsers.map((user) => (
+                                <tr
+                                    key={user._id}
+                                    className="border-t border-colorPrimary text-gray-200"
                                 >
-                                    Update
-                                </button>
-                                <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                                    <td className="px-4 py-2 flex items-center gap-3">
+                                        {user.role === "admin" ? (
+                                            <GrUserAdmin />
+                                        ) : (
+                                            <ImUserTie />
+                                        )}
+                                        {/* <img
+                                            src="/images/logo/logo5.png"
+                                            alt="John Doe"
+                                            className="w-10 h-10 rounded-full object-cover"
+                                        /> */}
+                                        {user.firstName}
+                                    </td>
+                                    <td className="px-4 py-2">
+                                        {user.lastName}
+                                    </td>
+                                    <td className="px-4 py-2">{user.email}</td>
+                                    <td className="px-4 py-2">
+                                        {user.createdAt}
+                                    </td>
+                                    <td className="px-4 py-2">{user.role}</td>
+                                    <td className="px-4 py-2 flex gap-2">
+                                        <button
+                                            onClick={() =>
+                                                navigate(
+                                                    "/dashboard/users/update/test"
+                                                )
+                                            }
+                                            className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600"
+                                        >
+                                            Update
+                                        </button>
+                                        <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            ) : (
+                <p className="text-gray-200">No users found.</p>
+            )}
 
             {/* Pagination */}
             {/* <Pagination /> */}

@@ -59,3 +59,31 @@ export const getUser = async (req, res) => {
         res.status(500).send(error.message);
     }
 };
+
+export const getAllUser = async (req, res) => {
+    const userId = req.user?.id;
+
+    if (!userId) {
+        console.error("User ID is missing".red);
+        return res.status(400).send("User ID is missing");
+    }
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            console.log("No user found for userId:", userId);
+            return res.status(404).send("User not found");
+        }
+
+        if (user.role !== "admin") {
+            return res
+                .status(403)
+                .send("You are not authorized to perform this action");
+        }
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        console.error("Error fetching user".red, error.message.red);
+        res.status(500).send(error.message);
+    }
+};
