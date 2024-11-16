@@ -2,6 +2,7 @@ import { ArrowDownUp, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Pagination from "../../components/Pagination/Pagination";
 // import Pagination from "./components/Pagination";
 
 const DashboardProducts = () => {
@@ -11,6 +12,11 @@ const DashboardProducts = () => {
     const [sortedProducts, setSortedProducts] = useState([]);
     const [sortOrder, setSortOrder] = useState("asc");
     const [sortColumn, setSortColumn] = useState("");
+
+    const [paginatedProducts, setPaginatedProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1); // 当前页码
+
+    const itemsPerPage = 10;
     const navigate = useNavigate();
 
     const onSearch = (data) => {
@@ -50,6 +56,18 @@ const DashboardProducts = () => {
             }
         });
         setSortedProducts(sorted);
+    };
+
+    // 根据当前页和每页数据数更新分页内容
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setPaginatedProducts(sortedProducts.slice(startIndex, endIndex));
+    }, [sortedProducts, currentPage, itemsPerPage]);
+
+    // 分页切换逻辑
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
     };
 
     return (
@@ -119,7 +137,7 @@ const DashboardProducts = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {sortedProducts?.map((product) => (
+                            {paginatedProducts?.map((product) => (
                                 <tr
                                     key={product._id}
                                     className="border-t border-colorPrimary text-gray-200"
@@ -173,7 +191,15 @@ const DashboardProducts = () => {
             )}
 
             {/* Pagination */}
-            {/* <Pagination /> */}
+            <Pagination
+                currentPage={currentPage}
+                hasPrev={currentPage > 1}
+                hasNext={
+                    currentPage <
+                    Math.ceil(sortedProducts.length / itemsPerPage)
+                }
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };

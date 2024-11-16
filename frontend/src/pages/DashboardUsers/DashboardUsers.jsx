@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import { ImUserTie } from "react-icons/im";
+import Pagination from "../../components/Pagination/Pagination";
 // import Pagination from "./components/Pagination";
 
 const DashboardUsers = () => {
@@ -13,6 +14,12 @@ const DashboardUsers = () => {
     const [sortedUsers, setSortedUsers] = useState([]);
     const [sortOrder, setSortOrder] = useState("asc");
     const [sortColumn, setSortColumn] = useState("");
+
+    const [paginatedUsers, setPaginatedUsers] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1); // 当前页码
+    // const [itemsPerPage] = useState(5); // 每页显示5条数据
+    const itemsPerPage = 5;
+
     const navigate = useNavigate();
 
     const onSearch = (data) => {
@@ -52,6 +59,18 @@ const DashboardUsers = () => {
             }
         });
         setSortedUsers(sorted);
+    };
+
+    // 根据当前页和每页数据数更新分页内容
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        setPaginatedUsers(sortedUsers.slice(startIndex, endIndex));
+    }, [sortedUsers, currentPage, itemsPerPage]);
+
+    // 分页切换逻辑
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
     };
 
     return (
@@ -121,7 +140,7 @@ const DashboardUsers = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {sortedUsers.map((user) => (
+                            {paginatedUsers.map((user) => (
                                 <tr
                                     key={user._id}
                                     className="border-t border-colorPrimary text-gray-200"
@@ -172,7 +191,14 @@ const DashboardUsers = () => {
             )}
 
             {/* Pagination */}
-            {/* <Pagination /> */}
+            <Pagination
+                currentPage={currentPage}
+                hasPrev={currentPage > 1}
+                hasNext={
+                    currentPage < Math.ceil(sortedUsers.length / itemsPerPage)
+                }
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };
