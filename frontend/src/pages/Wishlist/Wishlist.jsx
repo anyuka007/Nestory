@@ -8,14 +8,12 @@ const Wishlist = () => {
 
     return (
         <div>
-            <div className="py-[1rem] lg:py-[3rem] flex items-center justify-center">
-                <h2 className=" text-[2.4rem] md:text-[4rem] lg:text-[4.8rem] text-colorPrimary font-bold">
-                    Wishlist
-                </h2>
+            <div className="py-[1rem] flex items-center justify-center">
+                <h2 className="text-[3rem] md:text-[4rem]">Wishlist</h2>
             </div>
             {wishlist.length ? (
                 <div className="flex flex-col items-center justify-center">
-                    <h3 className=" w-[100%] lg:text-[3.2rem] text-center border-b">
+                    <h3 className=" w-[100%] lg:text-[2.5rem] text-center border-b">
                         {user.firstName}, there are {wishlist.length} items in
                         your wishlist
                     </h3>
