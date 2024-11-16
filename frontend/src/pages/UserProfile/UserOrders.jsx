@@ -1,6 +1,9 @@
+import { useContext, useEffect, useState } from "react";
 import OrderItem from "../../components/UserProfile/OrderItem/OrderItem";
+import { fetchUsersOrders } from "../../utils/ordersUtils/fetchUsersOrders";
+import { AppContext } from "../../context/AppProvider";
 
-const testOrders = [
+/* const testOrders = [
     {
         _id: 1234,
         name: "Circle corners table",
@@ -40,16 +43,44 @@ const testOrders = [
         priceByOrder: 276.12,
         quantity: 1,
     },
-];
+]; */
 
 const UserOrders = () => {
+    const [orders, setOrders] = useState([]);
+    const { user } = useContext(AppContext);
+
+    useEffect(() => {
+        const getUsersOrders = async () => {
+            const orders = await fetchUsersOrders();
+            //setOrders(orders);
+            const sortedOrders = orders.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
+            setOrders(sortedOrders);
+        };
+        if (user._id) {
+            getUsersOrders();
+        }
+    }, []);
+
     return (
         <div className="flex flex-col h-full">
             <h2 className="text-center text-[3rem] md:text-[4rem] lg:[4.8rem] mb-[1rem]">
                 Orders
             </h2>
-            {testOrders.map((item, index) => (
-                <OrderItem key={index} orderItem={item} />
+            {orders.map((order, orderIndex) => (
+                <div key={orderIndex}>
+                    {order.items.map((item, itemIndex) => (
+                        <OrderItem
+                            key={itemIndex}
+                            orderItem={{
+                                ...item,
+                                createdAt: order.createdAt,
+                                status: order.status,
+                            }}
+                        />
+                    ))}
+                </div>
             ))}
         </div>
     );
