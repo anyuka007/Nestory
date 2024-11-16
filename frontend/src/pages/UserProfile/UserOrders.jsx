@@ -51,7 +51,7 @@ const UserOrders = () => {
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center">
-                    <h3 className="text-[3.2rem] mb-[1.5rem]">
+                    <h3 className="text-[2.5rem] mb-[1.5rem]">
                         {user.firstName}, you have no orders yet
                     </h3>
                     <p className="bg-[#FFB128] py-[1.5rem] px-[3.5rem] text-[1.4rem] text-white  font-bold rounded-[8rem]">
