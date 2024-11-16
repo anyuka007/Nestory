@@ -77,7 +77,7 @@ const menuItems = [
 
 const DashboardSidebar = () => {
     return (
-        <div className="sticky top-10 p-5 bg-colorPrimary text-gray-200">
+        <div className="sticky top-0 p-5 bg-colorPrimary text-gray-200 min-h-screen">
             <div className="flex items-center gap-4 mb-6">
                 <User size={50} />
                 <div className="flex flex-col">

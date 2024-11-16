@@ -23,6 +23,10 @@ import DashboardLayout from "./pages/DashboardLayout";
 import DashboardProducts from "./pages/DashboardProducts/DashboardProducts";
 import DashboardUsers from "./pages/DashboardUsers/DashboardUsers";
 import { useContext } from "react";
+import DashboardAddUser from "./pages/DashboardAddUser/DashboardAddUser";
+import DashboardUpdateUser from "./pages/DashboardUpdateUser/DashboardUpdateUser";
+import DashboardAddProduct from "./pages/DashboardAddProduct/DashboardAddProduct";
+import DashboardUpdateProduct from "./pages/DashboardUpdateProduct/DashboardUpdateProduct";
 
 // Role-based redirect
 // const RoleBasedRedirect = () => {
@@ -99,7 +103,21 @@ const App = () => (
                 >
                     <Route index element={<Dashboard />} />
                     <Route path="products" element={<DashboardProducts />} />
+                    <Route
+                        path="products/add"
+                        element={<DashboardAddProduct />}
+                    />
+                    <Route
+                        path="products/update/test"
+                        element={<DashboardUpdateProduct />}
+                    />
                     <Route path="users" element={<DashboardUsers />} />
+                    <Route path="users/add" element={<DashboardAddUser />} />
+                    <Route
+                        path="users/update/test"
+                        element={<DashboardUpdateUser />}
+                    />
+
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
