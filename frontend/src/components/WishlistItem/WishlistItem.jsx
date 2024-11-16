@@ -135,7 +135,7 @@ const WishlistItem = ({ wishItem }) => {
                         onClick={deleteWishItem}
                         className=" h-8 w-8 text-colorPrimary md:hidden mb-auto "
                     >
-                        <Trash2 />
+                        <Trash2 className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95" />
                     </button>
                 </div>
             </div>
@@ -189,7 +189,7 @@ const WishlistItem = ({ wishItem }) => {
                         }}
                         className="p-4 text-colorPrimary hidden md:block mb-auto"
                     >
-                        <Trash2 />
+                        <Trash2 className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95" />
                     </button>
                 </div>
 
