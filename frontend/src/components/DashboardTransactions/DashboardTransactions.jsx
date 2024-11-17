@@ -15,7 +15,7 @@ export const fetchTransactions = async () => {
     }
 };
 const DashboardTransactions = () => {
-    const [allOrders, setAllOrders] = useState([]);
+    // const [allOrders, setAllOrders] = useState([]);
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {

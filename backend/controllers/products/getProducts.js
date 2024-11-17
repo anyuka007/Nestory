@@ -105,7 +105,7 @@ export const getAllProducts = async (req, res) => {
         //         break;
         // }
 
-        const products = await Product.find({});
+        const products = await Product.find({}).sort({ updatedAt: -1 });
         res.send(products);
     } catch (error) {
         console.error("Error fetching products:", error);

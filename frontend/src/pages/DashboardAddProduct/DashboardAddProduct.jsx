@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const DashboardAddProduct = () => {
@@ -7,23 +8,77 @@ const DashboardAddProduct = () => {
         formState: { errors },
     } = useForm();
 
+    const [imageUrl, setImageUrl] = useState(null);
+
+    const handleImageSelection = (event) => {
+        const filePath = event.target.value; // 读取文件路径
+        const relativePath = filePath.replace(/^.*[\\\/]/, ""); // 提取文件名
+        setImageUrl(`/images/test/${relativePath}`); // 构造相对路径 URL
+    };
+
     const onSubmit = (data) => {
         console.log("Form Data:", data);
+        if (!imageUrl) {
+            alert("请先选择图片！");
+            return;
+        }
+
+        const payload = { ...data, image: imageUrl }; // 合并图片 URL 和表单数据
+        console.log("提交数据:", payload);
+
         // 在这里发送表单数据到 API
-        // fetch('/api/products', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(data),
-        // });
+        fetch("http://localhost:3000/api/products/admin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            credentials: "include",
+        });
     };
 
     return (
-        <div className="bg-colorPrimary p-5 rounded-lg mt-5">
+        <div className="bg-colorPrimary p-5 rounded-lg mt-5 flex gap-10 min-h-screen">
+            {/* Left: Image */}
+            <div className="w-[35%] flex flex-col items-center">
+                {imageUrl ? (
+                    <img
+                        src={imageUrl}
+                        alt="Uploaded Preview"
+                        className="w-full rounded-lg mb-5"
+                    />
+                ) : (
+                    <p className="text-gray-400 text-center mb-5">
+                        Choose an image and Preview it
+                    </p>
+                )}
+                <input
+                    {...register("image", {
+                        required: "Product Name is required",
+                    })}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageSelection}
+                    className="p-3 bg-[#2e374a] text-gray-200 border border-gray-700 rounded-md w-full"
+                />
+            </div>
+            {/* <div className="basis-1/3">
+                {imageUrl ? (
+                    <img
+                        src={imageUrl}
+                        alt="Uploaded Preview"
+                        className="w-[40%] rounded-lg"
+                    />
+                ) : (
+                    <p className="text-gray-400">
+                        Choose an image and Preview it
+                    </p>
+                )}
+            </div> */}
+            {/* Right: Form */}
             <form
-                className="flex flex-wrap justify-between gap-10"
+                className="flex flex-wrap justify-evenly  basis-2/3"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem]  text-3xl">
+                <label className="text-gray-200 text-left w-[80%] block -mb-10  text-3xl">
                     Product Name
                 </label>
                 <input
@@ -34,26 +89,26 @@ const DashboardAddProduct = () => {
                     placeholder="Name"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
                         errors.name ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
+                    } rounded-md  w-[80%]`}
                 />
                 {errors.name && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-sm mb-2 w-full">
                         {errors.name.message}
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
+                <label className="text-gray-200 text-left w-[80%] block -mb-10 text-3xl">
                     Price
                 </label>
                 <input
                     {...register("price", {
-                        required: "Last name is required",
+                        required: "price is required",
                     })}
                     type="number"
                     placeholder="Price"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
                         errors.price ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
+                    } rounded-md  w-[80%]`}
                 />
                 {errors.price && (
                     <p className="text-red-500 text-sm mb-5 w-full">
@@ -61,45 +116,47 @@ const DashboardAddProduct = () => {
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
+                <label className="text-gray-200 text-left w-[80%] block -mb-10 text-3xl">
                     Discount
                 </label>
                 <input
-                    {...register("discount", {
-                        required: "Last name is required",
+                    {...register("percentage", {
+                        required: "percentage is required",
                     })}
                     type="number"
                     placeholder="Discount"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
-                        errors.discount ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
+                        errors.percentage ? "border-red-500" : "border-gray-700"
+                    } rounded-md  w-[80%]`}
                 />
-                {errors.discount && (
+                {errors.percentage && (
                     <p className="text-red-500 text-sm mb-5 w-full">
-                        {errors.discount.message}
+                        {errors.percentage.message}
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
+                <label className="text-gray-200 text-left w-[80%] block -mb-10 text-3xl">
                     Quantity in Stock
                 </label>
                 <input
-                    {...register("quantity", {
-                        required: "Last name is required",
+                    {...register("countInStock", {
+                        required: "countInStock is required",
                     })}
                     type="number"
                     placeholder="Quantity in Stock"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
-                        errors.quantity ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
+                        errors.countInStock
+                            ? "border-red-500"
+                            : "border-gray-700"
+                    } rounded-md  w-[80%]`}
                 />
-                {errors.quantity && (
+                {errors.countInStock && (
                     <p className="text-red-500 text-sm mb-5 w-full">
-                        {errors.quantity.message}
+                        {errors.countInStock.message}
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
+                <label className="text-gray-200 text-left w-[80%] block -mb-10 text-3xl">
                     Category
                 </label>
                 <select
@@ -108,14 +165,14 @@ const DashboardAddProduct = () => {
                     })}
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
                         errors.role ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
+                    } rounded-md  w-[80%]`}
                 >
                     <option value="">Select a Category</option>
-                    <option value="Sofa">Sofas</option>
-                    <option value="Bed">Beds</option>
-                    <option value="Chair">Chairs</option>
-                    <option value="Table">Tables</option>
-                    <option value="Desk">Desks</option>
+                    <option value="sofas">Sofas</option>
+                    <option value="beds">Beds</option>
+                    <option value="chairs">Chairs</option>
+                    <option value="tables">Tables</option>
+                    <option value="desks">Desks</option>
                 </select>
                 {errors.category && (
                     <p className="text-red-500 text-sm mb-5 w-full">
@@ -123,7 +180,7 @@ const DashboardAddProduct = () => {
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
+                <label className="text-gray-200 text-left w-[80%] block -mb-10 text-3xl">
                     Description
                 </label>
                 <textarea
@@ -134,7 +191,7 @@ const DashboardAddProduct = () => {
                     placeholder="Description"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
                         errors.address ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
+                    } rounded-md  w-[80%]`}
                 ></textarea>
                 {errors.description && (
                     <p className="text-red-500 text-sm mb-5 w-full">
@@ -144,7 +201,7 @@ const DashboardAddProduct = () => {
 
                 <button
                     type="submit"
-                    className="w-[60%] p-3 bg-teal-600 text-white rounded-md hover:bg-teal-700"
+                    className="w-[80%] p-3 bg-teal-600 text-white rounded-md hover:bg-teal-700"
                 >
                     Add New Product
                 </button>
