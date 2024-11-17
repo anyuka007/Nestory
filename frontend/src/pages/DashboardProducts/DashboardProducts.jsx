@@ -2,12 +2,30 @@ import { ArrowDownUp, Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+
 import Pagination from "../../components/Pagination/Pagination";
 // import Pagination from "./components/Pagination";
 
+export const fetchProducts = async () => {
+    try {
+        const response = await fetch(
+            "http://localhost:3000/api/products/admin",
+            {
+                credentials: "include",
+            }
+        );
+        const data = await response.json();
+        console.log("products in dashboard", data);
+        return data;
+    } catch (error) {
+        console.log("Error fetching products", error);
+        return [];
+    }
+};
 const DashboardProducts = () => {
+    // const { allProducts, setAllProducts } = useContext(AppContext);
     const { register, handleSubmit } = useForm();
-    const [products, setProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
 
     const [sortedProducts, setSortedProducts] = useState([]);
     const [sortOrder, setSortOrder] = useState("asc");
@@ -24,23 +42,13 @@ const DashboardProducts = () => {
     };
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(
-                    "http://localhost:3000/api/products/admin",
-                    {
-                        credentials: "include",
-                    }
-                );
-                const data = await response.json();
-                console.log("products in dashboard", data);
-                setProducts(data);
-                setSortedProducts(data);
-            } catch (error) {
-                console.log("Error fetching products", error);
-            }
+        const getProducts = async () => {
+            const data = await fetchProducts(); // 获取产品数据
+            setAllProducts(data); // 更新产品状态
+            setSortedProducts(data); // 初始化排序后的产品
         };
-        fetchProducts();
+
+        getProducts(); // 调用异步函数
     }, []);
 
     const handleSort = (column) => {
@@ -48,7 +56,7 @@ const DashboardProducts = () => {
         const newSortOrder = isAsc ? "desc" : "asc";
         setSortColumn(column);
         setSortOrder(newSortOrder);
-        const sorted = [...products].sort((a, b) => {
+        const sorted = [...allProducts].sort((a, b) => {
             if (newSortOrder === "asc") {
                 return a[column] > b[column] ? 1 : -1;
             } else {
@@ -97,7 +105,7 @@ const DashboardProducts = () => {
 
             {/* Table Section */}
             {/* <Pagination /> */}
-            {products?.length > 0 ? (
+            {allProducts?.length > 0 ? (
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-colorPrimary text-left text-gray-200">
                         <thead>

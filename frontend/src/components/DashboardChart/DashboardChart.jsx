@@ -21,7 +21,9 @@ const data = [
 const DashboardChart = () => {
     return (
         <div className="h-[450px] bg-colorPrimary p-5 rounded-lg">
-            <h2 className="font-light text-gray-200 mb-5">Weekly Recap</h2>
+            <h2 className="text-4xl font-semibold text-gray-200 mb-5">
+                Weekly Recap
+            </h2>
 
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart

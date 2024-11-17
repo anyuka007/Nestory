@@ -7,6 +7,23 @@ import { ImUserTie } from "react-icons/im";
 import Pagination from "../../components/Pagination/Pagination";
 // import Pagination from "./components/Pagination";
 
+export const fetchUsers = async () => {
+    try {
+        const response = await fetch(
+            "http://localhost:3000/account/user/admin",
+            {
+                credentials: "include",
+            }
+        );
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log("Error fetching products", error);
+        return [];
+    }
+};
+fetchUsers();
+
 const DashboardUsers = () => {
     const { register, handleSubmit } = useForm();
     const [users, setUsers] = useState([]);
@@ -27,23 +44,12 @@ const DashboardUsers = () => {
     };
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(
-                    "http://localhost:3000/account/user/admin",
-                    {
-                        credentials: "include",
-                    }
-                );
-                const data = await response.json();
-                console.log("users in dashboard", data);
-                setUsers(data);
-                setSortedUsers(data);
-            } catch (error) {
-                console.log("Error fetching products", error);
-            }
+        const getUsers = async () => {
+            const data = await fetchUsers();
+            setUsers(data);
+            setSortedUsers(data);
         };
-        fetchProducts();
+        getUsers();
     }, []);
 
     const handleSort = (column) => {
