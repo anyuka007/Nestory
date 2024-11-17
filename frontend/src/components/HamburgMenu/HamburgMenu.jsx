@@ -45,7 +45,7 @@ const HamburgMenu = ({ className }) => {
             <Menu
                 size={36}
                 onClick={handleClick}
-                className={`cursor-pointer z-10 transition-transform duration-500 ease-in-out ${
+                className={`hover:text-colorSecondary cursor-pointer z-10 transition-transform duration-500 ease-in-out ${
                     open ? "opacity-0" : "opacity-100"
                 }`}
             />
@@ -74,7 +74,7 @@ const HamburgMenu = ({ className }) => {
                 >
                     {categories.map((category, index) => (
                         <Link
-                            className="flex gap-2"
+                            className="flex gap-2 hover:text-colorSecondary"
                             key={category}
                             to={`/category/${category}`}
                             onClick={() => {
