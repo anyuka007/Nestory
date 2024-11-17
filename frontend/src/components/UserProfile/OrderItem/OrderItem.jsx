@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { PackageCheck, Truck, PackageOpen } from "lucide-react";
+import { /* formatDate, */ formatDateLong } from "../../../utils/formatDate";
 
 const OrderItem = ({ orderItem }) => {
     console.log("orderItem", orderItem);
@@ -8,8 +9,8 @@ const OrderItem = ({ orderItem }) => {
         <>
             <div>
                 <div className="mt-[2rem]">
-                    <p className="font-bold">
-                        Order from {orderItem.createdAt}
+                    <p className="font-bold text2xl">
+                        Order from {formatDateLong(orderItem.createdAt)}
                     </p>
                 </div>
                 <div className="h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-t">
@@ -37,13 +38,13 @@ const OrderItem = ({ orderItem }) => {
                         </div>
                     </div>
                     <div className="basis-[60%] flex flex-col justify-center md:mx-8">
-                        <p className="pt-8 md:pt-0">
+                        <p className="pt-8 md:pt-0 text-3xl">
                             {orderItem.productId.name}
                         </p>
                         <p className="pt-8 hidden md:block">
                             {orderItem.productId.description}
                         </p>
-                        <div className="flex  justify-between mt-4">
+                        <div className="flex  justify-between mt-4 lg:mt-[3rem]">
                             <div className="flex gap-20">
                                 <div className="flex flex-col justify-between">
                                     <p>Price: </p>
@@ -60,7 +61,7 @@ const OrderItem = ({ orderItem }) => {
                             </div>
                             <div>
                                 <p>Total price: </p>
-                                <p className="md:text-[2rem] text-colorTertiary">
+                                <p className="md:text-[2rem] text-colorTertiary bold">
                                     {(
                                         orderItem.price * orderItem.quantity
                                     ).toFixed(2)}
@@ -68,7 +69,7 @@ const OrderItem = ({ orderItem }) => {
                                 </p>
                             </div>
                         </div>
-                        <p className="mt-auto pt-4">
+                        <p className="mt-auto pt-4 hover:text-colorSecondary">
                             <Link
                                 to={`/product/${orderItem.productId._id}`}
                                 className="underline"

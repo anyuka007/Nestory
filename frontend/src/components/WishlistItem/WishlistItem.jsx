@@ -140,10 +140,10 @@ const WishlistItem = ({ wishItem }) => {
                 </div>
             </div>
             <div className="basis-[47%] flex flex-col justify-center md:mx-8">
-                <p className="pt-8 md:pt-0">{wishItem.name}</p>
+                <p className="pt-8 md:pt-0 text-3xl">{wishItem.name}</p>
                 <StarRating rate={wishItem.rating} />
                 <p className="pt-8">{wishItem.description}</p>
-                <p className="mt-auto pt-4">
+                <p className="mt-auto pt-4 hover:text-colorSecondary">
                     <Link
                         to={`/product/${wishItem._id}`}
                         className="underline"
