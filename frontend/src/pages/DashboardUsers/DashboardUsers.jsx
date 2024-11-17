@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import { ImUserTie } from "react-icons/im";
 import Pagination from "../../components/Pagination/Pagination";
+
 // import Pagination from "./components/Pagination";
 
 export const fetchUsers = async () => {
@@ -22,11 +23,11 @@ export const fetchUsers = async () => {
         return [];
     }
 };
-fetchUsers();
 
 const DashboardUsers = () => {
     const { register, handleSubmit } = useForm();
     const [users, setUsers] = useState([]);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     const [sortedUsers, setSortedUsers] = useState([]);
     const [sortOrder, setSortOrder] = useState("asc");
@@ -79,6 +80,18 @@ const DashboardUsers = () => {
         setCurrentPage(newPage);
     };
 
+    const handleDelete = async (id) => {
+        try {
+            await fetch(`http://localhost:3000/account/user/admin/${id}`, {
+                method: "DELETE",
+                credentials: "include",
+            });
+            setUsers(users.filter((user) => user._id !== id));
+            setSortedUsers(sortedUsers.filter((user) => user._id !== id));
+        } catch (error) {
+            console.log("Error deleting user", error);
+        }
+    };
     return (
         <div className="bg-colorPrimary p-6 rounded-lg mt-6">
             {/* Top Section */}
@@ -174,16 +187,23 @@ const DashboardUsers = () => {
                                     <td className="px-4 py-2">{user.role}</td>
                                     <td className="px-4 py-2 flex gap-2">
                                         <button
-                                            onClick={() =>
+                                            onClick={() => {
+                                                setSelectedUser(user);
                                                 navigate(
-                                                    "/dashboard/users/update/test"
-                                                )
-                                            }
+                                                    `/dashboard/users/update/${user._id}`,
+                                                    { state: { user } }
+                                                );
+                                            }}
                                             className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600"
                                         >
                                             Update
                                         </button>
-                                        <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                                        <button
+                                            onClick={() =>
+                                                handleDelete(user._id)
+                                            }
+                                            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                        >
                                             Delete
                                         </button>
                                     </td>

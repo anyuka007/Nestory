@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const DashboardAddUser = () => {
     const {
@@ -7,13 +8,40 @@ const DashboardAddUser = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const navigate = useNavigate();
+    const onSubmit = async (data) => {
         console.log("Form Data:", data);
-        // 在这里发送表单数据到 API
-        // fetch('/api/products', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(data),
+
+        try {
+            const response = await fetch(
+                "http://localhost:3000/account/user/admin",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                    credentials: "include",
+                }
+            );
+
+            if (response.ok) {
+                console.log("User added successfully");
+                navigate("/dashboard/users"); // 在成功提交后导航
+            } else {
+                const errorData = await response.json();
+                console.error(
+                    "Error:",
+                    errorData.message || "Failed to add user"
+                );
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+
+        // fetch("http://localhost:3000/account/user/admin", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: JSON.stringify(data),
+        //     credentials: "include",
         // });
     };
 
@@ -127,7 +155,7 @@ const DashboardAddUser = () => {
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem]  text-3xl">
+                {/* <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem]  text-3xl">
                     Address
                 </label>
                 <textarea
@@ -144,10 +172,13 @@ const DashboardAddUser = () => {
                     <p className="text-red-500 text-sm mb-5 w-full">
                         {errors.address.message}
                     </p>
-                )}
+                )} */}
 
                 <button
                     type="submit"
+                    // onClick={() => {
+                    //     navigate("/dashboard/users");
+                    // }}
                     className="w-[60%] p-3 bg-teal-600 text-white rounded-md hover:bg-teal-700"
                 >
                     Add New User

@@ -1,20 +1,40 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation, useParams } from "react-router-dom";
 
 const DashboardUpdateUser = () => {
+    const { state } = useLocation();
+    // const { userId } = useParams();
+    console.log("state in update user: ", state);
+    const user = state?.user;
+    const userId = user?._id;
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm();
 
+    // 预填充表单
+    useEffect(() => {
+        if (user) {
+            setValue("firstName", user.firstName);
+            setValue("lastName", user.lastName);
+            setValue("password", user.password);
+            setValue("email", user.email);
+            setValue("role", user.role);
+        }
+    }, [user, setValue]);
+
     const onSubmit = (data) => {
         console.log("Form Data:", data);
-        // 在这里发送表单数据到 API
-        // fetch('/api/products', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(data),
-        // });
+
+        fetch(`http://localhost:3000/account/user/admin/${userId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+            credentials: "include",
+        });
     };
 
     return (
@@ -127,7 +147,7 @@ const DashboardUpdateUser = () => {
                     </p>
                 )}
 
-                <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
+                {/* <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem] text-3xl">
                     Address
                 </label>
                 <textarea
@@ -144,7 +164,7 @@ const DashboardUpdateUser = () => {
                     <p className="text-red-500 text-sm mb-5 w-full">
                         {errors.address.message}
                     </p>
-                )}
+                )} */}
 
                 <button
                     type="submit"

@@ -114,7 +114,7 @@ const App = () => (
                     <Route path="users" element={<DashboardUsers />} />
                     <Route path="users/add" element={<DashboardAddUser />} />
                     <Route
-                        path="users/update/test"
+                        path="users/update/:userId"
                         element={<DashboardUpdateUser />}
                     />
 
