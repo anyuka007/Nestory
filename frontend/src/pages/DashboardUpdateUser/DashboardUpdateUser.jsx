@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const DashboardUpdateUser = () => {
     const { state } = useLocation();
-    // const { userId } = useParams();
-    console.log("state in update user: ", state);
+
     const user = state?.user;
     const userId = user?._id;
+
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -26,15 +27,33 @@ const DashboardUpdateUser = () => {
         }
     }, [user, setValue]);
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log("Form Data:", data);
 
-        fetch(`http://localhost:3000/account/user/admin/${userId}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-            credentials: "include",
-        });
+        try {
+            const response = await fetch(
+                `http://localhost:3000/account/user/admin/${userId}`,
+                {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data),
+                    credentials: "include",
+                }
+            );
+
+            if (response.ok) {
+                console.log("User updated successfully");
+                navigate("/dashboard/users"); // 在成功提交后导航
+            } else {
+                const errorData = await response.json();
+                console.error(
+                    "Error:",
+                    errorData.message || "Failed to update user"
+                );
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
     };
 
     return (

@@ -1,6 +1,5 @@
 import { BadgeDollarSign } from "lucide-react";
-import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../context/AppProvider";
+import { useEffect, useState } from "react";
 
 export const fetchTransactions = async () => {
     try {
@@ -16,14 +15,14 @@ export const fetchTransactions = async () => {
     }
 };
 const DashboardTransactions = () => {
-    const { setAllOrders } = useContext(AppContext);
+    const [allOrders, setAllOrders] = useState([]);
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
         const getAllOrders = async () => {
             const data = await fetchTransactions(); // 获取产品数据
             setTransactions(data.orders);
-            setAllOrders(data.allOrders);
+            // setAllOrders(data.allOrders);
         };
 
         getAllOrders();

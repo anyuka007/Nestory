@@ -176,9 +176,6 @@ const DashboardAddUser = () => {
 
                 <button
                     type="submit"
-                    // onClick={() => {
-                    //     navigate("/dashboard/users");
-                    // }}
                     className="w-[60%] p-3 bg-teal-600 text-white rounded-md hover:bg-teal-700"
                 >
                     Add New User
