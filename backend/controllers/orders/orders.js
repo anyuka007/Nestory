@@ -45,3 +45,26 @@ export const createOrder = async (req, res) => {
         });
     }
 };
+
+export const getUsersOrders = async (req, res) => {
+    const userId = req.user?.id;
+    //const userId = req.body.userId;
+    //const userId = req.query.userId;
+    if (!userId) {
+        console.error("User ID is missing".red);
+        return res.status(400).json("User ID is missing");
+    }
+    try {
+        console.log("Fetching orders for userId:", userId);
+        const orders = await Order.find({ userId: userId }).populate(
+            "items.productId"
+        );
+
+        console.log("ordersPopulated", orders);
+        console.log("User's orders fetched successfully".green, orders);
+        return res.status(200).json(orders);
+    } catch (error) {
+        console.error("Error fetching user's orders".red, error.message.red);
+        return res.status(500).json(error.message);
+    }
+};
