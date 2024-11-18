@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 //ovaa funkcija ima uloga samo da go zacuva user id
-
+//**funcionira 1*/
 export const authorize = async (req, res, next) => {
   let token = req.cookies.jwt; //go zimam nadvor od cookie kutija
-
+  //***funcionira1 */
   //   if (!token) {
   //     return res.status(401).json({ message: "Unauthorized, token not found" });
   //   }
@@ -26,7 +26,7 @@ export const authorize = async (req, res, next) => {
 
   //   next();
   // };
-
+  //****funcionira2 */
   if (!token) {
     try {
       const response = await fetch("/refresh-token", {
@@ -59,3 +59,4 @@ export const authorize = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 };
+//****funcionira2 */
