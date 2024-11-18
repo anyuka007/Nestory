@@ -132,7 +132,12 @@ const WishlistItem = ({ wishItem }) => {
                 </div>
                 <div className="text-center basis-[15%] flex justify-center">
                     <button
-                        onClick={deleteWishItem}
+                        onClick={async () => {
+                            await deleteWishItem(wishItem._id);
+                            // Wishlist erneut abrufen, um die UI zu aktualisieren
+                            const updatedWishlist = await fetchWishlist();
+                            setWishlist(updatedWishlist);
+                        }}
                         className=" h-8 w-8 text-colorPrimary md:hidden mb-auto "
                     >
                         <Trash2 className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95" />

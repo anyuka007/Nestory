@@ -13,6 +13,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppProvider";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import WishHeart from "../../components/WishHeart/WishHeart";
 
 // const ProductDetails = () => {
 
@@ -283,9 +284,12 @@ const ProductDetails = () => {
 
                     {/* Right Section: Product Details */}
                     <div className="basis-[30%] flex flex-col justify-center space-y-10 ">
-                        <h1 className="text-4xl xl:text-5xl font-semibold mb-3">
-                            {product.name}
-                        </h1>
+                        <div className="flex justify-between">
+                            <h1 className="text-4xl xl:text-5xl font-semibold mb-3">
+                                {product.name}
+                            </h1>
+                            <WishHeart productId={product._id} size={30} />
+                        </div>
                         <div className="flex items-end">
                             <StarRating rate={product.rating} />
                             <a
