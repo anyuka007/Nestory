@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const DashboardAddProduct = () => {
     const {
@@ -9,6 +10,7 @@ const DashboardAddProduct = () => {
     } = useForm();
 
     const [imageUrl, setImageUrl] = useState(null);
+    const navigate = useNavigate();
 
     const handleImageSelection = (event) => {
         const filePath = event.target.value; // 读取文件路径
@@ -16,7 +18,7 @@ const DashboardAddProduct = () => {
         setImageUrl(`/images/test/${relativePath}`); // 构造相对路径 URL
     };
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log("Form Data:", data);
         if (!imageUrl) {
             alert("请先选择图片！");
@@ -26,13 +28,31 @@ const DashboardAddProduct = () => {
         const payload = { ...data, image: imageUrl }; // 合并图片 URL 和表单数据
         console.log("提交数据:", payload);
 
-        // 在这里发送表单数据到 API
-        fetch("http://localhost:3000/api/products/admin", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload),
-            credentials: "include",
-        });
+        // Post Form Data to API
+        try {
+            const response = await fetch(
+                "http://localhost:3000/api/products/admin",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                    credentials: "include",
+                }
+            );
+
+            if (response.ok) {
+                console.log("Product added successfully");
+                navigate("/dashboard/users");
+            } else {
+                const errorData = await response.json();
+                console.error(
+                    "Error:",
+                    errorData.message || "Failed to add product"
+                );
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
     };
 
     return (
@@ -60,19 +80,7 @@ const DashboardAddProduct = () => {
                     className="p-3 bg-[#2e374a] text-gray-200 border border-gray-700 rounded-md w-full"
                 />
             </div>
-            {/* <div className="basis-1/3">
-                {imageUrl ? (
-                    <img
-                        src={imageUrl}
-                        alt="Uploaded Preview"
-                        className="w-[40%] rounded-lg"
-                    />
-                ) : (
-                    <p className="text-gray-400">
-                        Choose an image and Preview it
-                    </p>
-                )}
-            </div> */}
+
             {/* Right: Form */}
             <form
                 className="flex flex-wrap justify-evenly  basis-2/3"

@@ -26,6 +26,7 @@ const DashboardProducts = () => {
     // const { allProducts, setAllProducts } = useContext(AppContext);
     const { register, handleSubmit } = useForm();
     const [allProducts, setAllProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     const [sortedProducts, setSortedProducts] = useState([]);
     const [sortOrder, setSortOrder] = useState("asc");
@@ -76,6 +77,24 @@ const DashboardProducts = () => {
     // 分页切换逻辑
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await fetch(`http://localhost:3000/api/products/admin/${id}`, {
+                method: "DELETE",
+                credentials: "include",
+            });
+            // const data = await response.json();
+            // console.log("Product deleted:", data);
+
+            setAllProducts(allProducts.filter((product) => product._id !== id));
+            setSortedProducts(
+                sortedProducts.filter((product) => product._id !== id)
+            );
+        } catch (error) {
+            console.log("Error deleting product", error);
+        }
     };
 
     return (
@@ -176,16 +195,23 @@ const DashboardProducts = () => {
                                     </td>
                                     <td className="px-4 py-2 flex gap-2">
                                         <button
-                                            onClick={() =>
+                                            onClick={() => {
+                                                setSelectedProduct(product);
                                                 navigate(
-                                                    "/dashboard/products/update/test"
-                                                )
-                                            }
+                                                    `/dashboard/products/update/${product._id}`,
+                                                    { state: { product } }
+                                                );
+                                            }}
                                             className="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600"
                                         >
                                             Update
                                         </button>
-                                        <button className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                                        <button
+                                            onClick={() =>
+                                                handleDelete(product._id)
+                                            }
+                                            className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                        >
                                             Delete
                                         </button>
                                     </td>

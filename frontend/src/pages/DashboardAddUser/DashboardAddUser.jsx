@@ -25,7 +25,7 @@ const DashboardAddUser = () => {
 
             if (response.ok) {
                 console.log("User added successfully");
-                navigate("/dashboard/users"); // 在成功提交后导航
+                navigate("/dashboard/users");
             } else {
                 const errorData = await response.json();
                 console.error(
@@ -36,13 +36,6 @@ const DashboardAddUser = () => {
         } catch (error) {
             console.error("Fetch error:", error);
         }
-
-        // fetch("http://localhost:3000/account/user/admin", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     body: JSON.stringify(data),
-        //     credentials: "include",
-        // });
     };
 
     return (
