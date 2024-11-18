@@ -2,10 +2,10 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { get } from "mongoose";
+
 dotenv.config();
 
-const { JWT_SECRET, JWT_REFRESH_SECRET } = process.env;
+const { JWT_SECRET } = process.env;
 
 export function verifyJwt(token) {
   if (!token) return;
@@ -55,7 +55,7 @@ export const registerUser = async (req, res) => {
     if (!isStrongPassword(password)) {
       return res
         .status(400)
-        .json({ message: "Password must be 8 characters or langer" });
+        .json({ message: "Password must be 8 characters or longer" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 13);
@@ -71,20 +71,14 @@ export const registerUser = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, email: user.email },
-      process.env.JWT_SECRET,
-      // {
-      //   expiresIn: rememberMe ? "5h" : "1h",
-      // }
-      { expiresIn: rememberMe ? "5d" : "1h" }
+      process.env.JWT_SECRET
     );
-
-    const refreshToken = jwt.sign(
-      { id: user._id },
-      process.env.JWT_REFRESH_SECRET,
-      {
-        expiresIn: rememberMe ? "5d" : "1h",
-      }
-    );
+    //*****novo */
+    // const refreshToken = jwt.sign(
+    //   { id: user._id, email: user.email },
+    //   process.env.JWT_SECRET
+    // );
+    //*****bis hier */
 
     res.cookie("jwt", token, {
       httpOnly: true,
@@ -94,12 +88,12 @@ export const registerUser = async (req, res) => {
     });
 
     // res.cookie("rememberMe", rememberMe, {
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 5 * 60 * 60 * 1000,
-      sameSite: "strict",
-    });
+    // res.cookie("refreshToken", refreshToken, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   maxAge: 5 * 60 * 60 * 1000,
+    //   sameSite: "strict",
+    // });
 
     console.log("Register successful");
     //dali ovde vo ovoj res treba da dadam pveke podatoci za userot?

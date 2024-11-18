@@ -1,70 +1,34 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import WishlistItem from "../../components/WishlistItem/WishlistItem";
 import { AppContext } from "../../context/AppProvider";
-import { fetchWishlist } from "../../utils/wishlistUtils/fetchWishList";
 
 const Wishlist = () => {
-    const { wishlist, setWishlist, user } = useContext(AppContext);
-
-    const deleteWishItem = async (id) => {
-        //console.log("item to del: ", wishlist.find((i) => i._id === id).name, id);
-        try {
-            const response = await fetch(
-                `http://localhost:3000/wishlist/${id}`,
-                {
-                    method: "DELETE",
-                    credentials: "include",
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error("Failed to delete wishlist item");
-            } else {
-                // Wishlist erneut abrufen, um die UI zu aktualisieren
-                const updatedWishlist = await fetchWishlist();
-                setWishlist(updatedWishlist);
-            }
-        } catch (error) {
-            console.error("Error deleting wishlist item:", error);
-        }
-    };
-    const addToCart = (id) => {
-        console.log(
-            "item to add: ",
-            wishlist.find((i) => i._id === id).name,
-            id
-        );
-    };
+    const { wishlist, user } = useContext(AppContext);
 
     return (
         <div>
-            <div className="py-[1rem] lg:py-[3rem] flex items-center justify-center">
-                <h2 className=" text-[2.4rem] md:text-[4rem] lg:text-[4.8rem] text-colorPrimary font-bold">
+            <div className="py-[1rem] lg:py-[1.85rem] flex items-center justify-center">
+                <h2 className=" text-[2.2rem] md:text-[4rem] lg:text-[4.8rem] text-colorPrimary font-semibold">
                     Wishlist
                 </h2>
             </div>
             {wishlist.length ? (
                 <div className="flex flex-col items-center justify-center">
-                    <h3 className=" w-[100%] lg:text-[3.2rem] text-center border-b">
+                    <h3 className=" w-[100%] lg:text-[3rem] text-center">
                         {user.firstName}, there are {wishlist.length} items in
                         your wishlist
                     </h3>
                     {wishlist.map((item, index) => (
-                        <WishlistItem
-                            key={index}
-                            wishItem={item}
-                            deleteWishItem={() => deleteWishItem(item._id)}
-                            addToCart={() => addToCart(item._id)}
-                        />
+                        <WishlistItem key={index} wishItem={item} />
                     ))}
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center">
-                    <h3 className="text-[3.2rem] font-bold mb-[1.5rem]">
+                    <h3 className="text-[3.2rem] font-semibold mb-[3rem]">
                         {user.firstName}, your wishlist is empty
                     </h3>
-                    <p className="bg-[#FFB128] py-[1.5rem] px-[3.5rem] text-[1.4rem] text-white  font-bold rounded-[8rem]">
+                    <p className="bg-[#FFB128] py-[1.5rem] px-[3.5rem] text-[1.4rem] text-white  font-bold rounded-[8rem] transition-transform duration-300 transform hover:scale-105 active:scale-100 active:bg-colorPrimary">
                         <Link to={"/shop"}>Go Shopping</Link>
                     </p>
                 </div>

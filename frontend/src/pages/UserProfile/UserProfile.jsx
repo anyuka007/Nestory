@@ -13,14 +13,14 @@ const UserProfile = () => {
                 <div className="basis-[80%] order-2">
                     {location.pathname === "/user" && (
                         <>
-                            <h3 className="lg:text-[3.2rem] text-center">
+                            <h2 className="text-[3rem] md:text-[4rem] text-center">
                                 Hello, {user.firstName}!
-                            </h3>
-                            <p className="text-center">
+                            </h2>
+                            <h3 className="text-center lg:text-[2.5rem]">
                                 Welcome to your account. Here you can view your
                                 current orders and manage your personal
-                                information.
-                            </p>
+                                information
+                            </h3>
                         </>
                     )}
                     <Outlet />
