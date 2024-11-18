@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import { get } from "mongoose";
+
 dotenv.config();
 
 const { JWT_SECRET } = process.env;
@@ -55,7 +55,7 @@ export const registerUser = async (req, res) => {
     if (!isStrongPassword(password)) {
       return res
         .status(400)
-        .json({ message: "Password must be 8 characters or langer" });
+        .json({ message: "Password must be 8 characters or longer" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 13);
@@ -73,6 +73,12 @@ export const registerUser = async (req, res) => {
       { id: user._id, email: user.email },
       process.env.JWT_SECRET
     );
+    //*****novo */
+    // const refreshToken = jwt.sign(
+    //   { id: user._id, email: user.email },
+    //   process.env.JWT_SECRET
+    // );
+    //*****bis hier */
 
     res.cookie("jwt", token, {
       httpOnly: true,
