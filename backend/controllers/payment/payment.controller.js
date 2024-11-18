@@ -144,7 +144,8 @@ export const createCheckoutSession = async (req, res) => {
 
         console.log("cartItems", cartItems);
         let totalAmount = 0;
-        let totalAmountNoShippingFee = 0;
+        let shippingFee = 50;
+        // let totalAmountNoShippingFee = 0;
 
         // 计算每个商品的金额和总金额
         const lineItems = cartItems.items.map((item) => {
@@ -161,8 +162,9 @@ export const createCheckoutSession = async (req, res) => {
             }
 
             const amount = Math.round(price * 100); // Stripe要求金额以分为单位
-            totalAmountNoShippingFee += amount * quantity;
-            totalAmount = totalAmountNoShippingFee + 50;
+            // totalAmountNoShippingFee += amount * quantity;
+            // totalAmount = totalAmountNoShippingFee + 50;
+            // totalAmount += amount * quantity;
 
             return {
                 price_data: {
@@ -171,19 +173,32 @@ export const createCheckoutSession = async (req, res) => {
                         name: item.productId.name,
                         // images: [item.productId.image], // 如果需要添加图片，可以在此处添加
                     },
+
                     unit_amount: amount,
                 },
                 quantity: quantity, // 确保这里包含数量
             };
         });
 
-        console.log("lineItems", lineItems);
+        lineItems.push({
+            price_data: {
+                currency: "usd",
+                product_data: {
+                    name: "Shipping Fee",
+                },
+                unit_amount: shippingFee * 100, // 运费金额以分为单位
+            },
+            quantity: 1,
+        });
+        // const shippingFee = 50;
+        // totalAmount += shippingFee;
+        // console.log("lineItems", lineItems);
 
         // 获取收货地址信息
         const shippingAddress = await Address.findOne({ userId });
         const shippingAddressId = shippingAddress._id.toString();
-        console.log("shippingAddress", shippingAddress);
-        console.log("shippingAddressId", shippingAddressId);
+        // console.log("shippingAddress", shippingAddress);
+        // console.log("shippingAddressId", shippingAddressId);
 
         // 创建Stripe结账会话
         const session = await stripe.checkout.sessions.create({
