@@ -14,6 +14,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import UserOrders from "./pages/UserProfile/UserOrders";
 import UserProfileInfo from "./pages/UserProfile/UserProfileInfo";
 import ShopList from "./pages/ShopList/ShopList";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 const App = () => (
     <BrowserRouter>
@@ -28,8 +29,10 @@ const App = () => (
                     <Route path="shop" element={<ShopList />} />
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Login />} />
+                    <Route path="about" element={<AboutUs />} />
                     <Route path="user" element={<UserProfile />}>
                         <Route path="orders" element={<UserOrders />} />
+
                         <Route path="data" element={<UserProfileInfo />} />
                     </Route>
                     <Route

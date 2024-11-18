@@ -111,17 +111,12 @@ export default function MainFooter() {
                             </Link>
                         </div>
                         {/* unten teil 30/40% */}
-                        <div className="text-center">
-                        <button className="py-4 px-4  rounded-lg hover:bg-yellow-200 ">
-                            <Link to="../AboutUs/AboutUs.jsx">
-                                About Us
-                            </Link>
-                        </button></div>
+                       
                         <div className="w-full md:flex justify-center border-t-2">
                             <div className="pt-8 mb-4 flex justify-center">
                                 <p className="text-[1.3rem] xl:text-[1.5rem]">
                                     ©2024 neSTory by{" "}
-                                    <Link to="/" className="hover:underline hover:bg-yellow-200 hover:p-2 rounded-lg font-semibold">
+                                    <Link to="/about" className="hover:underline hover:bg-yellow-200 hover:p-4 rounded-lg font-semibold">
                                         LaLa Group
                                     </Link>{" "}
                                     | All Rights Reserved | Powered by{" "}
