@@ -6,7 +6,8 @@ import ColorSelector from "../../components/ColorSelector/ColorSelector";
 import { PiPackageBold } from "react-icons/pi";
 import { MdHeadsetMic } from "react-icons/md";
 import QuantitySelector from "../../components/QuantitySelector/QuantitySelector";
-import Reviews from "../../components/Reviews/Reviews";
+// import Reviews from "../../components/Reviews/Reviews";
+import ReviewSection from "../../components/Reviews/Reviews";
 import Carousel from "../../components/Carousel/Carousel";
 // import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
@@ -304,25 +305,25 @@ const ProductDetails = () => {
                             {product.percentage > 0 ? (
                                 <div className="flex items-center space-x-5">
                                     <p className="line-through text-3xl">
-                                        {/* {product.price.toFixed(2)}€ */}
+                                        {/* {product.price.toFixed(2)}$ */}
                                         {Math.round(
                                             product.price /
                                                 (1 - product.percentage / 100)
                                         ).toFixed(2)}
-                                        €
+                                        $
                                     </p>
                                     <p className="text-5xl text-colorTertiary">
                                         {/* {Math.round(
                                             product.price *
                                                 (1 - product.percentage / 100)
                                         ).toFixed(2)}
-                                        € */}
-                                        {product.price.toFixed(2)}€
+                                        $ */}
+                                        {product.price.toFixed(2)}$
                                     </p>
                                 </div>
                             ) : (
                                 <p className="text-3xl">
-                                    {product.price.toFixed(2)}€
+                                    {product.price.toFixed(2)}$
                                 </p>
                             )}
 
@@ -389,7 +390,7 @@ const ProductDetails = () => {
                                         Free Shipping
                                     </h3>
                                     <p className="text-xl  text-colorPrimary">
-                                        Over 500€
+                                        Over 500$
                                     </p>
                                 </div>
                             </div>
@@ -422,7 +423,8 @@ const ProductDetails = () => {
                     id="reviews"
                     className="pt-[16rem] pb-[16rem] lg:pt-[12rem] lg:pb-[31rem]"
                 >
-                    <Reviews />
+                    {/* <Reviews /> */}
+                    <ReviewSection product={product} />
                 </div>
             </>
         );

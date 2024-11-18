@@ -52,7 +52,7 @@ const OrderItem = ({ orderItem }) => {
                                 <div className="flex flex-col justify-between">
                                     <p>Price: </p>
                                     <p className="md:text-[2rem]">
-                                        {orderItem.price.toFixed(2)}€
+                                        ${orderItem.price.toFixed(2)}
                                     </p>
                                 </div>
                                 <div>
@@ -65,10 +65,10 @@ const OrderItem = ({ orderItem }) => {
                             <div>
                                 <p>Total price: </p>
                                 <p className="md:text-[2rem] text-colorTertiary bold">
+                                    $
                                     {(
                                         orderItem.price * orderItem.quantity
                                     ).toFixed(2)}
-                                    €
                                 </p>
                             </div>
                         </div>

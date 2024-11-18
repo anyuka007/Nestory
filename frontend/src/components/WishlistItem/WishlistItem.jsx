@@ -91,7 +91,7 @@ const WishlistItem = ({ wishItem }) => {
     };
 
     return (
-        <div className="h-fit w-[100%] md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-b">
+        <div className="border-t h-fit w-[100%] md:h-[30rem] py-[3rem] px-[11rem] flex flex-col md:flex-row justify-around mt-8">
             <div className="md:basis-[30%] flex md:flex-col justify-between md:justify-center md:mx-8">
                 <div className="basis-[15%]">
                     {wishItem.discount > 0 && (
@@ -170,19 +170,19 @@ const WishlistItem = ({ wishItem }) => {
                                     wishItem.price /
                                         (1 - wishItem.discount / 100)
                                 ).toFixed(2)}
-                                €
+                                $
                             </p>
                             <p className="text-[2rem] text-colorTertiary">
                                 {/* {Math.round(
                                     wishItem.price *
                                         (1 - wishItem.discount / 100)
                                 ).toFixed(2)} */}
-                                {wishItem.price.toFixed(2)}€
+                                ${wishItem.price.toFixed(2)}
                             </p>
                         </div>
                     ) : (
                         <p className="text-[2rem]">
-                            {wishItem.price.toFixed(2)}€
+                            ${wishItem.price.toFixed(2)}
                         </p>
                     )}
                     <button
