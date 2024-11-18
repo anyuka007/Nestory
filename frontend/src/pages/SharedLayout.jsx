@@ -7,7 +7,7 @@ const SharedLayout = () => {
         <>
             <Navbar />
 
-            <main className="px-16 md:px-20 lg:px-40 xl:px-80 w-full pt-[16rem]">
+            <main className="px-16 md:px-20 lg:px-40 xl:px-80 w-full pt-[12rem] lg:pt-[16rem]">
                 <Outlet />
             </main>
             <Footer />

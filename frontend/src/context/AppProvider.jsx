@@ -14,12 +14,11 @@ const AppProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [wishlist, setWishlist] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState("");
-
+    // const [heartCount, setHeartCount] = useState(0);
     const [user, setUser] = useState({});
     const [product, setProduct] = useState({});
     const [quantityForCart, setQuantityForCart] = useState(0);
     const [sessionId, setSessionId] = useState("");
-    // const [selectedUser, setSelectedUser] = useState({});
 
     //fly to shopping cart
     const [isFlying, setIsFlying] = useState(false);

@@ -7,7 +7,7 @@ import { deleteWishItem } from "../../utils/wishlistUtils/deleteWishItem";
 import { fetchWishlist } from "../../utils/wishlistUtils/fetchWishList";
 import { useLocation } from "react-router-dom";
 
-const WishHeart = ({ productId }) => {
+const WishHeart = ({ productId, size = 22 }) => {
     const [isWish, setIsWish] = useState(false);
     const { heartCount, wishlist, setWishlist, user } = useContext(AppContext);
     const location = useLocation();
@@ -67,7 +67,7 @@ const WishHeart = ({ productId }) => {
                         ? "text-colorSecondary"
                         : "text-colorPrimary hover:text-colorSecondary"
                 }`}
-                size={22}
+                size={size}
             />
         </div>
     );

@@ -37,25 +37,24 @@ const WishlistItem = ({ wishItem }) => {
             console.error("Request failed:", error);
         }
 
-        // Start der Animation
+        // Start der Animation - startRect.width / 2
         setIsFlying(true);
 
         const startRect = imgRef.current.getBoundingClientRect();
-        const endRect = bagIconRef.current.getBoundingClientRect();
-        /* if (bagIconRef.current.clientX === 0) {
-            endRect =
-                bagIconRef.current.parent.parent.parent.getBoundingClientRect();
-        }
-        console.log(
-            "bbbbb",
-            startRect,
-            endRect,
-            bagIconRef,
-            window.clientWidth
-        ); */
+        const bagPosition = bagIconRef.current.getBoundingClientRect();
+        const isBagAtBottom = bagPosition.x === 0 && bagPosition.y === 0;
+        // if navbar is at the bottom, it has position absolute (is out of DOM) and getBoundingClientRect() gives 0 fpr all props
+        const y = window.innerHeight - 40; // 40 = 1/2 from navbar height (whenn at the bottom)
+        const x = (3 * window.innerWidth) / 8; // center of the second element in nav bar (whenn at the bottom)
+        const endRect = isBagAtBottom
+            ? {
+                  left: x,
+                  top: y,
+              }
+            : bagPosition;
 
         const scale = 0.2;
-
+        // setting start position for image animation (original image position)
         setFlyStyle(() => ({
             left: `${startRect.left}px`,
             top: `${startRect.top}px`,
@@ -65,8 +64,12 @@ const WishlistItem = ({ wishItem }) => {
 
         setTimeout(() => {
             // set endPosition of the center of image to the center of the shopping bag icon(size=26px/2)
-            const adjustedLeft = endRect.left - startRect.width / 2 + 13;
-            const adjustedTop = endRect.top - startRect.height / 2 + 13;
+            const adjustedLeft = isBagAtBottom
+                ? endRect.left - startRect.width / 2
+                : endRect.left - startRect.width / 2 + 13;
+            const adjustedTop = isBagAtBottom
+                ? endRect.top - startRect.height / 2
+                : endRect.top - startRect.height / 2 + 13;
 
             setFlyStyle(() => ({
                 left: `${adjustedLeft}px`,
@@ -88,7 +91,7 @@ const WishlistItem = ({ wishItem }) => {
     };
 
     return (
-        <div className="h-fit w-[100%] md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-b">
+        <div className="border-t h-fit w-[100%] md:h-[30rem] py-[3rem] px-[11rem] flex flex-col md:flex-row justify-around mt-8">
             <div className="md:basis-[30%] flex md:flex-col justify-between md:justify-center md:mx-8">
                 <div className="basis-[15%]">
                     {wishItem.discount > 0 && (
@@ -129,18 +132,23 @@ const WishlistItem = ({ wishItem }) => {
                 </div>
                 <div className="text-center basis-[15%] flex justify-center">
                     <button
-                        onClick={deleteWishItem}
+                        onClick={async () => {
+                            await deleteWishItem(wishItem._id);
+                            // Wishlist erneut abrufen, um die UI zu aktualisieren
+                            const updatedWishlist = await fetchWishlist();
+                            setWishlist(updatedWishlist);
+                        }}
                         className=" h-8 w-8 text-colorPrimary md:hidden mb-auto "
                     >
-                        <Trash2 />
+                        <Trash2 className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95" />
                     </button>
                 </div>
             </div>
             <div className="basis-[47%] flex flex-col justify-center md:mx-8">
-                <p className="pt-8 md:pt-0">{wishItem.name}</p>
+                <p className="pt-8 md:pt-0 text-3xl">{wishItem.name}</p>
                 <StarRating rate={wishItem.rating} />
                 <p className="pt-8">{wishItem.description}</p>
-                <p className="mt-auto pt-4">
+                <p className="mt-auto pt-4 hover:text-colorSecondary">
                     <Link
                         to={`/product/${wishItem._id}`}
                         className="underline"
@@ -162,19 +170,19 @@ const WishlistItem = ({ wishItem }) => {
                                     wishItem.price /
                                         (1 - wishItem.discount / 100)
                                 ).toFixed(2)}
-                                €
+                                $
                             </p>
                             <p className="text-[2rem] text-colorTertiary">
                                 {/* {Math.round(
                                     wishItem.price *
                                         (1 - wishItem.discount / 100)
                                 ).toFixed(2)} */}
-                                {wishItem.price.toFixed(2)}€
+                                ${wishItem.price.toFixed(2)}
                             </p>
                         </div>
                     ) : (
                         <p className="text-[2rem]">
-                            {wishItem.price.toFixed(2)}€
+                            ${wishItem.price.toFixed(2)}
                         </p>
                     )}
                     <button
@@ -186,7 +194,7 @@ const WishlistItem = ({ wishItem }) => {
                         }}
                         className="p-4 text-colorPrimary hidden md:block mb-auto"
                     >
-                        <Trash2 />
+                        <Trash2 className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95" />
                     </button>
                 </div>
 
