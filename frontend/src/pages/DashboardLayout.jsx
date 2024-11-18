@@ -4,8 +4,8 @@ import DashboardSidebar from "../components/DashboardSidebar/DashboardSidebar";
 
 const DashboardLayout = () => (
     <>
-        <div className="flex bg-[#151c2c]">
-            <div className="basis-1/4 bg-bgSoft p-5">
+        <div className="flex bg-[#151c2c] min-h-screen">
+            <div className="basis-1/4 p-5 ">
                 <DashboardSidebar />
             </div>
             <div className="basis-3/4 p-5">

@@ -11,6 +11,8 @@ import {
     LogOut,
 } from "lucide-react";
 import MenuLink from "../DashboardMenuLink/DashboardMenuLink";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppProvider";
 
 const menuItems = [
     {
@@ -76,12 +78,16 @@ const menuItems = [
 ];
 
 const DashboardSidebar = () => {
+    const { user } = useContext(AppContext);
+
     return (
-        <div className="sticky top-10 p-5 bg-colorPrimary text-gray-200">
+        <div className="sticky top-0 p-5 bg-colorPrimary text-gray-200 min-h-screen">
             <div className="flex items-center gap-4 mb-6">
                 <User size={50} />
                 <div className="flex flex-col">
-                    <span className="font-semibold">John Joe</span>
+                    <span className="font-semibold">
+                        {user.firstName + " " + user.lastName}
+                    </span>
                     <span className="text-xl text-[#b7bac1]">
                         Administrator
                     </span>

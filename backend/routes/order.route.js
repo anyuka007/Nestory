@@ -9,6 +9,6 @@ import {
 const router = Router();
 
 router.get("/", authorize, getUserOrders);
-router.get("/all", getAllOrders);
+router.get("/admin", authorize, getAllOrders);
 
 export default router;
