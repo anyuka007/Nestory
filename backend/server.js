@@ -16,18 +16,19 @@ import addressRouter from "./routes/addressRouter.js";
 import userRouter from "./routes/userRouter.js";
 import paymentRouter from "./routes/payment.route.js";
 import orderRouter from "./routes/order.route.js";
+import reviewRouter from "./routes/reviewRoutes.js";
 
 await connect();
 const app = express();
 
 const corsOptions = {
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:5175",
-        "http://localhost:5177",
-    ],
-    credentials: true,
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:5175",
+    "http://localhost:5177",
+  ],
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
@@ -49,8 +50,9 @@ app.use("/address", addressRouter);
 app.use("/account/user", userRouter);
 app.use("/api/payments", paymentRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/review", reviewRouter);
 
 const port = 3000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`.yellow.bold);
+  console.log(`Server is running on port ${port}`.yellow.bold);
 });
