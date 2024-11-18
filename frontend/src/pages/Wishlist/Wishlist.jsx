@@ -14,7 +14,7 @@ const Wishlist = () => {
                 </h2>
             </div>
             {wishlist.length ? (
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center md:w-[82%] md:mx-auto">
                     <h3 className=" w-[100%] lg:text-[3rem] text-center">
                         {user.firstName}, there are {wishlist.length} items in
                         your wishlist
@@ -24,7 +24,7 @@ const Wishlist = () => {
                     ))}
                 </div>
             ) : (
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center md:w-[82%] md:mx-auto">
                     <h3 className="text-[3.2rem] font-semibold mb-[3rem]">
                         {user.firstName}, your wishlist is empty
                     </h3>
