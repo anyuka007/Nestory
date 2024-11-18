@@ -109,7 +109,7 @@ const DashboardProducts = () => {
                     >
                         <input
                             {...register("search")}
-                            placeholder="Search for a User..."
+                            placeholder="Search for a Product..."
                             className="w-full p-3  rounded-lg bg-[#2e374a] focus:ring focus:ring-teal-500"
                         />
                     </form>
