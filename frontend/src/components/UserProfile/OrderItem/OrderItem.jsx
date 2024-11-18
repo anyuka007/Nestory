@@ -10,7 +10,10 @@ const OrderItem = ({ orderItem }) => {
             <div>
                 <div className="mt-[2rem]">
                     <p className="font-bold text2xl">
-                        Order from {formatDateLong(orderItem.createdAt)}
+                        Order from{" "}
+                        {
+                            /* formatDateLong(orderItem.createdAt) */ orderItem.createdAt
+                        }
                     </p>
                 </div>
                 <div className="h-fit md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-around border-t">
