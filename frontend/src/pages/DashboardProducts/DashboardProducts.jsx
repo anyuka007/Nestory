@@ -4,7 +4,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import Pagination from "../../components/Pagination/Pagination";
-// import Pagination from "./components/Pagination";
+
+import debounce from "lodash/debounce";
 
 export const fetchProducts = async () => {
     try {
@@ -38,10 +39,6 @@ const DashboardProducts = () => {
     const itemsPerPage = 10;
     const navigate = useNavigate();
 
-    const onSearch = (data) => {
-        console.log("Search:", data);
-    };
-
     useEffect(() => {
         const getProducts = async () => {
             const data = await fetchProducts(); // 获取产品数据
@@ -51,6 +48,20 @@ const DashboardProducts = () => {
 
         getProducts(); // 调用异步函数
     }, []);
+
+    // 搜索功能：防抖搜索逻辑
+    const debouncedSearch = debounce((data) => {
+        const searchKeyword = data.search?.toLowerCase() || "";
+        const filteredProducts = allProducts.filter((product) =>
+            product.name.toLowerCase().includes(searchKeyword)
+        );
+        setSortedProducts(filteredProducts);
+        setCurrentPage(1); // 搜索时重置为第一页
+    }, 300);
+
+    const onSearch = (data) => {
+        debouncedSearch(data);
+    };
 
     const handleSort = (column) => {
         const isAsc = column === sortColumn && sortOrder === "asc";
@@ -85,8 +96,6 @@ const DashboardProducts = () => {
                 method: "DELETE",
                 credentials: "include",
             });
-            // const data = await response.json();
-            // console.log("Product deleted:", data);
 
             setAllProducts(allProducts.filter((product) => product._id !== id));
             setSortedProducts(
@@ -110,7 +119,7 @@ const DashboardProducts = () => {
                         <input
                             {...register("search")}
                             placeholder="Search for a Product..."
-                            className="w-full p-3  rounded-lg bg-[#2e374a] focus:ring focus:ring-teal-500"
+                            className="w-full p-3  rounded-lg bg-[#2e374a] focus:ring focus:ring-teal-500 text-gray-200"
                         />
                     </form>
                 </div>
