@@ -108,7 +108,7 @@ const App = () => (
                         element={<DashboardAddProduct />}
                     />
                     <Route
-                        path="products/update/test"
+                        path="products/update/:productId"
                         element={<DashboardUpdateProduct />}
                     />
                     <Route path="users" element={<DashboardUsers />} />

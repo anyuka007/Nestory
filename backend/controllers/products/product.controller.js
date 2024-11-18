@@ -7,6 +7,7 @@ export const addProduct = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     const { id } = req.params;
+    console.log("here is updateProduct product", req.body);
     const product = await Product.findOneAndUpdate({ _id: id }, req.body, {
         new: true,
     });

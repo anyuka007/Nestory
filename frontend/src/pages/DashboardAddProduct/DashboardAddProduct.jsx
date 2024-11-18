@@ -26,7 +26,7 @@ const DashboardAddProduct = () => {
         }
 
         const payload = { ...data, image: imageUrl }; // 合并图片 URL 和表单数据
-        console.log("提交数据:", payload);
+        // console.log("提交数据:", payload);
 
         // Post Form Data to API
         try {
@@ -42,7 +42,7 @@ const DashboardAddProduct = () => {
 
             if (response.ok) {
                 console.log("Product added successfully");
-                navigate("/dashboard/users");
+                navigate("/dashboard/products");
             } else {
                 const errorData = await response.json();
                 console.error(
@@ -58,7 +58,7 @@ const DashboardAddProduct = () => {
     return (
         <div className="bg-colorPrimary p-5 rounded-lg mt-5 flex gap-10 min-h-screen">
             {/* Left: Image */}
-            <div className="w-[35%] flex flex-col items-center">
+            <div className="w-[33%] flex flex-col items-center">
                 {imageUrl ? (
                     <img
                         src={imageUrl}
@@ -72,7 +72,7 @@ const DashboardAddProduct = () => {
                 )}
                 <input
                     {...register("image", {
-                        required: "Product Name is required",
+                        required: "Product image is required",
                     })}
                     type="file"
                     accept="image/*"
@@ -198,7 +198,9 @@ const DashboardAddProduct = () => {
                     rows="4"
                     placeholder="Description"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
-                        errors.address ? "border-red-500" : "border-gray-700"
+                        errors.description
+                            ? "border-red-500"
+                            : "border-gray-700"
                     } rounded-md  w-[80%]`}
                 ></textarea>
                 {errors.description && (
