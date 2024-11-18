@@ -78,7 +78,7 @@ const menuItems = [
 ];
 
 const DashboardSidebar = () => {
-    const { user } = useContext(AppContext);
+    const { user, handleLogout } = useContext(AppContext);
 
     return (
         <div className="sticky top-0 p-5 bg-colorPrimary text-gray-200 min-h-screen">
@@ -105,7 +105,10 @@ const DashboardSidebar = () => {
                     </li>
                 ))}
             </ul>
-            <button className="w-full mt-4 flex items-center gap-4 p-4 bg-gray-700 rounded-lg hover:bg-gray-600">
+            <button
+                onClick={handleLogout}
+                className="w-full mt-4 flex items-center gap-4 p-4 bg-gray-700 rounded-lg hover:bg-gray-600"
+            >
                 <LogOut />
                 Logout
             </button>
