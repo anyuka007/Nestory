@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "../../Button/Button";
 
 const SubscribeBox = () => {
@@ -13,7 +12,7 @@ const SubscribeBox = () => {
                 </p>
                 <p className="text-colorPrimary"> 30% OFF!</p>
             </div>
-            <div className="lg:basis-[55%] h-[22rem] md:h-[13rem] lg:h-[16rem] bg-colorPrimary flex flex-col justify-center gap-[2rem] items-center md:flex-row rounded-b-[22px] lg:rounded-bl-none lg:rounded-r-[22px]">
+            <div className="lg:basis-[60%] h-[22rem] md:h-[13rem] lg:h-[16rem] bg-colorPrimary flex flex-col justify-center gap-[2rem] items-center md:flex-row rounded-b-[22px] lg:rounded-bl-none lg:rounded-r-[22px]">
                 <input
                     className=" h-[4.5rem] w-[75%] md:w-[50%] rounded-[10px] p-[2rem] text-white bg-[#174B69]"
                     type="text"

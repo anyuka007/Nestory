@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import UserProfileMenu from "../../components/UserProfile/UserProfileMenu";
 import SubscribeBox from "../../components/UserProfile/SubscribeBox/SubscribeBox";
 import { AppContext } from "../../context/AppProvider";
@@ -9,7 +9,7 @@ const UserProfile = () => {
     const { user } = useContext(AppContext);
     return (
         <>
-            <div className="mt-[3rem] flex justify-center flex-col lg:flex-row">
+            <div className="mt-[3rem] flex justify-between flex-col lg:flex-row">
                 <div className="basis-[80%] order-2">
                     {location.pathname === "/user" && (
                         <>
