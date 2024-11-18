@@ -144,6 +144,7 @@ export const createCheckoutSession = async (req, res) => {
 
         console.log("cartItems", cartItems);
         let totalAmount = 0;
+        let totalAmountNoShippingFee = 0;
 
         // 计算每个商品的金额和总金额
         const lineItems = cartItems.items.map((item) => {
@@ -160,7 +161,8 @@ export const createCheckoutSession = async (req, res) => {
             }
 
             const amount = Math.round(price * 100); // Stripe要求金额以分为单位
-            totalAmount += amount * quantity;
+            totalAmountNoShippingFee += amount * quantity;
+            totalAmount = totalAmountNoShippingFee + 50;
 
             return {
                 price_data: {

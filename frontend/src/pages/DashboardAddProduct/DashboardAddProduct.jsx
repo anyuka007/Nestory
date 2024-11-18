@@ -193,10 +193,10 @@ const DashboardAddProduct = () => {
                 </label>
                 <textarea
                     {...register("description", {
-                        required: "Address is required",
+                        required: "description is required",
                     })}
                     rows="4"
-                    placeholder="Description"
+                    placeholder="Description, minimum 10 characters"
                     className={`p-3 bg-[#2e374a] text-gray-200 border ${
                         errors.description
                             ? "border-red-500"
