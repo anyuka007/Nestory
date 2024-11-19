@@ -28,7 +28,7 @@ import DashboardAddUser from "./pages/DashboardAddUser/DashboardAddUser";
 import DashboardUpdateUser from "./pages/DashboardUpdateUser/DashboardUpdateUser";
 import DashboardAddProduct from "./pages/DashboardAddProduct/DashboardAddProduct";
 import DashboardUpdateProduct from "./pages/DashboardUpdateProduct/DashboardUpdateProduct";
-
+import AboutUs from "./components/AboutUs/AboutUs";
 // Role-based redirect
 // const RoleBasedRedirect = () => {
 //     const { user } = useContext(AppContext);
@@ -54,6 +54,7 @@ const ProtectedRoute = ({ children }) => {
     return children;
 };
 
+
 const App = () => (
     <BrowserRouter>
         <GoogleOAuthProvider clientId={import.meta.env.VITE_OAUTH_SECRET_USER}>
@@ -72,9 +73,11 @@ const App = () => (
                         <Route path="shop" element={<ShopList />} />
                         <Route path="login" element={<Login />} />
                         <Route path="register" element={<Login />} />
-                        <Route path="user" element={<UserProfile />}>
+                        <Route path="about" element={<AboutUs />} />
+                    <Route path="user" element={<UserProfile />}>
                             <Route path="orders" element={<UserOrders />} />
-                            <Route path="data" element={<UserProfileInfo />} />
+    
+                        <Route path="data" element={<UserProfileInfo />} />
                         </Route>
                         <Route
                             path="category/:categoryName"
