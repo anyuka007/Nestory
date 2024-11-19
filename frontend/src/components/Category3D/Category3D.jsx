@@ -61,7 +61,7 @@ function Card({ url, title, ...props }) {
 
     const handleClick = () => {
         if (ref.current.material.renderOrder === 0) {
-            console.log(`Position of ${title}:`, props.position);
+            // console.log(`Position of ${title}:`, props.position);
             navigate(`/category/${title}`);
             window.scrollTo(0, 0);
         }
