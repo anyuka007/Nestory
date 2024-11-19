@@ -28,9 +28,10 @@ function isStrongPassword(password) {
 }
 
 export const registerUser = async (req, res) => {
-  console.log(222);
   const { firstName, lastName, email, password, rememberMe } = req.body;
-  console.log(req.body);
+  // if (password !== repeatPassword) {
+  //   return res.status(400).json({ message: "Passwords do not match!" });
+  // }
   try {
     if (!firstName || !lastName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
