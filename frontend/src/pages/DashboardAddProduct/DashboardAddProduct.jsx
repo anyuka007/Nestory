@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { Package } from "lucide-react";
 
 const DashboardAddProduct = () => {
     const {
@@ -58,7 +59,7 @@ const DashboardAddProduct = () => {
     return (
         <div className="bg-colorPrimary p-5 rounded-lg mt-5 flex gap-10 min-h-screen">
             {/* Left: Image */}
-            <div className="w-[33%] flex flex-col items-center">
+            <div className="w-[33%] flex flex-col items-center mt-16 ">
                 {imageUrl ? (
                     <img
                         src={imageUrl}
@@ -66,9 +67,12 @@ const DashboardAddProduct = () => {
                         className="w-full rounded-lg mb-5"
                     />
                 ) : (
-                    <p className="text-gray-400 text-center mb-5">
-                        Choose an image and Preview it
-                    </p>
+                    <div className="flex flex-col items-center w-full">
+                        <Package size={250} className="text-gray-400 mb-10" />
+                        <p className="text-gray-400 text-center mb-16">
+                            Choose an image and Preview it
+                        </p>
+                    </div>
                 )}
                 <input
                     {...register("image", {

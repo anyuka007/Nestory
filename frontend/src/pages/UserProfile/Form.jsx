@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Input from "./Input";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "../../components/Button/Button";
@@ -7,12 +7,14 @@ import { formatKey } from "../../utils/formatKey";
 import { updateUserAddress } from "../../utils/addressUtils/updateUserAddress";
 import { addAddress } from "../../utils/addressUtils/addAddres";
 import { updateUser } from "../../utils/userUtils/updateUser";
+import { AppContext } from "../../context/AppProvider.jsx";
 
 const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
     const [showPassword, setShowPassword] = useState({});
     const [sectionFormData, setSectionFormData] = useState(formData);
     const [editMode, setEditMode] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const { fetchUser } = useContext(AppContext);
     //console.log("formData", formData);
     //console.log("sectionFormData", sectionFormData);
 
@@ -227,6 +229,7 @@ const Form = ({ sectionId, fields, formData, dispatchSectionForm }) => {
                                                     "updateUser completed successfully to: ",
                                                     sectionFormData
                                                 ); */
+                                                await fetchUser();
                                             } catch (error) {
                                                 console.error(
                                                     "Error editing user:",

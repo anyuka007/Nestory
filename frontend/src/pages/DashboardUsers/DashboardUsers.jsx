@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { GrUserAdmin } from "react-icons/gr";
 import { ImUserTie } from "react-icons/im";
 import Pagination from "../../components/Pagination/Pagination";
+import { debounce } from "lodash";
 
 // import Pagination from "./components/Pagination";
 
@@ -36,13 +37,9 @@ const DashboardUsers = () => {
     const [paginatedUsers, setPaginatedUsers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1); // 当前页码
     // const [itemsPerPage] = useState(5); // 每页显示5条数据
-    const itemsPerPage = 5;
+    const itemsPerPage = 10;
 
     const navigate = useNavigate();
-
-    const onSearch = (data) => {
-        console.log("Search:", data);
-    };
 
     useEffect(() => {
         const getUsers = async () => {
@@ -53,6 +50,19 @@ const DashboardUsers = () => {
         getUsers();
     }, []);
 
+    // 搜索功能：防抖搜索逻辑
+    const debouncedSearch = debounce((data) => {
+        const searchKeyword = data.search?.toLowerCase() || "";
+        const filteredUsers = users.filter((user) =>
+            user.firstName.toLowerCase().includes(searchKeyword)
+        );
+        setSortedUsers(filteredUsers);
+        setCurrentPage(1); // 搜索时重置为第一页
+    }, 300);
+
+    const onSearch = (data) => {
+        debouncedSearch(data);
+    };
     const handleSort = (column) => {
         const isAsc = column === sortColumn && sortOrder === "asc";
         const newSortOrder = isAsc ? "desc" : "asc";
@@ -105,7 +115,7 @@ const DashboardUsers = () => {
                         <input
                             {...register("search")}
                             placeholder="Search for a User..."
-                            className="w-full p-3  rounded-lg bg-[#2e374a] focus:ring focus:ring-teal-500"
+                            className="w-full p-3 text-gray-200 rounded-lg bg-[#2e374a] focus:ring focus:ring-teal-500"
                         />
                     </form>
                 </div>

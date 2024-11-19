@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
                     </Link>
                 </h3>
 
-                <StarRating rate={product.rate} />
+                <StarRating rate={product.rating} />
                 {product.percentage ? (
                     <p className="flex justify-center items-center gap-2">
                         <del className="no-underline">
