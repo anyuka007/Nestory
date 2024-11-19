@@ -19,14 +19,14 @@ const cards = [
     },
     {
         title: "Fullstack Web Developer",
-        name: "Anna ",
+        name: "Anna Popova",
         image: "https://ornithology.com/wp-content/uploads/2022/11/image-1-768x1024.png",
         git: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
         in: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
     },
     {
         title: "Fullstack Web Developer",
-        name: "Julijana",
+        name: "Julijana Uneva ",
         image: "https://sinavet.com/wp-content/uploads/2024/04/Persian-Mastiff.jpg",
         git: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
         in: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
@@ -203,17 +203,18 @@ export default function AboutUs() {
 }
 const styles = {
     container: {
-        backgroundColor: "#1A202C", // Dunkler Hintergrund
+        //backgroundColor: "#1A202C", // Dunkler Hintergrund
+        backgroundColor:"#0b3954",
         color: "#E2E8F0", // Hellgrauer Text
         padding: "40px",
         borderRadius: "20px",
         textAlign: "center",
-        maxWidth: "900px",
+        maxWidth: "800px",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        minHeight: "100vh",
+        minHeight: "10vh",
     },
     title: {
         fontSize: "33px",
@@ -241,9 +242,9 @@ const styles = {
     },
     name: {
         font: "bold",
-        color: "yellow",
+        color: "#ffb128",
         marginBottom: "10px",
-        fontSize: "18px",
+        fontSize: "19px",
     },
     logo: {
         width: "50px",
