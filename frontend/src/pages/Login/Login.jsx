@@ -6,6 +6,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppProvider";
@@ -33,6 +34,10 @@ const App = () => {
 
   const { setLoginSuccess, setUser } = useContext(AppContext);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [repeatPasswordVisible, setRepeatPasswordVisible] = useState(false);
+  const [passwordPage, setPasswordPage] = useState("login");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,11 +83,15 @@ const App = () => {
         ? "Your account has been created successfully!"
         : "Login successful!";
       console.log("Toast message:", successMessage);
+      //   toast.success(successMessage, { autoClose: false });
       toast.success(successMessage);
       setLoginSuccess(result.success);
       setUser(result.user);
 
-      if (!isSignUp) navigate("/");
+      if (!isSignUp) {
+        toast.success("Login successful!");
+        navigate("/");
+      }
       if (isSignUp) {
         setIsSignUp(false);
         navigate("/login");
@@ -172,7 +181,8 @@ const App = () => {
           <div className={styles.inputContainer}>
             <RiLockPasswordFill className={styles.icon} />
             <input
-              type="password"
+              //   type="password"
+              type={passwordVisible ? "text" : "password"}
               placeholder="Password"
               // {...register("password", { required: "Password is required" })}
               {...register("password", {
@@ -181,7 +191,16 @@ const App = () => {
               })}
               required
             />
+            <div
+              className={
+                passwordPage === "register" ? styles.eyeIcon2 : styles.eyeIcon1
+              }
+              onClick={() => setPasswordVisible((prev) => !prev)}
+            >
+              {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+            </div>
           </div>
+
           {/* {errors.password && (
             <p className={styles.error}>{errors.password.message}</p>
           )} */}
@@ -189,7 +208,8 @@ const App = () => {
             <div className={styles.inputContainer}>
               <RiLockPasswordFill className={styles.icon} />
               <input
-                type="password"
+                // type="password"
+                type={repeatPasswordVisible ? "text" : "password"}
                 placeholder="Repeat Password"
                 // {...register("Repeat Password", {
                 //   required: "Please repeat the Password",
@@ -199,6 +219,12 @@ const App = () => {
                 })}
                 required
               />
+              <div
+                className={styles.eyeIcon3}
+                onClick={() => setRepeatPasswordVisible((prev) => !prev)}
+              >
+                {repeatPasswordVisible ? <FaEye /> : <FaEyeSlash />}
+              </div>
               {/* {errors.repeatPassword && (
                 <p className={styles.error}>{errors.repeatPassword.message}</p>
               )} */}

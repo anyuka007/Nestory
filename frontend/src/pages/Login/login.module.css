@@ -100,7 +100,8 @@
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #999;
+  /* color: #999; */
+  color: var(--colorPrimary);
 }
 
 form {
@@ -239,6 +240,29 @@ input:checked + .slider:before {
   /* margin-bottom: -10px; */
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.eyeIcon1 {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eyeIcon2 {
+  position: absolute;
+  right: 50px;
+  top: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eyeIcon3 {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 /* .error {
