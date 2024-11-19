@@ -29,7 +29,7 @@ const Navbar = () => {
     } = useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
 
-    console.log("cartItems in navbar", cartItems);
+    // console.log("cartItems in navbar", cartItems);
 
     const handleSearch = (e) => {
         setSearchKeyword(e.target.value);

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import StarRating from "../../components/StarRating/StarRating";
@@ -10,11 +11,28 @@ import QuantitySelector from "../../components/QuantitySelector/QuantitySelector
 import ReviewSection from "../../components/Reviews/Reviews";
 import Carousel from "../../components/Carousel/Carousel";
 // import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../../context/AppProvider";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import WishHeart from "../../components/WishHeart/WishHeart";
+
+//3d model
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+
+const Furniture = () => {
+    const { scene } = useGLTF("/images/texture/cover_chair.glb");
+    // const { scene } = useGLTF("/images/texture/study_desk.glb");
+    // const { scene } = useGLTF("/texture/sofa3d1.glb");
+    return (
+        <primitive
+            object={scene}
+            position={[0, -2, 0]}
+            scale={[0.05, 0.05, 0.05]}
+        />
+    );
+};
 
 // const ProductDetails = () => {
 
@@ -81,7 +99,16 @@ const ProductDetails = () => {
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const [quantityProductDetails, setQuantityProductDetails] = useState(1);
-    console.log("quantityProductDetails", quantityProductDetails);
+
+    //3d model jian---------------------------
+    const [controlsEnabled, setControlsEnabled] = useState(false);
+    const orbitControlsRef = useRef();
+    // 切换 OrbitControls 的启用状态
+    const toggleControls = () => {
+        setControlsEnabled((prev) => !prev);
+    };
+    //3d model--------------------------------
+
     const handleQuantityChange = (newQuantity) => {
         setQuantityProductDetails(newQuantity);
     };
@@ -262,13 +289,57 @@ const ProductDetails = () => {
                 {/* <WishHeart className="text-colorPrimary cursor-pointer" /> */}
                 <div className="flex-col gap-2 mt-1 xl:mt-[6rem] xl:mb-40 flex lg:flex-row justify-around items-center bg-white">
                     {/* Left Section: Image */}
-                    <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0">
-                        <img
-                            ref={imgRef}
-                            src={product.image}
-                            alt="product"
-                            className="w-[30rem] md:w-[65rem] md:h-[65rem]"
-                        />
+                    <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0 relative">
+                        {product.name !== "cover chair" ? (
+                            <img
+                                ref={imgRef}
+                                src={product.image}
+                                alt="product"
+                                className="w-[30rem] md:w-[65rem] md:h-[65rem]"
+                            />
+                        ) : (
+                            <>
+                                {/* Canvas 3D 场景 */}
+                                <Canvas
+                                    // ref={imgRef}
+                                    className="w-full aspect-[4/3] flex justify-center items-center"
+                                    shadows
+                                    camera={{
+                                        position: [-1.8, 1.8, 3],
+                                        fov: 75,
+                                    }}
+                                >
+                                    {/* 环境光与定向光 */}
+                                    <ambientLight intensity={1.7} />
+                                    <directionalLight
+                                        position={[-5, 10, 5]}
+                                        intensity={2.5}
+                                        castShadow
+                                        shadow-mapSize-width={1024}
+                                        shadow-mapSize-height={1024}
+                                        shadow-camera-far={50}
+                                    />
+                                    {/* 房间模型 */}
+                                    <Furniture />
+                                    {/* OrbitControls */}
+                                    <OrbitControls
+                                        ref={orbitControlsRef}
+                                        enabled={controlsEnabled}
+                                        enablePan={false} // 禁用平移
+                                    />
+                                </Canvas>
+                                {/* 切换控制按钮 */}
+                                <button
+                                    onClick={toggleControls}
+                                    className="absolute top-10 left-10 bg-colorPrimary text-gray-200 p-4  rounded-md hover:bg-colorSecondary transition-colors duration-300 ease-in-out cursor-pointer"
+                                >
+                                    {controlsEnabled
+                                        ? "Disable 3D Controls"
+                                        : "Enable 3D Controls"}
+                                </button>
+                            </>
+                        )}
+
                         {/* moved it to the div with img and gave it height */}
                         {/* flaying element */}
                         {isFlying && (

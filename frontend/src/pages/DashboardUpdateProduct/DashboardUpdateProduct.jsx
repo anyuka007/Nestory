@@ -71,7 +71,7 @@ const DashboardUpdateProduct = () => {
     };
 
     return (
-        <div className="bg-colorPrimary p-5 rounded-lg mt-5">
+        <div className="bg-colorPrimary p-5 rounded-lg mt-5 flex  min-h-screen">
             {/* Left: Image */}
             <div className="w-[33%] flex flex-col items-center">
                 {imageUrl ? (
@@ -98,7 +98,7 @@ const DashboardUpdateProduct = () => {
 
             {/* Right: Form */}
             <form
-                className="flex flex-wrap justify-between gap-10 basis-2/3"
+                className="flex flex-wrap justify-evenly basis-2/3"
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem]  text-3xl">
