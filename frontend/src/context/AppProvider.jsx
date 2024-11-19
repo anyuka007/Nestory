@@ -149,6 +149,7 @@ const AppProvider = ({ children }) => {
                 setFlyStyle,
                 bagIconRef,
                 imgRef,
+                fetchUser,
             }}
         >
             {children}

@@ -91,8 +91,8 @@ const WishlistItem = ({ wishItem }) => {
     };
 
     return (
-        <div className="border-t h-fit w-[100%] md:h-[30rem] py-[3rem] px-[11rem] flex flex-col md:flex-row justify-around mt-8">
-            <div className="md:basis-[30%] flex md:flex-col justify-between md:justify-center md:mx-8">
+        <div className="border-t h-fit w-[100%] md:h-[30rem] py-[3rem] flex flex-col md:flex-row justify-between mt-8">
+            <div className="md:basis-[30%] flex md:flex-col justify-between md:justify-center">
                 <div className="basis-[15%]">
                     {wishItem.discount > 0 && (
                         <p
@@ -130,7 +130,7 @@ const WishlistItem = ({ wishItem }) => {
                         />
                     </Link>
                 </div>
-                <div className="text-center basis-[15%] flex justify-center">
+                <div className="text-center basis-[15%] flex justify-end">
                     <button
                         onClick={async () => {
                             await deleteWishItem(wishItem._id);
@@ -160,7 +160,7 @@ const WishlistItem = ({ wishItem }) => {
                     </Link>
                 </p>
             </div>
-            <div className="basis-[18%] flex flex-col justify-center md:mx-8">
+            <div className="basis-[18%] flex flex-col justify-center">
                 <div className="flex justify-between mt-8 md:mt-0">
                     {wishItem.discount ? (
                         <div>
@@ -192,7 +192,7 @@ const WishlistItem = ({ wishItem }) => {
                             const updatedWishlist = await fetchWishlist();
                             setWishlist(updatedWishlist);
                         }}
-                        className="p-4 text-colorPrimary hidden md:block mb-auto"
+                        className="text-colorPrimary hidden md:block mb-auto"
                     >
                         <Trash2 className=" cursor-pointer hover:text-colorTertiary focus:outline-none focus:text-colorTertiary transition duration-200 ease-in-out hover:scale-110 active:scale-95" />
                     </button>
