@@ -55,14 +55,23 @@ export const getUsersOrders = async (req, res) => {
         return res.status(400).json("User ID is missing");
     }
     try {
-        console.log("Fetching orders for userId:", userId);
+        //console.log("Fetching orders for userId:", userId);
         const orders = await Order.find({ userId: userId }).populate(
             "items.productId"
         );
 
-        console.log("ordersPopulated", orders);
+        /* console.log("ordersPopulated", orders);
         console.log("User's orders fetched successfully".green, orders);
-        return res.status(200).json(orders);
+        return res.status(200).json(orders); */
+        // Filter out deleted items (products)
+        const filteredOrders = orders.map((order) => {
+            order.items = order.items.filter((item) => item.productId !== null);
+            return order;
+        });
+
+        //console.log("ordersPopulated", filteredOrders);
+        //console.log("User's orders fetched successfully".green, filteredOrders);
+        return res.status(200).json(filteredOrders);
     } catch (error) {
         console.error("Error fetching user's orders".red, error.message.red);
         return res.status(500).json(error.message);

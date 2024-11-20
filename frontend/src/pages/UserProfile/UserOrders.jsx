@@ -35,7 +35,7 @@ const UserOrders = () => {
         if (user._id) {
             getUsersOrders();
         }
-    }, []);
+    }, [user._id]);
 
     return (
         <div>
