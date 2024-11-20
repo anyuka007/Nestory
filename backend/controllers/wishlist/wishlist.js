@@ -55,7 +55,7 @@ export const getUserWishlist = async (req, res) => {
                     discount: item.productId.percentage,
                     price: item.productId.price,
                     rating: item.productId.rating,
-                    addedAt: item.addedAt,
+                    addedAt: item.addedAt, // for sort by date
                 };
             });
 
