@@ -29,6 +29,7 @@ import DashboardUpdateUser from "./pages/DashboardUpdateUser/DashboardUpdateUser
 import DashboardAddProduct from "./pages/DashboardAddProduct/DashboardAddProduct";
 import DashboardUpdateProduct from "./pages/DashboardUpdateProduct/DashboardUpdateProduct";
 import AboutUs from "./components/AboutUs/AboutUs";
+import useRefreshToken from "../src/components/RefreshToken/RefreshToken.jsx";
 // Role-based redirect
 // const RoleBasedRedirect = () => {
 //     const { user } = useContext(AppContext);
@@ -44,100 +45,81 @@ import AboutUs from "./components/AboutUs/AboutUs";
 
 // Protected route for admin pages
 const ProtectedRoute = ({ children }) => {
-    const { user } = useContext(AppContext);
+  const { user } = useContext(AppContext);
 
-    // if not admin, redirect to home
-    if (!user || user.role !== "admin") {
-        return <Navigate to="/" replace />;
-    }
+  // if not admin, redirect to home
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/" replace />;
+  }
 
-    return children;
+  return children;
 };
 
-
-const App = () => (
+const App = () => {
+  useRefreshToken();
+  return (
     <BrowserRouter>
-        <GoogleOAuthProvider clientId={import.meta.env.VITE_OAUTH_SECRET_USER}>
-            <AppProvider>
-                <Routes>
-                    {/* 根路径下的角色重定向 */}
-                    {/* <Route path="/" element={<RoleBasedRedirect />} /> */}
+      <GoogleOAuthProvider clientId={import.meta.env.VITE_OAUTH_SECRET_USER}>
+        <AppProvider>
+          <Routes>
+            {/* 根路径下的角色重定向 */}
+            {/* <Route path="/" element={<RoleBasedRedirect />} /> */}
 
-                    {/* home page and his children pages */}
-                    <Route path="/" element={<SharedLayout />}>
-                        <Route index element={<Home />} />
-                        {/* Weitere Routen hier zwischen */}
-                        <Route path="search" element={<SearchResults />} />
-                        <Route path="cart" element={<ShoppingCart />} />
-                        <Route path="wishlist" element={<Wishlist />} />
-                        <Route path="shop" element={<ShopList />} />
-                        <Route path="login" element={<Login />} />
-                        <Route path="register" element={<Login />} />
-                        <Route path="about" element={<AboutUs />} />
-                    <Route path="user" element={<UserProfile />}>
-                            <Route path="orders" element={<UserOrders />} />
-    
-                        <Route path="data" element={<UserProfileInfo />} />
-                        </Route>
-                        <Route
-                            path="category/:categoryName"
-                            element={<Category />}
-                        />
-                        <Route
-                            path="product/:_id"
-                            element={<ProductDetails />}
-                        />
-                        <Route
-                            path="purchase-success"
-                            element={<PurchaseSuccess />}
-                        />
-                        <Route
-                            path="purchase-cancel"
-                            element={<PurchaseCancel />}
-                        />
-                        <Route path="show-orders" element={<ShowOrders />} />
-                        {/* Weitere Routen hier zwischen */}
-                        <Route path="*" element={<NotFound />} />
-                    </Route>
+            {/* home page and his children pages */}
+            <Route path="/" element={<SharedLayout />}>
+              <Route index element={<Home />} />
+              {/* Weitere Routen hier zwischen */}
+              <Route path="search" element={<SearchResults />} />
+              <Route path="cart" element={<ShoppingCart />} />
+              <Route path="wishlist" element={<Wishlist />} />
+              <Route path="shop" element={<ShopList />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Login />} />
+              <Route path="about" element={<AboutUs />} />
+              <Route path="user" element={<UserProfile />}>
+                <Route path="orders" element={<UserOrders />} />
 
-                    {/* dashboard page */}
-                    <Route
-                        path="/dashboard"
-                        element={
-                            <ProtectedRoute>
-                                <DashboardLayout />
-                            </ProtectedRoute>
-                        }
-                    >
-                        <Route index element={<Dashboard />} />
-                        <Route
-                            path="products"
-                            element={<DashboardProducts />}
-                        />
-                        <Route
-                            path="products/add"
-                            element={<DashboardAddProduct />}
-                        />
-                        <Route
-                            path="products/update/:productId"
-                            element={<DashboardUpdateProduct />}
-                        />
-                        <Route path="users" element={<DashboardUsers />} />
-                        <Route
-                            path="users/add"
-                            element={<DashboardAddUser />}
-                        />
-                        <Route
-                            path="users/update/:userId"
-                            element={<DashboardUpdateUser />}
-                        />
+                <Route path="data" element={<UserProfileInfo />} />
+              </Route>
+              <Route path="category/:categoryName" element={<Category />} />
+              <Route path="product/:_id" element={<ProductDetails />} />
+              <Route path="purchase-success" element={<PurchaseSuccess />} />
+              <Route path="purchase-cancel" element={<PurchaseCancel />} />
+              <Route path="show-orders" element={<ShowOrders />} />
+              {/* Weitere Routen hier zwischen */}
+              <Route path="*" element={<NotFound />} />
+            </Route>
 
-                        <Route path="*" element={<NotFound />} />
-                    </Route>
-                </Routes>
-            </AppProvider>
-        </GoogleOAuthProvider>
+            {/* dashboard page */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashboardLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route index element={<Dashboard />} />
+              <Route path="products" element={<DashboardProducts />} />
+              <Route path="products/add" element={<DashboardAddProduct />} />
+              <Route
+                path="products/update/:productId"
+                element={<DashboardUpdateProduct />}
+              />
+              <Route path="users" element={<DashboardUsers />} />
+              <Route path="users/add" element={<DashboardAddUser />} />
+              <Route
+                path="users/update/:userId"
+                element={<DashboardUpdateUser />}
+              />
+
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </AppProvider>
+      </GoogleOAuthProvider>
     </BrowserRouter>
-);
+  );
+};
 
 export default App;

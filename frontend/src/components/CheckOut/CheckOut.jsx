@@ -76,37 +76,40 @@ const CheckOut = ({ totalPrice, clearCart }) => {
         </div>
       )}
 
-      <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[90%] px-15 mx-auto py-15 mt-20 md:space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
-        <h2 className="text-3xl font-bold mb-6">Order Summary</h2>
+      <div className="border-t-[1rem] border-colorPrimary pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[90%] px-15 mx-auto py-15 mt-20 md:space-y-12 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
+        <h2 className="text-3xl font-bold mb-7 border-b border-colorPrimary pb-10">
+          Order Summary
+        </h2>
         <div className="">
           <div className="flex justify-between">
             <span>Total Value:</span>
-            <span>{totalPrice} $</span>
+            <span>$ {totalPrice.toFixed(2)} </span>
           </div>
           <div className="flex justify-between items-center">
             <span>Shipping Costs:</span>
-            <span>50.00 $</span>
+            <span>$ 50.00 </span>
           </div>
-          <div className="line border-t border-gray-300 my-10"></div>
-          <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
+          <div className="line border-t border-colorPrimary my-10"></div>
+          <div className="flex  justify-between font-bold md:text-3xl mb-2">
             <span>Total amount:</span>
-            <span>{(parseFloat(totalPrice) + 50.0).toFixed(2)} &</span>
+            <span>$ {(parseFloat(totalPrice) + 50.0).toFixed(2)} </span>
           </div>
-          <span className="text-sm text-gray-500 mt-8">
+          <span className="text-md text-gray-500 mt-8">
             incl. applicable VAT.
           </span>
         </div>
         <div>
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-4 border-t border-colorPrimary pt-10">
             <input
               disabled={noAddress}
               type="checkbox"
               checked={addressChecked}
               onChange={(e) => setAddressChecked(e.target.checked)}
+              className="w-6 h-6 border-2 rounded-sm text-colorPrimary focus:ring-0 focus:outline-none cursor-pointer disabled:cursor-not-allowed disabled:bg-gray-200 disabled:border-gray-300 peer"
             />
             <span>use my shipping address</span>
             <span
-              className=" text-colorTertiary ml-2 underline cursor-pointer"
+              className=" text-colorTertiary ml-2 hover:underline cursor-pointer"
               onClick={handleAddressChange}
             >
               Show it
@@ -120,7 +123,7 @@ const CheckOut = ({ totalPrice, clearCart }) => {
                 it:
               </span>
               <div
-                className=" text-colorPrimary ml-2 underline cursor-pointer"
+                className=" text-colorPrimary ml-2 hover:underline cursor-pointer"
                 onClick={() => setShowAddressForm(true)}
               >
                 Add a new shipping address
@@ -128,9 +131,11 @@ const CheckOut = ({ totalPrice, clearCart }) => {
             </div>
           ) : (
             <div>
-              <span className="text-gray-500">Don&apos;t have an address?</span>
+              <span className="text-gray-500 pt-4">
+                Don&apos;t have an address?
+              </span>
               <div
-                className=" text-colorTertiary ml-2 underline cursor-pointer"
+                className=" text-colorTertiary hover:underline cursor-pointer"
                 onClick={() => setShowAddressForm(true)}
               >
                 Add a new shipping address
