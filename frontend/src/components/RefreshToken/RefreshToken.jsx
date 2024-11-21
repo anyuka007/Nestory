@@ -25,7 +25,10 @@ const useRefreshToken = () => {
 
   useEffect(() => {
     // Set an interval to refresh the token periodically
-    const interval = setInterval(refreshToken, 55 * 1000); // Refresh every 50 seconds
+    // const interval = setInterval(refreshToken, 55 * 1000);
+    const interval = setInterval(() => {
+      refreshToken();
+    }, 60 * 55 * 1000);
     return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 };
