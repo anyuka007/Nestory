@@ -104,7 +104,7 @@ const DashboardAddProduct = () => {
                     } rounded-md  w-[80%]`}
                 />
                 {errors.name && (
-                    <p className="text-red-500 text-sm mb-2 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.name.message}
                     </p>
                 )}
@@ -123,7 +123,7 @@ const DashboardAddProduct = () => {
                     } rounded-md  w-[80%]`}
                 />
                 {errors.price && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.price.message}
                     </p>
                 )}
@@ -142,7 +142,7 @@ const DashboardAddProduct = () => {
                     } rounded-md  w-[80%]`}
                 />
                 {errors.percentage && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.percentage.message}
                     </p>
                 )}
@@ -163,7 +163,7 @@ const DashboardAddProduct = () => {
                     } rounded-md  w-[80%]`}
                 />
                 {errors.countInStock && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.countInStock.message}
                     </p>
                 )}
@@ -187,7 +187,7 @@ const DashboardAddProduct = () => {
                     <option value="desks">Desks</option>
                 </select>
                 {errors.category && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.category.message}
                     </p>
                 )}
@@ -208,7 +208,7 @@ const DashboardAddProduct = () => {
                     } rounded-md  w-[80%]`}
                 ></textarea>
                 {errors.description && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.description.message}
                     </p>
                 )}

@@ -20,8 +20,8 @@ const DashboardTransactions = () => {
 
     useEffect(() => {
         const getAllOrders = async () => {
-            const data = await fetchTransactions(); // 获取产品数据
-            setTransactions(data.orders);
+            const data = await fetchTransactions();
+            setTransactions(data.filteredOrders);
             // setAllOrders(data.allOrders);
         };
 
@@ -48,13 +48,6 @@ const DashboardTransactions = () => {
                         <tr key={index} className="border-t">
                             <td className=" p-3 text-gray-200">
                                 <BadgeDollarSign className="mr-2 inline-block" />
-                                {/* <img
-                                    src="/images/avatars/Sara.webp"
-                                    alt="User Avatar"
-                                    width={50}
-                                    height={50}
-                                    className="rounded-full object-cover"
-                                /> */}
                                 {transaction.userId.firstName +
                                     " " +
                                     transaction.userId.lastName}
@@ -64,11 +57,6 @@ const DashboardTransactions = () => {
                             </td>
                             <td className="p-3 text-gray-200">
                                 {transaction.status}
-                                {/* <span
-                                    className={`${transaction.color} rounded-md px-2 py-1 text-sm `}
-                                >
-                                    
-                                </span> */}
                             </td>
                             <td className="p-3 text-gray-200">
                                 {transaction.updatedAt}

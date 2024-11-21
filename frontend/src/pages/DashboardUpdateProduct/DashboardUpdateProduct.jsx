@@ -115,7 +115,7 @@ const DashboardUpdateProduct = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.name && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.name.message}
                     </p>
                 )}
@@ -134,7 +134,7 @@ const DashboardUpdateProduct = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.price && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.price.message}
                     </p>
                 )}
@@ -153,7 +153,7 @@ const DashboardUpdateProduct = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.percentage && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.percentage.message}
                     </p>
                 )}
@@ -174,7 +174,7 @@ const DashboardUpdateProduct = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.countInStock && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.countInStock.message}
                     </p>
                 )}
@@ -198,7 +198,7 @@ const DashboardUpdateProduct = () => {
                     <option value="desks">Desks</option>
                 </select>
                 {errors.category && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.category.message}
                     </p>
                 )}
@@ -217,7 +217,7 @@ const DashboardUpdateProduct = () => {
                     } rounded-md mb-5 w-[60%]`}
                 ></textarea>
                 {errors.description && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.description.message}
                     </p>
                 )}

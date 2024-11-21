@@ -58,7 +58,7 @@ const DashboardAddUser = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.firstName && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.firstName.message}
                     </p>
                 )}
@@ -77,7 +77,7 @@ const DashboardAddUser = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.lastName && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.lastName.message}
                     </p>
                 )}
@@ -100,7 +100,7 @@ const DashboardAddUser = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.email && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.email.message}
                     </p>
                 )}
@@ -124,7 +124,7 @@ const DashboardAddUser = () => {
                     } rounded-md mb-5 w-[60%]`}
                 />
                 {errors.password && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.password.message}
                     </p>
                 )}
@@ -143,29 +143,10 @@ const DashboardAddUser = () => {
                     <option value="admin">Admin</option>
                 </select>
                 {errors.role && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
+                    <p className="text-red-500 text-xl w-[60%]">
                         {errors.role.message}
                     </p>
                 )}
-
-                {/* <label className="text-gray-200 text-left w-[60%] block mb-[-1.2rem]  text-3xl">
-                    Address
-                </label>
-                <textarea
-                    {...register("address", {
-                        required: "Address is required",
-                    })}
-                    rows="4"
-                    placeholder="Address"
-                    className={`p-3 bg-[#2e374a] text-gray-200 border ${
-                        errors.address ? "border-red-500" : "border-gray-700"
-                    } rounded-md mb-5 w-[60%]`}
-                ></textarea>
-                {errors.address && (
-                    <p className="text-red-500 text-sm mb-5 w-full">
-                        {errors.address.message}
-                    </p>
-                )} */}
 
                 <button
                     type="submit"

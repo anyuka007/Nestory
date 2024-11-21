@@ -5,7 +5,7 @@ const Timer = () => {
     useEffect(() => {
         const updateTimer = () => {
             const date = new Date();
-            const dateline = new Date("2024-11-21 00:00:00");
+            const dateline = new Date("2024-11-21 16:15:00");
             const time = dateline.getTime() - date.getTime();
             setTimer(time);
         };
@@ -19,7 +19,9 @@ const Timer = () => {
         <div className="flex justify-around items-center w-full gap-4 my-20">
             <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
                 <h1 className="text-4xl md:text-[3rem] font-bold">
-                    {Math.floor(timer / (1000 * 60 * 60 * 24)) < 10
+                    {timer < 0
+                        ? "00"
+                        : Math.floor(timer / (1000 * 60 * 60 * 24)) < 10
                         ? `0${Math.floor(timer / (1000 * 60 * 60 * 24))}`
                         : Math.floor(timer / (1000 * 60 * 60 * 24))}
                 </h1>
@@ -27,9 +29,11 @@ const Timer = () => {
             </div>
             <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
                 <h1 className="text-4xl md:text-[3rem] font-bold">
-                    {Math.floor(
-                        (timer % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-                    ) < 10
+                    {timer < 0
+                        ? "00"
+                        : Math.floor(
+                              (timer % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                          ) < 10
                         ? `0${Math.floor(
                               (timer % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
                           )}`
@@ -41,7 +45,10 @@ const Timer = () => {
             </div>
             <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
                 <h1 className="text-4xl md:text-[3rem] font-bold">
-                    {Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60)) < 10
+                    {timer < 0
+                        ? "00"
+                        : Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60)) <
+                          10
                         ? `0${Math.floor(
                               (timer % (1000 * 60 * 60)) / (1000 * 60)
                           )}`
@@ -51,7 +58,9 @@ const Timer = () => {
             </div>
             <div className="w-1/5 border-b-2  border-colorSecondary pb-8 text-center">
                 <h1 className="text-4xl md:text-[3rem] font-bold">
-                    {Math.floor((timer % (1000 * 60)) / 1000) < 10
+                    {timer < 0
+                        ? "00"
+                        : Math.floor((timer % (1000 * 60)) / 1000) < 10
                         ? `0${Math.floor((timer % (1000 * 60)) / 1000)}`
                         : Math.floor((timer % (1000 * 60)) / 1000)}
                 </h1>
