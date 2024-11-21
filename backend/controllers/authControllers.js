@@ -214,13 +214,13 @@ export const refreshToken = async (req, res) => {
     const newAccessToken = jwt.sign(
       { id: decoded.id, email: decoded.email },
       process.env.JWT_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "1h" }
     );
 
     res.cookie("jwt", newAccessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 1 * 60 * 1000,
+      maxAge: 1 * 60 * 60 * 1000,
       sameSite: "strict",
     });
 
