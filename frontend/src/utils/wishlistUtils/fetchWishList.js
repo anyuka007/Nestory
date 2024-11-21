@@ -12,7 +12,12 @@ export const fetchWishlist = async () => {
             }
         } else {
             const data = await response.json();
-            return data.items;
+            /* return data.items; */
+            /* Sort by date (item in wishlist) */
+            const sortedItems = data.items.sort(
+                (a, b) => new Date(b.addedAt) - new Date(a.addedAt)
+            );
+            return sortedItems;
         }
     } catch (error) {
         console.log("Error fetching userWishlist", error);

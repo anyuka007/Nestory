@@ -4,6 +4,20 @@ import { fetchUsersOrders } from "../../utils/ordersUtils/fetchUsersOrders";
 import { AppContext } from "../../context/AppProvider";
 import { Link } from "react-router-dom";
 
+const filterOrders = (orders) => {
+    const filteredData = [];
+    for (let i = 0; i < orders.length; i++) {
+        if (
+            !filteredData.some(
+                (item) => item.stripeSessionId === orders[i].stripeSessionId
+            )
+        ) {
+            filteredData.push(orders[i]);
+        }
+    }
+    return filteredData;
+};
+
 const UserOrders = () => {
     const [orders, setOrders] = useState([]);
     const { user } = useContext(AppContext);
@@ -11,8 +25,9 @@ const UserOrders = () => {
     useEffect(() => {
         const getUsersOrders = async () => {
             const orders = await fetchUsersOrders();
+            const filteredOrders = filterOrders(orders);
             // Sort by date
-            const sortedOrders = orders.sort(
+            const sortedOrders = filteredOrders.sort(
                 (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
             );
             setOrders(sortedOrders);
@@ -20,7 +35,7 @@ const UserOrders = () => {
         if (user._id) {
             getUsersOrders();
         }
-    }, []);
+    }, [user._id]);
 
     return (
         <div>

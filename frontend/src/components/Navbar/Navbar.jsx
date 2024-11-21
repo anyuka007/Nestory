@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import HamburgMenu from "../HamburgMenu/HamburgMenu";
 import CategoryMenu from "../CategoryMenu/CategoryMenu";
 import "../../css/App.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { AppContext } from "../../context/AppProvider";
 
 const Navbar = () => {
@@ -28,8 +28,28 @@ const Navbar = () => {
         user,
     } = useContext(AppContext);
     const [clickUser, setClickUser] = useState(false);
+    const userMenuRefMobile = useRef(null);
+    const userMenuRef = useRef(null);
 
     // console.log("cartItems in navbar", cartItems);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                userMenuRefMobile.current &&
+                !userMenuRefMobile.current.contains(event.target) &&
+                userMenuRef.current &&
+                !userMenuRef.current.contains(event.target)
+            ) {
+                setClickUser(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [userMenuRefMobile, userMenuRef]);
 
     const handleSearch = (e) => {
         setSearchKeyword(e.target.value);
@@ -150,7 +170,10 @@ const Navbar = () => {
                                     <User className="hover:text-colorSecondary" />
                                 </div>
                                 {clickUser && (
-                                    <div className="absolute  top-16 right-[-5rem] w-max flex flex-col items-center justify-center  border-gray-200 bg-white">
+                                    <div
+                                        ref={userMenuRefMobile}
+                                        className="absolute  top-[-6rem] right-[4rem] p-2 w-max flex flex-col justify-center  border-gray-200 bg-white rounded-lg shadow-[0px_8px_15px_rgba(0,0,0,0.2)]"
+                                    >
                                         <Link
                                             to={"/user"}
                                             onClick={() => {
@@ -274,7 +297,10 @@ const Navbar = () => {
                                         <User className="hover:text-colorSecondary" />
                                     </div>
                                     {clickUser && (
-                                        <div className="absolute flex flex-col top-16 right-[-5rem] w-max p-4 border-gray-200 bg-white ">
+                                        <div
+                                            ref={userMenuRef}
+                                            className="absolute flex flex-col top-16 right-[-5rem] w-max p-4 border-gray-200 bg-white rounded-lg shadow-[0px_8px_15px_rgba(0,0,0,0.2)]"
+                                        >
                                             <Link
                                                 to={"/user"}
                                                 onClick={() => {
