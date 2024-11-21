@@ -12,7 +12,9 @@ const OrderItem = ({ orderItem }) => {
                     <p className="font-bold text2xl">
                         Order from{" "}
                         {
-                            /* formatDateLong(orderItem.createdAt) */ orderItem.createdAt
+                            formatDateLong(
+                                orderItem.createdAt
+                            ) /* orderItem.createdAt */
                         }
                     </p>
                 </div>

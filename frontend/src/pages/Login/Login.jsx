@@ -46,10 +46,13 @@ const App = () => {
 
   const onSubmit = async (data) => {
     if (isSignUp && data.password !== data.repeatPassword) {
-      toast.error("Passwords do not match!");
+      toast.error("Passwords do not match!", {
+        hideProgressBar: true,
+      });
       return;
     }
-    console.log("Data being sent:", data);
+
+    // console.log("Data being sent:", data);
     try {
       const endpoint = isSignUp
         ? "http://localhost:3000/api/users/register"
@@ -69,36 +72,58 @@ const App = () => {
         }),
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
         console.error("Error:", result.message || "An error occurred.");
         toast.error(
-          result.message || "Something went wrong. Please try again."
+          result.message || "Something went wrong. Please try again.",
+          {
+            hideProgressBar: true,
+          }
         );
         return;
       }
+      const result = await response.json();
 
-      const successMessage = isSignUp
-        ? "Your account has been created successfully!"
-        : "Login successful!";
-      console.log("Toast message:", successMessage);
-      //   toast.success(successMessage, { autoClose: false });
-      toast.success(successMessage);
-      setLoginSuccess(result.success);
-      setUser(result.user);
+      console.log("was bekomme ich", result);
 
-      if (!isSignUp) {
-        toast.success("Login successful!");
-        navigate("/");
-      }
       if (isSignUp) {
         setIsSignUp(false);
-        navigate("/login");
+        const toastId = toast.success(
+          "Your account has been created successfully!",
+          {
+            hideProgressBar: true,
+            position: "top-center",
+          }
+        );
+        setTimeout(() => {
+          toast.dismiss(toastId);
+          navigate("/login");
+        }, 2000);
+        return;
+      }
+      if (result.success) {
+        setLoginSuccess(result.success);
+        setUser(result.user);
+        // toast.success("Login successful!");
+        // navigate("/");
+
+        const toastId = toast.success("Login successful", {
+          hideProgressBar: true,
+          // position: "top-center",
+        });
+
+        const targetPath = result.user.role === "admin" ? "/dashboard" : "/";
+        setTimeout(() => {
+          toast.dismiss(toastId);
+          navigate(targetPath);
+        }, 2000);
+        return;
       }
     } catch (error) {
       console.error("Request failed:", error);
-      toast.error("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.", {
+        hideProgressBar: true,
+      });
     }
   };
 

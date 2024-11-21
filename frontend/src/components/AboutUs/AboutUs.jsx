@@ -66,8 +66,10 @@ export default function AboutUs() {
     return (
         <>
          <ScrollToTop /> {/* Scroll-to-Top Funktionalität */}
+         <main className="flex">
+        
             <div>
-                <div style={styles.container}>
+                <div style={styles.container}> <section>
                     <h2 style={styles.title}>neSTory Team</h2>
                     <p style={styles.description}>
                         I’m a skilled software developer with experience in
@@ -122,10 +124,14 @@ export default function AboutUs() {
                             </div>
                         ))}
                     </Slider>{" "}
-                    <div style={{ margin: "30px" }}>
+                   </section>
+                </div>
+            </div>
+            <section style={styles.container} className="was bg-red-300 w-[800px] p-8 rounded-3xl">
+            <div style={{ margin: "20px" }}>
                         <Was />
                     </div>
-                    <div
+                <div
                         style={{ display: "flex", gap: "20px", margin: "50px" }}
                     >
                         <SlideCard
@@ -172,7 +178,7 @@ export default function AboutUs() {
                             image="https://d2ooyrflu7lhqd.cloudfront.net/three_js_c065f86333.png"
                         />
                     </div>
-                    <div
+                    {/* <div
                         style={{ display: "flex", gap: "20px", margin: "50px" }}
                     >
                         <SlideCard
@@ -195,9 +201,9 @@ export default function AboutUs() {
                             image="https://spin.atomicobject.com/wp-content/uploads/typescript-json-schema.png"
                             //image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnLxTLqF9OdBjMGYIlDs2tlu1Rw1s4C-hVs96zrki0TlB4Ho_SHbyt_lfFsKZ_hcYXMtceO8LUvgfks01xXpdr6wMJq9JT_UZeDV-ayBv5sBYYwTPaHbQME-1UyQLfxxAqxjntAj8TdYSG/w1200-h630-p-k-no-nu/JSON+Schema.jpg"
                         />
-                    </div>
-                </div>
-            </div>
+                    </div> */}
+                    </section>
+            </main>
         </>
     );
 }
@@ -209,8 +215,8 @@ const styles = {
         padding: "40px",
         borderRadius: "20px",
         textAlign: "center",
-        maxWidth: "800px",
-        margin: "0 auto",
+        maxWidth: "750px",
+        margin: "",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
