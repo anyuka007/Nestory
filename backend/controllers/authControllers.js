@@ -145,7 +145,7 @@ export const loginUser = async (req, res) => {
       { id: user._id, email: user.email },
       process.env.JWT_REFRESH_SECRET,
       {
-        expiresIn: rememberMe ? "5d" : "1h",
+        expiresIn: rememberMe ? "5d" : "7d",
       }
     );
 
@@ -166,12 +166,6 @@ export const loginUser = async (req, res) => {
       sameSite: "strict",
     });
 
-    //   res.cookie("refreshToken", refreshToken, {
-    //     httpOnly: true,
-    //     secure: process.env.NODE_ENV === "production",
-    //     maxAge: 14 * 24 * 60 * 60 * 1000,
-    // });
-
     console.log("Login successful");
 
     res.status(200).json({ message: "Login successful", success: true, user });
@@ -181,6 +175,32 @@ export const loginUser = async (req, res) => {
   }
 };
 
+// export const refreshToken = async (req, res) => {
+//   const { refreshToken } = req.cookies;
+
+//   if (!refreshToken) {
+//     return res.status(401).json({ message: "No refresh token provided" });
+//   }
+
+//   try {
+//     const decoded = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
+//     const newAccessToken = createAccessToken(decoded.id);
+
+//     res.cookie("jwt", newAccessToken, {
+//       httpOnly: true,
+//       secure: process.env.NODE_ENV === "production",
+//       maxAge: 1 * 60 * 60 * 1000,
+//       sameSite: "strict",
+//     });
+
+//     console.log("Token refreshed successfully");
+//     res.status(200).json({ newAccessToken });
+//   } catch (error) {
+//     console.error("Token refresh error:", error);
+//     res.status(403).json({ message: "Invalid refresh token" });
+//   }
+// };
+
 export const refreshToken = async (req, res) => {
   const { refreshToken } = req.cookies;
 
@@ -189,13 +209,18 @@ export const refreshToken = async (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
-    const newAccessToken = createAccessToken(decoded.id);
+    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+
+    const newAccessToken = jwt.sign(
+      { id: decoded.id, email: decoded.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1m" }
+    );
 
     res.cookie("jwt", newAccessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 1 * 60 * 60 * 1000,
+      maxAge: 1 * 60 * 1000,
       sameSite: "strict",
     });
 
