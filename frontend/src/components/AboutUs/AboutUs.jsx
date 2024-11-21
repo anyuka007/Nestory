@@ -8,35 +8,58 @@ import ScrollToTop from "./ScrollTopTop";
 import SlideCard from "./SlideCard";
 import Was from "./Was";
 import { Link } from "react-router-dom";
+//import alexImage from "../img/alex-jungfernstig.jpeg";
+
+//const alexImage = "../img/alex-euroPassage.jpeg";
 
 const cards = [
     {
         title: "Fullstack Web Developer",
         name: "Jian Lu",
         image: "https://www.zoo-berlin.de/fileadmin/_processed_/c/7/csm_Panda_Paule_7722606794.jpg",
-        git: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
-        in: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        git: "https://github.com/LuJian2024",
+        in: "https://www.linkedin.com/in/jian-lu-705184330/",
+        inLogo: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        gitLogo:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
     },
     {
         title: "Fullstack Web Developer",
         name: "Anna Popova",
-        image: "https://ornithology.com/wp-content/uploads/2022/11/image-1-768x1024.png",
-        git: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
-        in: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        //image:"https://avatars.githubusercontent.com/u/150809381?v=4",
+        image: "https://media.licdn.com/dms/image/v2/C4E03AQGqcnAuU--aQw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1517526492455?e=1737590400&v=beta&t=S1nOy5n0oewFWO7GgetdmXo22AVOAXocTxd548d5hiE",
+        //image: "https://ornithology.com/wp-content/uploads/2022/11/image-1-768x1024.png",
+        git: "https://github.com/anyuka007",
+        in: "https://www.linkedin.com/in/anna-popova-95b27393/",
+        inLogo: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        gitLogo:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
     },
     {
         title: "Fullstack Web Developer",
         name: "Julijana Uneva ",
-        image: "https://sinavet.com/wp-content/uploads/2024/04/Persian-Mastiff.jpg",
-        git: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
-        in: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        image: "https://avatars.githubusercontent.com/u/156179252?v=4",
+        //image: "https://sinavet.com/wp-content/uploads/2024/04/Persian-Mastiff.jpg",
+        git: "https://github.com/JulijanaUneva",
+        in: "https://www.linkedin.com/in/julijana-uneva-b28a751b5/",
+        inLogo: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        gitLogo:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
     },
     {
         title: "Fullstack Web Developer",
         name: "Alex Nezhad",
-        image: "https://www.zootierliste.de/imagedb/1120919/cf453487/ciscaucasica.jpg",
-        git: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
-        in: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
+        //image:"https://avatars.githubusercontent.com/u/156181139?s=400&u=20219720d0fa93d373cbad911981f8f0f2bf1a0d&v=4",
+        //image:"https://avatars.githubusercontent.com/u/156181139?v=4",
+        //image: "https://media.licdn.com/dms/image/v2/D5603AQFwE7CkLVULQw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1732186793071?e=1737590400&v=beta&t=Upy0kEB_ith281esjIlF8E7rvcsnyv9HwR8OEewttj4",
+        //image: alexImage,
+        //image: "https://www.zootierliste.de/imagedb/1120919/cf453487/ciscaucasica.jpg",
+        image:"/images/person/alex-jungfernstig.jpeg",
+        gitLogo:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
+        in: "https://www.linkedin.com/in/alex-nezhad-2517a6322/",
+        git: "https://github.com/Alexxmanii",
+        inLogo: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
     },
 ];
 export default function AboutUs() {
@@ -65,73 +88,96 @@ export default function AboutUs() {
     };
     return (
         <>
-         <ScrollToTop /> {/* Scroll-to-Top Funktionalität */}
-         <main className="flex">
-        
-            <div>
-                <div style={styles.container}> <section>
-                    <h2 style={styles.title}>neSTory Team</h2>
-                    <p style={styles.description}>
-                        I’m a skilled software developer with experience in
-                        TypeScript and JavaScript, and expertise in frameworks
-                        like React, Node.js, and Three.js. I’m a quick learner
-                        and collaborate closely with clients to create
-                        efficient, scalable, and user-friendly solutions that
-                        solve real-world problems. Let’s work together to bring
-                        your ideas to life!
-                    </p>
-                    <Slider {...settings}>
-                        {cards.map((card, index) => (
-                            <div key={index} style={styles.card}>
-                                <div style={styles.name}>{card.name}</div>
+            <ScrollToTop /> {/* Scroll-to-Top Funktionalität */}
+            <main className="flex">
+                <div>
+                    <div style={styles.container}>
+                        {" "}
+                        <section>
+                            <h2 style={styles.title}>neSTory Team</h2>
+                            <p style={styles.description}>
+                                I’m a skilled software developer with experience
+                                in TypeScript and JavaScript, and expertise in
+                                frameworks like React, Node.js, and Three.js.
+                                I’m a quick learner and collaborate closely with
+                                clients to create efficient, scalable, and
+                                user-friendly solutions that solve real-world
+                                problems. Let’s work together to bring your
+                                ideas to life!
+                            </p>
+                            <Slider {...settings}>
+                                {cards.map((card, index) => (
+                                    <div key={index} style={styles.card}>
+                                        <div style={styles.name}>
+                                            {card.name}
+                                        </div>
 
-                                <div style={{ gap: "" }}>
-                                    <img
-                                        style={{
-                                            padding: "5px",
-                                            width: "300px",
-                                            height: "250px",
-                                            borderRadius: "80px",
-                                        }}
-                                        src={card.image}
-                                        alt=""
-                                    />
-                                </div>
-                                <h3 style={styles.cardTitle}>{card.title}</h3>
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    <Link to="https://github.com/dashboard">
-                                        {" "}
-                                        <img
-                                            style={styles.logo}
-                                            src={card.git}
-                                            alt="github logo"
-                                        />
-                                    </Link>
+                                        <div style={{ gap: "" }}>
+                                            <Link
+                                                to={card.git}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    style={{
+                                                        padding: "5px",
+                                                        width: "300px",
+                                                        height: "250px",
+                                                        borderRadius: "80px",
+                                                    }}
+                                                    src={card.image}
+                                                    alt=""
+                                                />
+                                            </Link>
+                                        </div>
+                                        <h3 style={styles.cardTitle}>
+                                            {card.title}
+                                        </h3>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "center",
+                                            }}
+                                        >
+                                            <Link
+                                                to={card.git}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                {" "}
+                                                <img
+                                                    style={styles.logo}
+                                                    src={card.gitLogo}
+                                                    alt="github logo"
+                                                />
+                                            </Link>
 
-                                    <Link to="https://www.linkedin.com/feed/">
-                                        <img
-                                            style={styles.logo}
-                                            src={card.in}
-                                            alt=""
-                                        />
-                                    </Link>
-                                </div>
-                            </div>
-                        ))}
-                    </Slider>{" "}
-                   </section>
+                                            <Link
+                                                to={card.in}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                <img
+                                                    style={styles.logo}
+                                                    src={card.inLogo}
+                                                    alt="LinkedIn logo"
+                                                />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))}
+                            </Slider>{" "}
+                        </section>
+                    </div>
                 </div>
-            </div>
-            <section style={styles.container} className="was bg-red-300 w-[800px] p-8 rounded-3xl">
-            <div style={{ margin: "20px" }}>
+                <section
+                    style={styles.container}
+                    className="was bg-red-300 w-[800px] p-8 rounded-3xl"
+                >
+                    <div style={{ margin: "20px" }}>
                         <Was />
                     </div>
-                <div
+                    <div
                         style={{ display: "flex", gap: "20px", margin: "50px" }}
                     >
                         <SlideCard
@@ -202,7 +248,7 @@ export default function AboutUs() {
                             //image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnLxTLqF9OdBjMGYIlDs2tlu1Rw1s4C-hVs96zrki0TlB4Ho_SHbyt_lfFsKZ_hcYXMtceO8LUvgfks01xXpdr6wMJq9JT_UZeDV-ayBv5sBYYwTPaHbQME-1UyQLfxxAqxjntAj8TdYSG/w1200-h630-p-k-no-nu/JSON+Schema.jpg"
                         />
                     </div> */}
-                    </section>
+                </section>
             </main>
         </>
     );
@@ -210,7 +256,7 @@ export default function AboutUs() {
 const styles = {
     container: {
         //backgroundColor: "#1A202C", // Dunkler Hintergrund
-        backgroundColor:"#0b3954",
+        backgroundColor: "#0b3954",
         color: "#E2E8F0", // Hellgrauer Text
         padding: "40px",
         borderRadius: "20px",
