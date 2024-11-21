@@ -28,7 +28,7 @@ const useRefreshToken = () => {
     // const interval = setInterval(refreshToken, 55 * 1000);
     const interval = setInterval(() => {
       refreshToken();
-    }, 60 * 55 * 1000);
+    }, 60 * 60 * 1000);
     return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 };

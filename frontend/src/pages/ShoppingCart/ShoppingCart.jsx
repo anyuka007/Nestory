@@ -93,9 +93,9 @@ const ShoppingCart = () => {
   }, [cartItems]);
 
   return (
-    <div className="min-h-screen flex flex-col gap-1 xl:flex-row px-0">
+    <div className="min-h-screen flex flex-col xl:flex-row px-0">
       {/* <div className=" left w-full py-14 px-6 xl:w-[80%]"> */}
-      <div className="left lg:w-[130%] py-14 px-20 ">
+      <div className="left lg:w-[90%] py-14 px-20 ">
         <h1 className="title text-center md:text-center md:text-[4rem] text-4xl font-semibold mb-10">
           Shopping Cart
         </h1>
@@ -139,7 +139,7 @@ const ShoppingCart = () => {
       </div>
 
       {cartItems.length > 0 && (
-        <div className="bg-white xl:w-[60%] md:py-8 h-fit ml-10">
+        <div className="bg-white xl:w-[38%] md:py-8 h-fit ml-10">
           <CheckOut totalPrice={totalPrice} />
         </div>
       )}

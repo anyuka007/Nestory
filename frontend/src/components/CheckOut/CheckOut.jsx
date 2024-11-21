@@ -76,8 +76,8 @@ const CheckOut = ({ totalPrice, clearCart }) => {
         </div>
       )}
 
-      <div className="border-t-[1rem] border-colorPrimary pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[90%] px-15 mx-auto py-15 mt-20 md:space-y-12 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
-        <h2 className="text-3xl font-bold mb-7 border-b border-colorPrimary pb-10">
+      <div className="border-t-[1rem] border-colorPrimary border-opacity-85 pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[90%] px-15 mx-auto py-15 mt-20 md:space-y-12 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
+        <h2 className="text-3xl font-semibold mb-7 border-b border-colorPrimary pb-10">
           Order Summary
         </h2>
         <div className="">
@@ -90,7 +90,7 @@ const CheckOut = ({ totalPrice, clearCart }) => {
             <span>$ 50.00 </span>
           </div>
           <div className="line border-t border-colorPrimary my-10"></div>
-          <div className="flex  justify-between font-bold md:text-3xl mb-2">
+          <div className="flex  justify-between font-semibold md:text-3xl mb-2">
             <span>Total amount:</span>
             <span>$ {(parseFloat(totalPrice) + 50.0).toFixed(2)} </span>
           </div>
