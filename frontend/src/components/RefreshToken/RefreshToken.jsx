@@ -14,7 +14,7 @@ const useRefreshToken = () => {
 
         // Update the access token in the application state or memory
         // Example: Storing the token in a global state (context, redux, or local variable)
-        localStorage.setItem("accessToken", data.newAccessToken); // Example using localStorage
+        localStorage.setItem("accessToken", data.newAccessToken);
       } else {
         console.error("Failed to refresh token");
       }
