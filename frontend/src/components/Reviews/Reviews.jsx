@@ -1,46 +1,9 @@
+/* eslint-disable react/prop-types */
 import StarRating from "../../components/StarRating/StarRating";
 import { useState, useEffect, useContext } from "react";
 // import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppProvider";
-
-// const reviews = [
-//   {
-//     id: 1,
-//     name: "Sara James",
-//     avatar: "/images/avatars/Sara.webp",
-//     date: "October 10, 2024",
-//     rating: 5,
-//     text: "Nice quality!",
-//   },
-//   {
-//     id: 2,
-//     name: "John Doe",
-//     avatar: "/images/avatars/John.avif",
-//     date: "March 15, 2024",
-//     rating: 4,
-//     text: "Great product, would recommend!",
-//   },
-//   {
-//     id: 3,
-//     name: "Ming Jong",
-//     avatar: "/images/avatars/Ming.webp",
-//     date: "April 20, 2023",
-//     rating: 5,
-//     text: "Absolutely love it!",
-//   },
-// ];
-
-// const product = {
-//   _id: 1234,
-//   name: "Circle corners table",
-//   rating: 4.2,
-//   description:
-//     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sit ipsum nostrum ab perspiciatis sequi sunt tempore illum.",
-//   price: 223,
-//   discount: 10,
-//   imgUrl:
-//     "https://themes.muffingroup.com/be/furniturestore/wp-content/uploads/2022/06/furniturestore-product-pic10-800x800.webp",
-// };
+import Avatar from "../../components/Avatar/Avatar";
 
 const ReviewSection = ({ product }) => {
   // eslint-disable-next-line no-unused-vars
@@ -152,11 +115,14 @@ const ReviewSection = ({ product }) => {
           className="review-item flex items-start mb-8 p-6 bg-gray-50 rounded-lg shadow"
         >
           <div className="avatar mr-4">
-            <img
+            {/* <img
               src={review.avatar}
               alt={`${review.name} avatar`}
               className="rounded-full w-14 h-14"
-            />
+            /> */}
+            <div className="avatar mr-4">
+              <Avatar name={review.name} />
+            </div>
           </div>
           <div className="content flex-grow">
             <div className="flex items-center justify-between">
@@ -175,7 +141,7 @@ const ReviewSection = ({ product }) => {
         <div>
           {!isFormVisible ? (
             <button
-              onClick={() => setIsFormVisible(true)} // Покажи ја формата
+              onClick={() => setIsFormVisible(true)}
               className="text-colorTertiary font-semibold hover:underline"
             >
               Add a review
@@ -231,7 +197,7 @@ const ReviewSection = ({ product }) => {
               </button>
               <button
                 type="button"
-                onClick={() => setIsFormVisible(false)} // Скриј форма ако корисникот избере "Cancel"
+                onClick={() => setIsFormVisible(false)}
                 className="ml-4 text-colorPrimary hover:underline"
               >
                 Cancel

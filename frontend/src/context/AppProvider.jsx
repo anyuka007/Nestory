@@ -40,7 +40,6 @@ const AppProvider = ({ children }) => {
       setUser({});
       setLoginSuccess(false);
       navigate("/");
-      toast.success("Login successful!");
       return;
     }
 

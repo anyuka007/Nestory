@@ -101,6 +101,13 @@
   top: 50%;
   transform: translateY(-50%);
   /* color: #999; */
+  color: #0c3b57ab;
+}
+
+/* .container:focus-within .icon {
+  color: var(--colorPrimary);
+} */
+.container input[type="text"]:focus + .icon {
   color: var(--colorPrimary);
 }
 
@@ -117,7 +124,7 @@ form {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 4px;
   margin-bottom: 15px;
   /* margin: 8px 0; */
   outline: none;
@@ -247,6 +254,7 @@ input:checked + .slider:before {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  color: #0c3b57ab;
 }
 
 .eyeIcon2 {
@@ -255,6 +263,7 @@ input:checked + .slider:before {
   top: 60%;
   transform: translateY(-50%);
   cursor: pointer;
+  color: #0c3b57ab;
 }
 
 .eyeIcon3 {
@@ -263,6 +272,7 @@ input:checked + .slider:before {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
+  color: #0c3b57ab;
 }
 
 /* .error {
