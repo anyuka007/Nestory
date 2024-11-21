@@ -10,7 +10,7 @@ export default function Was() {
 
         <div className="mx-4 text-center">
           {/* Dein zentrales Symbol oder Bild */}
-          <p><b> Was Haben WIr Benutz</b></p>
+          <p><b> What did we use</b></p>
           {/* <img
             src="/images/logo/nestoryFull.png"
             alt="Logo"
