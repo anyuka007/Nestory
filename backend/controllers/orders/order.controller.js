@@ -21,6 +21,7 @@ export const getAllOrders = async (req, res) => {
                     doc: { $first: "$$ROOT" }, // 每组中保留最新的订单
                 },
             },
+
             { $replaceRoot: { newRoot: "$doc" } }, // 替换根对象为订单文档
             { $limit: 6 }, // 限制为最多 12 条
         ]);
@@ -32,12 +33,26 @@ export const getAllOrders = async (req, res) => {
             { path: "shippingAddress" },
         ]);
 
+        // 使用 map 和 async/await 来确保检查每个用户是否有效
+        const validOrders = await Promise.all(
+            populatedOrders.map(async (order) => {
+                const user = await User.findById(order.userId);
+                if (user) {
+                    return order; // 只返回有效用户的订单
+                }
+                return null; // 无效的用户订单返回 null
+            })
+        );
+
+        // 过滤掉 null 的订单
+        const filteredOrders = validOrders.filter((order) => order !== null);
+
         console.log(
             `There are ${
                 populatedOrders.length.toString().brightMagenta
             } addresses`
         );
-        res.send({ filteredOrders: populatedOrders, allOrders });
+        res.send({ filteredOrders, allOrders });
     } catch (error) {
         console.error("Error fetching orders".red, error.message.red);
         res.status(500).send(error.message);
