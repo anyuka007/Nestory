@@ -92,7 +92,6 @@ const App = () => {
           "Your account has been created successfully!",
           {
             hideProgressBar: true,
-            position: "top-center",
           }
         );
         setTimeout(() => {

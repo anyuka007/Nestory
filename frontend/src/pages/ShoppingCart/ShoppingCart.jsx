@@ -93,9 +93,9 @@ const ShoppingCart = () => {
   }, [cartItems]);
 
   return (
-    <div className="min-h-screen flex flex-col gap-4 xl:flex-row px-0">
+    <div className="min-h-screen flex flex-col xl:flex-row px-0">
       {/* <div className=" left w-full py-14 px-6 xl:w-[80%]"> */}
-      <div className=" left w-[130%] py-14 px-20 ">
+      <div className="left lg:w-[90%] py-14 px-20 ">
         <h1 className="title text-center md:text-center md:text-[4rem] text-4xl font-semibold mb-10">
           Shopping Cart
         </h1>
@@ -139,40 +139,10 @@ const ShoppingCart = () => {
       </div>
 
       {cartItems.length > 0 && (
-        <div className="bg-white xl:w-[60%] py-8 shadow-md h-fit ml-10">
+        <div className="bg-white xl:w-[38%] md:py-8 h-fit ml-10">
           <CheckOut totalPrice={totalPrice} />
         </div>
       )}
-
-      {/* <div className="pay w-[70%] md:w-[60%] lg:w-[50%] xl:w-[35%] px-15 mx-auto py-20 mt-20 space-y-15 bg-white shadow-[0px_8px_15px_rgba(0,0,0,0.2)] rounded-lg h-fit">
-                <h2 className="text-3xl font-bold mb-6">Order Summary</h2>
-                <div className="">
-                    <div className="flex justify-between">
-                        <span>Total Value:</span>
-                        <span>{totalPrice} $</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <span>Shipping Costs:</span>
-                        <span>50.00 $</span>
-                    </div>
-                    <div className="line border-t border-gray-300 my-10"></div>
-                    <div className="flex flex-col justify-between font-bold md:text-3xl mb-2">
-                        <span>Total amount:</span>
-                        <span>
-                            {(parseFloat(totalPrice) + 50.0).toFixed(2)} $
-                        </span>
-                    </div>
-                    <span className="text-sm text-gray-500 mt-8">
-                        incl. applicable VAT.
-                    </span>
-                </div>
-                <div className="mt-12">
-                    <Button
-                        text="Checkout"
-                        className="text-white w-full py-2 mt-6 font-bold"
-                    />
-                </div>
-            </div> */}
     </div>
   );
 };
