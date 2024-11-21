@@ -104,7 +104,7 @@ const DashboardAddProduct = () => {
                     } rounded-md  w-[80%]`}
                 />
                 {errors.name && (
-                    <p className="text-red-500 text-sm mb-2 w-full">
+                    <p className="text-red-500 text-xl w-[80%]">
                         {errors.name.message}
                     </p>
                 )}

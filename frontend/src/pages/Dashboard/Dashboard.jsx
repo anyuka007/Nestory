@@ -9,7 +9,6 @@ import { fetchProducts } from "../DashboardProducts/DashboardProducts";
 import { fetchUsers } from "../DashboardUsers/DashboardUsers";
 import { DollarSign, Package, ShoppingCart, Users } from "lucide-react";
 const Dashboard = () => {
-    // const { allProducts, allOrders } = useContext(AppContext);
     const [allUsers, setAllUsers] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
     // const [allOrders, setAllOrders] = useState([]);
@@ -18,15 +17,15 @@ const Dashboard = () => {
 
     useEffect(() => {
         const getAllUsers = async () => {
-            const data = await fetchUsers(); // 获取产品数据
-            setAllUsers(data); // 更新产品状态
+            const data = await fetchUsers();
+            setAllUsers(data);
         };
         const getAllProducts = async () => {
-            const data = await fetchProducts(); // 获取产品数据
-            setAllProducts(data); // 更新产品状态
+            const data = await fetchProducts();
+            setAllProducts(data);
         };
         const getAllOrders = async () => {
-            const data = await fetchTransactions(); // 获取产品数据
+            const data = await fetchTransactions();
             const saleProducts = data.allOrders.reduce(
                 (totalQuantity, order) => {
                     const orderQuantity = order.items.reduce(
@@ -82,8 +81,6 @@ const Dashboard = () => {
 
                 <DashboardChart />
             </div>
-
-            {/* Sidebar */}
         </div>
     );
 };
