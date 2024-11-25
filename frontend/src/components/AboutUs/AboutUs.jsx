@@ -253,7 +253,8 @@ const styles = {
     container: {
         //backgroundColor: "#1A202C", // Dunkler Hintergrund
         //backgroundColor: "#0b3954",
-        backgroundColor:"#b4b4a8",
+       backgroundColor:"#f3f4f6",
+        // backgroundColor:"#b4b4a8",
         //color: "#E2E8F0", // Hellgrauer Text
         color:"#0b3954", 
         padding: "40px",
