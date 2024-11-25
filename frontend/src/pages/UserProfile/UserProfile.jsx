@@ -10,7 +10,7 @@ const UserProfile = () => {
     return (
         <>
             <div className="mt-[3rem] flex justify-between flex-col lg:flex-row">
-                <div className="basis-[80%] order-2">
+                <div className="basis-[80%] order-2 lg:min-h-[53rem]">
                     {location.pathname === "/user" && (
                         <>
                             <h2 className="text-[3rem] md:text-[4rem] text-center">
