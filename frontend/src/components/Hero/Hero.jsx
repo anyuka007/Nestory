@@ -54,11 +54,11 @@ const Hero = () => {
                     alt="hero-pic1"
                     className="w-[86%] rounded-3xl absolute left-1/2 transform -translate-x-1/2 top-[46%] -translate-y-1/3"
                 />
-                <h2 className="text-white text-[3vw] font-bold absolute top-[30%] left-[20%] transform -translate-x-1/2 -translate-y-1/2">
+                <h2 className="text-white text-[3vw] font-bold absolute top-[28%] left-[20%] transform -translate-x-1/2 -translate-y-1/2">
                     neSTory
                 </h2>
                 <Link
-                    className="text-white hidden lg:block font-bold absolute top-[42%] left-[20%] transform -translate-x-1/2 -translate-y-1/2"
+                    className="text-white hidden lg:block font-bold absolute top-[40%] left-[20%] transform -translate-x-1/2 -translate-y-1/2"
                     to="/shop"
                     onClick={() => {
                         window.scrollTo(0, 0);
@@ -72,7 +72,7 @@ const Hero = () => {
                     />
                 </Link>
                 <Link
-                    className="text-white hidden md:block xl:hidden lg:hidden font-bold absolute top-[50%] left-[20%] transform -translate-x-1/2 -translate-y-1/2"
+                    className="text-white hidden md:block xl:hidden lg:hidden font-bold absolute top-[42%] left-[20%] transform -translate-x-1/2 -translate-y-1/2"
                     to="/shop"
                     onClick={() => {
                         window.scrollTo(0, 0);
@@ -88,9 +88,9 @@ const Hero = () => {
 
                 {/* Three Dots */}
                 {[
-                    { top: "63%", left: "70%" },
-                    { top: "83%", left: "83%" },
-                    { top: "83%", left: "38%" },
+                    { top: "61%", left: "70%" },
+                    { top: "81%", left: "83%" },
+                    { top: "81%", left: "38%" },
                 ].map((pos, index) => (
                     <div
                         key={index}
@@ -111,7 +111,7 @@ const Hero = () => {
 
                 {/* hover price */}
                 {hoveredPrice !== null && (
-                    <div className="absolute top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70 text-white text-[4rem] md:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-bold ">
+                    <div className="absolute top-[33%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-70 text-white text-[4rem] md:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-bold ">
                         {currentPrice} $
                     </div>
                 )}
