@@ -26,7 +26,6 @@ const AddressForm = ({
         }
     }, [addressData, setValue]);
 
-    console.log("current addressData", addressData);
     const onSubmit = (data) => {
         const method =
             // addressData && Object.keys(addressData).length > 0
@@ -40,7 +39,7 @@ const AddressForm = ({
             body: JSON.stringify(data),
             credentials: "include",
         });
-        console.log(data);
+        // console.log(data);
         setShowAddressForm(false);
         setEditAddressForm(false);
         setNewAddressForm(false);

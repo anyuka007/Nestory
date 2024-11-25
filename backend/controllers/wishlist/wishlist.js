@@ -91,7 +91,7 @@ export const deleteWishlistItem = async (req, res) => {
     try {
         // Fetch the wishlist for the user from the database
         const wishlist = await Wishlist.findOne({ userId: userId });
-        console.log("wishlist", wishlist);
+        // console.log("wishlist", wishlist);
 
         // Check if the wishlist exists
         if (!wishlist) {
@@ -134,7 +134,7 @@ export const addWishlistItem = async (req, res) => {
         return res.status(400).json({ error: "User Id is required" });
     }
     const productToAdd = req.params.id;
-    console.log("productToAdd", productToAdd);
+    // console.log("productToAdd", productToAdd);
 
     try {
         // Fetch the wishlist for the user from the database
@@ -153,7 +153,7 @@ export const addWishlistItem = async (req, res) => {
         const isItemInWishlist = wishlist.items.some(
             (el) => el.productId.toString() === productToAdd.toString()
         );
-        console.log("isItemInWishlist", isItemInWishlist);
+        // console.log("isItemInWishlist", isItemInWishlist);
 
         // Check if the item is already in the wishlist
         if (isItemInWishlist) {
@@ -165,7 +165,7 @@ export const addWishlistItem = async (req, res) => {
         // Add the item to the wishlist
         wishlist.items.push({ productId: productToAdd });
         await wishlist.save();
-        console.log("wishlist", wishlist);
+        // console.log("wishlist", wishlist);
 
         res.status(200).json({ success: true });
     } catch (error) {

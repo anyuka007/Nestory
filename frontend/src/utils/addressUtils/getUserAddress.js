@@ -8,7 +8,7 @@ export const getUserAddress = async () => {
             return;
         }
         const data = await response.json();
-        console.log("dataAddress", data);
+        // console.log("dataAddress", data);
         return data;
     } catch (error) {
         console.error(error.message);

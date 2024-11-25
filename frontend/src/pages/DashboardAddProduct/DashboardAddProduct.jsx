@@ -20,14 +20,13 @@ const DashboardAddProduct = () => {
     };
 
     const onSubmit = async (data) => {
-        console.log("Form Data:", data);
+        // console.log("Form Data:", data);
         if (!imageUrl) {
-            alert("请先选择图片！");
+            alert("Please select an image!");
             return;
         }
 
         const payload = { ...data, image: imageUrl }; // 合并图片 URL 和表单数据
-        // console.log("提交数据:", payload);
 
         // Post Form Data to API
         try {
@@ -42,7 +41,7 @@ const DashboardAddProduct = () => {
             );
 
             if (response.ok) {
-                console.log("Product added successfully");
+                // console.log("Product added successfully");
                 navigate("/dashboard/products");
             } else {
                 const errorData = await response.json();

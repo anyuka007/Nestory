@@ -7,7 +7,7 @@ export const fetchTransactions = async () => {
             credentials: "include",
         });
         const data = await response.json();
-        console.log("transactions in dashboard", data);
+
         return data;
     } catch (error) {
         console.log("Error fetching transactions", error);

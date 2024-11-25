@@ -4,12 +4,8 @@ import Product from "./models/Product.model.js";
 
 const seed = async () => {
     connect();
-
     await Product.deleteMany({});
-    console.log("Products deleted");
-
     await Product.insertMany(products);
-    console.log("Seeded successfully");
 };
 
 seed();

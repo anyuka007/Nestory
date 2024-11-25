@@ -2,7 +2,7 @@ import User from "../../models/User.js";
 
 export const updateUser = async (req, res) => {
     //const userId = req.query.userId;
-    console.log("req", req.query.userId);
+    // console.log("req", req.query.userId);
     const userId = req.user?.id;
     if (!userId) {
         console.error("User ID is missing".red);
@@ -98,7 +98,7 @@ export const addUser = async (req, res) => {
         //     password: data.password,
         //     role: data.role,
         // };
-        console.log("add user", data);
+        // console.log("add user", data);
         const user = await User.create(data);
 
         console.log("User added successfully".green, user);
