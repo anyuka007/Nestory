@@ -17,7 +17,7 @@ const UserProfileMenu = () => {
         navigate("/login");
     }; */
     return (
-        <div className="lg:basis-[15%] pb-[3rem] order-1 md:pt-[1.5rem] text-3xl">
+        <div className="lg:basis-[15%] pb-[3rem] order-1 md:pt-[1.5rem] text-3xl lg:shadow-lg lg:shadow-gray-300 lg:p-[1rem] lg: h-[25rem]">
             {/* mobile + Tablet */}
             <div className="lg:hidden flex flex-col justify-between">
                 <div className="flex justify-between items-center border-b">
