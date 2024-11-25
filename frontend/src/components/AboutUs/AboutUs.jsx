@@ -3,14 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ScrollToTop from "./ScrollTopTop";
-//import { faAlignCenter } from "@fortawesome/free-solid-svg-icons";
-//import { FaCode, FaReact, FaNodeJs, FaPencilAlt } from "react-icons/fa";
 import SlideCard from "./SlideCard";
 import Was from "./Was";
 import { Link } from "react-router-dom";
-//import alexImage from "../img/alex-jungfernstig.jpeg";
-
-//const alexImage = "../img/alex-euroPassage.jpeg";
 
 const cards = [
     {
@@ -54,7 +49,7 @@ const cards = [
         //image: "https://media.licdn.com/dms/image/v2/D5603AQFwE7CkLVULQw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1732186793071?e=1737590400&v=beta&t=Upy0kEB_ith281esjIlF8E7rvcsnyv9HwR8OEewttj4",
         //image: alexImage,
         //image: "https://www.zootierliste.de/imagedb/1120919/cf453487/ciscaucasica.jpg",
-        image:"/images/person/alex-jungfernstig.jpeg",
+        image:"/images/person/alex-jungfer.jpeg",
         gitLogo:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
         in: "https://www.linkedin.com/in/alex-nezhad-2517a6322/",
@@ -112,7 +107,7 @@ export default function AboutUs() {
                                             {card.name}
                                         </div>
 
-                                        <div style={{ gap: "" }}>
+                                        <div>
                                             <Link
                                                 to={card.git}
                                                 target="_blank"
@@ -172,13 +167,13 @@ export default function AboutUs() {
                 </div>
                 <section
                     style={styles.container}
-                    className="was bg-red-300 w-[800px] p-8 rounded-3xl"
+                    className="was bg-red-300 w-[800px] p-8 rounded-3xl "
                 >
                     <div style={{ margin: "20px" }}>
                         <Was />
                     </div>
                     <div
-                        style={{ display: "flex", gap: "20px", margin: "50px" }}
+                        style={{ display: "flex", gap: "20px", margin: "50px" , color:"#0b3954" }}
                     >
                         <SlideCard
                             title="HTML"
@@ -188,7 +183,8 @@ export default function AboutUs() {
                         <SlideCard
                             title="CSS"
                             //description="This card slides in when visible."
-                            image="https://static-00.iconduck.com/assets.00/file-type-css-icon-902x1024-dqy5inwy.png"
+                            //image="https://static-00.iconduck.com/assets.00/file-type-css-icon-902x1024-dqy5inwy.png"
+                            image="https://cdn.iconscout.com/icon/free/png-512/free-css-logo-icon-download-in-svg-png-gif-file-formats--logos-pack-icons-722685.png?f=webp&w=256"
                         />
                         <SlideCard
                             title="JavaScript"
@@ -202,7 +198,7 @@ export default function AboutUs() {
                         />
                     </div>
                     <div
-                        style={{ display: "flex", gap: "20px", margin: "50px" }}
+                        style={{ display: "flex", gap: "20px", margin: "50px",color:"#0b3954" }}
                     >
                         <SlideCard
                             title="Node.js"
@@ -256,8 +252,10 @@ export default function AboutUs() {
 const styles = {
     container: {
         //backgroundColor: "#1A202C", // Dunkler Hintergrund
-        backgroundColor: "#0b3954",
-        color: "#E2E8F0", // Hellgrauer Text
+        //backgroundColor: "#0b3954",
+        backgroundColor:"#b4b4a8",
+        //color: "#E2E8F0", // Hellgrauer Text
+        color:"#0b3954", 
         padding: "40px",
         borderRadius: "20px",
         textAlign: "center",
@@ -271,11 +269,11 @@ const styles = {
     title: {
         fontSize: "33px",
         fontWeight: "bold",
-        color: "#E2E8F0",
+        color: "#0b3954",
     },
     description: {
         fontSize: "16px",
-        color: "#A0AEC0",
+        //color: "#A0AEC0",
         margin: "25px 0",
     },
     card: {
@@ -288,8 +286,9 @@ const styles = {
         cursor: "pointer",
     },
     cardTitle: {
-        color: "#E2E8F0",
-        marginTop: "10px",
+       // color:"#0b3954",        //color: "#E2E8F0",
+       color:"#0b3954", 
+       marginTop: "10px",
         fontSize: "18px",
     },
     name: {
