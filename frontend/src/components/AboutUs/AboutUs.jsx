@@ -11,7 +11,7 @@ const cards = [
     {
         title: "Fullstack Web Developer",
         name: "Jian Lu",
-        image: "https://www.zoo-berlin.de/fileadmin/_processed_/c/7/csm_Panda_Paule_7722606794.jpg",
+        image: "/images/person/jian5.jpeg",
         git: "https://github.com/LuJian2024",
         in: "https://www.linkedin.com/in/jian-lu-705184330/",
         inLogo: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
@@ -49,7 +49,7 @@ const cards = [
         //image: "https://media.licdn.com/dms/image/v2/D5603AQFwE7CkLVULQw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1732186793071?e=1737590400&v=beta&t=Upy0kEB_ith281esjIlF8E7rvcsnyv9HwR8OEewttj4",
         //image: alexImage,
         //image: "https://www.zootierliste.de/imagedb/1120919/cf453487/ciscaucasica.jpg",
-        image:"/images/person/alex-jungfer.jpeg",
+        image: "/images/person/alex-jungfer.jpeg",
         gitLogo:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbqj9Ii13d6hx5a9kyLnC5A8A96LDSaSZv_w&s",
         in: "https://www.linkedin.com/in/alex-nezhad-2517a6322/",
@@ -84,143 +84,162 @@ export default function AboutUs() {
     return (
         <>
             <ScrollToTop /> {/* Scroll-to-Top Funktionalität */}
-            <main className="flex">
-                <div>
-                    <div style={styles.container}>
-                        {" "}
-                        <section>
-                            <h2 style={styles.title}>neSTory Team</h2>
-                            <p style={styles.description}>
-                                I’m a skilled software developer with experience
-                                in TypeScript and JavaScript, and expertise in
-                                frameworks like React, Node.js, and Three.js.
-                                I’m a quick learner and collaborate closely with
-                                clients to create efficient, scalable, and
-                                user-friendly solutions that solve real-world
-                                problems. Let’s work together to bring your
-                                ideas to life!
-                            </p>
-                            <Slider {...settings}>
-                                {cards.map((card, index) => (
-                                    <div key={index} style={styles.card}>
-                                        <div style={styles.name}>
-                                            {card.name}
-                                        </div>
-
-                                        <div>
-                                            <Link
-                                                to={card.git}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    style={{
-                                                        padding: "5px",
-                                                        width: "300px",
-                                                        height: "250px",
-                                                        borderRadius: "80px",
-                                                    }}
-                                                    src={card.image}
-                                                    alt=""
-                                                />
-                                            </Link>
-                                        </div>
-                                        <h3 style={styles.cardTitle}>
-                                            {card.title}
-                                        </h3>
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                justifyContent: "center",
-                                            }}
-                                        >
-                                            <Link
-                                                to={card.git}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                {" "}
-                                                <img
-                                                    style={styles.logo}
-                                                    src={card.gitLogo}
-                                                    alt="github logo"
-                                                />
-                                            </Link>
-
-                                            <Link
-                                                to={card.in}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    style={styles.logo}
-                                                    src={card.inLogo}
-                                                    alt="LinkedIn logo"
-                                                />
-                                            </Link>
-                                        </div>
-                                    </div>
-                                ))}
-                            </Slider>{" "}
-                        </section>
-                    </div>
-                </div>
-                <section
-                    style={styles.container}
-                    className="was bg-red-300 w-[800px] p-8 rounded-3xl "
+            {/*   */}
+            <div
+                style={{ backgroundColor: "#0b3954", marginBottom: "80px" }}
+                className=" rounded-3xl "
+            >
+                <main
+                    style={{ position: "relative", top: "60px", left: "55px" }}
+                    className="flex"
                 >
-                    <div style={{ margin: "20px" }}>
-                        <Was />
+                    <div>
+                        <div style={styles.container}>
+                            {" "}
+                            <section>
+                                <h2 style={styles.title}>neSTory Team</h2>
+                                <p style={styles.description}>
+                                    This online store is the final project of
+                                    our Web Development course, created by a
+                                    team of passionate students. It showcases
+                                    our dedication, teamwork, and skills gained
+                                    with modern web technologies. More than a
+                                    shopping platform, it reflects our growth
+                                    and potential as developers, ready for
+                                    future challenges!
+                                </p>
+                                <Slider {...settings}>
+                                    {cards.map((card, index) => (
+                                        <div key={index} style={styles.card}>
+                                            <div style={styles.name}>
+                                                {card.name}
+                                            </div>
+
+                                            <div>
+                                                <Link
+                                                    to={card.git}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        style={{
+                                                            padding: "5px",
+                                                            width: "300px",
+                                                            height: "230px",
+                                                            borderRadius:
+                                                                "80px",
+                                                        }}
+                                                        src={card.image}
+                                                        alt=""
+                                                    />
+                                                </Link>
+                                            </div>
+                                            <h3 style={styles.cardTitle}>
+                                                {card.title}
+                                            </h3>
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                }}
+                                            >
+                                                <Link
+                                                    to={card.git}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    {" "}
+                                                    <img
+                                                        style={styles.logo}
+                                                        src={card.gitLogo}
+                                                        alt="github logo"
+                                                    />
+                                                </Link>
+
+                                                <Link
+                                                    to={card.in}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        style={styles.logo}
+                                                        src={card.inLogo}
+                                                        alt="LinkedIn logo"
+                                                    />
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </Slider>{" "}
+                            </section>
+                        </div>
                     </div>
-                    <div
-                        style={{ display: "flex", gap: "20px", margin: "50px" , color:"#0b3954" }}
+                    <section
+                        style={styles.container}
+                        className="was bg-red-300 w-[800px] p-8 rounded-3xl "
                     >
-                        <SlideCard
-                            title="HTML"
-                            //description="This card slides in when visible."
-                            image="https://cdn.iconscout.com/icon/free/png-256/free-html-5-logo-icon-download-in-svg-png-gif-file-formats--programming-langugae-language-pack-logos-icons-1175208.png?f=webp"
-                        />
-                        <SlideCard
-                            title="CSS"
-                            //description="This card slides in when visible."
-                            //image="https://static-00.iconduck.com/assets.00/file-type-css-icon-902x1024-dqy5inwy.png"
-                            image="https://cdn.iconscout.com/icon/free/png-512/free-css-logo-icon-download-in-svg-png-gif-file-formats--logos-pack-icons-722685.png?f=webp&w=256"
-                        />
-                        <SlideCard
-                            title="JavaScript"
-                            //description="Another card that slides in."
-                            image="https://miro.medium.com/v2/resize:fit:344/1*tZHcs0d7MAG-BBcjBekZYA.png"
-                        />
-                        <SlideCard
-                            title="React"
-                            //description="This card slides in when visible."
-                            image="https://github.com/facebook/react/wiki/react-logo-1000-transparent.png"
-                        />
-                    </div>
-                    <div
-                        style={{ display: "flex", gap: "20px", margin: "50px",color:"#0b3954" }}
-                    >
-                        <SlideCard
-                            title="Node.js"
-                            //description="This card slides in when visible."
-                            image="https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png"
-                        />
-                        <SlideCard
-                            title="Tailwind"
-                            //description="This card slides in when visible."
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSDKn3vA2YUbXzN0ZC3gALWJ08gJN-Drl15w&s"
-                        />
-                        <SlideCard
-                            title="Mongodb"
-                            //description="Another card that slides in."
-                            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ZYtHv2OLXmthRPbkmENZRXuqBVDwlsrZ1A&s"
-                        />
-                        <SlideCard
-                            title="Three.js"
-                            image="https://d2ooyrflu7lhqd.cloudfront.net/three_js_c065f86333.png"
-                        />
-                    </div>
-                    {/* <div
+                        <div style={{ margin: "0px" }}>
+                            <Was />
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                gap: "20px",
+                                margin: "50px",
+                                color: "#0b3954",
+                            }}
+                        >
+                            <SlideCard
+                                title="HTML"
+                                //description="This card slides in when visible."
+                                image="https://cdn.iconscout.com/icon/free/png-256/free-html-5-logo-icon-download-in-svg-png-gif-file-formats--programming-langugae-language-pack-logos-icons-1175208.png?f=webp"
+                            />
+                            <SlideCard
+                                title="CSS"
+                                //description="This card slides in when visible."
+                                //image="https://static-00.iconduck.com/assets.00/file-type-css-icon-902x1024-dqy5inwy.png"
+                                image="https://cdn.iconscout.com/icon/free/png-512/free-css-logo-icon-download-in-svg-png-gif-file-formats--logos-pack-icons-722685.png?f=webp&w=256"
+                            />
+                            <SlideCard
+                                title="JavaScript"
+                                //description="Another card that slides in."
+                                image="https://miro.medium.com/v2/resize:fit:344/1*tZHcs0d7MAG-BBcjBekZYA.png"
+                            />
+                            <SlideCard
+                                title="React"
+                                //description="This card slides in when visible."
+                                image="https://github.com/facebook/react/wiki/react-logo-1000-transparent.png"
+                            />
+                        </div>
+                        <div
+                            style={{
+                                display: "flex",
+                                gap: "20px",
+                                margin: "50px",
+                                color: "#0b3954",
+                            }}
+                        >
+                            <SlideCard
+                                title="Node.js"
+                                //description="This card slides in when visible."
+                                image="https://pluralsight2.imgix.net/paths/images/nodejs-45adbe594d.png"
+                            />
+                            <SlideCard
+                                title="Tailwind"
+                                //description="This card slides in when visible."
+                                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSDKn3vA2YUbXzN0ZC3gALWJ08gJN-Drl15w&s"
+                            />
+                            <SlideCard
+                                title="Mongodb"
+                                //description="Another card that slides in."
+                                image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2ZYtHv2OLXmthRPbkmENZRXuqBVDwlsrZ1A&s"
+                            />
+                            <SlideCard
+                                title="Three.js"
+                                image="https://d2ooyrflu7lhqd.cloudfront.net/three_js_c065f86333.png"
+                            />
+                        </div>
+                        {/* <div
                         style={{ display: "flex", gap: "20px", margin: "50px" }}
                     >
                         <SlideCard
@@ -244,8 +263,9 @@ export default function AboutUs() {
                             //image="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnLxTLqF9OdBjMGYIlDs2tlu1Rw1s4C-hVs96zrki0TlB4Ho_SHbyt_lfFsKZ_hcYXMtceO8LUvgfks01xXpdr6wMJq9JT_UZeDV-ayBv5sBYYwTPaHbQME-1UyQLfxxAqxjntAj8TdYSG/w1200-h630-p-k-no-nu/JSON+Schema.jpg"
                         />
                     </div> */}
-                </section>
-            </main>
+                    </section>
+                </main>
+            </div>
         </>
     );
 }
@@ -253,14 +273,15 @@ const styles = {
     container: {
         //backgroundColor: "#1A202C", // Dunkler Hintergrund
         //backgroundColor: "#0b3954",
-       backgroundColor:"#f3f4f6",
+        backgroundColor: "#f3f4f6",
         // backgroundColor:"#b4b4a8",
         //color: "#E2E8F0", // Hellgrauer Text
-        color:"#0b3954", 
+        boxShadow: "4px 5px 5px ",
+        color: "#0b3954",
         padding: "40px",
         borderRadius: "20px",
         textAlign: "center",
-        maxWidth: "750px",
+        maxWidth: "700px",
         margin: "",
         display: "flex",
         flexDirection: "column",
@@ -287,9 +308,9 @@ const styles = {
         cursor: "pointer",
     },
     cardTitle: {
-       // color:"#0b3954",        //color: "#E2E8F0",
-       color:"#0b3954", 
-       marginTop: "10px",
+        // color:"#0b3954",        //color: "#E2E8F0",
+        color: "#0b3954",
+        marginTop: "10px",
         fontSize: "18px",
     },
     name: {
