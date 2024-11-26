@@ -12,7 +12,7 @@ export const updateUser = async (newUsersData) => {
             throw new Error("Failed to update user");
         }
         const data = await response.json();
-        console.log("dataUpdated", data);
+        // console.log("dataUpdated", data);
         return data;
     } catch (error) {
         console.error(error.message);

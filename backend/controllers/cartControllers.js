@@ -3,7 +3,7 @@ import Cart from "../models/Cart.js";
 export const getUserCart = async (req, res) => {
     const { id } = req.user;
     // const userId = req.user.id;
-    console.log("userId", id);
+    // console.log("userId", id);
     //dali e prisuten korisnikot proveruvam preku
     if (!id) {
         return res.status(400).json({ message: "User ID is required" });

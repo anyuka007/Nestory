@@ -1,5 +1,5 @@
 export const addAddress = async (newAddressData) => {
-    console.log("addAddress fetch newAddressData", newAddressData);
+    // console.log("addAddress fetch newAddressData", newAddressData);
     try {
         const response = await fetch("http://localhost:3000/address", {
             method: "POST",
@@ -13,7 +13,7 @@ export const addAddress = async (newAddressData) => {
             throw new Error("Failed to add user's address");
         }
         const data = await response.json();
-        console.log("address added", data);
+        // console.log("address added", data);
         return data;
     } catch (error) {
         console.error("Error adding address:", error);

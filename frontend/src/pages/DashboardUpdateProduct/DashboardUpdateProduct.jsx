@@ -41,7 +41,7 @@ const DashboardUpdateProduct = () => {
     };
 
     const onSubmit = async (data) => {
-        console.log("Form Data:", data);
+        // console.log("Form Data:", data);
         const payload = { ...data, image: imageUrl };
 
         try {
@@ -54,9 +54,9 @@ const DashboardUpdateProduct = () => {
                     credentials: "include",
                 }
             );
-            console.log("response in updateProduct", response);
+
             if (response.ok) {
-                console.log("Product added successfully");
+                // console.log("Product added successfully");
                 navigate("/dashboard/products");
             } else {
                 const errorData = await response.json();

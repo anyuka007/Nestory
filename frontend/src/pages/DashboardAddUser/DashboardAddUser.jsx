@@ -10,7 +10,7 @@ const DashboardAddUser = () => {
 
     const navigate = useNavigate();
     const onSubmit = async (data) => {
-        console.log("Form Data:", data);
+        // console.log("Form Data:", data);
 
         try {
             const response = await fetch(
@@ -24,7 +24,7 @@ const DashboardAddUser = () => {
             );
 
             if (response.ok) {
-                console.log("User added successfully");
+                // console.log("User added successfully");
                 navigate("/dashboard/users");
             } else {
                 const errorData = await response.json();

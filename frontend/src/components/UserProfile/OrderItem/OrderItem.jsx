@@ -4,7 +4,7 @@ import { PackageCheck, Truck, PackageOpen } from "lucide-react";
 import { /* formatDate, */ formatDateLong } from "../../../utils/formatDate";
 
 const OrderItem = ({ orderItem }) => {
-    console.log("orderItem", orderItem);
+    // console.log("orderItem", orderItem);
     return (
         <>
             <div>

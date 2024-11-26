@@ -1,20 +1,19 @@
 import Product from "../../models/Product.model.js";
 const searchProducts = async (req, res) => {
-   console.log("111")
     const { query } = req.query;
-  console.log(query);
+
     try {
         // Suchkriterien festlegen (Suche in 'name' oder 'category')
         const conditions = {
             $or: [
-                { name: { $regex: new RegExp(query, "i") } },      // Suchbegriff im Produktnamen
-                { category: { $regex: new RegExp(query, "i") } },  // Suchbegriff in der Kategorie
+                { name: { $regex: new RegExp(query, "i") } }, // Suchbegriff im Produktnamen
+                { category: { $regex: new RegExp(query, "i") } }, // Suchbegriff in der Kategorie
             ],
         };
- // Produkte finden, die die Kriterien erfüllen
+        // Produkte finden, die die Kriterien erfüllen
         const products = await Product.find(conditions);
 
-        res.send({products});
+        res.send({ products });
     } catch (error) {
         console.error("Error fetching search results:", error);
         res.status(500).send({ error: "Internal server error" });
@@ -28,7 +27,7 @@ export default searchProducts;
 // const searchProducts = async ({ query: { type } }, res) => {
 //     try {
 //          Model.find(category,conditions, projection, options)
-         
+
 //          if (type === "deals") {
 //              const products = await Product.find({ percentage: { $gt: 40 } });
 //              res.send(products);
@@ -94,9 +93,9 @@ export default searchProducts;
 //     { id: 3, name: 'Shoes', category: 'Fashion' },
 //     { id: 4, name: 'Bag', category: 'Fashion' },
 //   ];
-  
-  // Route für Produktsuche
- //------------------------------------------------------
+
+// Route für Produktsuche
+//------------------------------------------------------
 //   app.get('/search', (req, res) => {
 //     const query = req.query.q;
 //     const results = Product.filter((product) =>
@@ -104,4 +103,4 @@ export default searchProducts;
 //     );
 //     res.json(results);
 //   });
-  //------------------------------------------------------------
+//------------------------------------------------------------

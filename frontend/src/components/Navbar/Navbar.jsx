@@ -53,7 +53,6 @@ const Navbar = () => {
 
     const handleSearch = (e) => {
         setSearchKeyword(e.target.value);
-        console.log("searchKeyword", searchKeyword);
     };
 
     return (

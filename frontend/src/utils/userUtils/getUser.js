@@ -10,7 +10,7 @@ export const getUser = async () => {
             //return;
         }
         const data = await response.json();
-        console.log("user", data);
+        // console.log("user", data);
         return data;
     } catch (error) {
         console.error(error.message);

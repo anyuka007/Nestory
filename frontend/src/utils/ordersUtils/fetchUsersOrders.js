@@ -8,7 +8,7 @@ export const fetchUsersOrders = async () => {
             /* return; */
         }
         const data = await response.json();
-        console.log("dataOrders", data);
+        // console.log("dataOrders", data);
         return data;
     } catch (error) {
         console.error(error.message);

@@ -28,7 +28,7 @@ const DashboardUpdateUser = () => {
     }, [user, setValue]);
 
     const onSubmit = async (data) => {
-        console.log("Form Data:", data);
+        // console.log("Form Data:", data);
 
         try {
             const response = await fetch(
@@ -42,7 +42,7 @@ const DashboardUpdateUser = () => {
             );
 
             if (response.ok) {
-                console.log("User updated successfully");
+                // console.log("User updated successfully");
                 navigate("/dashboard/users"); // 在成功提交后导航
             } else {
                 const errorData = await response.json();
