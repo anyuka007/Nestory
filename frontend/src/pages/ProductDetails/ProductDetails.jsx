@@ -267,7 +267,7 @@ const ProductDetails = () => {
                 <div className="flex-col gap-2 mt-1 xl:mt-[6rem] xl:mb-40 flex lg:flex-row justify-start items-center bg-white">
                     {/* Left Section: Image */}
                     <div className="w-full md:basis-[60%] flex justify-center mb-8 md:mb-0 relative">
-                        {product.name !== "cover chair" ? (
+                        {product.name !== "Cover Chair" ? (
                             <img
                                 ref={imgRef}
                                 src={product.image}

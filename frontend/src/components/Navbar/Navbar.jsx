@@ -242,6 +242,7 @@ const Navbar = () => {
                             <Link
                                 to={"/search"}
                                 onClick={() => {
+                                    // setSearchKeyword("");
                                     window.scrollTo(0, 0);
                                 }}
                             >

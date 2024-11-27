@@ -90,7 +90,7 @@ export default function AboutUs() {
                 className=" rounded-3xl "
             >
                 <main
-                    style={{ position: "relative", top: "60px", left: "55px" }}
+                    style={{ position: "relative", top: "60px", left: "20px" }}
                     className="flex"
                 >
                     <div>
