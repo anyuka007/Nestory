@@ -97,7 +97,7 @@ const App = () => {
                 setTimeout(() => {
                     toast.dismiss(toastId);
                     navigate("/login");
-                }, 2000);
+                }, 1000);
                 return;
             }
             if (result.success) {
@@ -116,7 +116,7 @@ const App = () => {
                 setTimeout(() => {
                     toast.dismiss(toastId);
                     navigate(targetPath);
-                }, 2000);
+                }, 1000);
                 return;
             }
         } catch (error) {

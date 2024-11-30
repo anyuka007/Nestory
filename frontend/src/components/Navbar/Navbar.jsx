@@ -87,6 +87,8 @@ const Navbar = () => {
                     {search && (
                         <div className="w-full flex absolute top-28 left-0 justify-center items-center gap-2 z-10 bg-white">
                             <input
+                                onChange={handleSearch}
+                                value={searchKeyword}
                                 type="text"
                                 placeholder="Search"
                                 className=" bg-slate-100 rounded-md w-[80%]  h-[4rem] focus:outline-none relative"
@@ -242,7 +244,6 @@ const Navbar = () => {
                             <Link
                                 to={"/search"}
                                 onClick={() => {
-                                    // setSearchKeyword("");
                                     window.scrollTo(0, 0);
                                 }}
                             >

@@ -3,7 +3,7 @@
 import { fetchWishlist } from "../utils/wishlistUtils/fetchWishList";
 
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -30,6 +30,7 @@ const AppProvider = ({ children }) => {
     const imgRef = useRef(null);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const fetchUser = async () => {
         const res = await fetch("http://localhost:3000/api/checkUser", {
@@ -57,6 +58,15 @@ const AppProvider = ({ children }) => {
     useEffect(() => {
         fetchUser();
     }, []);
+
+    useEffect(() => {
+        setSearchKeyword("");
+        // const words = location.pathname.split("/");
+        // const desiredPart = words[words.length - 2];
+        // if (desiredPart !== "search") {
+        //     setSearchKeyword("");
+        // }
+    }, [location.pathname]);
 
     useEffect(() => {
         const fetchCart = async () => {
