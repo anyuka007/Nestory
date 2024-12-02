@@ -45,7 +45,9 @@ const getProducts = async (
             }
         }
 
-        const products = await Product.find(conditions, null, options);
+        const products = await Product.find(conditions, null, options).sort({
+            createdAt: -1,
+        });
 
         // if need pagination
         let total = 0;

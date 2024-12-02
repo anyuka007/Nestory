@@ -35,6 +35,9 @@ const Carousel = () => {
         fetchProducts();
     }, []); //einmal render
 
+    if (carouselProducts.length === 0) {
+        return null;
+    }
     return (
         // <main className="bg-colorSecondary relative w-[min(90rem,90%)] mx-auto min-h-screen gap-6 py-12 flex flex-col lg:flex-row items-center">
         <main className="relative w-full mx-auto flex flex-col items-center">

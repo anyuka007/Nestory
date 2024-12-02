@@ -11,7 +11,7 @@ const cards = [
     {
         title: "Fullstack Web Developer",
         name: "Jian Lu",
-        image: "/images/person/jian5.jpeg",
+        image: "/images/person/jian-neu.jpeg",
         git: "https://github.com/LuJian2024",
         in: "https://www.linkedin.com/in/jian-lu-705184330/",
         inLogo: "https://www.multi-sonic.de/wp-content/uploads/2024/06/linkedin-logo-linkedin-icon-transparent-free-png.webp",
@@ -90,7 +90,7 @@ export default function AboutUs() {
                 className=" rounded-3xl "
             >
                 <main
-                    style={{ position: "relative", top: "60px", left: "55px" }}
+                    style={{ position: "relative", top: "60px", left: "20px" }}
                     className="flex"
                 >
                     <div>
