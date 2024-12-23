@@ -32,9 +32,56 @@ Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshop
 - **Filtern und Sortieren:** Filtern Sie Produkte nach verschiedenen Kriterien wie Preis, Kategorie oder Bewertung und sortieren Sie sie nach Ihren Vorlieben.
 - **Responsives Design:** Die Website passt sich automatisch an verschiedene Bildschirmgrößen an, einschließlich Tablets, Smartphones und Laptops, um eine optimale Benutzererfahrung zu gewährleisten.
 
+- **Registrieren und Login:** Melden Sie sich an oder erstellen Sie ein neues Konto, um von bestehenden Benutzerdaten auf dem Server zu profitieren.
+
+- ## 🚀 Installation Steps
+
+Folgen Sie diesen Schritten, um das Projekt lokal auszuführen:
+
+1. **Klonen Sie das Repository**  
+   ```bash
+   git clone https://github.com/username/repository-name.git
+   
+2. **Wechseln Sie in das Projektverzeichnis**
+   ```bash
+   cd Nestory
+   
+📂 Frontend
+
+3. **Installieren Sie die Abhängigkeiten für das Frontend**
+   ```bash
+   cd frontend
+   npm install
+
+4. **Starten Sie die Entwicklungsumgebung für das Frontend**
+   ```bash
+   npm run dev
+
+📂 Backend
+
+5. **Installieren Sie die Abhängigkeiten für das Backend**
+   ```bash
+   cd backend
+   npm install
+
+6. **Starten Sie den Server für das Backend**
+   ```bash
+   nodemon server.js
+
+🎉 Das Projekt läuft jetzt auf Ihrem lokalen Rechner!
+
+- **Frontend** ist unter http://localhost:3000 verfügbar.
+
+- **Backend** ist unter http://localhost:3000 verfügbar.
+
+
+
+
+
+
 
   
-- **Registrieren und Login:** Melden Sie sich an oder erstellen Sie ein neues Konto, um von bestehenden Benutzerdaten auf dem Server zu profitieren.  
+ 
 
 
 
