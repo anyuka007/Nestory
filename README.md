@@ -27,12 +27,18 @@ Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshop
  
 [Screencast from 23.12.2024 15:41:25.webm](https://github.com/user-attachments/assets/340276eb-5f88-47e7-9426-06f76fffc5ae)
 
+
 - **3D-Produktansicht:** Einige Produkte können in 3D angezeigt werden, sodass Sie diese aus allen Perspektiven betrachten können.
 - **Suchleiste:** Benutzen Sie die Lupe, um gezielt nach Produkten zu suchen.
 - **Filtern und Sortieren:** Filtern Sie Produkte nach verschiedenen Kriterien wie Preis, Kategorie oder Bewertung und sortieren Sie sie nach Ihren Vorlieben.
 - **Responsives Design:** Die Website passt sich automatisch an verschiedene Bildschirmgrößen an, einschließlich Tablets, Smartphones und Laptops, um eine optimale Benutzererfahrung zu gewährleisten.
 
 - **Registrieren und Login:** Melden Sie sich an oder erstellen Sie ein neues Konto, um von bestehenden Benutzerdaten auf dem Server zu profitieren.
+# Technologien
+
+
+
+
 
 - ## 🚀 Installation Steps
 
@@ -82,6 +88,7 @@ Folgen Sie diesen Schritten, um das Projekt lokal auszuführen:
 
   
  
+
 
 
 
