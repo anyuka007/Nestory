@@ -7,6 +7,10 @@ Die neSTory Webseite ist das final Project unserer Gruppe im Kurs für Webentwic
 
 **Eine einzigartige Geschichte für jedes Zuhause**
 
+# Unser Team
+
+![Deine Zuhause (1)](https://github.com/user-attachments/assets/a5979085-0364-479b-b83a-032e374864fa)
+
 Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshopping, die ein einzigartiges Erlebnis bei der Auswahl, dem Kauf und der Verwaltung Ihrer Lieblingsmöbelstücke bietet. Diese Plattform wurde entwickelt, um Ihren Einkaufsprozess zu erleichtern und ein personalisiertes Erlebnis zu ermöglichen.
 
 [Screencast from 23.12.2024 11:24:47.webm](https://github.com/user-attachments/assets/5acc3525-163c-4944-b187-e009341efc17)
