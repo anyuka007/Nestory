@@ -1,7 +1,11 @@
 
+[Screencast from 23.12.2024 15:41:25.webm](https://github.com/user-attachments/assets/340276eb-5f88-47e7-9426-06f76fffc5ae)
+# neSTory Furniture  
+
 # Abschlussprojekt – Webentwicklung
 Die neSTory Webseite ist das final Project unserer Gruppe im Kurs für Webentwicklung. Es repräsentiert das Wissen und die Fähigkeiten, die wir während des Kurses erworben haben.
 # neSTory
+
 **Eine einzigartige Geschichte für jedes Zuhause**
 
 Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshopping, die ein einzigartiges Erlebnis bei der Auswahl, dem Kauf und der Verwaltung Ihrer Lieblingsmöbelstücke bietet. Diese Plattform wurde entwickelt, um Ihren Einkaufsprozess zu erleichtern und ein personalisiertes Erlebnis zu ermöglichen.
