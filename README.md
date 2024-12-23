@@ -3,6 +3,10 @@
 
 # Abschlussprojekt – Webentwicklung
 Die neSTory Webseite ist das final Project unserer Gruppe im Kurs für Webentwicklung. Es repräsentiert das Wissen und die Fähigkeiten, die wir während des Kurses erworben haben.
+# Unser Team
+
+
+
 # neSTory
 
 **Eine einzigartige Geschichte für jedes Zuhause**
