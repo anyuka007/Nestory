@@ -36,7 +36,7 @@ Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshop
 - **Registrieren und Login:** Melden Sie sich an oder erstellen Sie ein neues Konto, um von bestehenden Benutzerdaten auf dem Server zu profitieren.
 # Technologien
 
-
+![Deine Zuhause (2)](https://github.com/user-attachments/assets/840f3d9a-db04-4537-9480-e9d99cb5397d)
 
 
 
