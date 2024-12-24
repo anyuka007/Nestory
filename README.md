@@ -46,7 +46,7 @@ Folgen Sie diesen Schritten, um das Projekt lokal auszuführen:
 
 1. **Klonen Sie das Repository**  
    ```bash
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/anyuka007/Nestory.git
    
 2. **Wechseln Sie in das Projektverzeichnis**
    ```bash
