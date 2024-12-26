@@ -61,7 +61,7 @@ Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshop
 - **Suchleiste:** Benutzen Sie die Lupe, um gezielt nach Produkten zu suchen.
 - **Filtern und Sortieren:** Filtern Sie Produkte nach verschiedenen Kriterien wie Preis, Kategorie oder Bewertung und sortieren Sie sie nach Ihren Vorlieben.
 - **Responsives Design:** Die Website passt sich automatisch an verschiedene Bildschirmgrößen an, einschließlich Tablets, Smartphones und Laptops, um eine optimale Benutzererfahrung zu gewährleisten.
-
+![Deine Zuhause](https://github.com/user-attachments/assets/9526fce1-8912-4759-8a31-0bef7dc97ab3)
 - **Registrieren und Login:** Melden Sie sich an oder erstellen Sie ein neues Konto, um von bestehenden Benutzerdaten auf dem Server zu profitieren.
 # Technologien
 
