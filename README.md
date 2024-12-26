@@ -1,48 +1,13 @@
 
-# neSTory Furniture  
 
 # Abschlussprojekt – Webentwicklung
 Die neSTory Webseite ist das final Project unserer Gruppe im Kurs für Webentwicklung. Es repräsentiert das Wissen und die Fähigkeiten, die wir während des Kurses erworben haben.
-
-
-
-
 # neSTory
-
-**Eine einzigartige Geschichte für jedes Zuhause**
-
-# Die Kreativköpfe hinter den Kulissen
-
-![Deine Zuhause (1)](https://github.com/user-attachments/assets/a5979085-0364-479b-b83a-032e374864fa)
+Eine einzigartige Geschichte für jedes Zuhause
 
 
 
- ## Wie können Sie uns erreichen 📫
 
-### Julijana <img src="https://github.com/user-attachments/assets/6f751ed6-0e7c-4fb4-95ec-52f5d8ffbfe8" alt="programmer" style="width: 30px; height: 30px;" />
-
-
- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/julijana-uneva-b28a751b5)  [![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:julijana3uneva@gmail.com)   [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JulijanaUneva)
-
-
-### Jian <img src="https://github.com/user-attachments/assets/2153c84c-bba9-4199-a75f-b8561262ef87" alt="programmer" style="width: 30px; height: 30px;" />
-
- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jian-lu-705184330)
-[![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jian.lu.ou@gmail.com)
- [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/person2)
-  
-### Anna <img src="https://github.com/user-attachments/assets/f6e95a2e-8a9a-4aca-8798-47d40a5e2802" alt="programmer" style="width: 30px; height: 30px;" />
-
- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anna-popova-95b27393)
- [![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anna.popova0510@gmail.com)
- [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anyuka007)
-
-### Alex <img src="https://github.com/user-attachments/assets/129331f2-453d-4e4c-aaa0-5a0626f55a40" alt="programmer" style="width: 30px; height: 30px;" />
-
-
- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alex-nezhad-2517a6322)
- [![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mohammad.mohammad@dci-student.org)
- [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/person2)
   
 Willkommen bei **neSTory Furniture** – einer modernen Webseite für Möbelshopping, die ein einzigartiges Erlebnis bei der Auswahl, dem Kauf und der Verwaltung Ihrer Lieblingsmöbelstücke bietet. Diese Plattform wurde entwickelt, um Ihren Einkaufsprozess zu erleichtern und ein personalisiertes Erlebnis zu ermöglichen.
 
@@ -105,9 +70,42 @@ Folgen Sie diesen Schritten, um das Projekt lokal auszuführen:
 
 🎉 Das Projekt läuft jetzt auf Ihrem lokalen Rechner!
 
-- **Frontend** ist unter http://localhost:3000 verfügbar.
+- **Frontend** ist unter http://localhost:5173 verfügbar.
 
 - **Backend** ist unter http://localhost:3000 verfügbar.
+
+# Die Kreativköpfe hinter den Kulissen
+
+![Deine Zuhause (1)](https://github.com/user-attachments/assets/a5979085-0364-479b-b83a-032e374864fa)
+
+
+
+ ## Wie können Sie uns erreichen 📫
+
+### Julijana <img src="https://github.com/user-attachments/assets/6f751ed6-0e7c-4fb4-95ec-52f5d8ffbfe8" alt="programmer" style="width: 30px; height: 30px;" />
+
+
+ [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/julijana-uneva-b28a751b5)  [![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:julijana3uneva@gmail.com)   [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JulijanaUneva)
+
+
+### Jian <img src="https://github.com/user-attachments/assets/2153c84c-bba9-4199-a75f-b8561262ef87" alt="programmer" style="width: 30px; height: 30px;" />
+
+ [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jian-lu-705184330)
+[![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:jian.lu.ou@gmail.com)
+ [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/LuJian2024)
+  
+### Anna <img src="https://github.com/user-attachments/assets/f6e95a2e-8a9a-4aca-8798-47d40a5e2802" alt="programmer" style="width: 30px; height: 30px;" />
+
+ [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anna-popova-95b27393)
+ [![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:anna.popova0510@gmail.com)
+ [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anyuka007)
+
+### Alex <img src="https://github.com/user-attachments/assets/129331f2-453d-4e4c-aaa0-5a0626f55a40" alt="programmer" style="width: 30px; height: 30px;" />
+
+
+ [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/alex-nezhad-2517a6322)
+ [![E-Mail](https://img.shields.io/badge/-E--Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mohammad.mohammad@dci-student.org)
+ [![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Alexxmanii)
 
 
 
