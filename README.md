@@ -12,9 +12,9 @@ Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem 
 
 ---
 
-<h2> 🪑 Über das Projekt </h2>
 
-# neSTory
+# neSTory ![nestory (3)](https://github.com/user-attachments/assets/19bddc04-0aa5-4135-a290-c498468dc4e1)
+
 
 **Eine einzigartige Geschichte für jedes Zuhause**
 
