@@ -171,7 +171,14 @@ Ein großes Dankeschön an alle unsere Lehrer für ihre Unterstützung und Hilfe
 ## 👋 
 Danke, dass ihr euch unser Projekt angeschaut habt! 
 Bis bald,  
-Das neSTory Team
+**Das neSTory Team**
+
+---
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/f9696fff-faf3-4841-a0b4-ce2569f4e81f" alt="nestory (3)" style="width: 10%; height: auto;" />
+</div>
+
 
 
 
