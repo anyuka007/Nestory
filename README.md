@@ -69,6 +69,8 @@ Hier sind die Hauptfunktionen, die der Admin ausführen kann:
 -  **Bearbeiten**: Änderungen an bestehenden Produkten vornehmen.  
 -  **Löschen**: Nicht mehr verfügbare Produkte entfernen.
 
+![Screenshot from 2024-12-30 23-16-16](https://github.com/user-attachments/assets/5a60c563-6a1b-4307-bf25-25dfd4fcdac2)
+
 ### 👥 Verwaltung von Benutzern
 -  **Hinzufügen**: Neue Benutzerkonten erstellen.  
 -  **Bearbeiten**: Benutzerdaten aktualisieren, wie z. B. Namen, Rollen oder Kontaktdaten.  
