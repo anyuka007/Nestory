@@ -78,6 +78,8 @@ Hier sind die Hauptfunktionen, die der Admin ausführen kann:
 -  **Bearbeiten**: Änderungen an bestehenden Produkten vornehmen.  
 -  **Löschen**: Nicht mehr verfügbare Produkte entfernen.
 
+![Screenshot from 2024-12-30 23-16-16](https://github.com/user-attachments/assets/5a60c563-6a1b-4307-bf25-25dfd4fcdac2)
+
 ### 👥 Verwaltung von Benutzern
 -  **Hinzufügen**: Neue Benutzerkonten erstellen.  
 -  **Bearbeiten**: Benutzerdaten aktualisieren, wie z. B. Namen, Rollen oder Kontaktdaten.  
@@ -179,8 +181,15 @@ Ein großes Dankeschön an alle unsere Lehrer für ihre Unterstützung und Hilfe
 
 ## 👋 
 Danke, dass ihr euch unser Projekt angeschaut habt! 
-<br>Bis bald,  
-Das neSTory Team
+Bis bald,  
+**Das neSTory Team**
+
+---
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/f9696fff-faf3-4841-a0b4-ce2569f4e81f" alt="nestory (3)" style="width: 10%; height: auto;" />
+</div>
+
 
 
 
