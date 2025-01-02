@@ -2,6 +2,7 @@
 Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem Projekt verbinden wir Frontend und Backend und arbeiten mit dem **MERN-Stack** (MongoDB, Express.js, React, Node.js) sowie **Tailwind CSS** für das Design. Das Projekt zeigt, wie die erlernten Technologien in einer vollständigen Webanwendung erfolgreich angewendet werden können.
 
 ---
+
 ## 🎯 Ziele des Projekts
 
 
@@ -12,11 +13,19 @@ Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem 
 
 ---
 
-<h2> 🪑 Über das Projekt </h2>
 
-# neSTory
 
-**Eine einzigartige Geschichte für jedes Zuhause**
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/6934a394-58e3-4f79-a295-9fe40514bc30" alt="image" />
+</div>
+
+
+
+<div align="center">
+<h2>Eine einzigartige Geschichte für jedes Zuhause</h2>
+</div>
+
 
 Willkommen bei neSTory Furniture – eine moderne Webseite für Möbelshopping, die euch ein einzigartiges Erlebnis bei der Auswahl, dem Kauf und der Verwaltung eurer Lieblingsmöbel bietet. Diese Plattform wurde entwickelt, um euch den Einkaufsprozess zu erleichtern und ein personalisiertes Erlebnis zu ermöglichen.
 
