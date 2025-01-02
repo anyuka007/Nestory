@@ -2,6 +2,7 @@
 Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem Projekt verbinden wir Frontend und Backend und arbeiten mit dem **MERN-Stack** (MongoDB, Express.js, React, Node.js) sowie **Tailwind CSS** für das Design. Das Projekt zeigt, wie die erlernten Technologien in einer vollständigen Webanwendung erfolgreich angewendet werden können.
 
 ---
+
 ## 🎯 Ziele des Projekts
 
 
@@ -12,11 +13,16 @@ Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem 
 
 ---
 
-
 # neSTory ![nestory (3)](https://github.com/user-attachments/assets/19bddc04-0aa5-4135-a290-c498468dc4e1)
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/6934a394-58e3-4f79-a295-9fe40514bc30" alt="image" />
+</div>
 
-**Eine einzigartige Geschichte für jedes Zuhause**
+<div align="center">
+<h2>Eine einzigartige Geschichte für jedes Zuhause</h2>
+</div>
+
 
 Willkommen bei neSTory Furniture – eine moderne Webseite für Möbelshopping, die euch ein einzigartiges Erlebnis bei der Auswahl, dem Kauf und der Verwaltung eurer Lieblingsmöbel bietet. Diese Plattform wurde entwickelt, um euch den Einkaufsprozess zu erleichtern und ein personalisiertes Erlebnis zu ermöglichen.
 
@@ -68,6 +74,8 @@ Hier sind die Hauptfunktionen, die der Admin ausführen kann:
 -  **Hinzufügen**: Neue Produkte mit allen Details wie Name, Preis, Kategorie und Beschreibung hinzufügen.  
 -  **Bearbeiten**: Änderungen an bestehenden Produkten vornehmen.  
 -  **Löschen**: Nicht mehr verfügbare Produkte entfernen.
+
+![Screenshot from 2024-12-30 23-16-16](https://github.com/user-attachments/assets/5a60c563-6a1b-4307-bf25-25dfd4fcdac2)
 
 ### 👥 Verwaltung von Benutzern
 -  **Hinzufügen**: Neue Benutzerkonten erstellen.  
@@ -171,7 +179,14 @@ Ein großes Dankeschön an alle unsere Lehrer für ihre Unterstützung und Hilfe
 ## 👋 
 Danke, dass ihr euch unser Projekt angeschaut habt! 
 Bis bald,  
-Das neSTory Team
+**Das neSTory Team**
+
+---
+
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/f9696fff-faf3-4841-a0b4-ce2569f4e81f" alt="nestory (3)" style="width: 10%; height: auto;" />
+</div>
+
 
 
 
