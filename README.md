@@ -13,14 +13,11 @@ Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem 
 
 ---
 
-
-
+# neSTory ![nestory (3)](https://github.com/user-attachments/assets/19bddc04-0aa5-4135-a290-c498468dc4e1)
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/6934a394-58e3-4f79-a295-9fe40514bc30" alt="image" />
 </div>
-
-
 
 <div align="center">
 <h2>Eine einzigartige Geschichte für jedes Zuhause</h2>
