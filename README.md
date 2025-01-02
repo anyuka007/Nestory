@@ -13,8 +13,6 @@ Wir präsentieren euch unser finales Projekt im Kurs Web Entwicklung! In diesem 
 
 ---
 
-# neSTory ![nestory (3)](https://github.com/user-attachments/assets/19bddc04-0aa5-4135-a290-c498468dc4e1)
-
 <div align="center">
   <img src="https://github.com/user-attachments/assets/6934a394-58e3-4f79-a295-9fe40514bc30" alt="image" />
 </div>
@@ -30,9 +28,8 @@ Willkommen bei neSTory Furniture – eine moderne Webseite für Möbelshopping, 
 
 ---
 
-### Was bieten wir?  
+## Was bieten wir?  
 
----
 
 ## 🛍️ Kunden-Funktionen
 
@@ -56,12 +53,6 @@ Willkommen bei neSTory Furniture – eine moderne Webseite für Möbelshopping, 
 
 ---
 
-# 🛠 Haupttechnologien und Tools
-Dies sind die Haupttechnologien und Tools, die wir in unserer Webanwendung verwendet haben:
-
-![Deine Zuhause (2)](https://github.com/user-attachments/assets/840f3d9a-db04-4537-9480-e9d99cb5397d)
-
----
 
 ## 👨‍💼 Admin-Funktionen
 
@@ -93,7 +84,12 @@ Hier sind die Hauptfunktionen, die der Admin ausführen kann:
 -  **Problembehebung**: Probleme bei Bestellungen oder Zahlungen lösen.
 
  ---
+## 🛠 Haupttechnologien und Tools
+Dies sind die Haupttechnologien und Tools, die wir in unserer Webanwendung verwendet haben:
 
+![Deine Zuhause (2)](https://github.com/user-attachments/assets/840f3d9a-db04-4537-9480-e9d99cb5397d)
+
+---
 
  ## 🚀 Installation Steps
 
@@ -135,11 +131,13 @@ Folgt diesen Schritten, um das Projekt lokal auszuführen:
 
 - **Backend** ist unter http://localhost:3000 verfügbar.
 
+---
+
 # Die Kreativköpfe hinter den Kulissen
 
 ![Deine Zuhause (1)](https://github.com/user-attachments/assets/a5979085-0364-479b-b83a-032e374864fa)
 
-
+---
 
  ## Wie könnt ihr uns erreichen 📫
 
